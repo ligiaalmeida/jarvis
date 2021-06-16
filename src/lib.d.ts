@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ChartJS from 'chart.js';
 
 import { theme } from 'styles/theme';
-import payload from '../internals/mocks/payloadMock';
+import payload from './internals/mocks/payloadMock';
 
 declare global {
   type StyledISimpleInterpolation = Styled.SimpleInterpolation;
