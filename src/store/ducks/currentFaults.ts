@@ -1,4 +1,4 @@
-import { CreatorRedux } from 'types';
+import { CreatorRedux, RangeAutomaticTimer } from 'types';
 import { CurrentFaultsPayload } from 'components/StationItemFaults/types';
 
 export const Types = {

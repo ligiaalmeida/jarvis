@@ -9,6 +9,7 @@ import { StateMapToPropsGlobal } from 'types';
 
 import texts from '../texts';
 import * as S from './styles';
+import { TableListProps } from './types';
 
 const TableList: React.FC<TableListProps> = ({ title, data, type, np }) => {
   const row = useSelector((state: Pick<StateMapToPropsGlobal, 'mixSuggestionPage'>) => state.mixSuggestionPage);

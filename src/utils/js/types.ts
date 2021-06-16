@@ -1,6 +1,6 @@
-type TypeTimeDisplayFormat = 'DD:HH:MM:SS' | 'DD:HH:MM' | 'DD:MM:SS' | 'HH:MM:SS' | 'HH:MM' | 'MM:SS';
+export type TypeTimeDisplayFormat = 'DD:HH:MM:SS' | 'DD:HH:MM' | 'DD:MM:SS' | 'HH:MM:SS' | 'HH:MM' | 'MM:SS';
 
-type TimeFormatArgs = {
+export type TimeFormatArgs = {
   time: number;
   displayFormat: TypeTimeDisplayFormat;
   separatorHour?: string;
@@ -8,13 +8,13 @@ type TimeFormatArgs = {
   separatorSeconds?: string;
 };
 
-type ChartPropsLabelColor<Chart, TooltipItem> = {
+export type ChartPropsLabelColor<Chart, TooltipItem> = {
   labelReal: string;
   labelPredicted: string;
   tooltipItem: TooltipItem;
   chart: Chart;
 };
 
-type PageInputFactory<Pathname> = {
+export type PageInputFactory<Pathname> = {
   pathname: Pathname;
 };

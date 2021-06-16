@@ -1,17 +1,17 @@
-type TableListProps = {
+export type TableListProps = {
   title: string;
   data: MixSuggestionData;
   type: TableType;
   np: NpTable[];
 };
 
-type NpTable = {
+export type NpTable = {
   np: number;
 };
 
-type TableType = 'scheduled' | 'suggested';
+export type TableType = 'scheduled' | 'suggested';
 
-type MixSuggestionData = {
+export type MixSuggestionData = {
   original_time: number;
   predicted_time: number;
   processed_timestamp: number;
@@ -26,6 +26,6 @@ type MixSuggestionData = {
 
 /*=-=-=-=-=-=-==-=-= STYLES =-=-=-=-=-=-==-=-=*/
 
-type TableTypeProps = {
+export type TableTypeProps = {
   type: TableType;
 };

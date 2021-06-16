@@ -1,4 +1,4 @@
-import { ActiveFailList, ModeView } from 'types';
+import { ActiveFailList, ModeView, PagesSettingsTimer, PerformancePageStorage } from 'types';
 import { CurrentFaultsPayload } from 'components/StationItemFaults/types';
 
 export type InitialStateGlobal = {

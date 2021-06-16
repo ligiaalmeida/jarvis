@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { LegendItemStyleProps } from '../../types';
+import { LegendItemStyleProps } from '../types';
 
 export const LegendItemGroup = styled.div`
   ${() => {

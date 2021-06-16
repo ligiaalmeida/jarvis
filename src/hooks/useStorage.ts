@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { StorageType } from 'types';
 
 type Storage = [string, (payload: string) => void];
 

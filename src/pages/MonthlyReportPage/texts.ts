@@ -109,8 +109,7 @@ export default {
           pt_br: `Cálculo de Takt médio entre mínimo e máximo no dia. A linha média é traçada percorrendo todos os dias do mês. Dias sem produção deverão ser exibidos com valores zerados.`,
           en_us:
             'Calculation of average Takt between minimum and maximum on the day. The midline is drawn across all days of the month. Days without production should be displayed with zero values.',
-          de:
-            'Berechnung des durchschnittlichen Takts zwischen Minimum und Maximum am Tag. Die Mittellinie wird über alle Tage des Monats gezogen. Tage ohne Produktion sollten mit Nullwerten angezeigt werden.',
+          de: 'Berechnung des durchschnittlichen Takts zwischen Minimum und Maximum am Tag. Die Mittellinie wird über alle Tage des Monats gezogen. Tage ohne Produktion sollten mit Nullwerten angezeigt werden.',
         },
       },
     },
@@ -126,8 +125,7 @@ export default {
             'Quantidade baseada em modelo preditivo para a produção esperada (quantidade) de acordo com as condições da linha de produção, considerando os dois turnos.',
           en_us:
             'Quantity based on a predictive model for the expected production (quantity) according to the conditions of the production line, considering the two shifts.',
-          de:
-            'Menge basierend auf einem Vorhersagemodell für die erwartete Produktion (Menge) gemäß den Bedingungen der Produktionslinie unter Berücksichtigung der beiden Verschiebungen.',
+          de: 'Menge basierend auf einem Vorhersagemodell für die erwartete Produktion (Menge) gemäß den Bedingungen der Produktionslinie unter Berücksichtigung der beiden Verschiebungen.',
         },
         minimum: {
           pt_br: 'Linha histórica de produção mínima dentro do mês.',
@@ -151,16 +149,14 @@ export default {
         daily_deviation: {
           pt_br: 'Desvio de produção (diferença) entre a meta de produção definida e a produção atual.',
           en_us: 'Production deviation (difference) between the defined production target and the current production.',
-          de:
-            'Produktionsabweichung (Differenz) zwischen dem definierten Produktionsziel und der aktuellen Produktion.',
+          de: 'Produktionsabweichung (Differenz) zwischen dem definierten Produktionsziel und der aktuellen Produktion.',
         },
         expected_daily_deviation: {
           pt_br:
             'Quantidade baseada em modelo preditivo para a previsão da quantidade de veículos que poderão ser deixados de ser produzidos no dia de acordo com as condições da linha de produção.',
           en_us:
             'Quantity based on a predictive model for the forecast of the number of vehicles that can be stopped from being produced on the day according to the conditions of the production line.',
-          de:
-            'Menge basierend auf einem Vorhersagemodell für die Vorhersage der Anzahl der Fahrzeuge, deren Produktion am Tag gemäß den Bedingungen der Produktionslinie gestoppt werden kann.',
+          de: 'Menge basierend auf einem Vorhersagemodell für die Vorhersage der Anzahl der Fahrzeuge, deren Produktion am Tag gemäß den Bedingungen der Produktionslinie gestoppt werden kann.',
         },
         minimum: {
           pt_br: 'Linha histórica de desvio mínimo dentro do mês.',
@@ -186,8 +182,7 @@ export default {
             'Tempo em (minutos) que a linha de produção ficou parada no dia sendo ocasionadas por paradas do processo, simples parada ou por falha.',
           en_us:
             'Time in (minutes) that the production line was stopped in the day, caused by process stops, simple stop or failure.',
-          de:
-            'Zeit in (Minuten), in der die Produktionslinie am Tag gestoppt wurde, verursacht durch Prozessstopps, einfaches Stoppen oder Versagen.',
+          de: 'Zeit in (Minuten), in der die Produktionslinie am Tag gestoppt wurde, verursacht durch Prozessstopps, einfaches Stoppen oder Versagen.',
         },
         minimum: {
           pt_br: 'Linha histórica de tempo de parada mínima dentro do mês.',

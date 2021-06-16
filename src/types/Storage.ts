@@ -1,17 +1,17 @@
-type LocalStorageGlobal = {
+export type LocalStorageGlobal = {
   settings: {
     isHeader: boolean;
     isNavigation: boolean;
   };
 };
 
-type GlobalSessionStorage = {
+export type GlobalSessionStorage = {
   settings: {
     isActiveFullScreen: boolean;
   };
 };
 
-type PagesSettingsStorage = {
+export type PagesSettingsStorage = {
   performance: {
     timer: PagesSettingsTimer;
     zoom: number;
@@ -21,21 +21,23 @@ type PagesSettingsStorage = {
   };
 };
 
-type PerformancePageStorage = {
+export type PerformancePageStorage = {
   timer: PagesSettingsTimer;
   zoom: number;
 };
 
-type RangeAutomaticTimer = 30 | 60 | 90 | 120;
+export type RangeAutomaticTimer = 30 | 60 | 90 | 120;
 
-type PageStorageDefault = {
+export type PageStorageDefault = {
   timer: PagesSettingsTimer;
   modeView: 'simplified' | 'detailed';
 };
 
-type PagesSettingsTimer = {
+export type PagesSettingsTimer = {
   automaticMode: boolean;
   timer: RangeAutomaticTimer;
 };
 
-type StorageType = 'local' | 'session';
+export type StorageType = 'local' | 'session';
+
+// export {};

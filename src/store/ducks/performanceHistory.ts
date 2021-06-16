@@ -1,4 +1,4 @@
-import { CreatorRedux } from 'types';
+import { CreatorRedux, RangeAutomaticTimer } from 'types';
 
 export const Types = {
   TIMER: '@@performanceHistory/TIMER',

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Transition, Elevation } from 'utils/styles/mixins';
+import { TableTypeProps } from './types';
 
 export const SuggestedItem = styled.tr<{
   sequence: boolean;

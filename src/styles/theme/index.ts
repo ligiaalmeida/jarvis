@@ -10,22 +10,7 @@ export const sizes = {
   xl: { min: '1920px', max: '10000px' },
 };
 export const grid: GridSizes = [
-  6.25,
-  12.5,
-  18.75,
-  25,
-  31.25,
-  37.5,
-  43.75,
-  50,
-  56.25,
-  62.5,
-  68.75,
-  75,
-  81.25,
-  87.5,
-  93.75,
-  100,
+  6.25, 12.5, 18.75, 25, 31.25, 37.5, 43.75, 50, 56.25, 62.5, 68.75, 75, 81.25, 87.5, 93.75, 100,
 ];
 
 export const theme: Theme = {
@@ -101,8 +86,7 @@ export const theme: Theme = {
     default: 'linear-gradient(180deg, #0F4C81 30%, #118aca 80%)',
     aijus: {
       background: 'linear-gradient(180deg, #0F4C81 30%, #118aca 80%)',
-      menu:
-        'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 92.81%, #FFFFFF 92.91%, #FFFFFF 100%)',
+      menu: 'linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 92.81%, #FFFFFF 92.91%, #FFFFFF 100%)',
     },
   },
   typography: {

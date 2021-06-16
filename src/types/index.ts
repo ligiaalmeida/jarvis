@@ -7,6 +7,8 @@ export * from './Assets';
 export * from './ChartData';
 export * from './PayloadData';
 
+export * from './Storage';
+
 // Components
 export * from 'components/LabelItemChart/types';
 

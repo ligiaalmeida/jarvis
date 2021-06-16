@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Slider from '@material-ui/core/Slider';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { SettingsSwitchTabsProps, StateMapToPropsGlobal } from 'types';
+import { SettingsSwitchTabsProps, StateMapToPropsGlobal, PageStorageDefault, RangeAutomaticTimer } from 'types';
 
 import Switch from 'components/FormElements/Switch';
 import { SettingsDots } from 'components/Icons/SettingsDots';

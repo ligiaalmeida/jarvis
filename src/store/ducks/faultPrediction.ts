@@ -1,4 +1,4 @@
-import { ModeView, CreatorRedux } from 'types';
+import { ModeView, CreatorRedux, RangeAutomaticTimer } from 'types';
 
 export const Types = {
   TIMER: '@@faultPrediction/TIMER',

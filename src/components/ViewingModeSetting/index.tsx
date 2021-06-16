@@ -4,7 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Radio } from '@material-ui/core';
 
-import { Pathname, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
+import { Pathname, StateMapToPropsGlobal, StateMapToRouterProps, PageStorageDefault } from 'types';
 import * as Types from './types';
 
 import * as S from './styles';

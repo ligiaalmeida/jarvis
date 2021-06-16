@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, MutableRefObject } from 'react';
-import { KeysOfPagesContainingTimer } from 'types';
+import { KeysOfPagesContainingTimer, RangeAutomaticTimer } from 'types';
 
 export type Environment = 'development' | 'production';
 

@@ -1,3 +1,5 @@
+import { TimeFormatArgs } from './types';
+
 const Types = {
   DD_HH_MM_SS: 'DD:HH:MM:SS',
   DD_HH_MM: 'DD:HH:MM',
