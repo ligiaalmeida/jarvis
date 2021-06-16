@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as chartjs from 'chart.js';
 import { ChartData } from 'react-chartjs-2';
 import ContentLoader from 'react-content-loader';

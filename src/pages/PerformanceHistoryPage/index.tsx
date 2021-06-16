@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import HTMLParser from 'html-react-parser';
 import { useSelector } from 'react-redux';
 

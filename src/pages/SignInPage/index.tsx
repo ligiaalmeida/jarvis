@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -33,7 +33,7 @@ const SignInPage = () => {
     setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
   };
 
-  let clearLoading: NodeJS.Timeout = (0 as unknown) as NodeJS.Timeout;
+  let clearLoading: NodeJS.Timeout = 0 as unknown as NodeJS.Timeout;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

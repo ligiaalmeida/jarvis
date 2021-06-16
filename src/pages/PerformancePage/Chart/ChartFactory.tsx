@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChartData, ChartOptions } from 'chart.js';
 import { defaults, Line } from 'react-chartjs-2';
 import merge from 'lodash.merge';

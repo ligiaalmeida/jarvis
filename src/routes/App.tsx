@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route, useHistory } from 'react-router-dom';
 
@@ -156,7 +156,12 @@ export default function Routes() {
         <Route exact path={routes.SIGN_IN} component={SignInPage} />
         {signInPage.isConnected &&
           userRoutes &&
-          userRoutes.map(({ id, route }) => <Route key={id} path={route.path} component={route.component} />)}
+          userRoutes.map(({ id, route }) => (
+            <>
+              <Route key={id} path={route.path} component={route.component} />
+              {console.log('route => ', route)}
+            </>
+          ))}
       </>
     </Switch>
   );

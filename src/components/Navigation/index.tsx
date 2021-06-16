@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,7 +19,7 @@ import { sessionStorage } from 'constants/globalStorageSettings';
 import routes from 'constants/routes';
 
 import { useStorage, useWindowWidth, useClickOutside } from 'hooks';
-import { setFullScreen } from 'utils/js';
+// import { setFullScreen } from 'utils/js';
 import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
@@ -28,6 +28,7 @@ import { ModeView, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
 import * as Types from 'types';
 
 import * as S from './styles';
+import { GlobalSessionStorage } from 'types';
 
 const Navigation = () => {
   const [isHoveredSettingsSecondary, setIsHoveredSettingsSecondary] = useState(false);
@@ -113,9 +114,9 @@ const Navigation = () => {
     }
   });
 
-  useEffect(() => {
-    setFullScreen(JSON.parse(itemSessionStorage).settings.isActiveFullScreen);
-  }, [itemSessionStorage]);
+  // useEffect(() => {
+  //   setFullScreen(JSON.parse(itemSessionStorage).settings.isActiveFullScreen);
+  // }, [itemSessionStorage]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 1199px)');

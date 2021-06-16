@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TooltipIcon = ({ background = '#0F4C81', color = '#fff' }) => {
   return (
     <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">

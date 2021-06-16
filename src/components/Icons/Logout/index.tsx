@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SVGProps } from 'types';
 
 const Logout = ({ width = '22px', height = '18px', fill = 'red' }: SVGProps) => {

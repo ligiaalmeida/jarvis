@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Logo from 'assets/img/logo-jarvis.png';
 import * as S from './styles';
 
