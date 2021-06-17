@@ -19,7 +19,7 @@ import { sessionStorage } from 'constants/globalStorageSettings';
 import routes from 'constants/routes';
 
 import { useStorage, useWindowWidth, useClickOutside } from 'hooks';
-// import { setFullScreen } from 'utils/js';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
@@ -68,6 +68,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const date = new Date();
   const width = useWindowWidth();
+  const screen = useFullScreenHandle();
 
   const setHeight = () => {
     if (settings.toggleNavigation && !settings.toggleHeader) {
@@ -165,24 +166,10 @@ const Navigation = () => {
                   transition={{ damping: 300 }}
                 >
                   <S.Settings>
-                    <Switch
-                      labelDirection="right"
-                      label="Full Screen"
-                      fontSize="14px"
-                      padding="0"
-                      scaleSwitch={0.8}
-                      enabled={(JSON.parse(itemSessionStorage) as GlobalSessionStorage).settings.isActiveFullScreen}
-                      onChange={(isFullScreen) => {
-                        setItemSessionStorage(
-                          JSON.stringify({
-                            settings: {
-                              ...(JSON.parse(itemSessionStorage) as GlobalSessionStorage).settings,
-                              isActiveFullScreen: isFullScreen,
-                            },
-                          })
-                        );
-                      }}
-                    />
+                    <FullScreen handle={screen}>
+                      <button onClick={screen.enter}>set fullscreen</button>
+                      <button onClick={screen.exit}>Exit</button>
+                    </FullScreen>
 
                     <Switch
                       labelDirection="right"
