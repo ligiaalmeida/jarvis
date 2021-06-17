@@ -2,7 +2,6 @@ import React, { Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
-import { hot } from 'react-hot-loader/root';
 import { History } from 'history';
 import { ThemeProvider } from 'styled-components';
 import { ThemeProvider as ThemeProviderMui } from '@material-ui/styles';
@@ -43,4 +42,4 @@ const App = ({ store, history, persistor }: Props) => {
   );
 };
 
-export default hot(App);
+export default App;

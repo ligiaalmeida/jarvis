@@ -8,6 +8,5 @@ export * from './numberFormat';
 export * from './objectIsEqual';
 export * from './range';
 export * from './scrollTo';
-export * from './setFullscreen';
 export * from './sortData';
 export * from './timeFormat';
