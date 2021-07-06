@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import { CurrentFaultsActions } from 'store/ducks/currentFaults';
 
@@ -17,10 +17,9 @@ import MixSuggestionPage from 'pages/MixSuggestionPage';
 import PerformanceHistoryPage from 'pages/PerformanceHistoryPage';
 import MonthlyReportPage from 'pages/MonthlyReportPage';
 
+import { StateMapToPropsGlobal, RouterProps } from 'types';
 import { CurrentStatusActions } from 'store/ducks/currentStatus';
 import { SignInActions } from 'store/ducks/auth';
-
-import { StateMapToPropsGlobal, RouterProps } from 'types';
 
 const authRoutes = [
   {
@@ -88,8 +87,8 @@ export default function Routes() {
   const settingsCurrentsFaults = useSelector((state: StateMapToPropsGlobal) => state.currentFaultsPage.stationActive);
   const settingsCurrentsStatus = useSelector((state: StateMapToPropsGlobal) => state.currentStatusPage);
   const router = useSelector((state: RouterProps) => state.router);
-
   const signInPage = useSelector((state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices);
+
   const history = useHistory();
 
   const { closeDrawer } = CurrentFaultsActions;
@@ -101,9 +100,8 @@ export default function Routes() {
     if (signInPage.isConnected && signInPage.config.polices[0]?.label.length) {
       const authMenuItems = signInPage.config.polices.filter((police) => police.nome === settings.building)[0];
       const isRedirect = authMenuItems.menu_item.filter((item) => `/${item.name}` === router.location.pathname);
-
       const routerDom = authMenuItems.menu_item.map((item) => {
-        return authRoutes.filter((router) => router.name === item.name)[0];
+        return authRoutes.filter((authRoute) => authRoute.name === item.name)[0];
       });
 
       setUserRoutes(routerDom);
@@ -133,7 +131,7 @@ export default function Routes() {
     }
   });
 
-  if (signInPage.isConnected && signInPage.config.polices[0]?.label.length) {
+  if (!signInPage.isConnected && signInPage.config.polices[0]?.label.length) {
     dispatch(isLogin(false));
     dispatch(
       polices({
@@ -156,12 +154,7 @@ export default function Routes() {
         <Route exact path={routes.SIGN_IN} component={SignInPage} />
         {signInPage.isConnected &&
           userRoutes &&
-          userRoutes.map(({ id, route }) => (
-            <>
-              <Route key={id} path={route.path} component={route.component} />
-              {console.log('route => ', route)}
-            </>
-          ))}
+          userRoutes.map(({ id, route }) => <Route key={id} path={route.path} component={route.component} />)}
       </>
     </Switch>
   );
