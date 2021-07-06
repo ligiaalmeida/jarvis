@@ -77,7 +77,6 @@ const PerformancePage = () => {
 
   const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
   const router = useSelector((state: RouterProps) => state.router);
-
   const { toggleAutomaticMode, timer } = PerformanceActions;
 
   const URI_BASE = process.env.NODE_ENV === 'development' ? env.development.APP_WS_URL_BASE : env.host.APP_WS_URL;

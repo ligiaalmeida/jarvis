@@ -1,4 +1,5 @@
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '@fortawesome/fontawesome-free/js/all.min.js';
 
@@ -8,6 +9,9 @@ import App from './pages/App';
 
 const [store, persistor] = configuredStore();
 
-document.addEventListener('DOMContentLoaded', () =>
-  render(<App persistor={persistor} store={store} history={history} />, document.getElementById('root'))
+ReactDOM.render(
+  <BrowserRouter>
+    <App persistor={persistor} store={store} history={history} />
+  </BrowserRouter>,
+  document.getElementById('root')
 );
