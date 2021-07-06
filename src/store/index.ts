@@ -2,7 +2,7 @@ import { Middleware } from 'redux';
 import { configureStore, getDefaultMiddleware, Action } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storageSession from 'redux-persist/lib/storage/session';
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import { createLogger } from 'redux-logger';
 import { ThunkAction } from 'redux-thunk';
@@ -24,7 +24,7 @@ const persistConfig = {
   transforms: [filterPerformanceHistory],
 };
 
-export const history = createHashHistory();
+export const history = createBrowserHistory();
 const rootReducer = createRootReducer(history);
 export type RootState = ReturnType<typeof rootReducer>;
 
