@@ -48,7 +48,6 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://gitlab.com/Semantix/frontend/jarvis-web",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@hot-loader/react-dom": "^16.13.0",
