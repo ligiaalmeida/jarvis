@@ -61,8 +61,6 @@ const Navigation = () => {
     return navItems.filter((menuItem) => menuItem.link.split('/')[1] === item.name)[0];
   });
 
-  console.log('settings => ', settings);
-
   const { toggleNavigation, toggleHeader, setHeightNavigation } = GlobalActions;
   const { polices, isLogin } = SignInActions;
   const dispatch = useDispatch();
