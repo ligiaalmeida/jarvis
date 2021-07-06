@@ -5,7 +5,7 @@ export const Footer = styled.footer`
     const { theme } = props;
 
     return css`
-      position: relative;
+      position: fixed !important;
       max-height: 5rem;
       min-height: 5rem;
       display: flex;
