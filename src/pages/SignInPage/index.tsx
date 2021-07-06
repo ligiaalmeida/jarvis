@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -49,6 +49,7 @@ const SignInPage = () => {
           clearLoading = setTimeout(() => {
             dispatch(polices(data.message.auth));
             dispatch(isLogin(true));
+            setIsLoading(false);
             history.push(`/${(data.message.auth[0] as Polices).menu_item[0].name}`); // envia o user pra linha vinda do back
           }, time);
         } else {
@@ -58,7 +59,6 @@ const SignInPage = () => {
           }, time);
         }
       }
-
       if (data.status_code > 200) {
         clearLoading = setTimeout(() => {
           setMessageError(data.message);
@@ -70,12 +70,6 @@ const SignInPage = () => {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(clearLoading);
-    };
-  });
 
   return (
     <S.ContainerWrapper>
