@@ -1,4 +1,30 @@
 export default {
+  shifts_registration: [
+    {
+      id_shift: 1,
+      shift_name: 'Turno A',
+      hour_start_shift: '05:45:00',
+      hour_end_shift: '10:00:00',
+    },
+    {
+      id_shift: 2,
+      shift_name: 'Turno B',
+      hour_start_shift: '10:00:00',
+      hour_end_shift: '15:35:00',
+    },
+    {
+      id_shift: 3,
+      shift_name: 'Turno C',
+      hour_start_shift: '15:35:00',
+      hour_end_shift: '20:15:00',
+    },
+    {
+      id_shift: 4,
+      shift_name: 'Turno D',
+      hour_start_shift: '20:15:00',
+      hour_end_shift: '05:45:00',
+    },
+  ],
   performance: {
     kpi_list: [
       { title: 'Takt Esperado', value: '14\'36"' },

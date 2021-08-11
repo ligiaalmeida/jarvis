@@ -44,7 +44,17 @@ export interface StateMapToPropsGlobal {
       type: MixSuggestionTableType | null;
     };
   };
+  shiftRegistrationPage: {
+    shifts: ShiftRegistrationType[];
+  };
 }
+
+export type ShiftRegistrationType = {
+  idShift: number;
+  shiftName: string;
+  hourStartShift: string;
+  hourEndShift: string;
+};
 
 export type MixSuggestionTableType = 'scheduled' | 'suggested';
 

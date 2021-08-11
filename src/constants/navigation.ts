@@ -65,4 +65,13 @@ export default [
       de: 'Monatlicher Bericht',
     },
   },
+  {
+    id: 7,
+    link: routes.SHIFTS_REGISTRATION,
+    name: {
+      pt_br: 'Cadastro de Turnos',
+      en_us: 'Shift Registration',
+      de: 'Ploegenregistratie',
+    },
+  },
 ];

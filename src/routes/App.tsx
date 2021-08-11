@@ -16,6 +16,7 @@ import CurrentStatusPage from 'pages/CurrentStatusPage';
 import MixSuggestionPage from 'pages/MixSuggestionPage';
 import PerformanceHistoryPage from 'pages/PerformanceHistoryPage';
 import MonthlyReportPage from 'pages/MonthlyReportPage';
+import ShiftsRegistrationPage from 'pages/ShiftsRegistationPage';
 
 import { StateMapToPropsGlobal, RouterProps } from 'types';
 import { CurrentStatusActions } from 'store/ducks/currentStatus';
@@ -76,6 +77,14 @@ const authRoutes = [
     route: {
       path: routes.MONTHLY_REPORT,
       component: MonthlyReportPage,
+    },
+  },
+  {
+    id: 8,
+    name: 'shifts_registration',
+    route: {
+      path: routes.SHIFTS_REGISTRATION,
+      component: ShiftsRegistrationPage,
     },
   },
 ];

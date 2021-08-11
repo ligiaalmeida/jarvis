@@ -8,7 +8,9 @@ export const muiTheme = createMuiTheme({
   },
   overrides: {
     MuiTooltip: {
-      tooltip: {},
+      tooltip: {
+        fontSize: 14,
+      },
     },
     MuiSlider: {
       valueLabel: {
