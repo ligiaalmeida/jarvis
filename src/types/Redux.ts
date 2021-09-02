@@ -49,8 +49,8 @@ export interface StateMapToPropsGlobal {
   };
 }
 
-export type ShiftRegistrationType = {
-  idShift: number;
+type ShiftRegistrationType = {
+  idShift: string;
   shiftName: string;
   hourStartShift: string;
   hourEndShift: string;

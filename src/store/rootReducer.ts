@@ -9,6 +9,7 @@ import currentStatusPage from './ducks/currentStatus';
 import faultPredictionPage from './ducks/faultPrediction';
 import currentFaultsPage from './ducks/currentFaults';
 import performancePage from './ducks/performance';
+import shiftRegistrationPage from './ducks/shiftRegistration';
 import global from './ducks/global';
 import polices from './ducks/auth';
 
@@ -24,5 +25,6 @@ export default function createRootReducer(history: History) {
     faultPredictionPage,
     performanceHistoryPage,
     monthlyReportPage,
+    shiftRegistrationPage,
   });
 }

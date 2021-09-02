@@ -63,3 +63,16 @@ export type ConnectionsList = {
   label: string;
   station_connections: string[];
 };
+
+export type ShiftRegistrationFields = {
+  id_shift: number;
+  shift_name: string;
+  hour_start_shift: string;
+  hour_end_shift: string;
+};
+
+export type ShiftRegistration = {
+  index: number;
+  id: number;
+  register: ShiftRegistrationFields;
+};

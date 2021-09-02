@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Transition } from 'utils/styles/mixins';
-import { Fab, Card as MuiCard, Tooltip as MuiTooltip, IconButton } from '@material-ui/core';
+import { Form } from 'formik';
+import { Fab, Card as MuiCard, IconButton, CardActions as MuiCardActions, TextField } from '@material-ui/core';
 
 export const Main = styled.main`
   ${(props) => {
@@ -64,11 +65,9 @@ export const Instructions = styled.div`
 `;
 
 export const Shifts = styled.div`
-  /* display: grid;
-  grid-template-columns: 1fr 4fr 1fr; */
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 2.4rem;
+  flex-direction: row;
   width: 915px;
 `;
 
@@ -87,7 +86,8 @@ export const Alert = styled.div`
 export const IndexContent = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
+  flex-direction: column;
   margin-right: 3rem;
   width: 60px;
 `;
@@ -116,17 +116,6 @@ export const Index = styled.span`
   }}
 `;
 
-export const Card = styled(MuiCard)`
-  display: flex;
-  border-radius: 4px;
-  padding: 16px;
-  label,
-  input {
-    font-size: 1.8rem;
-    font-family: 'DaimlerRegular', sans-serif;
-  }
-`;
-
 export const ButtonContent = styled.div`
   ${(props) => {
     const { theme } = props;
@@ -134,7 +123,8 @@ export const ButtonContent = styled.div`
       position: fixed;
       width: 100%;
       display: inline-block;
-      padding: 0 ${theme.distance.normal}rem ${(theme.unit * 7) / 10}rem;
+      bottom: ${(theme.unit * 7) / 10}rem;
+      padding: 0 ${theme.distance.normal}rem;
     `;
   }}
   clear: both;
@@ -144,7 +134,6 @@ export const AddButton = styled(Fab)`
   ${(props) => {
     const { theme } = props;
     return css`
-      margin: 8px;
       float: right;
       && {
         color: ${theme.colors.white};
@@ -163,8 +152,47 @@ export const DragButton = styled(IconButton)`
     border-radius: 3px;
     padding: 6px;
     margin: 12px;
+    margin-top: 23px;
     svg {
       font-size: 1.2em;
     }
+  }
+`;
+
+export const Card = styled(MuiCard)`
+  ${(props) => {
+    const { theme } = props;
+    return css`
+      display: flex;
+      border-radius: 4px;
+      padding: ${theme.distance.normal}rem;
+      margin: ${theme.distance.normal}rem;
+      label,
+      input {
+        font-size: 1.8rem;
+        font-family: 'DaimlerRegular', sans-serif;
+      }
+    `;
+  }}
+`;
+
+export const CardActions = styled(MuiCardActions)`
+  display: flex;
+  align-items: baseline !important;
+`;
+
+export const FormActions = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const FormikForm = styled(Form)`
+  display: flex;
+  align-items: baseline;
+`;
+
+export const InputText = styled(TextField)`
+  .MuiInputBase-input {
+    line-height: 2rem;
   }
 `;
