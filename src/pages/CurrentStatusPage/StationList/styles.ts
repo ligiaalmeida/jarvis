@@ -174,7 +174,10 @@ export const StationContent = styled.div<{ backgroundColor: string }>`
   }};
 `;
 
-export const Station = styled.div<{ directionItems: DirectionOfStations; isActive: boolean }>`
+export const Station = styled.div<{
+  directionItems: DirectionOfStations;
+  isActive: boolean;
+}>`
   ${(props) => {
     const { theme, directionItems, isActive = false } = props;
 
@@ -236,7 +239,10 @@ export const Station = styled.div<{ directionItems: DirectionOfStations; isActiv
   }};
 `;
 
-export const Legend = styled.div<{ numberStations: number; directionItems: DirectionOfStations }>`
+export const Legend = styled.div<{
+  numberStations: number;
+  directionItems: DirectionOfStations;
+}>`
   ${(props) => {
     const { theme, numberStations, directionItems } = props;
 
@@ -249,7 +255,9 @@ export const Legend = styled.div<{ numberStations: number; directionItems: Direc
         ? `calc(((100vw - ${minWidthSidebar}rem) / 14) * ${numberStations + 1})`
         : `calc(((100vw - ${minWidthSidebar}rem) / 14) * 2)`};
 
-      min-height: ${numberStations > 1 && directionItems === 'vertical' ? 6.5 * (numberStations + 1) : 6.5 * 2}rem;
+      min-height: ${numberStations > 1 && directionItems === 'vertical'
+        ? 6.5 * (numberStations + 1)
+        : 6.5 * 2}rem;
 
       ${theme.breakpoints.custom(
         'min',
@@ -279,7 +287,9 @@ export const Legend = styled.div<{ numberStations: number; directionItems: Direc
         'min',
         1920,
         css`
-          max-height: ${numberStations > 1 && directionItems === 'vertical' ? 11 * (numberStations + 1) : 11 * 2}rem;
+          max-height: ${numberStations > 1 && directionItems === 'vertical'
+            ? 11 * (numberStations + 1)
+            : 11 * 2}rem;
         `
       )}
 

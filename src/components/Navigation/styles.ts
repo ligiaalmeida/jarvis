@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import { Centralized, CustomScrollBar, Elevation, Transition } from 'utils/styles/mixins';
+import {
+  Centralized,
+  CustomScrollBar,
+  Elevation,
+  Transition,
+} from 'utils/styles/mixins';
 
 import * as Types from './types';
 import routes from '../../constants/routes';
@@ -130,7 +135,8 @@ export const Calendar = styled.div<Types.CalendarProps>`
         }
       }
 
-      .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
+      .react-datepicker-popper[data-placement^='bottom']
+        .react-datepicker__triangle::before {
         border-bottom-color: rgba(174, 174, 174, 0.4);
       }
 
@@ -646,7 +652,9 @@ export const NavItem = styled.li`
   }};
 `;
 
-export const SettingsSecondary = styled.div<Pick<Types.ContainerHeaderProps, 'modeView' | 'page'>>`
+export const SettingsSecondary = styled.div<
+  Pick<Types.ContainerHeaderProps, 'modeView' | 'page'>
+>`
   ${(props) => {
     const { theme, modeView, page } = props;
 
@@ -664,7 +672,9 @@ export const SettingsSecondary = styled.div<Pick<Types.ContainerHeaderProps, 'mo
         height: 42px;
         border-radius: 8px;
         border: 2px solid
-          ${(page === routes.CURRENT_FAULTS || page === routes.FAULT_PREDICTION) && modeView === 'detailed'
+          ${(page === routes.CURRENT_FAULTS ||
+            page === routes.FAULT_PREDICTION) &&
+          modeView === 'detailed'
             ? theme.colors.white
             : theme.colors.grey_3};
         padding: 6px;
@@ -673,7 +683,9 @@ export const SettingsSecondary = styled.div<Pick<Types.ContainerHeaderProps, 'mo
         justify-content: center;
         cursor: pointer;
 
-        ${(page === routes.CURRENT_FAULTS || page === routes.FAULT_PREDICTION) && modeView === 'detailed'
+        ${(page === routes.CURRENT_FAULTS ||
+          page === routes.FAULT_PREDICTION) &&
+        modeView === 'detailed'
           ? css`
               svg {
                 path {
@@ -747,7 +759,9 @@ export const Header = styled.div`
   }};
 `;
 
-export const ContainerHeader = styled.header<Omit<Types.ContainerHeaderProps, 'page'>>`
+export const ContainerHeader = styled.header<
+  Omit<Types.ContainerHeaderProps, 'page'>
+>`
   ${(props) => {
     const { theme, toggleNavigation, height } = props;
 

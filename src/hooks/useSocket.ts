@@ -4,7 +4,10 @@ const io = require('socket.io-client/dist/socket.io');
 type UseSocketParams = { uri: string; namespace: string };
 type UseSocketReturn<T> = { data: T; isConnected: boolean };
 
-export const useSocket = <Data>({ uri, namespace }: UseSocketParams): UseSocketReturn<Data> => {
+export const useSocket = <Data>({
+  uri,
+  namespace,
+}: UseSocketParams): UseSocketReturn<Data> => {
   const [data, setData] = useState(null!);
   const [isConnected, setConnected] = useState(false);
 

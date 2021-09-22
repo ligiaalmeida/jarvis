@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import { Elevation, Transition, Centralized, CustomScrollBar } from 'utils/styles/mixins';
+import {
+  Elevation,
+  Transition,
+  Centralized,
+  CustomScrollBar,
+} from 'utils/styles/mixins';
 
 import { FailItemProps } from '../../StationItemFaults/types';
 

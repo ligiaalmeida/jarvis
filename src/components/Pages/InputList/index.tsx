@@ -35,19 +35,27 @@ const InputList: React.FC<Types.InputListProps> = ({
   pathname,
   invertedElement,
 }) => {
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
-  const polices = useSelector((state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
+  const polices = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices
+  );
   const getInputPerformanceHistoryPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) => state.performanceHistoryPage
+    (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) =>
+      state.performanceHistoryPage
   );
   const getInputMonthlyReportPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) => state.monthlyReportPage
+    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) =>
+      state.monthlyReportPage
   );
   const getCurrentFaultPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'currentFaultsPage'>) => state.currentFaultsPage
+    (state: Pick<StateMapToPropsGlobal, 'currentFaultsPage'>) =>
+      state.currentFaultsPage
   );
   const getFaultPredictionPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) => state.faultPredictionPage
+    (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) =>
+      state.faultPredictionPage
   );
 
   const { setBuilding } = GlobalActions;
@@ -68,7 +76,11 @@ const InputList: React.FC<Types.InputListProps> = ({
         className="input-list"
         toggleNavigation={settings.toggleNavigation}
         page={pathname}
-        modeView={pathname === '/current_faults' ? getCurrentFaultPage.modeView : getFaultPredictionPage.modeView}
+        modeView={
+          pathname === '/current_faults'
+            ? getCurrentFaultPage.modeView
+            : getFaultPredictionPage.modeView
+        }
       >
         {polices.config.polices.length > 1 && (
           <MuiFormControlLabel
@@ -89,10 +101,14 @@ const InputList: React.FC<Types.InputListProps> = ({
                   dispatch(setBuilding(e.target.value as Buildings));
                 }}
                 onOpen={() => {
-                  document.querySelector('#root')?.classList.add('current-faults__root--no-padding');
+                  document
+                    .querySelector('#root')
+                    ?.classList.add('current-faults__root--no-padding');
                 }}
                 onClose={() => {
-                  document.querySelector('#root')?.classList.remove('current-faults__root--no-padding');
+                  document
+                    .querySelector('#root')
+                    ?.classList.remove('current-faults__root--no-padding');
                 }}
                 MenuProps={{
                   anchorOrigin: {
@@ -127,7 +143,10 @@ const InputList: React.FC<Types.InputListProps> = ({
             >
               <div className="input-list__input-item input-list__performance-history">
                 <S.Calendar pathname={pathname}>
-                  <label htmlFor="calendar" className="input-list__label-content">
+                  <label
+                    htmlFor="calendar"
+                    className="input-list__label-content"
+                  >
                     Data
                   </label>
                   <DatePicker
@@ -141,15 +160,23 @@ const InputList: React.FC<Types.InputListProps> = ({
                       !getInputPerformanceHistoryPage.params?.date
                         ? new Date()
                         : new Date(
-                            +getInputPerformanceHistoryPage.params.date.split('-')[0],
-                            +getInputPerformanceHistoryPage.params.date.split('-')[1] - 1,
-                            +getInputPerformanceHistoryPage.params.date.split('-')[2]
+                            +getInputPerformanceHistoryPage.params.date.split(
+                              '-'
+                            )[0],
+                            +getInputPerformanceHistoryPage.params.date.split(
+                              '-'
+                            )[1] - 1,
+                            +getInputPerformanceHistoryPage.params.date.split(
+                              '-'
+                            )[2]
                           )
                     }
                     onChange={(date: Date) => {
                       dispatch(
                         PerformanceHistoryActions.setDate(
-                          `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+                          `${date.getFullYear()}-${
+                            date.getMonth() + 1
+                          }-${date.getDate()}`
                         )
                       );
                     }}
@@ -177,14 +204,24 @@ const InputList: React.FC<Types.InputListProps> = ({
                         }
                         onChange={(e) => {
                           if (getInputPerformanceHistoryPage.params.date) {
-                            dispatch(PerformanceHistoryActions.setHour(Number(e.target.value)));
+                            dispatch(
+                              PerformanceHistoryActions.setHour(
+                                Number(e.target.value)
+                              )
+                            );
                           }
                         }}
                         onOpen={() => {
-                          document.querySelector('#root')?.classList.add('current-faults__root--no-padding');
+                          document
+                            .querySelector('#root')
+                            ?.classList.add('current-faults__root--no-padding');
                         }}
                         onClose={() => {
-                          document.querySelector('#root')?.classList.remove('current-faults__root--no-padding');
+                          document
+                            .querySelector('#root')
+                            ?.classList.remove(
+                              'current-faults__root--no-padding'
+                            );
                         }}
                         MenuProps={{
                           classes: {
@@ -201,9 +238,12 @@ const InputList: React.FC<Types.InputListProps> = ({
                           getContentAnchorEl: null,
                         }}
                       >
-                        {getInputPerformanceHistoryPage.params && getInputPerformanceHistoryPage.params.date === now
+                        {getInputPerformanceHistoryPage.params &&
+                        getInputPerformanceHistoryPage.params.date === now
                           ? hours
-                              .filter((hour) => hour <= new Date().getHours() - 2)
+                              .filter(
+                                (hour) => hour <= new Date().getHours() - 2
+                              )
                               .map((hour) => (
                                 <MuiMenuItem key={hour} value={hour}>
                                   {hour}
@@ -232,7 +272,10 @@ const InputList: React.FC<Types.InputListProps> = ({
             >
               <div className="input-list__input-item input-list__monthly-report">
                 <S.Calendar pathname={pathname} route>
-                  <label htmlFor="calendar" className="input-list__label-content">
+                  <label
+                    htmlFor="calendar"
+                    className="input-list__label-content"
+                  >
                     Data
                   </label>
                   <DatePicker
@@ -241,19 +284,34 @@ const InputList: React.FC<Types.InputListProps> = ({
                     dateFormat="MMMM/yyyy"
                     showMonthYearPicker
                     minDate={subMonths(new Date(2020, 8, 1), 1)}
-                    maxDate={addMonths(new Date(new Date().getFullYear(), new Date().getMonth(), 1), 0)}
+                    maxDate={addMonths(
+                      new Date(
+                        new Date().getFullYear(),
+                        new Date().getMonth(),
+                        1
+                      ),
+                      0
+                    )}
                     className="input-list__input-item--calendar input-list__input-item--monthly-report"
                     selected={
                       !getInputMonthlyReportPage.params?.date
                         ? new Date()
                         : new Date(
-                            +getInputMonthlyReportPage.params.date.split('-')[0],
-                            +getInputMonthlyReportPage.params.date.split('-')[1] - 1,
+                            +getInputMonthlyReportPage.params.date.split(
+                              '-'
+                            )[0],
+                            +getInputMonthlyReportPage.params.date.split(
+                              '-'
+                            )[1] - 1,
                             1
                           )
                     }
                     onChange={(date: Date) => {
-                      dispatch(MonthlyReportActions.setDate(`${date.getFullYear()}-${date.getMonth() + 1}-1`));
+                      dispatch(
+                        MonthlyReportActions.setDate(
+                          `${date.getFullYear()}-${date.getMonth() + 1}-1`
+                        )
+                      );
                     }}
                   />
                 </S.Calendar>

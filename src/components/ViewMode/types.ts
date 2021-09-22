@@ -1,4 +1,7 @@
-import { CurrentFaultsPayload, FaultPredictionPayload } from 'components/StationItemFaults/types';
+import {
+  CurrentFaultsPayload,
+  FaultPredictionPayload,
+} from 'components/StationItemFaults/types';
 import { KeysOfPagesContainingStations } from 'types';
 
 /*=-=-=-=-=-= COMPONENT =-=-=-=-=-=*/

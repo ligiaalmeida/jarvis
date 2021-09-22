@@ -1,4 +1,9 @@
-import { CurrentFaultsPageStorage, PagesSettingsStorage, PageStorageDefault, PerformancePageStorage } from 'types';
+import {
+  CurrentFaultsPageStorage,
+  PagesSettingsStorage,
+  PageStorageDefault,
+  PerformancePageStorage,
+} from 'types';
 
 export const localStorageGlobal = {
   settings: {
@@ -31,7 +36,10 @@ export const performancePage: PerformancePageStorage = {
   zoom: 0,
 };
 
-export const currentFaultsPage: Omit<CurrentFaultsPageStorage, 'stationActive'> = {
+export const currentFaultsPage: Omit<
+  CurrentFaultsPageStorage,
+  'stationActive'
+> = {
   timer: {
     automaticMode: false,
     timer: 30,

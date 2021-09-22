@@ -6,7 +6,11 @@ type SetTimeoutProps = {
   timer?: number;
 };
 
-export const useSetTimeout = ({ condition = true, callback, timer = 30000 }: SetTimeoutProps) => {
+export const useSetTimeout = ({
+  condition = true,
+  callback,
+  timer = 30000,
+}: SetTimeoutProps) => {
   useEffect(() => {
     let timeOut: NodeJS.Timeout;
 

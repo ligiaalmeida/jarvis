@@ -2,7 +2,12 @@ import ContentLoader from 'react-content-loader';
 
 const CurrentFaultsLoader = () => {
   return (
-    <ContentLoader viewBox="0 0 1841 1042" animate backgroundColor="#EFF3F8" foregroundColor="#D8DDE6">
+    <ContentLoader
+      viewBox="0 0 1841 1042"
+      animate
+      backgroundColor="#EFF3F8"
+      foregroundColor="#D8DDE6"
+    >
       <rect y="804" width="210" height="238" rx="8" fill="#C4C4C4" />
       <rect width="210" height="238" rx="8" fill="#C4C4C4" />
       <rect y="268" width="210" height="238" rx="8" fill="#C4C4C4" />

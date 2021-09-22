@@ -73,7 +73,12 @@ export const Chart = ({
 
   useEffect(() => {
     if (data) {
-      const datasetChartType = ChartDatasetsFactory(type, identification, data, perHour);
+      const datasetChartType = ChartDatasetsFactory(
+        type,
+        identification,
+        data,
+        perHour
+      );
 
       setDatasetsChart(datasetChartType.data as ChartJsChartData);
       setMinYAxis(datasetChartType.minYAxis as number);
@@ -85,7 +90,12 @@ export const Chart = ({
   return (
     <>
       {!data && (
-        <ContentLoader viewBox="0 0 604 402" animate backgroundColor="#EFF3F8" foregroundColor="#D8DDE6">
+        <ContentLoader
+          viewBox="0 0 604 402"
+          animate
+          backgroundColor="#EFF3F8"
+          foregroundColor="#D8DDE6"
+        >
           <rect width="603.33" height="402" rx="4" fill="#C4C4C4" />
         </ContentLoader>
       )}
@@ -99,7 +109,9 @@ export const Chart = ({
                   identification === EChartList.STOPPAGE_FORECASTING) && (
                   <S.FormGroup row aria-label="position">
                     <FormControlLabel
-                      control={<Checkbox onChange={() => setPerHourView(!perHour)} />}
+                      control={
+                        <Checkbox onChange={() => setPerHourView(!perHour)} />
+                      }
                       label="Valor por hora"
                       labelPlacement="end"
                     />
@@ -146,10 +158,14 @@ export const Chart = ({
                 <span>{texts.charts.mode_view.title.pt_br}</span>
                 <S.ChartViewButtons selected={viewType}>
                   <div onClick={() => setViewType(0)}>
-                    <span>{texts.charts.mode_view.button_labels.full_size.pt_br}</span>
+                    <span>
+                      {texts.charts.mode_view.button_labels.full_size.pt_br}
+                    </span>
                   </div>
                   <div onClick={() => setViewType(1)}>
-                    <span>{texts.charts.mode_view.button_labels.small_size.pt_br}</span>
+                    <span>
+                      {texts.charts.mode_view.button_labels.small_size.pt_br}
+                    </span>
                   </div>
                 </S.ChartViewButtons>
               </S.ChartView>

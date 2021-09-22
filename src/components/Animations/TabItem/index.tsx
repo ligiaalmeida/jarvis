@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 import * as Types from './types';
 import { theme } from 'styles/theme';
 
-export const TabItem: React.FC<Types.ATabItemProps> = ({ children, active, idItem }) => {
+export const TabItem: React.FC<Types.ATabItemProps> = ({
+  children,
+  active,
+  idItem,
+}) => {
   return (
     <motion.div
       style={{
@@ -21,7 +25,8 @@ export const TabItem: React.FC<Types.ATabItemProps> = ({ children, active, idIte
       }}
       animate={{
         height: active === idItem ? '7rem' : '5.5rem',
-        backgroundColor: active === idItem ? theme.colors.primary_2 : theme.colors.primary_1,
+        backgroundColor:
+          active === idItem ? theme.colors.primary_2 : theme.colors.primary_1,
       }}
       transition={{ duration: 0.5 }}
     >

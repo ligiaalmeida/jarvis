@@ -2,7 +2,11 @@ import React from 'react';
 
 import { SVGProps } from 'types';
 
-const ArrowDown: React.FC<SVGProps> = ({ width = '22px', height = '18px', fill = 'red' }) => {
+const ArrowDown: React.FC<SVGProps> = ({
+  width = '22px',
+  height = '18px',
+  fill = 'red',
+}) => {
   return (
     <svg
       width={width}

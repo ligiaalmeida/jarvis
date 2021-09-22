@@ -17,10 +17,15 @@ import StationList from './StationList';
 import * as S from './styles';
 
 const CurrentStatusPage = () => {
-  const settingsGlobal = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settingsGlobal = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const router = useSelector((state: RouterProps) => state.router);
 
-  const URI_BASE = process.env.NODE_ENV === 'development' ? env.development.APP_WS_URL_BASE : env.host.APP_WS_URL;
+  const URI_BASE =
+    process.env.NODE_ENV === 'development'
+      ? env.development.APP_WS_URL_BASE
+      : env.host.APP_WS_URL;
 
   const { data } = useSocket<Pick<typeof payload, 'current_status'>>({
     uri: URI_BASE,
@@ -46,7 +51,10 @@ const CurrentStatusPage = () => {
   return (
     <>
       <S.Main>
-        <InputList pathname={router.location.pathname as Pathname} padding={`${theme.distance.normal}rem 0`}>
+        <InputList
+          pathname={router.location.pathname as Pathname}
+          padding={`${theme.distance.normal}rem 0`}
+        >
           <S.Signals>
             <h3>
               Quantidade total de sinais monitorados na linha: <span>46</span>

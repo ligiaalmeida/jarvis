@@ -6,7 +6,11 @@ import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { lighten } from 'polished';
 
-import { displayDate, overrideLabelCustom, overrideTitleTooltip } from 'utils/js';
+import {
+  displayDate,
+  overrideLabelCustom,
+  overrideTitleTooltip,
+} from 'utils/js';
 
 import Chart, { ChartDataSets, ChartOptions } from 'chart.js';
 
@@ -111,12 +115,16 @@ const options: ChartOptions = {
 
 const GeneralChart = ({ data, title, labels }: Types.GeneralChartProps) => {
   const [date, setDate] = useState('');
-  const [values, setValues] = useState<{ keys: number[]; minimum: number[]; medium: number[]; maximum: number[] }>(
-    null!
-  );
+  const [values, setValues] = useState<{
+    keys: number[];
+    minimum: number[];
+    medium: number[];
+    maximum: number[];
+  }>(null!);
 
   const monthlyReportPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) => state.monthlyReportPage
+    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) =>
+      state.monthlyReportPage
   );
 
   useEffect(() => {
@@ -130,7 +138,12 @@ const GeneralChart = ({ data, title, labels }: Types.GeneralChartProps) => {
         maximum: datasetsSort.map((item) => Math.ceil(+item.maximum)),
       });
 
-      setDate(displayDate({ date: monthlyReportPage.params.date, format: 'MMMM/yyyy' }));
+      setDate(
+        displayDate({
+          date: monthlyReportPage.params.date,
+          format: 'MMMM/yyyy',
+        })
+      );
     }
   }, [data]);
 
@@ -185,11 +198,15 @@ const GeneralChart = ({ data, title, labels }: Types.GeneralChartProps) => {
     tooltips: {
       ...options.tooltips,
       callbacks: {
-        labelColor(tooltipItem: Chart.ChartTooltipItem, { config: { data } }: Chart): Chart.ChartTooltipLabelColor {
+        labelColor(
+          tooltipItem: Chart.ChartTooltipItem,
+          { config: { data } }: Chart
+        ): Chart.ChartTooltipLabelColor {
           let color: Chart.ChartColor | string = '';
 
           if (data && data.datasets)
-            color = data.datasets[tooltipItem.datasetIndex as number].backgroundColor as Chart.ChartColor;
+            color = data.datasets[tooltipItem.datasetIndex as number]
+              .backgroundColor as Chart.ChartColor;
 
           return {
             backgroundColor: color,
@@ -206,7 +223,12 @@ const GeneralChart = ({ data, title, labels }: Types.GeneralChartProps) => {
   return (
     <S.Container>
       {monthlyReportPage.loading && (
-        <ContentLoader viewBox="0 0 1250 708" animate backgroundColor="#EFF3F8" foregroundColor="#D8DDE6">
+        <ContentLoader
+          viewBox="0 0 1250 708"
+          animate
+          backgroundColor="#EFF3F8"
+          foregroundColor="#D8DDE6"
+        >
           <rect width="113" height="28" rx="2" fill="#C4C4C4" />
           <rect y="107" width="110" height="17" fill="#C4C4C4" />
           <rect x="1" y="143" width="1249" height="500" rx="4" fill="#C4C4C4" />

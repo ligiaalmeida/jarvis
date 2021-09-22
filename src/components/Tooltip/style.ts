@@ -4,9 +4,11 @@ import { motion as Motion } from 'framer-motion';
 
 import * as Types from './types';
 
-export const Container = styled.div.attrs(({ classNameContainerIcon }: Types.ContainerAttrs) => ({
-  className: classNameContainerIcon,
-}))<Types.ContainerAttrs>`
+export const Container = styled.div.attrs(
+  ({ classNameContainerIcon }: Types.ContainerAttrs) => ({
+    className: classNameContainerIcon,
+  })
+)<Types.ContainerAttrs>`
   position: relative;
 `;
 
@@ -20,9 +22,11 @@ export const ContainerIcon = styled.div`
   cursor: pointer;
 `;
 
-export const ContainerTooltip = styled(Motion.div).attrs(({ classNameContainerTooltip }: Types.ContainerAttrs) => ({
-  className: classNameContainerTooltip,
-}))<Types.ContainerAttrs & ThemedStyledProps<Types.ContainerTooltipProps, Theme>>`
+export const ContainerTooltip = styled(Motion.div).attrs(
+  ({ classNameContainerTooltip }: Types.ContainerAttrs) => ({
+    className: classNameContainerTooltip,
+  })
+)<Types.ContainerAttrs & ThemedStyledProps<Types.ContainerTooltipProps, Theme>>`
   ${(props) => {
     const { theme, countCharacters = 0 } = props;
 

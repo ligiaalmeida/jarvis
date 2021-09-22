@@ -31,34 +31,50 @@ import * as S from './styles';
 import { GlobalSessionStorage } from 'types';
 
 const Navigation = () => {
-  const [isHoveredSettingsSecondary, setIsHoveredSettingsSecondary] = useState(false);
-  const [isHoveredSettingsPrimary, setIsHoveredSettingPrimary] = useState(false);
+  const [isHoveredSettingsSecondary, setIsHoveredSettingsSecondary] =
+    useState(false);
+  const [isHoveredSettingsPrimary, setIsHoveredSettingPrimary] =
+    useState(false);
   const [modeView, setModeView] = useState<ModeView | string>('');
   const [isNavMobile, setIsNavMobile] = useState(false);
   const [toggleNav, setToggleNav] = useState(false);
 
   const refDrawer = useRef<HTMLDivElement>(null!);
 
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
-  const history = useSelector((state: StateMapToRouterProps<History>) => state.router);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
+  const history = useSelector(
+    (state: StateMapToRouterProps<History>) => state.router
+  );
   const getSettingsCurrentFaultsPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'currentFaultsPage'>) => state.currentFaultsPage
+    (state: Pick<StateMapToPropsGlobal, 'currentFaultsPage'>) =>
+      state.currentFaultsPage
   );
   const getSettingsFaultPredictionPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) => state.faultPredictionPage
+    (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) =>
+      state.faultPredictionPage
   );
   const getInputPerformanceHistoryPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) => state.performanceHistoryPage
+    (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) =>
+      state.performanceHistoryPage
   );
   const getInputMonthlyReportPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) => state.monthlyReportPage
+    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) =>
+      state.monthlyReportPage
   );
 
-  const signInPage = useSelector((state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices);
+  const signInPage = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices
+  );
 
-  const authMenuItems = signInPage.config.polices.filter((police) => police.nome === settings.building)[0];
+  const authMenuItems = signInPage.config.polices.filter(
+    (police) => police.nome === settings.building
+  )[0];
   const menuItems = authMenuItems.menu_item.map((item) => {
-    return navItems.filter((menuItem) => menuItem.link.split('/')[1] === item.name)[0];
+    return navItems.filter(
+      (menuItem) => menuItem.link.split('/')[1] === item.name
+    )[0];
   });
 
   const { toggleNavigation, toggleHeader, setHeightNavigation } = GlobalActions;
@@ -96,20 +112,36 @@ const Navigation = () => {
 
     if ((history.location.pathname as Types.Pathname) === '/fault_prediction')
       setModeView(getSettingsFaultPredictionPage.modeView);
-  }, [history.location.pathname, getSettingsCurrentFaultsPage.modeView, getSettingsFaultPredictionPage.modeView]);
+  }, [
+    history.location.pathname,
+    getSettingsCurrentFaultsPage.modeView,
+    getSettingsFaultPredictionPage.modeView,
+  ]);
 
   useEffect(() => {
     if (history.location.pathname === routes.PERFORMANCE_HISTORY) {
       if (!getInputPerformanceHistoryPage.params?.date)
-        dispatch(PerformanceHistoryActions.setDate(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`));
+        dispatch(
+          PerformanceHistoryActions.setDate(
+            `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+          )
+        );
 
       if (!getInputPerformanceHistoryPage.params?.hour)
-        dispatch(PerformanceHistoryActions.setHour(date.getHours() >= 21 ? date.getHours() : date.getHours() - 2));
+        dispatch(
+          PerformanceHistoryActions.setHour(
+            date.getHours() >= 21 ? date.getHours() : date.getHours() - 2
+          )
+        );
     }
 
     if (history.location.pathname === routes.MONTHLY_REPORT) {
       if (!getInputMonthlyReportPage.params?.date)
-        dispatch(MonthlyReportActions.setDate(`${date.getFullYear()}-${date.getMonth()}-1`));
+        dispatch(
+          MonthlyReportActions.setDate(
+            `${date.getFullYear()}-${date.getMonth()}-1`
+          )
+        );
     }
   });
 
@@ -129,9 +161,16 @@ const Navigation = () => {
   }, [toggleNav]);
 
   return (
-    <S.ContainerHeader height={settings.heightNavigation} toggleNavigation={!settings.toggleNavigation} id="navigation">
+    <S.ContainerHeader
+      height={settings.heightNavigation}
+      toggleNavigation={!settings.toggleNavigation}
+      id="navigation"
+    >
       {!settings.toggleNavigation && (
-        <S.SettingsSecondary page={history.location.pathname as Types.Pathname} modeView={modeView}>
+        <S.SettingsSecondary
+          page={history.location.pathname as Types.Pathname}
+          modeView={modeView}
+        >
           <div
             onFocus={() => void 0}
             onMouseOver={() => {
@@ -192,7 +231,12 @@ const Navigation = () => {
 
       <AnimatePresence>
         {settings.toggleNavigation && settings.toggleHeader && (
-          <motion.div initial={{ y: 0 }} animate={{ y: 0 }} exit={{ y: '-100%' }} transition={{ damping: 300 }}>
+          <motion.div
+            initial={{ y: 0 }}
+            animate={{ y: 0 }}
+            exit={{ y: '-100%' }}
+            transition={{ damping: 300 }}
+          >
             <S.Header>
               <S.Brand>
                 <Brand />
@@ -204,7 +248,12 @@ const Navigation = () => {
 
       <AnimatePresence>
         {settings.toggleNavigation && (
-          <motion.div initial={{ y: 0 }} animate={{ y: 0 }} exit={{ y: '-100%' }} transition={{ damping: 300 }}>
+          <motion.div
+            initial={{ y: 0 }}
+            animate={{ y: 0 }}
+            exit={{ y: '-100%' }}
+            transition={{ damping: 300 }}
+          >
             <S.Nav>
               {isNavMobile && (
                 <>
@@ -221,7 +270,9 @@ const Navigation = () => {
                   </S.HamburgerMenu>
                   {toggleNav && (
                     <S.NavigationMobile
-                      countItems={[...menuItems, ...menuItems, ...menuItems].length}
+                      countItems={
+                        [...menuItems, ...menuItems, ...menuItems].length
+                      }
                       className="navigation__mobile"
                     >
                       <motion.div
@@ -245,7 +296,10 @@ const Navigation = () => {
                                       setToggleNav((prevState) => !prevState);
                                     }}
                                   >
-                                    <NavLink to={item.link} activeClassName="active">
+                                    <NavLink
+                                      to={item.link}
+                                      activeClassName="active"
+                                    >
                                       {item.name.pt_br}
                                     </NavLink>
                                   </S.NavItem>
@@ -303,13 +357,21 @@ const Navigation = () => {
                               padding="0"
                               scaleSwitch={0.8}
                               enabled={
-                                (JSON.parse(itemSessionStorage) as GlobalSessionStorage).settings.isActiveFullScreen
+                                (
+                                  JSON.parse(
+                                    itemSessionStorage
+                                  ) as GlobalSessionStorage
+                                ).settings.isActiveFullScreen
                               }
                               onChange={(isFullScreen) => {
                                 setItemSessionStorage(
                                   JSON.stringify({
                                     settings: {
-                                      ...(JSON.parse(itemSessionStorage) as GlobalSessionStorage).settings,
+                                      ...(
+                                        JSON.parse(
+                                          itemSessionStorage
+                                        ) as GlobalSessionStorage
+                                      ).settings,
                                       isActiveFullScreen: isFullScreen,
                                     },
                                   })
@@ -328,8 +390,16 @@ const Navigation = () => {
                                 dispatch(toggleHeader(!isHeader));
 
                                 settings.toggleHeader
-                                  ? dispatch(setHeightNavigation(theme.layout.navigation.height.off))
-                                  : dispatch(setHeightNavigation(theme.layout.navigation.height.on));
+                                  ? dispatch(
+                                      setHeightNavigation(
+                                        theme.layout.navigation.height.off
+                                      )
+                                    )
+                                  : dispatch(
+                                      setHeightNavigation(
+                                        theme.layout.navigation.height.on
+                                      )
+                                    );
                               }}
                             />
 

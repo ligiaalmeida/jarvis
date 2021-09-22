@@ -65,10 +65,22 @@ const CheckBoxWrapper = styled.div`
   }
 `;
 
-export const Checkbox: React.FC<Types.CheckboxProps> = ({ label, id, name, value, checked = false }) => {
+export const Checkbox: React.FC<Types.CheckboxProps> = ({
+  label,
+  id,
+  name,
+  value,
+  checked = false,
+}) => {
   return (
     <CheckBoxWrapper>
-      <input id={id} type="radio" value={value} name={name} defaultChecked={checked} />
+      <input
+        id={id}
+        type="radio"
+        value={value}
+        name={name}
+        defaultChecked={checked}
+      />
       <label htmlFor={id}>{label}</label>
     </CheckBoxWrapper>
   );

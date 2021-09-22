@@ -1,6 +1,10 @@
 import { SVGProps } from 'types';
 
-const Error = ({ width = '60px', height = '60px', fill = '#D0021B' }: SVGProps) => {
+const Error = ({
+  width = '60px',
+  height = '60px',
+  fill = '#D0021B',
+}: SVGProps) => {
   return (
     <svg
       width={width}

@@ -10,7 +10,12 @@ import { ChartData } from 'react-chartjs-2';
 import * as Types from 'types';
 
 import { theme } from 'styles/theme';
-import { sortData, overrideLabelCustom, overrideLabelColor, overrideTitleTooltip } from 'utils/js';
+import {
+  sortData,
+  overrideLabelCustom,
+  overrideLabelColor,
+  overrideTitleTooltip,
+} from 'utils/js';
 
 import LabelItemChart from 'components/LabelItemChart';
 import Calendar from 'components/Icons/Calendar';
@@ -106,7 +111,13 @@ const options: ChartOptions = {
   maintainAspectRatio: true,
 };
 
-const LineChart = ({ data, title, type, labels, date }: Types.LineChartsProps) => {
+const LineChart = ({
+  data,
+  title,
+  type,
+  labels,
+  date,
+}: Types.LineChartsProps) => {
   const [values, setValues] = useState<{
     keys: number[];
     value: number[];
@@ -117,7 +128,8 @@ const LineChart = ({ data, title, type, labels, date }: Types.LineChartsProps) =
   }>(null!);
 
   const monthlyReportPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) => state.monthlyReportPage
+    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) =>
+      state.monthlyReportPage
   );
 
   useEffect(() => {
@@ -215,7 +227,10 @@ const LineChart = ({ data, title, type, labels, date }: Types.LineChartsProps) =
             borderWidth: 0,
             hoverBackgroundColor: theme.colors.primary_2,
             pointBorderWidth: 1,
-            data: values && values.predicted ? [null, ...values.predicted, null] : [],
+            data:
+              values && values.predicted
+                ? [null, ...values.predicted, null]
+                : [],
           }
         : {},
     ],
@@ -231,7 +246,12 @@ const LineChart = ({ data, title, type, labels, date }: Types.LineChartsProps) =
       ...options.tooltips,
       callbacks: {
         labelColor: (tooltipItem: Chart.ChartTooltipItem, chart: Chart) =>
-          overrideLabelColor(tooltipItem, chart, labels?.value, labels?.predicted as string),
+          overrideLabelColor(
+            tooltipItem,
+            chart,
+            labels?.value,
+            labels?.predicted as string
+          ),
         title: (item: Chart.ChartTooltipItem[]): string | string[] =>
           overrideTitleTooltip(item, texts.charts.tooltips.labels.title.pt_br),
       },
@@ -241,7 +261,12 @@ const LineChart = ({ data, title, type, labels, date }: Types.LineChartsProps) =
   return (
     <S.Container>
       {monthlyReportPage.loading && (
-        <ContentLoader viewBox="0 0 1250 708" animate backgroundColor="#EFF3F8" foregroundColor="#D8DDE6">
+        <ContentLoader
+          viewBox="0 0 1250 708"
+          animate
+          backgroundColor="#EFF3F8"
+          foregroundColor="#D8DDE6"
+        >
           <rect width="113" height="28" rx="2" fill="#C4C4C4" />
           <rect y="107" width="110" height="17" fill="#C4C4C4" />
           <rect x="1" y="143" width="1249" height="500" rx="4" fill="#C4C4C4" />
@@ -268,20 +293,25 @@ const LineChart = ({ data, title, type, labels, date }: Types.LineChartsProps) =
             <LabelItemChart
               label={labels?.value}
               colorTag={theme.colors.primary_4}
-              description={texts.charts.daily_production.tooltips.daily_production.pt_br}
+              description={
+                texts.charts.daily_production.tooltips.daily_production.pt_br
+              }
             />
 
-            {(type === 'daily_production' || type === 'daily_deviation') && labels.predicted && (
-              <LabelItemChart
-                label={labels.predicted}
-                colorTag={theme.colors.primary_2}
-                description={
-                  type === 'daily_production'
-                    ? texts.charts.daily_production.tooltips.expected_daily_production.pt_br
-                    : texts.charts.daily_deviation.tooltips.expected_daily_deviation.pt_br
-                }
-              />
-            )}
+            {(type === 'daily_production' || type === 'daily_deviation') &&
+              labels.predicted && (
+                <LabelItemChart
+                  label={labels.predicted}
+                  colorTag={theme.colors.primary_2}
+                  description={
+                    type === 'daily_production'
+                      ? texts.charts.daily_production.tooltips
+                          .expected_daily_production.pt_br
+                      : texts.charts.daily_deviation.tooltips
+                          .expected_daily_deviation.pt_br
+                  }
+                />
+              )}
 
             <LabelItemChart
               label={labels.minimum}
@@ -348,7 +378,8 @@ const lineChartPropsAreEqual = <T extends Types.LineChartsProps>(
 ) =>
   prevProps.data?.datasets[0]?.value === nextProps.data?.datasets[0]?.value &&
   prevProps.data?.datasets[0]?.medium === nextProps.data?.datasets[0]?.medium &&
-  prevProps.data?.datasets[0]?.maximum === nextProps.data?.datasets[0]?.maximum &&
+  prevProps.data?.datasets[0]?.maximum ===
+    nextProps.data?.datasets[0]?.maximum &&
   prevProps.date === nextProps.date;
 
 export default React.memo(LineChart, lineChartPropsAreEqual);

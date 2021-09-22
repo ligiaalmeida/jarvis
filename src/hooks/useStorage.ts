@@ -10,10 +10,17 @@ type UseStorageProps = {
   isRemove?: boolean;
 };
 
-export const useStorage = ({ storageType, key, state, isRemove }: UseStorageProps): Storage => {
+export const useStorage = ({
+  storageType,
+  key,
+  state,
+  isRemove,
+}: UseStorageProps): Storage => {
   const getItemLocal = localStorage.getItem(key);
   const getItemSession = sessionStorage.getItem(key);
-  const [item, setItem] = useState(storageType === 'local' ? getItemLocal || state : getItemSession || state);
+  const [item, setItem] = useState(
+    storageType === 'local' ? getItemLocal || state : getItemSession || state
+  );
 
   const switchStorage = () => {
     switch (storageType) {

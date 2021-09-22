@@ -179,7 +179,8 @@ export const Expected = styled.div<Types.ExpectedAndRealProps>`
             background: ${theme.colors.grey_9};
           `}
 
-          ${(identification === EChartList.FAILURE_FORECASTING || identification === EChartList.STOPPAGE_FORECASTING) &&
+          ${(identification === EChartList.FAILURE_FORECASTING ||
+            identification === EChartList.STOPPAGE_FORECASTING) &&
           view &&
           css`
             background: ${theme.colors.primary_6};
@@ -204,7 +205,8 @@ export const Expected = styled.div<Types.ExpectedAndRealProps>`
             color: ${theme.colors.grey_9};
           `}
 
-          ${(identification === EChartList.FAILURE_FORECASTING || identification === EChartList.STOPPAGE_FORECASTING) &&
+          ${(identification === EChartList.FAILURE_FORECASTING ||
+            identification === EChartList.STOPPAGE_FORECASTING) &&
           view &&
           css`
             color: ${theme.colors.primary_6};
@@ -241,7 +243,8 @@ export const Real = styled.div<Types.ExpectedAndRealProps>`
             background: ${theme.colors.red_2};
           `}
 
-          ${(identification === EChartList.FAILURE_FORECASTING || identification === EChartList.STOPPAGE_FORECASTING) &&
+          ${(identification === EChartList.FAILURE_FORECASTING ||
+            identification === EChartList.STOPPAGE_FORECASTING) &&
           view &&
           css`
             background: ${theme.colors.primary_4};
@@ -266,7 +269,8 @@ export const Real = styled.div<Types.ExpectedAndRealProps>`
             color: ${theme.colors.red_2};
           `}
 
-          ${(identification === EChartList.FAILURE_FORECASTING || identification === EChartList.STOPPAGE_FORECASTING) &&
+          ${(identification === EChartList.FAILURE_FORECASTING ||
+            identification === EChartList.STOPPAGE_FORECASTING) &&
           view &&
           css`
             color: ${theme.colors.primary_4};

@@ -78,13 +78,22 @@ const tabs = [
 
 const PerformanceHistoryPage = () => {
   const [expectedTakt, setExpectedTakt] = useState(15);
-  const [data, setData] = useState<Pick<typeof payload, 'performance_history'>>(null!);
-  const [disclaimerOptions, setDisclaimerOptions] = useState({ date: '', hour: 0, line: '' });
+  const [data, setData] = useState<Pick<typeof payload, 'performance_history'>>(
+    null!
+  );
+  const [disclaimerOptions, setDisclaimerOptions] = useState({
+    date: '',
+    hour: 0,
+    line: '',
+  });
 
   const router = useSelector((state: RouterProps) => state.router);
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const getInputPerformanceHistoryPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) => state.performanceHistoryPage
+    (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) =>
+      state.performanceHistoryPage
   );
 
   const { toggleAutomaticMode, timer } = PerformanceHistoryActions;
@@ -98,7 +107,7 @@ const PerformanceHistoryPage = () => {
       };
 
       api()
-        .post(`/${settings.building}_performance_history`, body)
+        .post(`/socket/${settings.building}_performance_history`, body)
         .then((res) => setData(JSON.parse(JSON.stringify(res.data))));
 
       const date = new Date(

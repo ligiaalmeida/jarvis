@@ -26,9 +26,12 @@ const StationList = ({ stationList }: Types.StationListProps) => {
   const [media1340, setMedia1340] = useState(false);
   const [time, setTime] = useState('');
 
-  const settingsGlobal = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settingsGlobal = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const currentStatusPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'currentStatusPage'>) => state.currentStatusPage
+    (state: Pick<StateMapToPropsGlobal, 'currentStatusPage'>) =>
+      state.currentStatusPage
   );
 
   const stationGroup = util.stationListGroupLineH({
@@ -36,7 +39,10 @@ const StationList = ({ stationList }: Types.StationListProps) => {
     legends: stationList?.legends_labels as LegendsLabels[],
     connections: stationList?.connections_list as ConnectionsList[],
   });
-  const stations = util.stationsListRowsLineH(stationGroup, media1340 ? 9 : 14) as StationsListRowsUtil[];
+  const stations = util.stationsListRowsLineH(
+    stationGroup,
+    media1340 ? 9 : 14
+  ) as StationsListRowsUtil[];
 
   const { stationActive } = CurrentStatusActions;
   const dispatch = useDispatch();
@@ -63,7 +69,8 @@ const StationList = ({ stationList }: Types.StationListProps) => {
         return prev.concat(next);
       });
 
-      const stationMaxFail = util.stationsWithTheBiggestFailure(stationListConcat);
+      const stationMaxFail =
+        util.stationsWithTheBiggestFailure(stationListConcat);
 
       if (currentStatusPage.station.label.length === 0) {
         dispatch(
@@ -78,7 +85,8 @@ const StationList = ({ stationList }: Types.StationListProps) => {
         );
       } else {
         const payloadFiltered = stationListConcat.filter(
-          (station) => station.position_id === currentStatusPage.station.position_id
+          (station) =>
+            station.position_id === currentStatusPage.station.position_id
         )[0];
 
         if (
@@ -88,7 +96,10 @@ const StationList = ({ stationList }: Types.StationListProps) => {
         ) {
           if (stationMaxFail.position_id === '1') {
             const station = stationListConcat
-              .filter((station) => station.position_id === currentStatusPage.station.position_id)
+              .filter(
+                (station) =>
+                  station.position_id === currentStatusPage.station.position_id
+              )
               .map((station) => ({
                 position_id: station.position_id,
                 num_prod: station.num_prod,
@@ -107,7 +118,8 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 baumuster: stationMaxFail.baumuster,
                 label: stationMaxFail.label,
                 color: stationMaxFail.color as string,
-                active_fail_list: stationMaxFail.active_fail_list as ActiveFailList,
+                active_fail_list:
+                  stationMaxFail.active_fail_list as ActiveFailList,
               })
             );
           }
@@ -131,8 +143,13 @@ const StationList = ({ stationList }: Types.StationListProps) => {
         let durationTimestamp = 0;
         let durationSeconds = 0;
 
-        if ((currentStatusPage.station.active_fail_list as ActiveFailList)?.timestamp) {
-          const timestamp = (currentStatusPage.station.active_fail_list as ActiveFailList).timestamp;
+        if (
+          (currentStatusPage.station.active_fail_list as ActiveFailList)
+            ?.timestamp
+        ) {
+          const timestamp = (
+            currentStatusPage.station.active_fail_list as ActiveFailList
+          ).timestamp;
           durationTimestamp = dateNow - timestamp;
           durationSeconds = Math.ceil(durationTimestamp / 1000);
 
@@ -162,7 +179,10 @@ const StationList = ({ stationList }: Types.StationListProps) => {
               {row.map((group, idxGroup) => (
                 <React.Fragment key={idxGroup}>
                   {group[0] && (
-                    <S.Group key={idxGroup} directionItems={group[0].directionOfStations}>
+                    <S.Group
+                      key={idxGroup}
+                      directionItems={group[0].directionOfStations}
+                    >
                       {group.map((station, idxStation) => (
                         <React.Fragment key={idxStation}>
                           {/* {console.log('group ', group)} */}
@@ -170,7 +190,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                             id={station.position_id}
                             key={idxStation}
                             directionItems={group[0].directionOfStations}
-                            isActive={currentStatusPage.station.label === station.label}
+                            isActive={
+                              currentStatusPage.station.label === station.label
+                            }
                             onClick={() => {
                               dispatch(
                                 stationActive({
@@ -179,53 +201,60 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                                   num_prod: station.num_prod,
                                   baumuster: station.baumuster,
                                   color: station.color as string,
-                                  active_fail_list: util.maxFailsList<ActiveFailList>(
-                                    station.active_fail_list,
-                                    'gravity'
-                                  ) as ActiveFailList,
+                                  active_fail_list:
+                                    util.maxFailsList<ActiveFailList>(
+                                      station.active_fail_list,
+                                      'gravity'
+                                    ) as ActiveFailList,
                                 })
                               );
                             }}
                           >
-                            <S.StationContent backgroundColor={station.color as string}>
+                            <S.StationContent
+                              backgroundColor={station.color as string}
+                            >
                               <span>{station.label.split(' ')[1]}</span>
                             </S.StationContent>
                           </S.Station>
 
-                          {!!group[0].legends.label && group.length - 1 === idxStation && (
-                            <S.Legend
-                              numberStations={row[idxGroup].length}
-                              directionItems={station.directionOfStations}
-                            >
-                              <div>
-                                <span className="station-list__legend">{group[0].legends.label}</span>
-                                {!station.connections.length ? (
-                                  ''
-                                ) : (
-                                  <Tooltip
-                                    classes={{
-                                      tooltip: classes.customTooltip,
-                                    }}
-                                    title={`Conexão com a ${station.connections[0].label}`}
-                                    aria-label="conexão"
-                                  >
-                                    <div className="station-list__integration" />
-                                  </Tooltip>
-                                )}
-                              </div>
-                            </S.Legend>
-                          )}
+                          {!!group[0].legends.label &&
+                            group.length - 1 === idxStation && (
+                              <S.Legend
+                                numberStations={row[idxGroup].length}
+                                directionItems={station.directionOfStations}
+                              >
+                                <div>
+                                  <span className="station-list__legend">
+                                    {group[0].legends.label}
+                                  </span>
+                                  {!station.connections.length ? (
+                                    ''
+                                  ) : (
+                                    <Tooltip
+                                      classes={{
+                                        tooltip: classes.customTooltip,
+                                      }}
+                                      title={`Conexão com a ${station.connections[0].label}`}
+                                      aria-label="conexão"
+                                    >
+                                      <div className="station-list__integration" />
+                                    </Tooltip>
+                                  )}
+                                </div>
+                              </S.Legend>
+                            )}
                         </React.Fragment>
                       ))}
                     </S.Group>
                   )}
                 </React.Fragment>
               ))}
-              {(idxRow === 0 || idxRow === row[row.length - 1].length) && settingsGlobal.building === 'line_h' && (
-                <div className="station-list__name">
-                  <span>{idxRow === 0 ? 'SGPRO1' : 'SGPRO2'}</span>
-                </div>
-              )}
+              {(idxRow === 0 || idxRow === row[row.length - 1].length) &&
+                settingsGlobal.building === 'line_h' && (
+                  <div className="station-list__name">
+                    <span>{idxRow === 0 ? 'SGPRO1' : 'SGPRO2'}</span>
+                  </div>
+                )}
             </S.Row>
           ))}
       </S.StationsContainer>
@@ -235,27 +264,35 @@ const StationList = ({ stationList }: Types.StationListProps) => {
             <S.Card backgroundColor={currentStatusPage.station.color}>
               <header>
                 <h2>
-                  {(currentStatusPage.station.active_fail_list as ActiveFailList)?.label || 'Sem falhas até o momento'}
+                  {(
+                    currentStatusPage.station.active_fail_list as ActiveFailList
+                  )?.label || 'Sem falhas até o momento'}
                 </h2>
               </header>
 
               <section className="station-list__information">
                 <S.InformationItem>
-                  <span className="station-list__information__title">Estação</span>
+                  <span className="station-list__information__title">
+                    Estação
+                  </span>
                   <span className="station-list__information__description station-list__information__description--number">
                     {currentStatusPage.station.label.split(' ')[1]}
                   </span>
                 </S.InformationItem>
 
                 <S.InformationItem>
-                  <span className="station-list__information__title">Num. prod</span>
+                  <span className="station-list__information__title">
+                    Num. prod
+                  </span>
                   <span className="station-list__information__description">
                     {currentStatusPage.station.num_prod || '---'}
                   </span>
                 </S.InformationItem>
 
                 <S.InformationItem>
-                  <span className="station-list__information__title">Baumuster</span>
+                  <span className="station-list__information__title">
+                    Baumuster
+                  </span>
                   <span className="station-list__information__description">
                     {currentStatusPage.station.baumuster || '---'}
                   </span>
@@ -263,7 +300,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
 
                 <S.InformationItem>
                   <span className="station-list__information__title">Time</span>
-                  <span className="station-list__information__description">{time || '---'}</span>
+                  <span className="station-list__information__description">
+                    {time || '---'}
+                  </span>
                 </S.InformationItem>
               </section>
             </S.Card>

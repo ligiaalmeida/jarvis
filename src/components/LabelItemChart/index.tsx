@@ -8,7 +8,11 @@ import * as S from './styles';
 const loren =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus accumsan ligula libero, ut bibendum ex dapibus et.';
 
-const LabelItemChart = ({ label, colorTag, description = loren }: Types.LabelItemChartProps) => {
+const LabelItemChart = ({
+  label,
+  colorTag,
+  description = loren,
+}: Types.LabelItemChartProps) => {
   return (
     <S.Label>
       <S.Tag colorTag={colorTag} />

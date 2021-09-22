@@ -1,6 +1,10 @@
 import { SVGProps } from 'types';
 
-const Logout = ({ width = '22px', height = '18px', fill = 'red' }: SVGProps) => {
+const Logout = ({
+  width = '22px',
+  height = '18px',
+  fill = 'red',
+}: SVGProps) => {
   return (
     <svg
       width={width}

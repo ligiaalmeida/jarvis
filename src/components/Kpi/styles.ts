@@ -80,7 +80,11 @@ export const Container = styled.div`
 
         + span {
           font-family: 'DaimlerBold', sans-serif;
-          font-size: clamp(${theme.unit * 2 + 2}px, 1.2417rem + 0.0413vw, ${theme.unit * 3}px);
+          font-size: clamp(
+            ${theme.unit * 2 + 2}px,
+            1.2417rem + 0.0413vw,
+            ${theme.unit * 3}px
+          );
         }
       }
     `;

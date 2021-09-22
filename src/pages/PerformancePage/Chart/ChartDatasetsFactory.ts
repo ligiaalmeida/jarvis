@@ -35,13 +35,17 @@ const ChartDatasetsFactory = (
 
   const datasetDefaultA = {
     data: {
-      labels: data[identification].datasets.map((dataset) => dataset.key) as string[],
+      labels: data[identification].datasets.map(
+        (dataset) => dataset.key
+      ) as string[],
       datasets: [
         {
           ...chartConfigDefault,
           label: 'Predição',
           fill: type !== 'line',
-          data: data[identification].datasets.map((dataset) => dataset.predicted),
+          data: data[identification].datasets.map(
+            (dataset) => dataset.predicted
+          ),
         },
         {
           ...chartConfigDefault,
@@ -58,24 +62,38 @@ const ChartDatasetsFactory = (
 
   const datasetDefaultB = {
     data: {
-      labels: data[identification].datasets.map((dataset) => dataset.key) as string[],
+      labels: data[identification].datasets.map(
+        (dataset) => dataset.key
+      ) as string[],
       datasets: [
         {
           ...chartConfigDefault,
           label: `${perHour ? 'Predição por hora' : 'Predição acumulada'}`,
           fill: type !== 'line',
-          backgroundColor: `${perHour ? theme.colors.primary_6 : theme.colors.primary_2}`,
-          borderColor: `${perHour ? theme.colors.primary_6 : theme.colors.primary_2}`,
-          data: data[identification].datasets.map((dataset) => (perHour ? dataset.predicted_h : dataset.predicted)),
+          backgroundColor: `${
+            perHour ? theme.colors.primary_6 : theme.colors.primary_2
+          }`,
+          borderColor: `${
+            perHour ? theme.colors.primary_6 : theme.colors.primary_2
+          }`,
+          data: data[identification].datasets.map((dataset) =>
+            perHour ? dataset.predicted_h : dataset.predicted
+          ),
         },
         {
           ...chartConfigDefault,
           type: chartType,
           label: `${perHour ? 'Valor por hora' : 'Valor acumulado'}`,
           fill: type !== 'line',
-          backgroundColor: `${perHour ? theme.colors.primary_4 : theme.colors.primary_3}`,
-          borderColor: `${perHour ? theme.colors.primary_4 : theme.colors.primary_3}`,
-          data: data[identification].datasets.map((dataset) => (perHour ? dataset.value_h : dataset.value)),
+          backgroundColor: `${
+            perHour ? theme.colors.primary_4 : theme.colors.primary_3
+          }`,
+          borderColor: `${
+            perHour ? theme.colors.primary_4 : theme.colors.primary_3
+          }`,
+          data: data[identification].datasets.map((dataset) =>
+            perHour ? dataset.value_h : dataset.value
+          ),
         },
       ],
     },
@@ -83,8 +101,12 @@ const ChartDatasetsFactory = (
 
   switch (identification) {
     case EChartList.PRODUCTION_FORECASTING:
-      expected = data[identification].datasets.map((dataset) => dataset.predicted) as number[];
-      real = data[identification].datasets.map((dataset) => dataset.value) as number[];
+      expected = data[identification].datasets.map(
+        (dataset) => dataset.predicted
+      ) as number[];
+      real = data[identification].datasets.map(
+        (dataset) => dataset.value
+      ) as number[];
 
       tempExpectedMin = expected.filter((item) => item > 0).length
         ? expected.filter((item) => item > 0).reduce((a, b) => Math.min(a, b))
@@ -106,7 +128,9 @@ const ChartDatasetsFactory = (
       expected = data[identification].datasets.map((dataset) =>
         perHour ? dataset.predicted_h : dataset.predicted
       ) as number[];
-      real = data[identification].datasets.map((dataset) => (perHour ? dataset.value_h : dataset.value)) as number[];
+      real = data[identification].datasets.map((dataset) =>
+        perHour ? dataset.value_h : dataset.value
+      ) as number[];
 
       tempExpectedMin = expected.filter((item) => item > 0).length
         ? expected.filter((item) => item > 0).reduce((a, b) => Math.min(a, b))
@@ -128,7 +152,9 @@ const ChartDatasetsFactory = (
       expected = data[identification].datasets.map((dataset) =>
         perHour ? dataset.predicted_h : dataset.predicted
       ) as number[];
-      real = data[identification].datasets.map((dataset) => (perHour ? dataset.value_h : dataset.value)) as number[];
+      real = data[identification].datasets.map((dataset) =>
+        perHour ? dataset.value_h : dataset.value
+      ) as number[];
 
       tempExpectedMin = expected.filter((item) => item > 0).length
         ? expected.filter((item) => item > 0).reduce((a, b) => Math.min(a, b))
@@ -147,8 +173,12 @@ const ChartDatasetsFactory = (
         real: real.reduce((a, b) => Math.max(a, b)),
       };
     case EChartList.TAKT_PER_STATION:
-      expected = data[identification].datasets.map((dataset) => dataset.avg_takt) as number[];
-      real = data[identification].datasets.map((dataset) => dataset.current_takt) as number[];
+      expected = data[identification].datasets.map(
+        (dataset) => dataset.avg_takt
+      ) as number[];
+      real = data[identification].datasets.map(
+        (dataset) => dataset.current_takt
+      ) as number[];
 
       tempExpectedMin = expected.filter((item) => item > 0).length
         ? expected.filter((item) => item > 0).reduce((a, b) => Math.min(a, b))
@@ -168,7 +198,11 @@ const ChartDatasetsFactory = (
         expectedPH: 0,
         realPH: 0,
         data: {
-          labels: ['', ...data[identification].datasets.map((dataset) => dataset.label), ''],
+          labels: [
+            '',
+            ...data[identification].datasets.map((dataset) => dataset.label),
+            '',
+          ],
           datasets: [
             {
               ...chartConfigDefault,
@@ -176,7 +210,13 @@ const ChartDatasetsFactory = (
               fill: !(type !== 'line'),
               backgroundColor: theme.colors.primary_4,
               borderColor: theme.colors.primary_4,
-              data: [null, ...data[identification].datasets.map((dataset) => dataset.avg_takt), null],
+              data: [
+                null,
+                ...data[identification].datasets.map(
+                  (dataset) => dataset.avg_takt
+                ),
+                null,
+              ],
             },
             {
               ...chartConfigDefault,
@@ -188,14 +228,24 @@ const ChartDatasetsFactory = (
               hoverBackgroundColor: theme.colors.secondary_1,
               borderColor: theme.colors.secondary_2,
               hoverBorderColor: theme.colors.secondary_1,
-              data: [null, ...data[identification].datasets.map((dataset) => dataset.current_takt), null],
+              data: [
+                null,
+                ...data[identification].datasets.map(
+                  (dataset) => dataset.current_takt
+                ),
+                null,
+              ],
             },
           ],
         },
       };
     case EChartList.STOPPAGE_PER_STATION:
-      expected = data[identification].datasets.map((dataset) => dataset.predicted) as number[];
-      real = data[identification].datasets.map((dataset) => dataset.value) as number[];
+      expected = data[identification].datasets.map(
+        (dataset) => dataset.predicted
+      ) as number[];
+      real = data[identification].datasets.map(
+        (dataset) => dataset.value
+      ) as number[];
 
       tempExpectedMin = expected.filter((item) => item > 0).length
         ? expected.filter((item) => item > 0).reduce((a, b) => Math.min(a, b))
@@ -215,7 +265,11 @@ const ChartDatasetsFactory = (
         expectedPH: 0,
         realPH: 0,
         data: {
-          labels: ['', ...data[identification].datasets.map((dataset) => dataset.label), ''],
+          labels: [
+            '',
+            ...data[identification].datasets.map((dataset) => dataset.label),
+            '',
+          ],
           datasets: [
             {
               ...chartConfigDefault,
@@ -227,7 +281,13 @@ const ChartDatasetsFactory = (
               hoverBackgroundColor: theme.colors.grey_1,
               borderColor: theme.colors.grey_9,
               hoverBorderColor: theme.colors.grey_1,
-              data: [null, ...data[identification].datasets.map((dataset) => dataset.predicted), null],
+              data: [
+                null,
+                ...data[identification].datasets.map(
+                  (dataset) => dataset.predicted
+                ),
+                null,
+              ],
             },
             {
               ...chartConfigDefault,
@@ -239,14 +299,24 @@ const ChartDatasetsFactory = (
               hoverBackgroundColor: theme.colors.tertiary_1,
               borderColor: theme.colors.primary_4,
               hoverBorderColor: theme.colors.tertiary_1,
-              data: [null, ...data[identification].datasets.map((dataset) => dataset.value), null],
+              data: [
+                null,
+                ...data[identification].datasets.map(
+                  (dataset) => dataset.value
+                ),
+                null,
+              ],
             },
           ],
         },
       };
     case EChartList.FAILURE_PER_STATION:
-      expected = data[identification].datasets.map((dataset) => Number(dataset.predicted));
-      real = data[identification].datasets.map((dataset) => Number(dataset.value));
+      expected = data[identification].datasets.map((dataset) =>
+        Number(dataset.predicted)
+      );
+      real = data[identification].datasets.map((dataset) =>
+        Number(dataset.value)
+      );
 
       tempExpectedMin = expected.filter((item) => item > 0).length
         ? expected.filter((item) => item > 0).reduce((a, b) => Math.min(a, b))
@@ -266,7 +336,11 @@ const ChartDatasetsFactory = (
         expectedPH: 0,
         realPH: 0,
         data: {
-          labels: ['', ...data[identification].datasets.map((dataset) => dataset.label), ''],
+          labels: [
+            '',
+            ...data[identification].datasets.map((dataset) => dataset.label),
+            '',
+          ],
           datasets: [
             {
               ...chartConfigDefault,
@@ -278,7 +352,13 @@ const ChartDatasetsFactory = (
               hoverBackgroundColor: theme.colors.grey_1,
               borderColor: theme.colors.grey_9,
               hoverBorderColor: theme.colors.grey_1,
-              data: [null, ...data[identification].datasets.map((dataset) => dataset.predicted), null],
+              data: [
+                null,
+                ...data[identification].datasets.map(
+                  (dataset) => dataset.predicted
+                ),
+                null,
+              ],
             },
             {
               ...chartConfigDefault,
@@ -290,7 +370,13 @@ const ChartDatasetsFactory = (
               hoverBackgroundColor: theme.colors.red_1,
               borderColor: theme.colors.red_2,
               hoverBorderColor: theme.colors.red_1,
-              data: [null, ...data[identification].datasets.map((dataset) => dataset.value), null],
+              data: [
+                null,
+                ...data[identification].datasets.map(
+                  (dataset) => dataset.value
+                ),
+                null,
+              ],
             },
           ],
         },

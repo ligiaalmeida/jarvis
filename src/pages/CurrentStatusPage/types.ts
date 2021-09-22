@@ -1,4 +1,10 @@
-import { ColorStatusType, ConnectionsList, LegendsLabels, Stations, StationsList } from 'types';
+import {
+  ColorStatusType,
+  ConnectionsList,
+  LegendsLabels,
+  Stations,
+  StationsList,
+} from 'types';
 
 /*=-=-=-=-=-= COMPONENTS =-=-=-=-=-=*/
 export type MapStationProps<T> = {

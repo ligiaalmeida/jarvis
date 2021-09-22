@@ -30,13 +30,23 @@ export const activeFailList = (station: Stations) => {
       : 'default';
 
     const maxFailGravityItem =
-      GravityLevel !== 'default' ? station.active_fail_list.filter((fail) => fail.gravity === GravityLevel)[0] : {};
+      GravityLevel !== 'default'
+        ? station.active_fail_list.filter(
+            (fail) => fail.gravity === GravityLevel
+          )[0]
+        : {};
 
     failure = station.active_fail_list.length
-      ? station.active_fail_list.filter((fail) => fail.gravity === GravityLevel)[0].label
+      ? station.active_fail_list.filter(
+          (fail) => fail.gravity === GravityLevel
+        )[0].label
       : station.label;
 
-    if (!station.active_fail_list.length && !station.baumuster && !station.num_prod) {
+    if (
+      !station.active_fail_list.length &&
+      !station.baumuster &&
+      !station.num_prod
+    ) {
       status = 'empty';
       color = theme.colors.fails.empty;
     }
@@ -51,29 +61,48 @@ export const activeFailList = (station: Stations) => {
 };
 
 export const maxFailsList = <T>(data: T[], compare: keyof T) => {
-  return data.length ? data.reduce((prev, current) => (prev[compare] > current[compare] ? prev : current)) : [];
+  return data.length
+    ? data.reduce((prev, current) =>
+        prev[compare] > current[compare] ? prev : current
+      )
+    : [];
 };
 
 export const stationsWithTheBiggestFailure = (data: StationsList[]) => {
-  return data && data.filter((failList) => failList.active_fail_list.length).length
+  return data &&
+    data.filter((failList) => failList.active_fail_list.length).length
     ? data
         .filter((failList) => failList.active_fail_list.length)
         .map((station) => ({
           ...station,
           baumuster: station.baumuster.trim(),
-          active_fail_list: maxFailsList<ActiveFailList>(station.active_fail_list, 'gravity') as ActiveFailList,
+          active_fail_list: maxFailsList<ActiveFailList>(
+            station.active_fail_list,
+            'gravity'
+          ) as ActiveFailList,
         }))
-        .reduce((prev, next) => (prev.active_fail_list?.gravity > next.active_fail_list?.gravity ? prev : next))
+        .reduce((prev, next) =>
+          prev.active_fail_list?.gravity > next.active_fail_list?.gravity
+            ? prev
+            : next
+        )
     : data[0];
 };
 
 export const comparePositionID = (id: string) => `${id.split('.')[0]}.`;
 
-export const listStationConnections = (connectionsList: ConnectionsList[], includes: string) =>
-  connectionsList.filter((station) => station.station_connections.includes(includes));
+export const listStationConnections = (
+  connectionsList: ConnectionsList[],
+  includes: string
+) =>
+  connectionsList.filter((station) =>
+    station.station_connections.includes(includes)
+  );
 
 export const listParallelStations = (stationList: StationsList[]) =>
-  stationList.filter((station) => station.position_id.includes('.')).map((station) => station.label);
+  stationList
+    .filter((station) => station.position_id.includes('.'))
+    .map((station) => station.label);
 
 export const stationItem = ({
   stationList,
@@ -89,7 +118,10 @@ export const stationItem = ({
 
     switch (directionType) {
       case 1:
-        direction = comparePositionID(station.position_id) === compareWith ? 'horizontal' : 'vertical';
+        direction =
+          comparePositionID(station.position_id) === compareWith
+            ? 'horizontal'
+            : 'vertical';
         break;
       case 2:
         direction = 'horizontal';
@@ -105,12 +137,19 @@ export const stationItem = ({
       directionOfStations: direction,
       connections: listStationConnections(connections, station.label),
       isParallel: listParallelStations(stationList).includes(station.label),
-      legends: legends.filter((legends) => legends.stations_legend.includes(station.label))[0] || [],
+      legends:
+        legends.filter((legends) =>
+          legends.stations_legend.includes(station.label)
+        )[0] || [],
     };
   });
 };
 
-export const stationListGroupLineH = ({ stationList, legends, connections }: StationListGroupLineHUtil) => {
+export const stationListGroupLineH = ({
+  stationList,
+  legends,
+  connections,
+}: StationListGroupLineHUtil) => {
   return (
     stationList &&
     stationList.reduce((acc, next) => {
@@ -124,7 +163,8 @@ export const stationListGroupLineH = ({ stationList, legends, connections }: Sta
               compareWith: '5.',
               connections,
               filterStation: (station) =>
-                comparePositionID(station.position_id) === comparePositionID(next.position_id),
+                comparePositionID(station.position_id) ===
+                comparePositionID(next.position_id),
             })
           );
         }
@@ -137,7 +177,9 @@ export const stationListGroupLineH = ({ stationList, legends, connections }: Sta
                 legends: legends as LegendsLabels[],
                 directionType: 2,
                 connections,
-                filterStation: (station) => Number(station.position_id) >= 21 && Number(station.position_id) <= 23,
+                filterStation: (station) =>
+                  Number(station.position_id) >= 21 &&
+                  Number(station.position_id) <= 23,
               })
             );
           }
@@ -148,7 +190,9 @@ export const stationListGroupLineH = ({ stationList, legends, connections }: Sta
                 legends: legends as LegendsLabels[],
                 directionType: 2,
                 connections,
-                filterStation: (station) => Number(station.position_id) >= 25 && Number(station.position_id) <= 27,
+                filterStation: (station) =>
+                  Number(station.position_id) >= 25 &&
+                  Number(station.position_id) <= 27,
               })
             );
           }
@@ -161,7 +205,9 @@ export const stationListGroupLineH = ({ stationList, legends, connections }: Sta
                   legends: legends as LegendsLabels[],
                   directionType: 2,
                   connections,
-                  filterStation: (station) => Number(station.position_id) >= 7 && Number(station.position_id) <= 10,
+                  filterStation: (station) =>
+                    Number(station.position_id) >= 7 &&
+                    Number(station.position_id) <= 10,
                 })
               );
             }
@@ -175,8 +221,9 @@ export const stationListGroupLineH = ({ stationList, legends, connections }: Sta
                 isParallel: false,
                 connections,
                 legends:
-                  (legends as LegendsLabels[])?.filter((legends) => legends.stations_legend.includes(next.label))[0] ||
-                  [],
+                  (legends as LegendsLabels[])?.filter((legends) =>
+                    legends.stations_legend.includes(next.label)
+                  )[0] || [],
               },
             ]);
           }
@@ -188,7 +235,10 @@ export const stationListGroupLineH = ({ stationList, legends, connections }: Sta
   );
 };
 
-export const stationsListRowsLineH = (stationList: StationsListRowsUtil, quantityStations: number) => {
+export const stationsListRowsLineH = (
+  stationList: StationsListRowsUtil,
+  quantityStations: number
+) => {
   let count = 0;
 
   return (

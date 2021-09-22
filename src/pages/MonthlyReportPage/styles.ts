@@ -221,7 +221,8 @@ export const Main = styled.main`
 
     return css`
       position: relative;
-      padding: ${theme.distance.normal}rem ${theme.distance.normal}rem ${(theme.unit * 7) / 10}rem;
+      padding: ${theme.distance.normal}rem ${theme.distance.normal}rem
+        ${(theme.unit * 7) / 10}rem;
 
       > div + div {
         margin-bottom: 3rem;

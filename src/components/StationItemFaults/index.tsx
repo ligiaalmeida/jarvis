@@ -17,18 +17,27 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
   typeView,
   namespace,
 }) => {
-  const history = useSelector((state: StateMapToRouterProps<History>) => state.router);
-  const settingsGlobal = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
-  const currentFaultsPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'currentFaultsPage'>) => state.currentFaultsPage
+  const history = useSelector(
+    (state: StateMapToRouterProps<History>) => state.router
   );
-  const [innerHeightScreen, setInnerHeightScreen] = useState([window.innerWidth, window.innerHeight]);
+  const settingsGlobal = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
+  const currentFaultsPage = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'currentFaultsPage'>) =>
+      state.currentFaultsPage
+  );
+  const [innerHeightScreen, setInnerHeightScreen] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ]);
 
   const { stationActive } = CurrentFaultsActions;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleResize = () => setInnerHeightScreen([window.innerWidth, window.innerHeight]);
+    const handleResize = () =>
+      setInnerHeightScreen([window.innerWidth, window.innerHeight]);
 
     window.addEventListener('resize', handleResize);
 
@@ -45,7 +54,8 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
           isSelected={currentFaultsPage.stationActive.label === data.label}
           typeView={typeView}
           onClick={() => {
-            if (isOnClick) dispatch(stationActive(data as Types.CurrentFaultsPayload));
+            if (isOnClick)
+              dispatch(stationActive(data as Types.CurrentFaultsPayload));
           }}
           isNavigation={
             !settingsGlobal.toggleNavigation &&
@@ -74,7 +84,10 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
             </S.FailList>
             {(data as Types.CurrentFaultsPayload).fail_list.length > 6 && (
               <S.Footer>
-                <span>Total de falhas: {(data as Types.CurrentFaultsPayload).fail_list.length}</span>
+                <span>
+                  Total de falhas:{' '}
+                  {(data as Types.CurrentFaultsPayload).fail_list.length}
+                </span>
                 <span>&nbsp;</span>
               </S.Footer>
             )}
@@ -82,7 +95,10 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
               innerHeightScreen[1] <= 900 &&
               (data as Types.CurrentFaultsPayload).fail_list.length > 2 && (
                 <S.Footer>
-                  <span>Total de falhas: {(data as Types.CurrentFaultsPayload).fail_list.length}</span>
+                  <span>
+                    Total de falhas:{' '}
+                    {(data as Types.CurrentFaultsPayload).fail_list.length}
+                  </span>
                   <span>&nbsp;</span>
                 </S.Footer>
               )}
@@ -120,9 +136,13 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
                     </S.FailItem>
                   ))}
             </S.FailList>
-            {(data as Types.FaultPredictionPayload).stop_fail_list.length > 0 && (
+            {(data as Types.FaultPredictionPayload).stop_fail_list.length >
+              0 && (
               <S.Footer>
-                <span>Total de falhas: {(data as Types.FaultPredictionPayload).stop_fail_list.length}</span>
+                <span>
+                  Total de falhas:{' '}
+                  {(data as Types.FaultPredictionPayload).stop_fail_list.length}
+                </span>
                 <span>&nbsp;</span>
               </S.Footer>
             )}

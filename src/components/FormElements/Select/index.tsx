@@ -14,8 +14,8 @@ export const StyledSelect = styled.div<Types.StyledSelectProps>`
       select {
         position: relative;
         appearance: none;
-        padding: ${theme.distance.tiny + 1}px ${theme.distance.tiny + 30}px ${theme.distance.tiny + 1}px
-          ${theme.distance.tiny + 7.5}px;
+        padding: ${theme.distance.tiny + 1}px ${theme.distance.tiny + 30}px
+          ${theme.distance.tiny + 1}px ${theme.distance.tiny + 7.5}px;
         background: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.65685 11.3137L11.3137 5.65686H0L5.65685 11.3137Z' fill='%234A4A4A'/%3E%3C/svg%3E%0A")
           no-repeat;
         background-position-x: calc(100% - 8px);
@@ -27,7 +27,8 @@ export const StyledSelect = styled.div<Types.StyledSelectProps>`
         display: block;
         transition: all 0.2s ease-in-out;
         border-radius: ${theme.border.radius.normal};
-        border: ${theme.border.size.normal} solid ${error ? theme.colors.error : theme.colors.grey_4};
+        border: ${theme.border.size.normal} solid
+          ${error ? theme.colors.error : theme.colors.grey_4};
         z-index: 1;
 
         :hover {
@@ -58,11 +59,25 @@ interface Props {
   error?: boolean;
   tooltip?: string;
   dataset?: (e: React.ChangeEvent<HTMLSelectElement>) => string;
-  onHandleChange?: (e: React.ChangeEvent<HTMLSelectElement>, target?: string) => void;
+  onHandleChange?: (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    target?: string
+  ) => void;
 }
 
 export const Select: React.FC<Props> = (props) => {
-  const { className, children, name, id, display, onHandleChange, defaultValue, dataset, error, tooltip = '' } = props;
+  const {
+    className,
+    children,
+    name,
+    id,
+    display,
+    onHandleChange,
+    defaultValue,
+    dataset,
+    error,
+    tooltip = '',
+  } = props;
 
   const onChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (onHandleChange) {
@@ -82,7 +97,12 @@ export const Select: React.FC<Props> = (props) => {
       ) : (
         <label htmlFor={name}>{display}</label>
       )}
-      <select id={id} name={name} onChange={onChangeSelect} defaultValue={defaultValue}>
+      <select
+        id={id}
+        name={name}
+        onChange={onChangeSelect}
+        defaultValue={defaultValue}
+      >
         {children}
       </select>
     </StyledSelect>
