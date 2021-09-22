@@ -1,4 +1,10 @@
-export type TypeTimeDisplayFormat = 'DD:HH:MM:SS' | 'DD:HH:MM' | 'DD:MM:SS' | 'HH:MM:SS' | 'HH:MM' | 'MM:SS';
+export type TypeTimeDisplayFormat =
+  | 'DD:HH:MM:SS'
+  | 'DD:HH:MM'
+  | 'DD:MM:SS'
+  | 'HH:MM:SS'
+  | 'HH:MM'
+  | 'MM:SS';
 
 export type TimeFormatArgs = {
   time: number;

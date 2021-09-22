@@ -15,7 +15,9 @@ const INITIAL_STATE = {
     timer: 30,
   },
   params: {
-    date: `${date.getFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDate()}`,
+    date: `${date.getFullYear()}-${
+      date.getUTCMonth() + 1
+    }-${date.getUTCDate()}`,
     hour: date.getUTCHours(),
   },
 };

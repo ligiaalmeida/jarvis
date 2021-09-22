@@ -50,7 +50,9 @@ const SignInPage = () => {
             dispatch(polices(data.message.auth));
             dispatch(isLogin(true));
             setIsLoading(false);
-            history.push(`/${(data.message.auth[0] as Polices).menu_item[0].name}`); // envia o user pra linha vinda do back
+            history.push(
+              `/${(data.message.auth[0] as Polices).menu_item[0].name}`
+            ); // envia o user pra linha vinda do back
           }, time);
         } else {
           clearLoading = setTimeout(() => {
@@ -78,8 +80,15 @@ const SignInPage = () => {
 
         <Container xs={7} lg={6} className="sign-in__form">
           <Row flexDirection="column" className="sign-in__row-content">
-            <Container padding={{ xs: [0, 0, 0, 0, 'px'] }} className="sign-in__content">
-              <img src={Logo} alt="Texto com a marca MB-Jarvis" onDragStart={(e) => e.preventDefault()} />
+            <Container
+              padding={{ xs: [0, 0, 0, 0, 'px'] }}
+              className="sign-in__content"
+            >
+              <img
+                src={Logo}
+                alt="Texto com a marca MB-Jarvis"
+                onDragStart={(e) => e.preventDefault()}
+              />
               <S.BlueBox />
               <S.FormContent>
                 <motion.div
@@ -98,7 +107,9 @@ const SignInPage = () => {
                         className="sign-in__form-group"
                         xs={16}
                       >
-                        <label htmlFor="user">{texts.form.user.label.pt_br}</label>
+                        <label htmlFor="user">
+                          {texts.form.user.label.pt_br}
+                        </label>
                         <input
                           id="user"
                           type="text"
@@ -112,8 +123,14 @@ const SignInPage = () => {
                         />
                       </Container>
 
-                      <Container flexDirection="column" className="sign-in__form-group" xs={16}>
-                        <label htmlFor="password">{texts.form.password.name.pt_br}</label>
+                      <Container
+                        flexDirection="column"
+                        className="sign-in__form-group"
+                        xs={16}
+                      >
+                        <label htmlFor="password">
+                          {texts.form.password.name.pt_br}
+                        </label>
                         <input
                           type="password"
                           id="password"

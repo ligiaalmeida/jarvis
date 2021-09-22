@@ -1,6 +1,9 @@
 import { UDynamicProperties } from 'types';
 
-export const objectIsEqual = (prevProps: UDynamicProperties, nextProps: UDynamicProperties) => {
+export const objectIsEqual = (
+  prevProps: UDynamicProperties,
+  nextProps: UDynamicProperties
+) => {
   const aKeys = Object.getOwnPropertyNames(prevProps);
   const bKeys = Object.getOwnPropertyNames(nextProps);
 

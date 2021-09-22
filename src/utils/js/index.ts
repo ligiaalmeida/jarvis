@@ -12,3 +12,4 @@ export * from './sortData';
 export * from './timeFormat';
 export * from './reorderDnd';
 export * from './inputMask';
+export * from './checkTime';

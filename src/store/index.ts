@@ -1,6 +1,15 @@
 import { Middleware } from 'redux';
 import { configureStore, getDefaultMiddleware, Action } from '@reduxjs/toolkit';
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import storageSession from 'redux-persist/lib/storage/session';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
@@ -14,13 +23,20 @@ import createRootReducer from './rootReducer';
 let persistor: Persistor;
 let logger: Middleware | null = null;
 
-const filterPerformanceHistory = createFilter('performanceHistoryPage', ['timer']);
+const filterPerformanceHistory = createFilter('performanceHistoryPage', [
+  'timer',
+]);
 
 const persistConfig = {
   key: 'root',
   version: 0,
   storage: storageSession,
-  blacklist: ['currentStatusPage', 'mixSuggestionPage', 'router', 'monthlyReportPage'],
+  blacklist: [
+    'currentStatusPage',
+    'mixSuggestionPage',
+    'router',
+    'monthlyReportPage',
+  ],
   transforms: [filterPerformanceHistory],
 };
 
@@ -33,7 +49,9 @@ export type RootState = ReturnType<typeof rootReducer>;
 const router = routerMiddleware(history);
 
 const excludeLoggerEnvs = ['test', 'production'];
-const shouldIncludeLogger = !excludeLoggerEnvs.includes(process.env.NODE_ENV || '');
+const shouldIncludeLogger = !excludeLoggerEnvs.includes(
+  process.env.NODE_ENV || ''
+);
 
 if (shouldIncludeLogger) {
   logger = createLogger({
@@ -62,7 +80,9 @@ export const configuredStore: any = (initialState?: RootState) => {
   });
 
   if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('./rootReducer', () => store.replaceReducer(require('./rootReducer').default));
+    module.hot.accept('./rootReducer', () =>
+      store.replaceReducer(require('./rootReducer').default)
+    );
   }
 
   persistor = persistStore(store);

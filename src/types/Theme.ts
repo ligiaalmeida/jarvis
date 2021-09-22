@@ -1,4 +1,7 @@
-import baseStyled, { ThemedStyledInterface, FlattenSimpleInterpolation } from 'styled-components';
+import baseStyled, {
+  ThemedStyledInterface,
+  FlattenSimpleInterpolation,
+} from 'styled-components';
 
 import { SizesBreakpoints, GridSizes } from './Styles';
 
@@ -214,7 +217,11 @@ export type Theme = {
   mapRange: string[];
   breakpoints: {
     default: (size: 'min' | 'max') => SizesBreakpoints;
-    custom: (type: 'min' | 'max', value: number, ...args: FlattenSimpleInterpolation) => FlattenSimpleInterpolation;
+    custom: (
+      type: 'min' | 'max',
+      value: number,
+      ...args: FlattenSimpleInterpolation
+    ) => FlattenSimpleInterpolation;
     keySizes: [string, string, string, string, string, string];
   };
 };

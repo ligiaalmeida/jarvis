@@ -8,15 +8,17 @@ const Instructions = () => {
   return (
     <S.Instructions>
       <S.Alert>
-        <span style={{ color: theme.colors.alert, fontSize: 40, paddingRight: 8 }}>
+        <span
+          style={{ color: theme.colors.alert, fontSize: 40, paddingRight: 8 }}
+        >
           <FontAwesomeIcon icon={faExclamationCircle} />
         </span>
         <Typography variant="h4">Atenção</Typography>
       </S.Alert>
       <ul>
         <li>
-          Ao cadastrar os seus turnos, cuidado para não deixar lacunas no seu dia de trabalho. Cadastre todos os
-          horários.
+          Ao cadastrar os seus turnos, cuidado para não deixar lacunas no seu
+          dia de trabalho. Cadastre todos os horários.
         </li>
         <li>Não cadastrar um horário já compreendido em outro turno.</li>
         <li>O início de um turno tem que ser o fim de outro turno.</li>

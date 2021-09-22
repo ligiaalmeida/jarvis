@@ -8,7 +8,11 @@ type DisplayDateProps = {
 
 export const displayDate = ({ date, format }: DisplayDateProps) => {
   return dataFnsFormat(
-    new Date(Number(date.split('-')[0]), Number(date.split('-')[1]) - 1, Number(date.split('-')[2])),
+    new Date(
+      Number(date.split('-')[0]),
+      Number(date.split('-')[1]) - 1,
+      Number(date.split('-')[2])
+    ),
     format,
     {
       locale: ptBr,

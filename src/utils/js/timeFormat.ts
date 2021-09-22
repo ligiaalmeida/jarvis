@@ -52,7 +52,20 @@ export const timeFormat = ({
 
 export const timeConverter = (UNIX_timestamp: number) => {
   const a = new Date(UNIX_timestamp * 1000);
-  const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  const months = [
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+  ];
   const year = a.getFullYear();
   const month = months[a.getMonth()];
   const date = a.getDate();

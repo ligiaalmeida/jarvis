@@ -16,7 +16,9 @@ export const breakpoints = (size: 'min' | 'max') =>
   (Object.keys(sizes) as Array<keyof typeof sizes>).reduce((acc, label) => {
     acc[label] = (...args: StyledIFlattenSimpleInterpolation) => {
       return css`
-        @media (${size}-width: ${size === 'min' ? sizes[label].min : sizes[label].max}) {
+        @media (${size}-width: ${size === 'min'
+            ? sizes[label].min
+            : sizes[label].max}) {
           ${css({}, ...args)};
         }
       `;
@@ -24,7 +26,11 @@ export const breakpoints = (size: 'min' | 'max') =>
     return acc;
   }, screens);
 
-export const breakpointCustom = (type: 'min' | 'max', value: number, ...styles: StyledIFlattenSimpleInterpolation) => {
+export const breakpointCustom = (
+  type: 'min' | 'max',
+  value: number,
+  ...styles: StyledIFlattenSimpleInterpolation
+) => {
   return css`
     @media (${type}-width: ${value}px) {
       ${css({}, ...styles)};
