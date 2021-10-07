@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import {
   DragDropContext,
   Droppable,
   OnDragEndResponder,
 } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
 import { ShiftRegistrationFields } from 'types';
 import DraggableListItem from './DraggableListItem';
+import { ShiftRegistrationActions } from 'store/ducks/shiftRegistration';
 
 export type DraggableListProps = {
   items: ShiftRegistrationFields[];
@@ -14,33 +16,27 @@ export type DraggableListProps = {
 
 const DraggableList: React.MemoExoticComponent<any> = React.memo(
   ({ items, onDragEnd }: DraggableListProps) => {
-    console.log('items ==> ', items);
-    const [register, setRegister] = useState({
-      id_shift: 0,
-      shift_name: '',
-      hour_start_shift: '',
-      hour_end_shift: '',
-    });
+    const { getList } = ShiftRegistrationActions;
+    const dispatch = useDispatch();
+    const onClickRemove = useCallback(
+      (item: ShiftRegistrationFields) => () => {
+        const indexToDelete = items.indexOf(item);
+        const newItems = [...items];
+        newItems.splice(indexToDelete, 1);
+        dispatch(getList(newItems));
+      },
+      [dispatch, items, getList]
+    );
     return (
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-list">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
               {items.map((item, index) => {
-                // setRegister({
-                //   id_shift: item.id_shift,
-                //   shift_name: item.shift_name,
-                //   hour_start_shift: item.hour_start_shift,
-                //   hour_end_shift: item.hour_end_shift,
-                // });
                 return (
                   <DraggableListItem
-                    register={{
-                      id_shift: item.id_shift,
-                      shift_name: item.shift_name,
-                      hour_end_shift: item.hour_end_shift,
-                      hour_start_shift: item.hour_start_shift,
-                    }}
+                    register={item}
+                    onClickRemove={onClickRemove(item)}
                     index={index}
                     id={item.id_shift}
                     key={item.id_shift}
