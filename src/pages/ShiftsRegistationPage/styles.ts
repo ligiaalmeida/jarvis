@@ -1,7 +1,14 @@
 import styled, { css } from 'styled-components';
 import { Transition } from 'utils/styles/mixins';
 import { Form } from 'formik';
-import { Fab, Card as MuiCard, IconButton, CardActions as MuiCardActions, TextField } from '@material-ui/core';
+import {
+  Card as MuiCard,
+  Button,
+  IconButton,
+  CardActions as MuiCardActions,
+  TextField,
+  Box,
+} from '@material-ui/core';
 
 export const Main = styled.main`
   ${(props) => {
@@ -42,23 +49,33 @@ export const TopContent = styled.div`
   margin-right: -2.4rem;
 `;
 
-export const Instructions = styled.div`
+export const Instructions = styled(Box)`
   ${(props) => {
     const { theme } = props;
 
     return css`
-      align-items: flex-start;
+      align-items: center;
+      background: ${theme.colors.white};
+      border-radius: 6px;
       display: flex;
-      justify-content: center;
       flex-direction: column;
+      justify-content: center;
       margin-bottom: 2.4rem;
-      width: 915px;
+      padding: 2rem;
+
+      ul {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        margin: 1rem;
+      }
 
       li {
         color: ${theme.colors.grey_1};
         font-family: 'DaimlerRegular', sans-serif;
         font-size: 1.8rem;
-        margin-right: 1rem;
+        text-decoration: none;
       }
     `;
   }}
@@ -66,21 +83,37 @@ export const Instructions = styled.div`
 
 export const Shifts = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: row;
-  width: 915px;
 `;
 
 export const Shift = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const Alert = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  ${(props) => {
+    const { theme } = props;
+
+    return css`
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        color: ${theme.colors.alert};
+        font-size: ${theme.unit * 5}px;
+        padding-right: ${theme.unit}px;
+        height: ${theme.unit * 5}px;
+
+        svg {
+          vertical-align: top;
+        }
+      }
+    `;
+  }}
 `;
 
 export const IndexContent = styled.div`
@@ -103,7 +136,7 @@ export const Index = styled.span`
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background-color: ${theme.colors.grey_4};
+      background-color: ${theme.colors.grey_1};
 
       span {
         font-family: ${theme.typography.family.title};
@@ -120,28 +153,26 @@ export const ButtonContent = styled.div`
   ${(props) => {
     const { theme } = props;
     return css`
-      position: fixed;
       width: 100%;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       bottom: ${(theme.unit * 7) / 10}rem;
       padding: 0 ${theme.distance.normal}rem;
     `;
   }}
-  clear: both;
 `;
 
-export const AddButton = styled(Fab)`
+export const AddButton = styled(Button)`
   ${(props) => {
     const { theme } = props;
     return css`
-      float: right;
       && {
-        color: ${theme.colors.white};
-        background-color: ${theme.colors.primary_1};
-        :hover {
-          color: ${theme.colors.white};
-          background-color: ${theme.colors.primary_2};
-        }
+        background-color: ${theme.colors.white};
+        border: 1px solid ${theme.colors.primary_1};
+        font-size: 1.6rem;
+        color: ${theme.colors.primary_1};
+        margin: ${theme.distance.normal}rem;
       }
     `;
   }}
@@ -159,6 +190,13 @@ export const DragButton = styled(IconButton)`
   }
 `;
 
+export const TrashButton = styled(IconButton)`
+  && {
+    margin: 12px 0;
+    margin-top: 23px;
+  }
+`;
+
 export const Card = styled(MuiCard)`
   ${(props) => {
     const { theme } = props;
@@ -167,6 +205,7 @@ export const Card = styled(MuiCard)`
       border-radius: 4px;
       padding: ${theme.distance.normal}rem;
       margin: ${theme.distance.normal}rem;
+      width: 505px;
       label,
       input {
         font-size: 1.8rem;
@@ -193,6 +232,32 @@ export const FormikForm = styled(Form)`
 
 export const InputText = styled(TextField)`
   .MuiInputBase-input {
+    font-size: 2rem;
     line-height: 2rem;
+    width: 92%;
   }
+`;
+
+export const SaveContent = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 450px;
+`;
+
+export const SaveButton = styled(Button)`
+  ${(props) => {
+    const { theme } = props;
+    return css`
+    && {
+      background-color: ${theme.colors.primary_1};
+      font-size: 1.6rem;
+      color: ${theme.colors.white};
+      margin: ${theme.distance.normal}rem;
+      :hover {
+        background-color: ${theme.colors.primary_2};
+      }
+    }
+    }
+  `;
+  }}
 `;
