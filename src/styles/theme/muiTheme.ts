@@ -123,5 +123,10 @@ export const muiTheme = createMuiTheme({
         },
       },
     },
+    MuiFormHelperText: {
+      root: {
+        fontSize: '1.2rem',
+      },
+    },
   },
 });
