@@ -69,7 +69,7 @@ export const Chart = ({
       setPredictionCaption('Predição acumulada');
       setValueCaption('Valor acumulado');
     }
-  }, [perHour]);
+  }, [identification, perHour]);
 
   useEffect(() => {
     if (data) {
@@ -85,7 +85,7 @@ export const Chart = ({
       setExpected(datasetChartType.expected as number);
       setReal(datasetChartType.real as number);
     }
-  }, [data, perHour]);
+  }, [data, identification, perHour, type]);
 
   return (
     <>
