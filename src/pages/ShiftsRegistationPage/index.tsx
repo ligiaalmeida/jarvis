@@ -36,7 +36,6 @@ const ShiftsRegistrationPage: React.FC = () => {
     (state: Pick<StateMapToPropsGlobal, 'shiftRegistrationPage'>) =>
       state.shiftRegistrationPage
   );
-  console.log(`data`, !data);
   const router = useSelector((state: RouterProps) => state.router);
 
   const setShiftList = useCallback(
@@ -107,7 +106,7 @@ const ShiftsRegistrationPage: React.FC = () => {
 
   const addNewShift = () => {
     data ? setNewIndex(data.length + 1) : setNewIndex(1);
-    dispatch(toCancel(false));
+    shift.shiftCancel === true && dispatch(toCancel(false));
   };
 
   const handleCancel = () => {
