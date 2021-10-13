@@ -60,9 +60,8 @@ const ShiftsRegistrationPage: React.FC = () => {
       .then((res: { data: any }) => {
         dispatch(getList(JSON.parse(JSON.stringify(res.data))));
       })
-      .catch((_) => {
-        // remover dispatch quando a requisição já estiver funcionando
-        dispatch(getList(dataPayload.shifts_registration));
+      .catch((error) => {
+        return <Toast type="error">{error}</Toast>;
       });
   }, [settings.building, dispatch, getList]);
 

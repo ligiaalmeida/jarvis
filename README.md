@@ -39,6 +39,20 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `deploy with docker`
+
+Para levantar containers preparados para desenvolvimento utilize:
+
+`./run-app-deploy.sh --dev`
+
+Para levantar containers preparados para produção utilize:
+
+`./run-app-deploy.sh --prod`
+
+p.s: se você tiver problemas para executar o arquivo `run-app-deploy.sh` execute o seguinte comando:
+
+`chmod +x run-app-deploy.sh`
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
