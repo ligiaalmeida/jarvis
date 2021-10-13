@@ -4,6 +4,6 @@ app-prod:
   container_name: dockerized-jarvis-web-app
   build:
     context: .
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile-prod
   ports:
-    - '8080:80'
+  - '8080:80'
