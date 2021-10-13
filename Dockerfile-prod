@@ -11,4 +11,3 @@ RUN npm run build
 # production environment
 COPY — from=build /app/build
 EXPOSE 80
-CMD [“-g”, “daemon off;”]
