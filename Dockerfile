@@ -7,3 +7,8 @@ RUN npm install
 RUN npm install react-scripts@3.0.1 -g
 COPY . /app
 RUN npm run build
+
+# production environment
+COPY — from=build /app/build
+EXPOSE 80
+CMD [“-g”, “daemon off;”]
