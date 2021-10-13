@@ -4,6 +4,6 @@ app-prod:
   container_name: dockerized-react-app
   build:
     context: .
-    dockerfile: Dockerfile-prod
+    dockerfile: Dockerfile
   ports:
     - '8080:80'
