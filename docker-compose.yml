@@ -1,14 +1,9 @@
 version: '3.7'
 services:
-  app:
-  container_name: dockerized-jarvis-web
+app-prod:
+  container_name: dockerized-react-app
   build:
     context: .
-    dockerfile: Dockerfile
-  volumes:
-    - '.:/app'
-    - '/app/node_modules'
+    dockerfile: Dockerfile-prod
   ports:
-    - '3001:3000'
-  environment:
-    - NODE_ENV=development
+    - '8080:80'
