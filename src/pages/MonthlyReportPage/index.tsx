@@ -32,9 +32,12 @@ const MonthlyReportPage = () => {
   const [newRequest, setNewRequest] = useState(false);
 
   const router = useSelector((state: RouterProps) => state.router);
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const monthlyReportPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) => state.monthlyReportPage
+    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) =>
+      state.monthlyReportPage
   );
 
   const { isLoading } = MonthlyReportActions;
@@ -43,7 +46,9 @@ const MonthlyReportPage = () => {
   useEffect(() => {
     let loadingTimeout: NodeJS.Timeout;
     dispatch(isLoading(true));
-    setDate(displayDate({ date: monthlyReportPage.params.date, format: 'MMMM/yyyy' }));
+    setDate(
+      displayDate({ date: monthlyReportPage.params.date, format: 'MMMM/yyyy' })
+    );
 
     if (monthlyReportPage.params) {
       const body = {
@@ -52,7 +57,7 @@ const MonthlyReportPage = () => {
       };
 
       api()
-        .post(`/${settings.building}_monthly_report`, body)
+        .post(`/socket/${settings.building}_monthly_report`, body)
         .then((res) => {
           setData(JSON.parse(JSON.stringify(res.data)));
 
@@ -117,15 +122,23 @@ const MonthlyReportPage = () => {
               <div>
                 {monthlyReportPage.loading && <Loading />}
                 <KPIReport
-                  labels={data?.monthly_report?.kpi?.general?.expected_takt?.labels}
-                  values={data?.monthly_report?.kpi?.general?.expected_takt?.values}
+                  labels={
+                    data?.monthly_report?.kpi?.general?.expected_takt?.labels
+                  }
+                  values={
+                    data?.monthly_report?.kpi?.general?.expected_takt?.values
+                  }
                   marginBottom={3}
                   prefix="min"
                 />
 
                 <KPIReport
-                  labels={data?.monthly_report?.kpi?.general?.production_goal?.labels}
-                  values={data?.monthly_report?.kpi?.general?.production_goal?.values}
+                  labels={
+                    data?.monthly_report?.kpi?.general?.production_goal?.labels
+                  }
+                  values={
+                    data?.monthly_report?.kpi?.general?.production_goal?.values
+                  }
                   prefix={texts.kpi.prefix.truck.pt_br}
                 />
               </div>
@@ -150,8 +163,13 @@ const MonthlyReportPage = () => {
                   type="daily_production"
                   date={date}
                   data={data?.monthly_report?.charts?.daily_production}
-                  title={data?.monthly_report?.charts?.daily_production?.labels?.chart_title}
-                  labels={data?.monthly_report?.charts?.daily_production?.labels}
+                  title={
+                    data?.monthly_report?.charts?.daily_production?.labels
+                      ?.chart_title
+                  }
+                  labels={
+                    data?.monthly_report?.charts?.daily_production?.labels
+                  }
                 />
               </div>
               <div>
@@ -159,7 +177,10 @@ const MonthlyReportPage = () => {
                   type="daily_deviation"
                   date={date}
                   data={data?.monthly_report?.charts?.daily_deviation}
-                  title={data?.monthly_report?.charts?.daily_deviation?.labels?.chart_title}
+                  title={
+                    data?.monthly_report?.charts?.daily_deviation?.labels
+                      ?.chart_title
+                  }
                   labels={data?.monthly_report?.charts?.daily_deviation?.labels}
                 />
               </div>
@@ -168,13 +189,20 @@ const MonthlyReportPage = () => {
                   type="line_stoppage_time"
                   date={date}
                   data={data?.monthly_report?.charts?.line_stoppage_time}
-                  title={data?.monthly_report?.charts?.line_stoppage_time?.labels?.chart_title}
-                  labels={data?.monthly_report?.charts?.line_stoppage_time?.labels}
+                  title={
+                    data?.monthly_report?.charts?.line_stoppage_time?.labels
+                      ?.chart_title
+                  }
+                  labels={
+                    data?.monthly_report?.charts?.line_stoppage_time?.labels
+                  }
                 />
               </div>
             </S.ChartAllShift>
             <S.KPIWrapper>
-              <h3>{data?.monthly_report.kpi?.per_station?.station_list?.label}</h3>
+              <h3>
+                {data?.monthly_report.kpi?.per_station?.station_list?.label}
+              </h3>
               <KPIPerStation payload={data} />
             </S.KPIWrapper>
           </>

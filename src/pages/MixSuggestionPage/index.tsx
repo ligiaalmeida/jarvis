@@ -38,17 +38,23 @@ interface Table {
 const MixSuggestionPage = () => {
   const [data, setData] = useState<typeof payload.mix_suggestion>(null!);
   const [originalNPList, setOriginalNPList] = useState<NPInterface[]>([]);
-  const [tableOriginalToExport, setTableOriginalToExport] = useState<Table[]>([]);
-  const [tablePredictedToExport, setTablePredictedToExport] = useState<Table[]>([]);
+  const [tableOriginalToExport, setTableOriginalToExport] = useState<Table[]>(
+    []
+  );
+  const [tablePredictedToExport, setTablePredictedToExport] = useState<Table[]>(
+    []
+  );
   const [isError, setIsError] = useState<boolean>(false);
   const [newRequest, setNewRequest] = useState<boolean>(false);
 
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const router = useSelector((state: RouterProps) => state.router);
 
   useEffect(() => {
     api()
-      .get(`${settings.building}_mix_suggestion`)
+      .get(`socket/${settings.building}_mix_suggestion`)
       .then((res) => {
         setData(JSON.parse(JSON.stringify(res.data)));
         convertToExport(res.data);
@@ -169,10 +175,14 @@ const MixSuggestionPage = () => {
                   index === 0 && (
                     <React.Fragment key={index}>
                       <span>
-                        Listas referentes ao dia: <strong>{timeConverter(item.processed_timestamp)}</strong>
+                        Listas referentes ao dia:{' '}
+                        <strong>
+                          {timeConverter(item.processed_timestamp)}
+                        </strong>
                       </span>
                       <span>
-                        Mix Agendado alterado em: <strong>{item.percent}%</strong>
+                        Mix Agendado alterado em:{' '}
+                        <strong>{item.percent}%</strong>
                       </span>
                     </React.Fragment>
                   )
@@ -205,7 +215,10 @@ const MixSuggestionPage = () => {
                 </CSVLink>
               </>
             )}
-            <InputList pathname={router.location.pathname as Pathname} padding={`${theme.distance.normal}rem 0`} />
+            <InputList
+              pathname={router.location.pathname as Pathname}
+              padding={`${theme.distance.normal}rem 0`}
+            />
           </S.TopContentRight>
         </S.TopContent>
         <S.Content>

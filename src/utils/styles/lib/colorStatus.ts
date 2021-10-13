@@ -6,7 +6,10 @@ import { theme } from 'styles/theme';
 
 import { ColorStatusType } from 'types';
 
-export const colorStatus = (status: ColorStatusType, color: string): FlattenSimpleInterpolation => {
+export const colorStatus = (
+  status: ColorStatusType,
+  color: string
+): FlattenSimpleInterpolation => {
   switch (status) {
     case EColorStatus.EMPTY:
       return css`

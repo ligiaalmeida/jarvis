@@ -31,7 +31,8 @@ export type Pathname =
   | '/current_status'
   | '/mix_suggestion'
   | '/performance_history'
-  | '/monthly_report';
+  | '/monthly_report'
+  | '/shifts_registration';
 
 export type Pages =
   | 'performance'
@@ -40,7 +41,8 @@ export type Pages =
   | 'faultPrediction'
   | 'currentStatus'
   | 'mixSuggestion'
-  | 'performanceHistory';
+  | 'performanceHistory'
+  | 'shiftRegistration';
 
 export type PageProps = {
   inputs?: React.ReactNode;

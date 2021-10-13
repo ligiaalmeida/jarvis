@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 
-export const Ring = styled.div<{ colorRing?: string; widthRing?: number; borderWidthRing?: number }>`
+export const Ring = styled.div<{
+  colorRing?: string;
+  widthRing?: number;
+  borderWidthRing?: number;
+}>`
   ${(props) => {
     const { colorRing = '#fff', widthRing = 80, borderWidthRing = 4 } = props;
 

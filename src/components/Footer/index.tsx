@@ -6,7 +6,8 @@ const Footer = () => {
   return (
     <S.Footer>
       <p>
-        Just A Rather Very Intelligent System (J.A.R.V.I.S.) <span>Versão {pkg.version}</span>
+        Just A Rather Very Intelligent System (J.A.R.V.I.S.){' '}
+        <span>Versão {pkg.version}</span>
       </p>
     </S.Footer>
   );

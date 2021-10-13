@@ -1,6 +1,10 @@
 import { SVGProps } from 'types';
 
-const Calendar = ({ width = '24px', height = '24px', fill = 'red' }: SVGProps) => {
+const Calendar = ({
+  width = '24px',
+  height = '24px',
+  fill = 'red',
+}: SVGProps) => {
   return (
     <svg
       width={width}

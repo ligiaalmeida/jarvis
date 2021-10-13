@@ -31,7 +31,14 @@ export const Container: React.FC<ContainerProps> = (props) => {
   const sizes = { sm, md, lg, xl, xxl };
 
   return (
-    <Content flexDirection={flexDirection} xs={xs} {...sizes} margin={margin} padding={padding} {...props}>
+    <Content
+      flexDirection={flexDirection}
+      xs={xs}
+      {...sizes}
+      margin={margin}
+      padding={padding}
+      {...props}
+    >
       {children}
     </Content>
   );

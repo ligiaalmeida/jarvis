@@ -23,16 +23,22 @@ const FaultPredictionPage = () => {
   const [heightNavigation, setHeightNavigation] = useState(0);
 
   const settingsPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) => state.faultPredictionPage
+    (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) =>
+      state.faultPredictionPage
   );
-  const settingsGlobal = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settingsGlobal = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const router = useSelector((state: RouterProps) => state.router);
 
   const { toggleModeView } = FaultPredictionActions;
   const dispatch = useDispatch();
   const width = useWindowWidth();
 
-  const URI_BASE = process.env.NODE_ENV === 'development' ? env.development.APP_WS_URL_BASE : env.host.APP_WS_URL;
+  const URI_BASE =
+    process.env.NODE_ENV === 'development'
+      ? env.development.APP_WS_URL_BASE
+      : env.host.APP_WS_URL;
 
   const { data } = useSocket<Pick<typeof payload, 'fault_prediction'>>({
     uri: URI_BASE,
@@ -69,7 +75,10 @@ const FaultPredictionPage = () => {
   return (
     <>
       <S.Main modeViewType={settingsPage?.modeView}>
-        <InputList padding={`${theme.distance.normal}rem`} pathname={router.location.pathname as Pathname}>
+        <InputList
+          padding={`${theme.distance.normal}rem`}
+          pathname={router.location.pathname as Pathname}
+        >
           <ViewingModeSetting
             pageName="faultPredictionPage"
             toggleNavigation={settingsGlobal.toggleNavigation}

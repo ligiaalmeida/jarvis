@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MenuItem as MuiMenuItem, TextField as MuiTextField } from '@material-ui/core';
+import {
+  MenuItem as MuiMenuItem,
+  TextField as MuiTextField,
+} from '@material-ui/core';
 
 import { KPIPerStationProps, StationSelectedState } from '../types';
 
@@ -13,12 +16,19 @@ import { StateMapToPropsGlobal } from 'types';
 import KPIReport from '../KPIReport';
 import * as S from './styles';
 
-const KPIPerStation = ({ payload }: KPIPerStationProps<Pick<typeof payloadData, 'monthly_report'>>) => {
-  const [stationSelected, setStationSelected] = useState<StationSelectedState>(null!);
+const KPIPerStation = ({
+  payload,
+}: KPIPerStationProps<Pick<typeof payloadData, 'monthly_report'>>) => {
+  const [stationSelected, setStationSelected] = useState<StationSelectedState>(
+    null!
+  );
 
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const monthlyReportPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) => state.monthlyReportPage
+    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) =>
+      state.monthlyReportPage
   );
 
   const { setSelected } = MonthlyReportActions;
@@ -26,39 +36,51 @@ const KPIPerStation = ({ payload }: KPIPerStationProps<Pick<typeof payloadData, 
 
   useEffect(() => {
     setStationSelected({
-      area_invasion: payload.monthly_report.kpi.per_station.area_invasion.datasets.map((item) => ({
-        minimum: item.minimum,
-        medium: item.medium,
-        maximum: item.maximum,
-      }))[0],
+      area_invasion:
+        payload.monthly_report.kpi.per_station.area_invasion.datasets.map(
+          (item) => ({
+            minimum: item.minimum,
+            medium: item.medium,
+            maximum: item.maximum,
+          })
+        )[0],
 
-      rfid_fail: payload.monthly_report.kpi.per_station.rfid_fail.datasets.map((item) => ({
-        minimum: item.minimum,
-        medium: item.medium,
-        maximum: item.maximum,
-      }))[0],
-
-      acc_stop_time: payload.monthly_report.kpi.per_station.acc_stop_time.datasets.map(
-        ({ minimum, medium, maximum }) => ({ minimum, medium, maximum })
+      rfid_fail: payload.monthly_report.kpi.per_station.rfid_fail.datasets.map(
+        (item) => ({
+          minimum: item.minimum,
+          medium: item.medium,
+          maximum: item.maximum,
+        })
       )[0],
 
-      avg_takt: payload.monthly_report.kpi.per_station.avg_takt.datasets.map((item) => ({
-        minimum: item.minimum,
-        medium: item.medium,
-        maximum: item.maximum,
-      }))[0],
+      acc_stop_time:
+        payload.monthly_report.kpi.per_station.acc_stop_time.datasets.map(
+          ({ minimum, medium, maximum }) => ({ minimum, medium, maximum })
+        )[0],
 
-      fail_time: payload.monthly_report.kpi.per_station.fail_time.datasets.map((item) => ({
-        minimum: item.minimum,
-        medium: item.medium,
-        maximum: item.maximum,
-      }))[0],
+      avg_takt: payload.monthly_report.kpi.per_station.avg_takt.datasets.map(
+        (item) => ({
+          minimum: item.minimum,
+          medium: item.medium,
+          maximum: item.maximum,
+        })
+      )[0],
 
-      stop_time: payload.monthly_report.kpi.per_station.stop_time.datasets.map((item) => ({
-        minimum: item.minimum,
-        medium: item.medium,
-        maximum: item.maximum,
-      }))[0],
+      fail_time: payload.monthly_report.kpi.per_station.fail_time.datasets.map(
+        (item) => ({
+          minimum: item.minimum,
+          medium: item.medium,
+          maximum: item.maximum,
+        })
+      )[0],
+
+      stop_time: payload.monthly_report.kpi.per_station.stop_time.datasets.map(
+        (item) => ({
+          minimum: item.minimum,
+          medium: item.medium,
+          maximum: item.maximum,
+        })
+      )[0],
     });
     dispatch(setSelected(null!));
   }, [settings.building]);
@@ -66,29 +88,55 @@ const KPIPerStation = ({ payload }: KPIPerStationProps<Pick<typeof payloadData, 
   useEffect(() => {
     if (monthlyReportPage.station_selected) {
       setStationSelected({
-        area_invasion: payload.monthly_report.kpi.per_station.area_invasion.datasets
-          .filter((value) => value.id === monthlyReportPage.station_selected)
-          .map(({ minimum, medium, maximum }) => ({ minimum, medium, maximum }))[0],
+        area_invasion:
+          payload.monthly_report.kpi.per_station.area_invasion.datasets
+            .filter((value) => value.id === monthlyReportPage.station_selected)
+            .map(({ minimum, medium, maximum }) => ({
+              minimum,
+              medium,
+              maximum,
+            }))[0],
 
         rfid_fail: payload.monthly_report.kpi.per_station.rfid_fail.datasets
           .filter((value) => value.id === monthlyReportPage.station_selected)
-          .map(({ minimum, medium, maximum }) => ({ minimum, medium, maximum }))[0],
+          .map(({ minimum, medium, maximum }) => ({
+            minimum,
+            medium,
+            maximum,
+          }))[0],
 
-        acc_stop_time: payload.monthly_report.kpi.per_station.acc_stop_time.datasets
-          .filter((value) => value.id === monthlyReportPage.station_selected)
-          .map(({ minimum, medium, maximum }) => ({ minimum, medium, maximum }))[0],
+        acc_stop_time:
+          payload.monthly_report.kpi.per_station.acc_stop_time.datasets
+            .filter((value) => value.id === monthlyReportPage.station_selected)
+            .map(({ minimum, medium, maximum }) => ({
+              minimum,
+              medium,
+              maximum,
+            }))[0],
 
         avg_takt: payload.monthly_report.kpi.per_station.avg_takt.datasets
           .filter((value) => value.id === monthlyReportPage.station_selected)
-          .map(({ minimum, medium, maximum }) => ({ minimum, medium, maximum }))[0],
+          .map(({ minimum, medium, maximum }) => ({
+            minimum,
+            medium,
+            maximum,
+          }))[0],
 
         fail_time: payload.monthly_report.kpi.per_station.fail_time.datasets
           .filter((value) => value.id === monthlyReportPage.station_selected)
-          .map(({ minimum, medium, maximum }) => ({ minimum, medium, maximum }))[0],
+          .map(({ minimum, medium, maximum }) => ({
+            minimum,
+            medium,
+            maximum,
+          }))[0],
 
         stop_time: payload.monthly_report.kpi.per_station.stop_time.datasets
           .filter((value) => value.id === monthlyReportPage.station_selected)
-          .map(({ minimum, medium, maximum }) => ({ minimum, medium, maximum }))[0],
+          .map(({ minimum, medium, maximum }) => ({
+            minimum,
+            medium,
+            maximum,
+          }))[0],
       });
     }
   }, [monthlyReportPage.station_selected]);
@@ -147,7 +195,11 @@ const KPIPerStation = ({ payload }: KPIPerStationProps<Pick<typeof payloadData, 
                 return 0;
               })
               .map((station) => (
-                <MuiMenuItem key={station.id} data-key={station.order} value={station.id}>
+                <MuiMenuItem
+                  key={station.id}
+                  data-key={station.order}
+                  value={station.id}
+                >
                   {station.label}
                 </MuiMenuItem>
               ))}
@@ -157,13 +209,17 @@ const KPIPerStation = ({ payload }: KPIPerStationProps<Pick<typeof payloadData, 
         <S.KPIPerStationContainer>
           <div>
             <KPIReport
-              labels={payload.monthly_report.kpi.per_station.area_invasion.labels}
+              labels={
+                payload.monthly_report.kpi.per_station.area_invasion.labels
+              }
               values={stationSelected.area_invasion}
               marginBottom={3}
               prefix="min"
             />
             <KPIReport
-              labels={payload.monthly_report.kpi.per_station.acc_stop_time.labels}
+              labels={
+                payload.monthly_report.kpi.per_station.acc_stop_time.labels
+              }
               values={stationSelected.acc_stop_time}
               marginBottom={3}
               prefix="min"

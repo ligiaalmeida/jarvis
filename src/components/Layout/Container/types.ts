@@ -40,7 +40,8 @@ export type GridSizes = {
   xxl?: Grid;
 };
 
-export type HTMLAttr = GridSizes & Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'onClick' | 'id'>;
+export type HTMLAttr = GridSizes &
+  Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'onClick' | 'id'>;
 
 export type Spaces = {
   xs?: SpacesCSS;

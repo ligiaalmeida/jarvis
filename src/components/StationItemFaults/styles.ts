@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import { CustomScrollBar, Elevation, Transition, Centralized } from 'utils/styles/mixins';
+import {
+  CustomScrollBar,
+  Elevation,
+  Transition,
+  Centralized,
+} from 'utils/styles/mixins';
 
 import * as Types from './types';
 
@@ -115,7 +120,15 @@ export const Wrapper = styled.div`
 
 export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsContainer>`
   ${(props) => {
-    const { theme, heightScreen, isNavigation, width, typeView, countRows, isSelected } = props;
+    const {
+      theme,
+      heightScreen,
+      isNavigation,
+      width,
+      typeView,
+      countRows,
+      isSelected,
+    } = props;
     const { inputListToPage, footer, nav_tabs } = theme.layout;
 
     const minHeightContent =

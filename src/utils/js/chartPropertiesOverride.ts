@@ -2,11 +2,15 @@ import Chart from 'chart.js';
 import { timeFormat } from '.';
 import { theme } from 'styles/theme';
 
-export const overrideLabelCustom = (tooltipItem: Chart.ChartTooltipItem, data: Chart.ChartData): string | string[] => {
+export const overrideLabelCustom = (
+  tooltipItem: Chart.ChartTooltipItem,
+  data: Chart.ChartData
+): string | string[] => {
   let meta: Chart.ChartDataSets = { label: '' };
   let time = '';
 
-  if (data && data.datasets) meta = data.datasets[tooltipItem.datasetIndex as number];
+  if (data && data.datasets)
+    meta = data.datasets[tooltipItem.datasetIndex as number];
 
   time = timeFormat({
     time: tooltipItem.value ? Number(tooltipItem.value) : 0,
@@ -30,7 +34,8 @@ export const overrideLabelColorSimple = (
   let color: Chart.ChartColor | string = '';
 
   if (data && data.datasets)
-    color = data.datasets[tooltipItem.datasetIndex as number].backgroundColor as Chart.ChartColor;
+    color = data.datasets[tooltipItem.datasetIndex as number]
+      .backgroundColor as Chart.ChartColor;
 
   return {
     backgroundColor: color,
@@ -67,5 +72,7 @@ export const overrideLabelColor = (
   };
 };
 
-export const overrideTitleTooltip = (item: Chart.ChartTooltipItem[], title: string): string | string[] =>
-  `${title} ${item[0].label}`;
+export const overrideTitleTooltip = (
+  item: Chart.ChartTooltipItem[],
+  title: string
+): string | string[] => `${title} ${item[0].label}`;

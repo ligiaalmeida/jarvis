@@ -5,7 +5,12 @@ import { Transition } from 'utils/styles/mixins';
 
 import * as Types from './types';
 
-const SwitchComponent: React.FC<Types.SwitchProps> = ({ enabled = false, className, label, onChange }) => {
+const SwitchComponent: React.FC<Types.SwitchProps> = ({
+  enabled = false,
+  className,
+  label,
+  onChange,
+}) => {
   const [toggle, setToggle] = useState(enabled);
   const [count, setCount] = useState(0);
 
@@ -29,7 +34,13 @@ const SwitchComponent: React.FC<Types.SwitchProps> = ({ enabled = false, classNa
 
 const Switch = styled(SwitchComponent)<Types.SwitchProps>`
   ${(props) => {
-    const { theme, labelDirection = 'right', fontSize, padding = ' 0 16px', scaleSwitch = 1 } = props;
+    const {
+      theme,
+      labelDirection = 'right',
+      fontSize,
+      padding = ' 0 16px',
+      scaleSwitch = 1,
+    } = props;
 
     return css`
       position: relative;
@@ -98,7 +109,8 @@ const Switch = styled(SwitchComponent)<Types.SwitchProps>`
           height: 18px;
           background-color: ${theme.colors.grey_3};
           border-radius: 50%;
-          transition: transform ${theme.transition.time} ${theme.transition.timeFunction},
+          transition: transform ${theme.transition.time}
+              ${theme.transition.timeFunction},
             background ${theme.transition.time} ${theme.transition.timeFunction};
         }
 

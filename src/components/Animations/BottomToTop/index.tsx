@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 
 import * as Types from './types';
 
-export const BottomToTop: React.FC<Types.AChartProps> = ({ children, classes, active, idItem }) => {
+export const BottomToTop: React.FC<Types.AChartProps> = ({
+  children,
+  classes,
+  active,
+  idItem,
+}) => {
   return (
     <>
       {active === idItem && (

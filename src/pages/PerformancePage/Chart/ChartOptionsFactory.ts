@@ -3,7 +3,11 @@ import Chart, { ChartOptions } from 'chart.js';
 import { EChartList } from 'enums/chartList';
 
 import { theme } from 'styles/theme';
-import { overrideLabelColorSimple, overrideLabelCustom, overrideTitleTooltip } from 'utils/js';
+import {
+  overrideLabelColorSimple,
+  overrideLabelCustom,
+  overrideTitleTooltip,
+} from 'utils/js';
 
 import * as Types from '../types';
 
@@ -94,7 +98,8 @@ const ChartOptionsFactory = ({
       intersect: false,
       callbacks: {
         labelColor: overrideLabelColorSimple,
-        title: (item: Chart.ChartTooltipItem[]): string | string[] => overrideTitleTooltip(item, 'Hora:'),
+        title: (item: Chart.ChartTooltipItem[]): string | string[] =>
+          overrideTitleTooltip(item, 'Hora:'),
       },
     },
     scales: {
@@ -144,7 +149,10 @@ const ChartOptionsFactory = ({
             beginAtZero: true,
             fontSize: 13,
             padding: 8,
-            max: identification === 'takt_per_station' && viewType === 1 ? expectedTakt : ticksMax,
+            max:
+              identification === 'takt_per_station' && viewType === 1
+                ? expectedTakt
+                : ticksMax,
             stepSize:
               viewType === 0
                 ? Math.ceil((Math.max(options.expected, options.real) + 1) / 4)

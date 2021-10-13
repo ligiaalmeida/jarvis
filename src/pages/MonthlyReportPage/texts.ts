@@ -116,8 +116,10 @@ export default {
     daily_production: {
       tooltips: {
         daily_production: {
-          pt_br: 'Quantidade de veículos produzidos no dia, considerando os dois turnos.',
-          en_us: 'Number of vehicles produced on the day, considering the two shifts.',
+          pt_br:
+            'Quantidade de veículos produzidos no dia, considerando os dois turnos.',
+          en_us:
+            'Number of vehicles produced on the day, considering the two shifts.',
           de: 'Anzahl der am Tag produzierten Fahrzeuge unter Berücksichtigung der beiden Schichten.',
         },
         expected_daily_production: {
@@ -147,8 +149,10 @@ export default {
     daily_deviation: {
       tooltips: {
         daily_deviation: {
-          pt_br: 'Desvio de produção (diferença) entre a meta de produção definida e a produção atual.',
-          en_us: 'Production deviation (difference) between the defined production target and the current production.',
+          pt_br:
+            'Desvio de produção (diferença) entre a meta de produção definida e a produção atual.',
+          en_us:
+            'Production deviation (difference) between the defined production target and the current production.',
           de: 'Produktionsabweichung (Differenz) zwischen dem definierten Produktionsziel und der aktuellen Produktion.',
         },
         expected_daily_deviation: {

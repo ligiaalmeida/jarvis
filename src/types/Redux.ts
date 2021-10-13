@@ -1,5 +1,12 @@
-import { ActiveFailList, ModeView, PagesSettingsTimer, PerformancePageStorage } from 'types';
+import {
+  ActiveFailList,
+  ModeView,
+  PagesSettingsTimer,
+  PerformancePageStorage,
+  ShiftRegistrationFields,
+} from 'types';
 import { CurrentFaultsPayload } from 'components/StationItemFaults/types';
+import { boolean } from 'yup/lib/locale';
 
 export type InitialStateGlobal = {
   toggleHeader: boolean;
@@ -11,6 +18,12 @@ export type InitialStateGlobal = {
 export interface StateMapToPropsGlobal {
   polices: SignInPage;
   global: InitialStateGlobal;
+  shiftRegistrationPage: {
+    shiftRegistrationPage: ShiftRegistrationType;
+    shiftRegistrationRemove: RemoveShiftRegistrationType;
+    shiftRegistrationList: ShiftRegistrationList;
+    shiftCancel: shiftCancel;
+  };
   authPage?: {
     isConnected: boolean;
     config: {
@@ -46,6 +59,29 @@ export interface StateMapToPropsGlobal {
   };
 }
 
+export type ShiftRegistrationType = {
+  id_shift: string;
+  shift_name: string;
+  hour_start_shift: string;
+  hour_end_shift: string;
+};
+
+export type shiftCancel = boolean;
+
+export type ShiftRegistrationList = ShiftRegistrationType[];
+
+export type RemoveShiftRegistrationType = {
+  shiftRegistrationRemove: {
+    isRemove: boolean;
+    shiftToRemove: {
+      id_shift: string;
+      shift_name: string;
+      hour_start_shift: string;
+      hour_end_shift: string;
+    };
+  };
+};
+
 export type MixSuggestionTableType = 'scheduled' | 'suggested';
 
 export type SignInPage = {
@@ -64,7 +100,9 @@ export type Polices = {
   }[];
 };
 
-export type KeysOfPagesContainingStations = 'currentFaultsPage' | 'faultPredictionPage';
+export type KeysOfPagesContainingStations =
+  | 'currentFaultsPage'
+  | 'faultPredictionPage';
 
 export type KeyOfPages = keyof StateMapToPropsGlobal;
 

@@ -9,6 +9,10 @@ type NumberFormatProps = {
   };
 };
 
-export const numberFormat = ({ value, locale = 'pt-BR', options }: NumberFormatProps) => {
+export const numberFormat = ({
+  value,
+  locale = 'pt-BR',
+  options,
+}: NumberFormatProps) => {
   return new Intl.NumberFormat(locale, { ...options }).format(value);
 };

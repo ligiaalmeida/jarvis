@@ -16,6 +16,7 @@ import CurrentStatusPage from 'pages/CurrentStatusPage';
 import MixSuggestionPage from 'pages/MixSuggestionPage';
 import PerformanceHistoryPage from 'pages/PerformanceHistoryPage';
 import MonthlyReportPage from 'pages/MonthlyReportPage';
+import ShiftsRegistrationPage from 'pages/ShiftsRegistationPage';
 
 import { StateMapToPropsGlobal, RouterProps } from 'types';
 import { CurrentStatusActions } from 'store/ducks/currentStatus';
@@ -78,16 +79,32 @@ const authRoutes = [
       component: MonthlyReportPage,
     },
   },
+  {
+    id: 8,
+    name: 'shifts_registration',
+    route: {
+      path: routes.SHIFTS_REGISTRATION,
+      component: ShiftsRegistrationPage,
+    },
+  },
 ];
 
 export default function Routes() {
   const [userRoutes, setUserRoutes] = useState<typeof authRoutes>(null!);
 
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
-  const settingsCurrentsFaults = useSelector((state: StateMapToPropsGlobal) => state.currentFaultsPage.stationActive);
-  const settingsCurrentsStatus = useSelector((state: StateMapToPropsGlobal) => state.currentStatusPage);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
+  const settingsCurrentsFaults = useSelector(
+    (state: StateMapToPropsGlobal) => state.currentFaultsPage.stationActive
+  );
+  const settingsCurrentsStatus = useSelector(
+    (state: StateMapToPropsGlobal) => state.currentStatusPage
+  );
   const router = useSelector((state: RouterProps) => state.router);
-  const signInPage = useSelector((state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices);
+  const signInPage = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices
+  );
 
   const history = useHistory();
 
@@ -98,10 +115,16 @@ export default function Routes() {
 
   useEffect(() => {
     if (signInPage.isConnected && signInPage.config.polices[0]?.label.length) {
-      const authMenuItems = signInPage.config.polices.filter((police) => police.nome === settings.building)[0];
-      const isRedirect = authMenuItems.menu_item.filter((item) => `/${item.name}` === router.location.pathname);
+      const authMenuItems = signInPage.config.polices.filter(
+        (police) => police.nome === settings.building
+      )[0];
+      const isRedirect = authMenuItems.menu_item.filter(
+        (item) => `/${item.name}` === router.location.pathname
+      );
       const routerDom = authMenuItems.menu_item.map((item) => {
-        return authRoutes.filter((authRoute) => authRoute.name === item.name)[0];
+        return authRoutes.filter(
+          (authRoute) => authRoute.name === item.name
+        )[0];
       });
 
       setUserRoutes(routerDom);
@@ -113,11 +136,17 @@ export default function Routes() {
   }, [settings.building, signInPage.isConnected]);
 
   useEffect(() => {
-    if (router.location.pathname !== routes.CURRENT_FAULTS && settingsCurrentsFaults.label) {
+    if (
+      router.location.pathname !== routes.CURRENT_FAULTS &&
+      settingsCurrentsFaults.label
+    ) {
       dispatch(closeDrawer());
     }
 
-    if (router.location.pathname !== routes.CURRENT_STATUS && settingsCurrentsStatus.station.label) {
+    if (
+      router.location.pathname !== routes.CURRENT_STATUS &&
+      settingsCurrentsStatus.station.label
+    ) {
       dispatch(
         stationActive({
           position_id: '',
@@ -150,11 +179,14 @@ export default function Routes() {
   return (
     <Switch>
       <>
-        {router.location.pathname !== '/' && signInPage.config.polices[0]?.label.length && <Navigation />}
+        {router.location.pathname !== '/' &&
+          signInPage.config.polices[0]?.label.length && <Navigation />}
         <Route exact path={routes.SIGN_IN} component={SignInPage} />
         {signInPage.isConnected &&
           userRoutes &&
-          userRoutes.map(({ id, route }) => <Route key={id} path={route.path} component={route.component} />)}
+          userRoutes.map(({ id, route }) => (
+            <Route key={id} path={route.path} component={route.component} />
+          ))}
       </>
     </Switch>
   );

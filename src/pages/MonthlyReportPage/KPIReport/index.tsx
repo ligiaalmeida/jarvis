@@ -5,7 +5,12 @@ import * as Types from '../types';
 import * as S from './styles';
 import KPIReportItem from './KPIReportItem';
 
-const KPIReport: React.FC<Types.KPIReportProps> = ({ labels, values, prefix, marginBottom }) => {
+const KPIReport: React.FC<Types.KPIReportProps> = ({
+  labels,
+  values,
+  prefix,
+  marginBottom,
+}) => {
   return (
     <S.Container marginBottom={marginBottom}>
       {labels && values && (

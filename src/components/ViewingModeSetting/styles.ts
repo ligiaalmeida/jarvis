@@ -7,7 +7,8 @@ import * as Types from './types';
 
 export const SettingsPage = styled.div<Types.SettingsPageProps>`
   ${(props) => {
-    const { theme, modeViewType, toggleNavigation, isLabelType, pathname } = props;
+    const { theme, modeViewType, toggleNavigation, isLabelType, pathname } =
+      props;
 
     return css`
       position: relative;
@@ -15,7 +16,9 @@ export const SettingsPage = styled.div<Types.SettingsPageProps>`
       justify-content: flex-end;
       align-items: center;
 
-      ${!toggleNavigation && (pathname === routes.CURRENT_FAULTS || pathname === routes.FAULT_PREDICTION)
+      ${!toggleNavigation &&
+      (pathname === routes.CURRENT_FAULTS ||
+        pathname === routes.FAULT_PREDICTION)
         ? css`
             padding-right: ${theme.distance.normal * 3.2}rem;
           `

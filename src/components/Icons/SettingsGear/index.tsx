@@ -2,7 +2,11 @@ import { theme } from 'styles/theme';
 
 import { SVGProps } from 'types';
 
-export const SettingsGear = ({ width = '24px', height = '24px', fill }: SVGProps) => {
+export const SettingsGear = ({
+  width = '24px',
+  height = '24px',
+  fill,
+}: SVGProps) => {
   return (
     <svg
       width={width}

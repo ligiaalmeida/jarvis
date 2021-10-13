@@ -3,7 +3,11 @@ import { AnimatePresence } from 'framer-motion';
 
 import TooltipIcon from 'components/Icons/Tooltip';
 import { useClickOutside } from 'hooks';
-import { Container, ContainerIcon, ContainerTooltip } from 'components/Tooltip/style';
+import {
+  Container,
+  ContainerIcon,
+  ContainerTooltip,
+} from 'components/Tooltip/style';
 
 import * as Types from './types';
 
@@ -75,7 +79,11 @@ const Tooltip = ({
             initial="closed"
             animate="open"
             exit="finished"
-            countCharacters={typeof description === 'string' ? (description as string).length : 0}
+            countCharacters={
+              typeof description === 'string'
+                ? (description as string).length
+                : 0
+            }
           >
             <div>{description}</div>
           </ContainerTooltip>

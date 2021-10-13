@@ -36,7 +36,8 @@ export const Calendar = styled.div<Types.CalendarProps>`
         }
       }
 
-      .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
+      .react-datepicker-popper[data-placement^='bottom']
+        .react-datepicker__triangle::before {
         border-bottom-color: rgba(174, 174, 174, 0.4);
       }
 
@@ -195,7 +196,13 @@ export const Hour = styled.div`
 
 export const Header = styled.div<Types.StyleHeaderProps>`
   ${(props) => {
-    const { theme, padding, invertedElement, customCSSHeader, customCSSInputList } = props;
+    const {
+      theme,
+      padding,
+      invertedElement,
+      customCSSHeader,
+      customCSSInputList,
+    } = props;
 
     return css`
       position: relative;
@@ -239,7 +246,9 @@ export const InputList = styled.div<Types.InputListStyleProps>`
         justify-content: flex-end;
 
         ${!toggleNavigation &&
-        (page === routes.PERFORMANCE || page === routes.CURRENT_STATUS || page === routes.MIX_SUGGESTION)
+        (page === routes.PERFORMANCE ||
+          page === routes.CURRENT_STATUS ||
+          page === routes.MIX_SUGGESTION)
           ? inputListHideNavigationToDistance
           : ''}
 
@@ -247,7 +256,9 @@ export const InputList = styled.div<Types.InputListStyleProps>`
           margin: 0;
 
           .MuiSelect-icon {
-            ${(page === routes.CURRENT_FAULTS || page === routes.FAULT_PREDICTION) && modeView === 'detailed'
+            ${(page === routes.CURRENT_FAULTS ||
+              page === routes.FAULT_PREDICTION) &&
+            modeView === 'detailed'
               ? css`
                   color: ${theme.colors.white};
                   border-color: ${lighten(theme.colors.primary_2, 0.4)};
@@ -262,7 +273,9 @@ export const InputList = styled.div<Types.InputListStyleProps>`
           }
 
           .MuiSelect-select {
-            ${(page === routes.CURRENT_FAULTS || page === routes.FAULT_PREDICTION) && modeView === 'detailed'
+            ${(page === routes.CURRENT_FAULTS ||
+              page === routes.FAULT_PREDICTION) &&
+            modeView === 'detailed'
               ? css`
                   color: ${theme.colors.white};
                   border-color: ${lighten(theme.colors.primary_2, 0.4)};
@@ -278,11 +291,15 @@ export const InputList = styled.div<Types.InputListStyleProps>`
 
           &--building {
             ${!toggleNavigation &&
-            (page === routes.PERFORMANCE || page === routes.CURRENT_STATUS || page === routes.MIX_SUGGESTION)
+            (page === routes.PERFORMANCE ||
+              page === routes.CURRENT_STATUS ||
+              page === routes.MIX_SUGGESTION)
               ? inputListHideNavigationToBorderAndDistance
               : ''}
 
-            ${!toggleNavigation && (page === routes.PERFORMANCE_HISTORY || page === routes.MONTHLY_REPORT)
+            ${!toggleNavigation &&
+            (page === routes.PERFORMANCE_HISTORY ||
+              page === routes.MONTHLY_REPORT)
               ? css`
                   + div {
                     ${inputListHideNavigationToDistance}
@@ -312,7 +329,8 @@ export const InputList = styled.div<Types.InputListStyleProps>`
           font-size: 1.6rem;
           margin-right: 8px;
 
-          ${(page === '/current_faults' || page === '/fault_prediction') && modeView === 'detailed'
+          ${(page === '/current_faults' || page === '/fault_prediction') &&
+          modeView === 'detailed'
             ? css`
                 color: ${theme.colors.white};
               `

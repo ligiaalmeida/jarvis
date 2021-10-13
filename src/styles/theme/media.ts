@@ -21,7 +21,9 @@ const mediaDefault = (size: 'min' | 'max') =>
   (Object.keys(sizes) as Array<keyof typeof sizes>).reduce((acc, label) => {
     acc[label] = (...args: FlattenSimpleInterpolation) => {
       return css`
-        @media (${size}-width: ${size === 'min' ? sizes[label].min : sizes[label].max}px) {
+        @media (${size}-width: ${size === 'min'
+            ? sizes[label].min
+            : sizes[label].max}px) {
           ${css({}, ...args)};
         }
       `;
@@ -29,7 +31,10 @@ const mediaDefault = (size: 'min' | 'max') =>
     return acc;
   }, screens);
 
-const mediaCustom = ([type, value]: [string, number], ...args: FlattenSimpleInterpolation) => {
+const mediaCustom = (
+  [type, value]: [string, number],
+  ...args: FlattenSimpleInterpolation
+) => {
   return css`
     @media (${type}-width: ${value}px) {
       ${css({}, ...args)};

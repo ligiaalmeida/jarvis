@@ -1,6 +1,12 @@
-import { MonthlyReportChartDatasets, LineChartsProps, GeneralChartProps } from 'pages/MonthlyReportPage/types';
+import {
+  MonthlyReportChartDatasets,
+  LineChartsProps,
+  GeneralChartProps,
+} from 'pages/MonthlyReportPage/types';
 
-export const sortData = ({ data }: Pick<LineChartsProps, 'data'> | Pick<GeneralChartProps, 'data'>) => {
+export const sortData = ({
+  data,
+}: Pick<LineChartsProps, 'data'> | Pick<GeneralChartProps, 'data'>) => {
   const datasetsSort: MonthlyReportChartDatasets[] = [];
 
   const keys = (data.datasets as unknown[])
@@ -13,7 +19,11 @@ export const sortData = ({ data }: Pick<LineChartsProps, 'data'> | Pick<GeneralC
     });
 
   keys.forEach((key) => {
-    datasetsSort.push((data.datasets as MonthlyReportChartDatasets[]).filter((item) => item.key === key)[0]);
+    datasetsSort.push(
+      (data.datasets as MonthlyReportChartDatasets[]).filter(
+        (item) => item.key === key
+      )[0]
+    );
   });
 
   return datasetsSort;

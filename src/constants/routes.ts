@@ -7,4 +7,5 @@ export default {
   MIX_SUGGESTION: '/mix_suggestion',
   PERFORMANCE_HISTORY: '/performance_history',
   MONTHLY_REPORT: '/monthly_report',
+  SHIFTS_REGISTRATION: '/shifts_registration',
 };

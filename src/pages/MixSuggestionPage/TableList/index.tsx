@@ -12,7 +12,10 @@ import * as S from './styles';
 import { TableListProps } from './types';
 
 const TableList: React.FC<TableListProps> = ({ title, data, type, np }) => {
-  const row = useSelector((state: Pick<StateMapToPropsGlobal, 'mixSuggestionPage'>) => state.mixSuggestionPage);
+  const row = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'mixSuggestionPage'>) =>
+      state.mixSuggestionPage
+  );
 
   const { tableSelected } = MixSuggestionActions;
   const dispatch = useDispatch();
@@ -43,7 +46,9 @@ const TableList: React.FC<TableListProps> = ({ title, data, type, np }) => {
                 <>
                   <div className="header__wrapper__items-left">
                     <div>
-                      <span>{texts.header.suggested.expected_production.pt_br}</span>
+                      <span>
+                        {texts.header.suggested.expected_production.pt_br}
+                      </span>
                       <span>
                         {timeFormat({
                           displayFormat: 'HH:MM:SS',
@@ -90,7 +95,8 @@ const TableList: React.FC<TableListProps> = ({ title, data, type, np }) => {
                         key={idx}
                         tabIndex={0}
                         className={
-                          row.tableSelected.type === 'suggested' && row.tableSelected.id === original.np
+                          row.tableSelected.type === 'suggested' &&
+                          row.tableSelected.id === original.np
                             ? 'selected'
                             : ''
                         }
@@ -130,7 +136,8 @@ const TableList: React.FC<TableListProps> = ({ title, data, type, np }) => {
                         tabIndex={0}
                         sequence={np[idx]?.np !== predicted.np}
                         className={
-                          row.tableSelected.type === 'scheduled' && row.tableSelected.id === predicted.np
+                          row.tableSelected.type === 'scheduled' &&
+                          row.tableSelected.id === predicted.np
                             ? 'selected suggested__new-sequence'
                             : 'suggested__new-sequence'
                         }

@@ -11,7 +11,10 @@ import ArrowDown from 'components/Icons/ArrowDown';
 import Tooltip from 'components/Tooltip';
 import MessageError from 'components/Messages/Error';
 
-import { CurrentFaultsPayload, FaultPredictionPayload } from 'components/StationItemFaults/types';
+import {
+  CurrentFaultsPayload,
+  FaultPredictionPayload,
+} from 'components/StationItemFaults/types';
 import { StateMapToPropsGlobal } from 'types';
 import * as Types from '../types';
 
@@ -44,13 +47,21 @@ const variant = {
   },
 };
 
-const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.SimplifiedViewProps) => {
+const DetailedView = ({
+  message,
+  namespace,
+  isDrawerDetails = true,
+}: Types.SimplifiedViewProps) => {
   const [countChildrenRow, setCountChildrenRow] = useState(4);
   const [countChildrenFail, setCountChildrenFail] = useState(3);
   const [failActive, setFailActive] = useState('');
 
-  const settingsGlobal = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
-  const stationSelected = useSelector((state: StateMapToPropsGlobal) => state[namespace].stationActive);
+  const settingsGlobal = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
+  const stationSelected = useSelector(
+    (state: StateMapToPropsGlobal) => state[namespace].stationActive
+  );
 
   let payload: CurrentFaultsPayload[] | FaultPredictionPayload[] | undefined;
   const data: Array<React.ReactElement>[] = [[]];
@@ -62,7 +73,11 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
       payload = message ? message?.fault_prediction : [];
       break;
     default:
-      payload = message ? message?.current_faults?.filter((station) => station.fail_list.length > 0) : [];
+      payload = message
+        ? message?.current_faults?.filter(
+            (station) => station.fail_list.length > 0
+          )
+        : [];
       break;
   }
 
@@ -127,7 +142,12 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
   }
 
   useEffect(() => {
-    if (stationSelected?.label && isDrawerDetails && namespace === 'currentFaultsPage') dispatch(closeDrawer());
+    if (
+      stationSelected?.label &&
+      isDrawerDetails &&
+      namespace === 'currentFaultsPage'
+    )
+      dispatch(closeDrawer());
   }, [settingsGlobal.building]);
 
   useEffect(() => {
@@ -137,7 +157,11 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
       filteredDispatch = (payload as CurrentFaultsPayload[]).filter(
         (payload) => payload.label === stationSelected.label
       );
-      if (filteredDispatch.length && filteredDispatch[0].fail_list.length !== stationSelected.fail_list.length) {
+      if (
+        filteredDispatch.length &&
+        filteredDispatch[0].fail_list.length !==
+          stationSelected.fail_list.length
+      ) {
         dispatch(stationActive(filteredDispatch[0]));
       }
     }
@@ -158,14 +182,21 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
 
   return (
     <AnimatePresence>
-      <motion.div variants={variant} initial="closed" animate="open" exit="finished">
+      <motion.div
+        variants={variant}
+        initial="closed"
+        animate="open"
+        exit="finished"
+      >
         <S.Container>
           {namespace === 'currentFaultsPage' && (
             <>
               {message && data[0].length > 0 ? (
                 data.map((row, rowIdx) => (
                   <S.StationsContent key={`${rowIdx}`}>
-                    <S.RowStations>{row.map((station) => station)}</S.RowStations>
+                    <S.RowStations>
+                      {row.map((station) => station)}
+                    </S.RowStations>
                     {idChildren[rowIdx].includes(stationSelected.label) && (
                       <motion.div
                         initial={{ height: 0 }}
@@ -182,8 +213,10 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                   <S.FaultListRow key={rowIdx}>
                                     {row
                                       .sort((failA, failB) => {
-                                        if (failA.gravity < failB.gravity) return 1;
-                                        if (failA.gravity > failB.gravity) return -1;
+                                        if (failA.gravity < failB.gravity)
+                                          return 1;
+                                        if (failA.gravity > failB.gravity)
+                                          return -1;
                                         return 0;
                                       })
                                       .map((fail, idx) => (
@@ -208,32 +241,54 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                                 animate="open"
                                                 exit="finished"
                                               >
-                                                <S.FailEvents ref={refEventList}>
+                                                <S.FailEvents
+                                                  ref={refEventList}
+                                                >
                                                   <p>{fail.label}</p>
                                                   <S.EventList>
-                                                    {fail.event_list.map((fail, failIdx) => (
-                                                      <S.EventItem key={failIdx}>
-                                                        <div>
-                                                          <span>{failIdx + 1}</span>
-                                                        </div>
-                                                        <div>
-                                                          <span>Início: </span>
-                                                          <span>{getTime(fail.start_timestamp)}</span>
-                                                        </div>
-                                                        <div>
-                                                          <span>Duração: </span>
-                                                          <span>
-                                                            {timeFormat({
-                                                              displayFormat: 'HH:MM:SS',
-                                                              separatorHour: 'h ',
-                                                              separatorMinute: "'",
-                                                              separatorSeconds: '"',
-                                                              time: Number(fail.duration),
-                                                            })}
-                                                          </span>
-                                                        </div>
-                                                      </S.EventItem>
-                                                    ))}
+                                                    {fail.event_list.map(
+                                                      (fail, failIdx) => (
+                                                        <S.EventItem
+                                                          key={failIdx}
+                                                        >
+                                                          <div>
+                                                            <span>
+                                                              {failIdx + 1}
+                                                            </span>
+                                                          </div>
+                                                          <div>
+                                                            <span>
+                                                              Início:{' '}
+                                                            </span>
+                                                            <span>
+                                                              {getTime(
+                                                                fail.start_timestamp
+                                                              )}
+                                                            </span>
+                                                          </div>
+                                                          <div>
+                                                            <span>
+                                                              Duração:{' '}
+                                                            </span>
+                                                            <span>
+                                                              {timeFormat({
+                                                                displayFormat:
+                                                                  'HH:MM:SS',
+                                                                separatorHour:
+                                                                  'h ',
+                                                                separatorMinute:
+                                                                  "'",
+                                                                separatorSeconds:
+                                                                  '"',
+                                                                time: Number(
+                                                                  fail.duration
+                                                                ),
+                                                              })}
+                                                            </span>
+                                                          </div>
+                                                        </S.EventItem>
+                                                      )
+                                                    )}
                                                   </S.EventList>
                                                 </S.FailEvents>
                                               </motion.div>
@@ -246,7 +301,8 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                             <Tooltip
                                               description={
                                                 <span>
-                                                  Quantidade acumulada de eventos de falha do tipo:{' '}
+                                                  Quantidade acumulada de
+                                                  eventos de falha do tipo:{' '}
                                                   <strong>{fail.label}</strong>
                                                 </span>
                                               }
@@ -272,25 +328,44 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                 <S.DetailsGroup>
                                   <S.Title>
                                     <p>
-                                      {texts.drawer.general_stats.general_line_statistics.title.pt_br}{' '}
-                                      {getDisplayBuilding(settingsGlobal.building)}
+                                      {
+                                        texts.drawer.general_stats
+                                          .general_line_statistics.title.pt_br
+                                      }{' '}
+                                      {getDisplayBuilding(
+                                        settingsGlobal.building
+                                      )}
                                     </p>
-                                    <span onClick={() => dispatch(closeDrawer())}>&nbsp;</span>
+                                    <span
+                                      onClick={() => dispatch(closeDrawer())}
+                                    >
+                                      &nbsp;
+                                    </span>
                                   </S.Title>
 
                                   <S.Information>
                                     <div>
-                                      <p>{stationSelected.line_stoppage_time.label}</p>
+                                      <p>
+                                        {
+                                          stationSelected.line_stoppage_time
+                                            .label
+                                        }
+                                      </p>
                                     </div>
                                     <div>
-                                      <span>{texts.drawer.general_stats.label.pt_br}</span>
+                                      <span>
+                                        {texts.drawer.general_stats.label.pt_br}
+                                      </span>
                                       <p>
                                         {timeFormat({
                                           displayFormat: 'HH:MM:SS',
                                           separatorHour: 'h ',
                                           separatorMinute: "' ",
                                           separatorSeconds: '"',
-                                          time: Number(stationSelected.line_stoppage_time.duration),
+                                          time: Number(
+                                            stationSelected.line_stoppage_time
+                                              .duration
+                                          ),
                                         })}
                                       </p>
                                     </div>
@@ -299,7 +374,11 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                 <S.DetailsGroup>
                                   <S.Title>
                                     <p>
-                                      {texts.drawer.general_stats.statistics.title.pt_br} {stationSelected.label}
+                                      {
+                                        texts.drawer.general_stats.statistics
+                                          .title.pt_br
+                                      }{' '}
+                                      {stationSelected.label}
                                     </p>
                                   </S.Title>
 
@@ -314,14 +393,21 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                           separatorHour: 'h ',
                                           separatorMinute: "' ",
                                           separatorSeconds: '"',
-                                          time: Number(stationSelected.rfid_time.duration),
+                                          time: Number(
+                                            stationSelected.rfid_time.duration
+                                          ),
                                         })}
                                       </p>
                                     </div>
                                   </S.Information>
                                   <S.Information>
                                     <div>
-                                      <p>{stationSelected.area_invasion_time.label}</p>
+                                      <p>
+                                        {
+                                          stationSelected.area_invasion_time
+                                            .label
+                                        }
+                                      </p>
                                     </div>
                                     <div>
                                       <p>
@@ -330,14 +416,22 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                           separatorHour: 'h ',
                                           separatorMinute: "' ",
                                           separatorSeconds: '"',
-                                          time: Number(stationSelected.area_invasion_time.duration),
+                                          time: Number(
+                                            stationSelected.area_invasion_time
+                                              .duration
+                                          ),
                                         })}
                                       </p>
                                     </div>
                                   </S.Information>
                                   <S.Information>
                                     <div className="information__accumulated-stop-time-container">
-                                      <p>{stationSelected.accumulated_stop_time.label}</p>
+                                      <p>
+                                        {
+                                          stationSelected.accumulated_stop_time
+                                            .label
+                                        }
+                                      </p>
                                       <Tooltip
                                         classNameContainerTooltip="information__accumulated-stop-time__tooltip"
                                         description="Tempo acumulado de paradas do tipo Interlock"
@@ -346,14 +440,19 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
                                       />
                                     </div>
                                     <div>
-                                      <span>{texts.drawer.general_stats.label.pt_br}</span>
+                                      <span>
+                                        {texts.drawer.general_stats.label.pt_br}
+                                      </span>
                                       <p>
                                         {timeFormat({
                                           displayFormat: 'HH:MM:SS',
                                           separatorHour: 'h ',
                                           separatorMinute: "' ",
                                           separatorSeconds: '"',
-                                          time: Number(stationSelected.accumulated_stop_time.duration),
+                                          time: Number(
+                                            stationSelected
+                                              .accumulated_stop_time.duration
+                                          ),
                                         })}
                                       </p>
                                     </div>
@@ -383,7 +482,9 @@ const DetailedView = ({ message, namespace, isDrawerDetails = true }: Types.Simp
               {message && data[0].length > 0 ? (
                 data.map((row, rowIdx) => (
                   <S.StationsContent key={`${rowIdx}`}>
-                    <S.RowStations>{row.map((station) => station)}</S.RowStations>
+                    <S.RowStations>
+                      {row.map((station) => station)}
+                    </S.RowStations>
                   </S.StationsContent>
                 ))
               ) : (

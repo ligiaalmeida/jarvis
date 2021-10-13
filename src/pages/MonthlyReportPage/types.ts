@@ -3,7 +3,11 @@ export type KPIReportProps = {
   marginBottom?: number;
   prefix: string;
   labels: MonthlyReportChartLabels;
-  values: { minimum: number | string; medium: number | string; maximum: number | string };
+  values: {
+    minimum: number | string;
+    medium: number | string;
+    maximum: number | string;
+  };
 };
 
 export type MonthlyReportChartLabels = {

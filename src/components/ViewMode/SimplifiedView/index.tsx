@@ -16,7 +16,11 @@ import {
 import { KeysOfPagesContainingStations } from 'types';
 import * as Types from '../types';
 
-const SimplifiedView = ({ message, isDrawerDetails = false, namespace }: Types.SimplifiedViewProps) => {
+const SimplifiedView = ({
+  message,
+  isDrawerDetails = false,
+  namespace,
+}: Types.SimplifiedViewProps) => {
   let payload: CurrentFaultsPayload[] | FaultPredictionPayload[] | undefined;
   const data: Types.TabsData<React.ReactElement>[] = [];
 
@@ -25,7 +29,11 @@ const SimplifiedView = ({ message, isDrawerDetails = false, namespace }: Types.S
       payload = message ? message.fault_prediction : [];
       break;
     default:
-      payload = message ? message?.current_faults?.filter((station) => station.fail_list.length > 0) : [];
+      payload = message
+        ? message?.current_faults?.filter(
+            (station) => station.fail_list.length > 0
+          )
+        : [];
       break;
   }
 
@@ -81,7 +89,10 @@ const SimplifiedView = ({ message, isDrawerDetails = false, namespace }: Types.S
 
   data.map((item) => {
     item.label.title += ` ao ${
-      (item.componentChildren[item.componentChildren.length - 1].props as StationItemFaultsProps).data.label
+      (
+        item.componentChildren[item.componentChildren.length - 1]
+          .props as StationItemFaultsProps
+      ).data.label
     }`;
   });
 

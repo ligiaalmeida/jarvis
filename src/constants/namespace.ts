@@ -5,4 +5,5 @@ export default {
   CURRENT_STATUS: 'current_status',
   MIX_SUGGESTION: 'mix_suggestion',
   PERFORMANCE_HISTORY: 'performance_history',
+  SHIFTS_REGISTRATION: 'shifts_registration',
 };

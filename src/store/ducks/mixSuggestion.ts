@@ -12,7 +12,10 @@ export const INITIAL_STATE = {
 };
 
 const MixSuggestionActions = {
-  tableSelected: (selected: { id: number; type: MixSuggestionTableType | null }) => ({
+  tableSelected: (selected: {
+    id: number;
+    type: MixSuggestionTableType | null;
+  }) => ({
     type: Types.SELECTED,
     payload: selected,
   }),

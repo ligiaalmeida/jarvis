@@ -12,7 +12,11 @@ export const Group: React.FC<Types.GroupProps<Direction>> = ({
   unitOfMeasurement = 'px',
 }) => {
   return (
-    <Container itemsDirection={flexDirection} margin={margin} unitOfMeasurement={unitOfMeasurement}>
+    <Container
+      itemsDirection={flexDirection}
+      margin={margin}
+      unitOfMeasurement={unitOfMeasurement}
+    >
       {children}
     </Container>
   );

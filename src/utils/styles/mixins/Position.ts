@@ -1,6 +1,11 @@
 import { css } from 'styled-components';
 
-export const fixed = ({ x = 0, y = 0, yProp = 'top', xProp = 'left' } = {}): StyledIFlattenSimpleInterpolation => css`
+export const fixed = ({
+  x = 0,
+  y = 0,
+  yProp = 'top',
+  xProp = 'left',
+} = {}): StyledIFlattenSimpleInterpolation => css`
   position: fixed;
   ${yProp}: ${y};
   ${xProp}: ${x};
@@ -15,7 +20,10 @@ export const Absolute = ({
   position: absolute;
   ${yProp}: ${y}%;
   ${xProp}: ${x}%;
-  transform: translate(${Number(x.slice(1, 2)) ? `${x}%` : x}, ${Number(y.slice(1, 2)) ? `${y}%` : y});
+  transform: translate(
+    ${Number(x.slice(1, 2)) ? `${x}%` : x},
+    ${Number(y.slice(1, 2)) ? `${y}%` : y}
+  );
 `;
 
 export const Centralized = (

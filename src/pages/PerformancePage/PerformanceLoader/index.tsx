@@ -2,7 +2,12 @@ import ContentLoader from 'react-content-loader';
 
 const PerformanceLoader = () => {
   return (
-    <ContentLoader viewBox="0 0 1855 1563" animate backgroundColor="#EFF3F8" foregroundColor="#D8DDE6">
+    <ContentLoader
+      viewBox="0 0 1855 1563"
+      animate
+      backgroundColor="#EFF3F8"
+      foregroundColor="#D8DDE6"
+    >
       <rect width="1855" height="136" rx="8" fill="#C4C4C4" />
       <rect y="186" width="603.33" height="402" rx="4" fill="#C4C4C4" />
       <rect x="1247" y="186" width="608" height="402" rx="4" fill="#C4C4C4" />

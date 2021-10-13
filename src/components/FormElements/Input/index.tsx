@@ -13,7 +13,8 @@ export const Input = styled.input.attrs((props: Types.InputAttrs) => ({
       background-color: ${theme.colors.white};
       padding: ${theme.distance.tiny};
       font-size: ${theme.typography.size.normal};
-      border: ${theme.border.size.normal} solid ${error ? theme.colors.error : theme.colors.grey_3};
+      border: ${theme.border.size.normal} solid
+        ${error ? theme.colors.error : theme.colors.grey_3};
       border-radius: ${theme.border.radius.normal};
       color: ${theme.colors.grey_1};
       width: 100%;

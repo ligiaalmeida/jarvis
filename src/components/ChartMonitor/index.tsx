@@ -13,7 +13,12 @@ type ChartContentProps = {
   };
 };
 
-const ChartMonitor: React.FC<ChartContentProps> = ({ className, page, labels, children }) => {
+const ChartMonitor: React.FC<ChartContentProps> = ({
+  className,
+  page,
+  labels,
+  children,
+}) => {
   const [height, setHeight] = useState<number>(null!);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -25,7 +30,11 @@ const ChartMonitor: React.FC<ChartContentProps> = ({ className, page, labels, ch
   });
 
   return (
-    <S.ChartContainer className={className ? `chart ${className}` : 'chart'} page={page} chartHeight={height}>
+    <S.ChartContainer
+      className={className ? `chart ${className}` : 'chart'}
+      page={page}
+      chartHeight={height}
+    >
       <div className="chart__content">
         <div className="chart__label-y-axis">
           <h4>{labels.yAxis}</h4>

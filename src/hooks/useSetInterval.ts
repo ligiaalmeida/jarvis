@@ -7,7 +7,11 @@ type SetTimeoutProps = {
   deps?: DependencyList;
 };
 
-export const useSetInterval = ({ condition = true, callback, delay = 30000 }: SetTimeoutProps) => {
+export const useSetInterval = ({
+  condition = true,
+  callback,
+  delay = 30000,
+}: SetTimeoutProps) => {
   useEffect(() => {
     let clear: NodeJS.Timeout;
 

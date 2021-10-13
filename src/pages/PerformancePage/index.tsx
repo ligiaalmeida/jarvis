@@ -15,7 +15,13 @@ import { EChartList } from 'enums/chartList';
 import namespace from 'constants/namespace';
 import env from 'constants/env';
 
-import { StateMapToPropsGlobal, ChartType, ChartData, RouterProps, Pathname } from 'types';
+import {
+  StateMapToPropsGlobal,
+  ChartType,
+  ChartData,
+  RouterProps,
+  Pathname,
+} from 'types';
 
 import { Chart } from './Chart';
 import * as S from './styles';
@@ -75,11 +81,16 @@ const tabs = [
 const PerformancePage = () => {
   const [expectedTakt, setExpectedTakt] = useState(15);
 
-  const settings = useSelector((state: Pick<StateMapToPropsGlobal, 'global'>) => state.global);
+  const settings = useSelector(
+    (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
+  );
   const router = useSelector((state: RouterProps) => state.router);
   const { toggleAutomaticMode, timer } = PerformanceActions;
 
-  const URI_BASE = process.env.NODE_ENV === 'development' ? env.development.APP_WS_URL_BASE : env.host.APP_WS_URL;
+  const URI_BASE =
+    process.env.NODE_ENV === 'development'
+      ? env.development.APP_WS_URL_BASE
+      : env.host.APP_WS_URL;
 
   const { data } = useSocket<Pick<typeof payload, 'performance'>>({
     uri: URI_BASE,
@@ -117,7 +128,14 @@ const PerformancePage = () => {
             padding={`${theme.distance.normal}rem`}
           />
           <Kpi data={data?.performance.kpi_list} />
-          <Row padding={[0, theme.distance.normal, theme.distance.small + 1, 'rem']}>
+          <Row
+            padding={[
+              0,
+              theme.distance.normal,
+              theme.distance.small + 1,
+              'rem',
+            ]}
+          >
             {chartItems.default.map((chart) => (
               <S.ContentChart key={chart.id}>
                 <Chart

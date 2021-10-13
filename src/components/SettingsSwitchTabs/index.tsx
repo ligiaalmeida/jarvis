@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import Slider from '@material-ui/core/Slider';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { SettingsSwitchTabsProps, StateMapToPropsGlobal, PageStorageDefault, RangeAutomaticTimer } from 'types';
+import {
+  SettingsSwitchTabsProps,
+  StateMapToPropsGlobal,
+  PageStorageDefault,
+  RangeAutomaticTimer,
+} from 'types';
 
 import Switch from 'components/FormElements/Switch';
 import { SettingsDots } from 'components/Icons/SettingsDots';
@@ -29,7 +34,9 @@ const SettingsSwitchTabs: React.FC<SettingsSwitchTabsProps> = ({
   actionAutomaticMode,
   namespace = 'currentFaultsPage',
 }) => {
-  const settingsPage = useSelector((state: StateMapToPropsGlobal) => state[namespace]);
+  const settingsPage = useSelector(
+    (state: StateMapToPropsGlobal) => state[namespace]
+  );
   const [isSwitchTabViewer, setIsSwitchTabViewer] = useState(false);
   const [timer, setTimer] = useState(30);
   const [isToggled, setIsToggled] = useState(false);
@@ -44,13 +51,18 @@ const SettingsSwitchTabs: React.FC<SettingsSwitchTabsProps> = ({
 
   useSetTimeout({
     condition: isSwitchTabViewer,
-    callback: () => setState((prevState) => (prevState === countOfTabs - 1 ? 0 : prevState + 1)),
+    callback: () =>
+      setState((prevState) =>
+        prevState === countOfTabs - 1 ? 0 : prevState + 1
+      ),
     timer: timer * 1000,
   });
 
   useEffect(() => {
     if (settingsPage) {
-      setIsSwitchTabViewer((settingsPage as PageStorageDefault).timer?.automaticMode);
+      setIsSwitchTabViewer(
+        (settingsPage as PageStorageDefault).timer?.automaticMode
+      );
       setTimer((settingsPage as PageStorageDefault).timer?.timer);
     }
   }, [settingsPage, timer]);
@@ -85,7 +97,9 @@ const SettingsSwitchTabs: React.FC<SettingsSwitchTabsProps> = ({
                 labelDirection="left"
                 fontSize="1.4rem"
                 scaleSwitch={0.8}
-                enabled={(settingsPage as PageStorageDefault).timer.automaticMode}
+                enabled={
+                  (settingsPage as PageStorageDefault).timer.automaticMode
+                }
                 onChange={(value: boolean) => {
                   if (actionAutomaticMode) dispatch(actionAutomaticMode(value));
                 }}
@@ -105,7 +119,8 @@ const SettingsSwitchTabs: React.FC<SettingsSwitchTabsProps> = ({
                     valueLabelDisplay="off"
                     value={(settingsPage as PageStorageDefault).timer.timer}
                     onChangeCommitted={(_, value) => {
-                      if (actionTimer) dispatch(actionTimer(value as RangeAutomaticTimer));
+                      if (actionTimer)
+                        dispatch(actionTimer(value as RangeAutomaticTimer));
                     }}
                   />
                 </S.SliderContent>

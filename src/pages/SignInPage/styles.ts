@@ -16,6 +16,7 @@ export const ContainerWrapper = styled.div`
         position: relative;
         width: 100%;
         height: 100vh;
+        top: 0;
       }
 
       .sign-in__img-hero {
@@ -37,16 +38,16 @@ export const ContainerWrapper = styled.div`
       .sign-in__row-content {
         position: absolute;
         width: 100%;
-        top: calc(50% + 7.5rem);
+        top: 0;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         text-align: center;
       }
 
       .sign-in__content {
         img {
           width: 30rem;
-          margin: 0 auto 2rem;
+          margin: 2rem auto;
         }
       }
 
@@ -68,11 +69,11 @@ export const Hero = styled.img`
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-55%, -50%);
+      transform: translate(-50%, -50%);
 
       ${theme.breakpoints.default('min').xs(css`
         width: auto;
-        height: 105%;
+        height: 100%;
         display: none;
       `)};
 
@@ -82,7 +83,7 @@ export const Hero = styled.img`
 
       ${theme.breakpoints.default('min').md(css`
         width: auto;
-        height: 105%;
+        height: 100%;
       `)};
 
       ${theme.breakpoints.default('min').lg(css`
@@ -98,13 +99,13 @@ export const FormContent = styled.div`
 
     return css`
       position: relative;
-      top: -14rem;
+      top: -16rem;
       width: 100%;
 
       .sign-in__form-content {
         position: relative;
         margin: 0 auto;
-        padding: 4rem;
+        padding: 2rem 4rem;
         border-radius: ${theme.unit}px;
         background: ${theme.colors.white};
         ${Elevation(2)};
@@ -167,7 +168,7 @@ export const FormContent = styled.div`
       button {
         border: 0;
         border-radius: 4px;
-        margin-top: 4rem;
+        margin-top: 2rem;
         font-family: 'DaimlerLight', sans-serif;
         color: ${theme.colors.white};
         font-size: ${theme.typography.size.normal};
@@ -180,7 +181,7 @@ export const FormContent = styled.div`
         }
 
         ${theme.breakpoints.default('min').xs(css`
-          padding: 1.5rem 7rem;
+          padding: 1rem 5rem;
         `)};
 
         ${theme.breakpoints.default('min').md(css`
@@ -188,7 +189,7 @@ export const FormContent = styled.div`
         `)};
 
         ${theme.breakpoints.default('min').lg(css`
-          padding: 1.5rem 7rem;
+          padding: 1rem 5rem;
         `)};
       }
     `;

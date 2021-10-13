@@ -52,7 +52,7 @@ module.exports = {
     'no-shadow': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
     'react/no-unescaped-entities': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     'import/prefer-default-export': 'off',
@@ -75,7 +75,6 @@ module.exports = {
       'error',
       {
         singleQuote: true,
-        printWidth: 120,
       },
     ],
     '@typescript-eslint/explicit-function-return-type': [

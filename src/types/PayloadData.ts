@@ -24,7 +24,8 @@ export type StationsList = {
   active_fail_list: ActiveFailList[];
 };
 
-export type StationsListRowsUtil = (StationsList & MapStationsLegendsToIsParallel)[][];
+export type StationsListRowsUtil = (StationsList &
+  MapStationsLegendsToIsParallel)[][];
 
 export type MapStationsLegendsToIsParallel = {
   legends: LegendsLabels;
@@ -39,7 +40,11 @@ export type StationItemUtil = {
   connections: ConnectionsList[] | [];
   directionType: DirectionType;
   compareWith?: string;
-  filterStation: (value: StationsList, index: number, array: StationsList[]) => boolean;
+  filterStation: (
+    value: StationsList,
+    index: number,
+    array: StationsList[]
+  ) => boolean;
 };
 
 export type DirectionType = 1 | 2 | 3;
@@ -63,3 +68,25 @@ export type ConnectionsList = {
   label: string;
   station_connections: string[];
 };
+
+export type ShiftRegistrationFields = {
+  id_shift: string;
+  shift_name: string;
+  hour_start_shift: string;
+  hour_end_shift: string;
+};
+
+export type ShiftRegistration = {
+  index: number;
+  id: string;
+  register: ShiftRegistrationFields;
+  onClickRemove: () => void;
+};
+
+// export type ShiftRegistrationList = ShiftRegistrationFields[];
+
+export interface RootReducerShiftRegistration {
+  items: ShiftRegistrationFields[];
+  // connected: boolean;
+  // loading: boolean;
+}
