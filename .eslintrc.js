@@ -75,6 +75,7 @@ module.exports = {
       'error',
       {
         singleQuote: true,
+        'endOfLine': 'auto',
       },
     ],
     '@typescript-eslint/explicit-function-return-type': [
