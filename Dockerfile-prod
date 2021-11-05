@@ -4,6 +4,8 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 ENV HTTP_PROXY="http://proxy.br154.corpintra.net:3128"
 ENV HTTPS_PROXY="https://proxy.br154.corpintra.net:3128"
+RUN npm config set proxy http://proxy.br154.corpintra.net:3128
+RUN npm config set proxy https://proxy.br154.corpintra.net:3128
 COPY package.json /app/package.json
 RUN npm install
 RUN npm install -g react-scripts@3.0.1
