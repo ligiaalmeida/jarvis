@@ -1,8 +1,8 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 import { theme } from 'styles/theme/index';
 
-export const muiTheme = createMuiTheme({
+export const muiTheme = createTheme({
   typography: {
     fontFamily: "'DaimlerRegular', sans-serif",
   },
