@@ -27,7 +27,7 @@ const ChartMonitor: React.FC<ChartContentProps> = ({
     if (ref) {
       setHeight(ref.current?.clientHeight as number);
     }
-  });
+  }, []);
 
   return (
     <S.ChartContainer
