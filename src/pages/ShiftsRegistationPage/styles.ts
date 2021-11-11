@@ -248,16 +248,15 @@ export const SaveButton = styled(Button)`
   ${(props) => {
     const { theme } = props;
     return css`
-    && {
-      background-color: ${theme.colors.primary_1};
-      font-size: 1.6rem;
-      color: ${theme.colors.white};
-      margin: ${theme.distance.normal}rem;
-      :hover {
-        background-color: ${theme.colors.primary_2};
+      && {
+        background-color: ${theme.colors.primary_1};
+        font-size: 1.6rem;
+        color: ${theme.colors.white};
+        margin: ${theme.distance.normal}rem;
+        :hover {
+          background-color: ${theme.colors.primary_2};
+        }
       }
-    }
-    }
-  `;
+    `;
   }}
 `;
