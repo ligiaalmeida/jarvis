@@ -133,7 +133,13 @@ export default function Routes() {
     } else {
       history.push(`/`);
     }
-  }, [settings.building, signInPage.isConnected]);
+  }, [
+    history,
+    router.location.pathname,
+    settings.building,
+    signInPage.config.polices,
+    signInPage.isConnected,
+  ]);
 
   useEffect(() => {
     if (

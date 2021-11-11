@@ -36,7 +36,7 @@ const Kpi = ({ data }: Types.KpiProps) => {
             {kpiData &&
               kpiData.map((kpi) => {
                 return (
-                  <>
+                  <React.Fragment key={kpi.id}>
                     {kpiData[kpiData.length - 1] === kpi ? (
                       <S.HtmlTooltip
                         title={
@@ -69,7 +69,7 @@ const Kpi = ({ data }: Types.KpiProps) => {
                         <span>{kpi.value}</span>
                       </S.KpiItem>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
           </S.Container>

@@ -152,7 +152,14 @@ const DetailedView = ({
       namespace === 'currentFaultsPage'
     )
       dispatch(closeDrawer());
-  }, [settingsGlobal.building]);
+  }, [
+    closeDrawer,
+    dispatch,
+    isDrawerDetails,
+    namespace,
+    settingsGlobal.building,
+    stationSelected?.label,
+  ]);
 
   useEffect(() => {
     let filteredDispatch: CurrentFaultsPayload[];
