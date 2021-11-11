@@ -35,7 +35,7 @@ const Form: React.FC<FormProps> = ({ register }) => {
       state.shiftRegistrationPage
   );
 
-  const { getList, toCancel } = ShiftRegistrationActions;
+  const { addShift, cancelAddShift, editShift } = ShiftRegistrationActions;
   const dispatch = useDispatch();
 
   const initialValues = useMemo(() => {
@@ -49,6 +49,7 @@ const Form: React.FC<FormProps> = ({ register }) => {
       };
     }
     return {
+      id_shift: '',
       shift_name: '',
       hour_start_shift: '',
       hour_end_shift: '',
@@ -71,17 +72,17 @@ const Form: React.FC<FormProps> = ({ register }) => {
         hour_start_shift: values.hour_start_shift,
         hour_end_shift: values.hour_end_shift,
       };
-      dispatch(getList([...shift.shiftRegistrationList, newShift]));
-      dispatch(toCancel(true));
+      dispatch(addShift(newShift));
     } else {
-      shift.shiftRegistrationList[objIndex] = {
+      const sameShift: ShiftRegistrationType = {
         id_shift: values.id_shift,
         shift_name: values.shift_name,
         hour_start_shift: values.hour_start_shift,
         hour_end_shift: values.hour_end_shift,
       };
+      dispatch(editShift(sameShift));
     }
-
+    dispatch(cancelAddShift(true));
     setEdit(!edit);
     setSave(!save);
   };
@@ -125,6 +126,7 @@ const Form: React.FC<FormProps> = ({ register }) => {
                 name="shift_name"
                 disabled={edit}
                 variant="standard"
+                type="text"
                 InputLabelProps={{
                   shrink: true,
                   style: { fontSize: '2rem' },

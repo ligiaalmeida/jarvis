@@ -16,33 +16,31 @@ export type DraggableListProps = {
 
 const DraggableList: React.MemoExoticComponent<any> = React.memo(
   ({ items, onDragEnd }: DraggableListProps) => {
-    const { getList } = ShiftRegistrationActions;
+    const { removeShift } = ShiftRegistrationActions;
+
     const dispatch = useDispatch();
-    const onClickRemove = useCallback(
-      (item: ShiftRegistrationFields) => () => {
-        const indexToDelete = items.indexOf(item);
-        const newItems = [...items];
-        newItems.splice(indexToDelete, 1);
-        dispatch(getList(newItems));
-      },
-      [dispatch, items, getList]
-    );
+
+    const onClickRemove = (item: ShiftRegistrationFields) => {
+      return (event: React.MouseEvent) => {
+        dispatch(removeShift(item));
+        event.preventDefault();
+      };
+    };
+
     return (
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable-list">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
-              {items.map((item, index) => {
-                return (
-                  <DraggableListItem
-                    register={item}
-                    onClickRemove={onClickRemove(item)}
-                    index={index}
-                    id={item.id_shift}
-                    key={item.id_shift}
-                  />
-                );
-              })}
+              {items.map((item, index) => (
+                <DraggableListItem
+                  register={item}
+                  onClickRemove={onClickRemove(item)}
+                  index={index}
+                  id={item.id_shift.toString()}
+                  key={item.id_shift}
+                />
+              ))}
               {provided.placeholder}
             </div>
           )}
