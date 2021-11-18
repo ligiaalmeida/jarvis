@@ -51,7 +51,10 @@ const ShiftsRegistrationPage: React.FC = () => {
     const time = 8000;
     try {
       setIsLoading(true);
-      const { data } = await api('/').post('jarvis/api/shift/', payload);
+      const { data } = await api().post(
+        `/shift/${settings.building}/post_shift_list`,
+        payload
+      );
       if (data.status_code === 200) {
         if (typeof data.message !== 'string') {
           clearLoading = setTimeout(() => {
