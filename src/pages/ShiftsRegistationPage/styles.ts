@@ -67,7 +67,7 @@ export const Instructions = styled(Box)`
         align-items: flex-start;
         display: flex;
         flex-direction: column;
-        list-style: none;
+        // list-style: none;
         margin: 1rem;
       }
 

@@ -155,7 +155,7 @@ const LineChart = ({
         });
       }
     }
-  }, [data?.datasets]);
+  }, [data, data.datasets, type]);
 
   const datasets: ChartData<chartjs.ChartData> = {
     labels: values ? ['', ...values.keys, ''] : [],

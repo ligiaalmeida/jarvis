@@ -145,7 +145,7 @@ const GeneralChart = ({ data, title, labels }: Types.GeneralChartProps) => {
         })
       );
     }
-  }, [data]);
+  }, [data, monthlyReportPage.params.date]);
 
   const datasets: ChartData<chartjs.ChartData> = {
     labels: values ? ['', ...values.keys, ''] : [],

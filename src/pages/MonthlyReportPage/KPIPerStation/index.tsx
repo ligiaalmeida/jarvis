@@ -83,7 +83,17 @@ const KPIPerStation = ({
       )[0],
     });
     dispatch(setSelected(null!));
-  }, [settings.building]);
+  }, [
+    dispatch,
+    payload.monthly_report.kpi.per_station.acc_stop_time.datasets,
+    payload.monthly_report.kpi.per_station.area_invasion.datasets,
+    payload.monthly_report.kpi.per_station.avg_takt.datasets,
+    payload.monthly_report.kpi.per_station.fail_time.datasets,
+    payload.monthly_report.kpi.per_station.rfid_fail.datasets,
+    payload.monthly_report.kpi.per_station.stop_time.datasets,
+    setSelected,
+    settings.building,
+  ]);
 
   useEffect(() => {
     if (monthlyReportPage.station_selected) {
@@ -139,7 +149,15 @@ const KPIPerStation = ({
           }))[0],
       });
     }
-  }, [monthlyReportPage.station_selected]);
+  }, [
+    monthlyReportPage.station_selected,
+    payload.monthly_report.kpi.per_station.acc_stop_time.datasets,
+    payload.monthly_report.kpi.per_station.area_invasion.datasets,
+    payload.monthly_report.kpi.per_station.avg_takt.datasets,
+    payload.monthly_report.kpi.per_station.fail_time.datasets,
+    payload.monthly_report.kpi.per_station.rfid_fail.datasets,
+    payload.monthly_report.kpi.per_station.stop_time.datasets,
+  ]);
 
   return (
     <>
