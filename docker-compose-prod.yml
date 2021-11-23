@@ -4,6 +4,7 @@ services:
     container_name: dockerized-jarvis-app
     build:
       context: .
+      network: host
       dockerfile: Dockerfile-prod
     ports:
       - '8080:80'
