@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useCallback, ReactNode } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { DropResult } from 'react-beautiful-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { DropResult } from 'react-beautiful-dnd';
 import { Pathname, RouterProps, StateMapToPropsGlobal } from 'types';
 import { reorder } from 'utils/js';
 import { useSelector, useDispatch } from 'react-redux';
 import { ShiftRegistrationActions } from 'store/ducks/shiftRegistration';
 
-import dataPayload from 'constants/payload';
 import api from 'services/api';
 import InputList from 'components/Pages/InputList';
 import Toast from 'components/Toast';
@@ -17,18 +16,15 @@ import DraggableList from './DraggableList';
 import Instructions from './Instructions';
 import { theme } from 'styles/theme';
 import * as S from './styles';
-import Form from './Form';
 import { Typography } from '@material-ui/core';
+import Form from './Form';
 
 const ShiftsRegistrationPage: React.FC = () => {
-  const [data, setData] = useState<
-    typeof dataPayload.shifts_registration | null
-  >(null);
   const [newIndex, setNewIndex] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const { getList, toCancel } = ShiftRegistrationActions;
+  const { getList, cancelAddShift } = ShiftRegistrationActions;
   const settings = useSelector(
     (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
   );
@@ -38,25 +34,9 @@ const ShiftsRegistrationPage: React.FC = () => {
   );
   const router = useSelector((state: RouterProps) => state.router);
 
-  const setShiftList = useCallback(
-    (shiftList) => {
-      if (shiftList.length > 0) {
-        setData(shiftList);
-      }
-    },
-    [setData]
-  );
-
-  useEffect(() => {
-    if (!shift.shiftRegistrationList) {
-      return;
-    }
-    setShiftList(shift.shiftRegistrationList);
-  }, [shift, setShiftList]);
-
   useEffect(() => {
     api()
-      .get(`${settings.building}`)
+      .get(`/shift/${settings.building}/get_shift_list`)
       .then((res: { data: any }) => {
         dispatch(getList(JSON.parse(JSON.stringify(res.data))));
       })
@@ -65,19 +45,24 @@ const ShiftsRegistrationPage: React.FC = () => {
       });
   }, [settings.building, dispatch, getList]);
 
-  let clearLoading: NodeJS.Timeout = 0 as unknown as NodeJS.Timeout;
-
   const handleSubmit = async (): Promise<any> => {
+    let clearLoading: NodeJS.Timeout = 0 as unknown as NodeJS.Timeout;
     const payload = shift.shiftRegistrationList;
     const time = 8000;
     try {
       setIsLoading(true);
-      const { data } = await api('/').post('jarvis/api/shift/', payload);
+      const { data } = await api().post(
+        `/shift/${settings.building}/post_shift_list`,
+        payload
+      );
       if (data.status_code === 200) {
         if (typeof data.message !== 'string') {
           clearLoading = setTimeout(() => {
-            dispatch(toCancel(false));
-            return <Toast type="success">cadastro efetuado com sucesso!</Toast>;
+            return (
+              <Toast type="success">
+                cadastro de turnos efetuado com sucesso!
+              </Toast>
+            );
           }, time);
         } else {
           clearLoading = setTimeout(() => {
@@ -90,26 +75,34 @@ const ShiftsRegistrationPage: React.FC = () => {
           return <Toast type="error">{data.message}</Toast>;
         }, time);
       }
+      setIsLoading(false);
     } catch (err: any) {
+      setIsLoading(false);
       return <Toast type="error">{err}</Toast>;
     }
+    dispatch(cancelAddShift(false));
   };
 
   const onDragEnd = ({ destination, source }: DropResult) => {
     // dropped outside the list
-    if (!data || !destination) return;
-    const newData = reorder(data, source.index, destination.index);
+    if (!shift.shiftRegistrationList || !destination) return;
+    const newData = reorder(
+      shift.shiftRegistrationList,
+      source.index,
+      destination.index
+    );
 
-    setData(newData);
+    dispatch(getList(newData));
   };
 
   const addNewShift = () => {
-    data ? setNewIndex(data.length + 1) : setNewIndex(1);
-    shift.shiftCancel === true && dispatch(toCancel(false));
+    shift.shiftRegistrationList
+      ? setNewIndex(shift.shiftRegistrationList.length + 1)
+      : setNewIndex(1);
+    dispatch(cancelAddShift(false));
   };
-
   const handleCancel = () => {
-    dispatch(toCancel(true));
+    dispatch(cancelAddShift(true));
   };
 
   return (
@@ -127,27 +120,32 @@ const ShiftsRegistrationPage: React.FC = () => {
           <S.Content>
             <Instructions />
             <S.Shifts>
-              {data && (
-                <>
-                  <S.IndexContent>
-                    {data.map((_item, index) => (
-                      <S.Index key={index}>
-                        <span>{index + 1}</span>
-                      </S.Index>
-                    ))}
-                  </S.IndexContent>
-                  <DraggableList items={data} onDragEnd={onDragEnd} />
-                </>
-              )}
-              {!data && (
-                <S.Shift>
-                  <Typography variant="h3">
-                    Você não possui turnos cadastrados
-                  </Typography>
-                </S.Shift>
-              )}
+              {shift.shiftRegistrationList &&
+                shift.shiftRegistrationList.length > 0 && (
+                  <>
+                    <S.IndexContent>
+                      {shift.shiftRegistrationList.map((_item, index) => (
+                        <S.Index key={index}>
+                          <span>{index + 1}</span>
+                        </S.Index>
+                      ))}
+                    </S.IndexContent>
+                    <DraggableList
+                      items={shift.shiftRegistrationList}
+                      onDragEnd={onDragEnd}
+                    />
+                  </>
+                )}
+              {!shift.shiftRegistrationList ||
+                (shift.shiftRegistrationList.length <= 0 && (
+                  <S.Shift>
+                    <Typography variant="h3">
+                      Você não possui turnos cadastrados
+                    </Typography>
+                  </S.Shift>
+                ))}
             </S.Shifts>
-            {shift.shiftCancel === false && newIndex > 0 && (
+            {!shift.cancelAddShift && newIndex > 0 && (
               <S.Shifts>
                 <S.IndexContent>
                   <S.Index>

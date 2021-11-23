@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+
 export type CurrentFaults<T> = T;
 
 export type ActiveFailList = {
@@ -80,13 +82,9 @@ export type ShiftRegistration = {
   index: number;
   id: string;
   register: ShiftRegistrationFields;
-  onClickRemove: () => void;
+  onClickRemove: any;
 };
-
-// export type ShiftRegistrationList = ShiftRegistrationFields[];
 
 export interface RootReducerShiftRegistration {
   items: ShiftRegistrationFields[];
-  // connected: boolean;
-  // loading: boolean;
 }

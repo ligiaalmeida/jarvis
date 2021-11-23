@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Tooltip, withStyles } from '@material-ui/core';
 
 import { Content } from 'components/Layout/Container/styles';
 import { CustomScrollBar } from 'utils/styles/mixins';
@@ -105,3 +106,12 @@ export const Wrapper = styled.div`
     `;
   }}
 `;
+
+export const HtmlTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    fontSize: theme.typography.pxToRem(12),
+    border: '1px solid #dadde9',
+  },
+}))(Tooltip);

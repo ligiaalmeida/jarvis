@@ -78,7 +78,14 @@ const MonthlyReportPage = () => {
       clearTimeout(loadingTimeout);
       dispatch(isLoading(false));
     };
-  }, [settings.building, monthlyReportPage.params.date, newRequest]);
+  }, [
+    settings.building,
+    monthlyReportPage.params.date,
+    newRequest,
+    dispatch,
+    isLoading,
+    monthlyReportPage.params,
+  ]);
 
   return (
     <>

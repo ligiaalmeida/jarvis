@@ -70,7 +70,11 @@ const DetailedView = ({
 
   switch (namespace) {
     case 'faultPredictionPage':
-      payload = message ? message?.fault_prediction : [];
+      payload = message
+        ? message?.fault_prediction?.filter(
+            (station) => station.stop_fail_list.length > 0
+          )
+        : [];
       break;
     default:
       payload = message
@@ -148,7 +152,14 @@ const DetailedView = ({
       namespace === 'currentFaultsPage'
     )
       dispatch(closeDrawer());
-  }, [settingsGlobal.building]);
+  }, [
+    closeDrawer,
+    dispatch,
+    isDrawerDetails,
+    namespace,
+    settingsGlobal.building,
+    stationSelected?.label,
+  ]);
 
   useEffect(() => {
     let filteredDispatch: CurrentFaultsPayload[];

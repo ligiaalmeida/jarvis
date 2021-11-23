@@ -32,7 +32,7 @@ const CurrentStatusPage = () => {
     namespace: `/${settingsGlobal.building}_${namespace.CURRENT_STATUS}`,
   });
 
-  // const dataMock = payload;
+  // const data = payload;
 
   if (process.env.NODE_ENV === 'development') {
     console.groupCollapsed('Current Status');

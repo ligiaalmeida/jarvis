@@ -16,7 +16,7 @@ const SwitchComponent: React.FC<Types.SwitchProps> = ({
 
   useEffect(() => {
     if (onChange && count > 0) onChange(toggle);
-  }, [toggle]);
+  }, [count, onChange, toggle]);
 
   return (
     <div
