@@ -21,6 +21,7 @@ import * as util from '../util';
 import * as Types from '../types';
 import * as S from './styles';
 import Legends from '../Legends';
+import { theme } from 'styles/theme';
 
 const StationList = ({ stationList }: Types.StationListProps) => {
   const [media1340, setMedia1340] = useState(false);
@@ -41,7 +42,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
   });
   const stations = util.stationsListRowsLineH(
     stationGroup,
-    media1340 ? 9 : 14
+    media1340 ? 9 : 12
   ) as StationsListRowsUtil[];
 
   const { stationActive } = CurrentStatusActions;
@@ -94,7 +95,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
           currentStatusPage.station.num_prod !== payloadFiltered?.num_prod ||
           (stationMaxFail.active_fail_list as ActiveFailList)?.label
         ) {
-          if (stationMaxFail.position_id === '1') {
+          if (stationMaxFail.position_id === '0') {
             const station = stationListConcat
               .filter(
                 (station) =>
@@ -173,86 +174,182 @@ const StationList = ({ stationList }: Types.StationListProps) => {
     <S.StationList>
       <S.StationsContainer className="station-list">
         {stations &&
-          stations.map((row, idxRow) => (
+          stations.reverse().map((row, idxRow) => (
             <S.Row key={idxRow} line={settingsGlobal.building}>
-              {/* {console.log('stations => ', stations)} */}
-              {row.map((group, idxGroup) => (
-                <React.Fragment key={idxGroup}>
-                  {group[0] && (
-                    <S.Group
-                      key={idxGroup}
-                      directionItems={group[0].directionOfStations}
-                    >
-                      {group.map((station, idxStation) => (
-                        <React.Fragment key={idxStation}>
-                          {/* {console.log('group ', group)} */}
-                          <S.Station
-                            id={station.position_id}
-                            key={idxStation}
-                            directionItems={group[0].directionOfStations}
-                            isActive={
-                              currentStatusPage.station.label === station.label
-                            }
-                            onClick={() => {
-                              dispatch(
-                                stationActive({
-                                  position_id: station.position_id,
-                                  label: station.label,
-                                  num_prod: station.num_prod,
-                                  baumuster: station.baumuster,
-                                  color: station.color as string,
-                                  active_fail_list:
-                                    util.maxFailsList<ActiveFailList>(
-                                      station.active_fail_list,
-                                      'gravity'
-                                    ) as ActiveFailList,
-                                })
-                              );
-                            }}
-                          >
-                            <S.StationContent
-                              backgroundColor={station.color as string}
-                            >
-                              <span>{station.label.split(' ')[1]}</span>
-                            </S.StationContent>
-                          </S.Station>
-
-                          {!!group[0].legends.label &&
-                            group.length - 1 === idxStation && (
-                              <S.Legend
-                                numberStations={row[idxGroup].length}
-                                directionItems={station.directionOfStations}
+              {idxRow % 2 === 1
+                ? row.reverse().map((group, idxGroup) => (
+                    <React.Fragment key={idxGroup}>
+                      {group[0] && (
+                        <S.Group
+                          key={idxGroup}
+                          directionItems={group[0].directionOfStations}
+                        >
+                          {group.reverse().map((station, idxStation) => (
+                            <React.Fragment key={idxStation}>
+                              <S.Station
+                                id={station.position_id}
+                                key={idxStation}
+                                directionItems={group[0].directionOfStations}
+                                isActive={
+                                  currentStatusPage.station.label ===
+                                  station.label
+                                }
+                                onClick={() => {
+                                  dispatch(
+                                    stationActive({
+                                      position_id: station.position_id,
+                                      label: station.label,
+                                      num_prod: station.num_prod,
+                                      baumuster: station.baumuster,
+                                      color: station.color as string,
+                                      active_fail_list:
+                                        util.maxFailsList<ActiveFailList>(
+                                          station.active_fail_list,
+                                          'gravity'
+                                        ) as ActiveFailList,
+                                    })
+                                  );
+                                }}
                               >
-                                <div>
-                                  <span className="station-list__legend">
-                                    {group[0].legends.label}
+                                <S.StationContent
+                                  backgroundColor={station.color as string}
+                                >
+                                  <span>{station.label.split(' ')[1]}</span>
+                                </S.StationContent>
+                              </S.Station>
+
+                              {!!group[0].legends.label &&
+                                group.length - 1 === idxStation && (
+                                  <S.Legend
+                                    numberStations={row[idxGroup].length}
+                                    directionItems={station.directionOfStations}
+                                  >
+                                    <div>
+                                      <span className="station-list__legend">
+                                        {group[0].legends.label}
+                                      </span>
+                                      {!station.connections.length ? (
+                                        ''
+                                      ) : (
+                                        <Tooltip
+                                          classes={{
+                                            tooltip: classes.customTooltip,
+                                          }}
+                                          title={`Conexão com a ${station.connections[0].label}`}
+                                          aria-label="conexão"
+                                        >
+                                          <div className="station-list__integration" />
+                                        </Tooltip>
+                                      )}
+                                    </div>
+                                  </S.Legend>
+                                )}
+                            </React.Fragment>
+                          ))}
+                        </S.Group>
+                      )}
+                    </React.Fragment>
+                  ))
+                : row.map((group, idxGroup) => (
+                    <React.Fragment key={idxGroup}>
+                      {group[0] && (
+                        <S.Group
+                          key={idxGroup}
+                          directionItems={group[0].directionOfStations}
+                        >
+                          {group.map((station, idxStation) => (
+                            <React.Fragment key={idxStation}>
+                              <S.Station
+                                id={station.position_id}
+                                key={idxStation}
+                                directionItems={group[0].directionOfStations}
+                                isActive={
+                                  currentStatusPage.station.label ===
+                                  station.label
+                                }
+                                onClick={() => {
+                                  dispatch(
+                                    stationActive({
+                                      position_id: station.position_id,
+                                      label: station.label,
+                                      num_prod: station.num_prod,
+                                      baumuster: station.baumuster,
+                                      color: station.color as string,
+                                      active_fail_list:
+                                        util.maxFailsList<ActiveFailList>(
+                                          station.active_fail_list,
+                                          'gravity'
+                                        ) as ActiveFailList,
+                                    })
+                                  );
+                                }}
+                              >
+                                {station.position_id === '0' && (
+                                  <S.Distinction
+                                    color={theme.colors.primary_6}
+                                  />
+                                )}
+                                {station.position_id === '0.3' && (
+                                  <S.Distinction
+                                    color={theme.colors.secondary_1}
+                                  />
+                                )}
+
+                                <S.StationContent
+                                  backgroundColor={station.color as string}
+                                >
+                                  <span>
+                                    {(station.position_id === '0' &&
+                                      station.label.split(' ')[2]) ||
+                                      (station.position_id === '0.3' &&
+                                        station.label
+                                          .split(' ')[2]
+                                          .substring(0, 4)) ||
+                                      station.label.split(' ')[1]}
                                   </span>
-                                  {!station.connections.length ? (
-                                    ''
-                                  ) : (
-                                    <Tooltip
-                                      classes={{
-                                        tooltip: classes.customTooltip,
-                                      }}
-                                      title={`Conexão com a ${station.connections[0].label}`}
-                                      aria-label="conexão"
-                                    >
-                                      <div className="station-list__integration" />
-                                    </Tooltip>
-                                  )}
-                                </div>
-                              </S.Legend>
-                            )}
-                        </React.Fragment>
-                      ))}
-                    </S.Group>
-                  )}
-                </React.Fragment>
-              ))}
-              {(idxRow === 0 || idxRow === row[row.length - 1].length) &&
+                                </S.StationContent>
+                              </S.Station>
+
+                              {!!group[0].legends.label &&
+                                group.length - 1 === idxStation && (
+                                  <S.Legend
+                                    numberStations={row[idxGroup].length}
+                                    directionItems={station.directionOfStations}
+                                  >
+                                    <div>
+                                      <span className="station-list__legend">
+                                        {group[0].legends.label}
+                                      </span>
+                                      {!station.connections.length ? (
+                                        ''
+                                      ) : (
+                                        <Tooltip
+                                          classes={{
+                                            tooltip: classes.customTooltip,
+                                          }}
+                                          title={`Conexão com a ${station.connections[0].label}`}
+                                          aria-label="conexão"
+                                        >
+                                          <div className="station-list__integration" />
+                                        </Tooltip>
+                                      )}
+                                    </div>
+                                  </S.Legend>
+                                )}
+                            </React.Fragment>
+                          ))}
+                        </S.Group>
+                      )}
+                    </React.Fragment>
+                  ))}
+              {(idxRow === 2 || idxRow === row.length - 1) &&
                 settingsGlobal.building === 'line_h' && (
                   <div className="station-list__name">
-                    <span>{idxRow === 0 ? 'SGPRO1' : 'SGPRO2'}</span>
+                    <span>
+                      {idxRow === row[row.length - 1].length
+                        ? 'SGPRO2'
+                        : 'SGPRO1'}
+                    </span>
                   </div>
                 )}
             </S.Row>
@@ -271,12 +368,20 @@ const StationList = ({ stationList }: Types.StationListProps) => {
               </header>
 
               <section className="station-list__information">
-                <S.InformationItem>
+                <S.InformationItem
+                  positionId={currentStatusPage.station.position_id}
+                >
                   <span className="station-list__information__title">
                     Estação
                   </span>
                   <span className="station-list__information__description station-list__information__description--number">
-                    {currentStatusPage.station.label.split(' ')[1]}
+                    {(currentStatusPage.station.position_id === '0' &&
+                      currentStatusPage.station.label.split(' ')[2]) ||
+                      (currentStatusPage.station.position_id === '0.3' &&
+                        currentStatusPage.station.label
+                          .split(' ')[2]
+                          .substring(0, 4)) ||
+                      currentStatusPage.station.label.split(' ')[1]}
                   </span>
                 </S.InformationItem>
 
