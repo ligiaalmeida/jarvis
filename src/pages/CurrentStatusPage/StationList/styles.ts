@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { Buildings, DirectionOfStations } from 'types';
 import { Elevation, CustomScrollBar, Transition } from 'utils/styles/mixins';
 import { makeStyles } from '@material-ui/core/styles';
+import { string } from 'yup/lib/locale';
 
 const minWidthSidebar = 80;
 
@@ -13,9 +14,9 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-export const InformationItem = styled.div`
+export const InformationItem = styled.div<{ positionId?: string }>`
   ${(props) => {
-    const { theme } = props;
+    const { theme, positionId } = props;
 
     return css`
       position: relative;
@@ -38,7 +39,9 @@ export const InformationItem = styled.div`
 
             &--number {
               font-family: 'DaimlerBold', sans-serif;
-              font-size: 10rem;
+              font-size: ${positionId === '0' || positionId === '0.3'
+                ? '6rem'
+                : '10rem'};
               text-align: center;
             }
           }
@@ -77,9 +80,6 @@ export const Card = styled.div<{ backgroundColor: string }>`
           line-height: 1;
           color: ${theme.colors.white};
         }
-      }
-
-      section {
       }
     `;
   }};
@@ -174,21 +174,63 @@ export const StationContent = styled.div<{ backgroundColor: string }>`
   }};
 `;
 
+export const Distinction = styled.div<{ color: string }>`
+  ${(props) => {
+    const { theme, color } = props;
+
+    return css`
+      position: absolute;
+      bottom: ${(theme.unit * 1.5) / 4 - 4}px;
+      right: ${(theme.unit * 1.5) / 4 - 4}px;
+      width: ${theme.unit * 1.5}px;
+      height: ${theme.unit * 1.5}px;
+      display: block;
+      border-radius: 50%;
+      background-color: ${color};
+      z-index: 3;
+    `;
+  }}
+`;
+
 export const Station = styled.div<{
   directionItems: DirectionOfStations;
   isActive: boolean;
+  id: string;
 }>`
   ${(props) => {
-    const { theme, directionItems, isActive = false } = props;
+    const { theme, directionItems, id, isActive = false } = props;
 
     return css`
       position: relative;
-      width: calc((100vw - ${minWidthSidebar}rem) / 14);
-      height: calc((100vw - ${minWidthSidebar}rem) / 14);
+      width: calc((100vw - ${minWidthSidebar}rem) / 13);
+      height: calc((100vw - ${minWidthSidebar}rem) / 13);
       min-width: 6.5rem;
       min-height: 6.5rem;
       padding: 0.5rem;
       z-index: 1;
+
+      > div.carga_descarga {
+        position: absolute;
+        top: -${(theme.unit * 1.5) / 2 - 2}px;
+        right: -${(theme.unit * 1.5) / 2 - 2}px;
+        width: ${theme.unit * 1.5}px;
+        height: ${theme.unit * 1.5}px;
+        display: block;
+        border-radius: 50%;
+        background-color: ${theme.colors.primary_7};
+      }
+
+      ${id === '0' &&
+      css`
+        // background-color: ${theme.colors.primary_6};
+        // border-radius: 4px;
+      `}
+
+      ${id === '0.3' &&
+      css`
+        // background-color: ${theme.colors.primary_8};
+        // border-radius: 4px;
+      `}
 
       ${isActive &&
       css`
@@ -389,7 +431,7 @@ export const Row = styled.div<{ line: Buildings }>`
     return css`
       position: relative;
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       padding-right: 4rem;
 
       ${theme.breakpoints.custom(
@@ -407,14 +449,12 @@ export const Row = styled.div<{ line: Buildings }>`
       ${line === 'line_h' &&
       css`
         &:first-child {
-          padding-bottom: 9rem;
           margin-bottom: 1rem;
 
           ${theme.breakpoints.custom(
             'max',
             1440,
             css`
-              padding-bottom: 6rem;
               margin-bottom: 1rem;
             `
           )};
@@ -424,7 +464,7 @@ export const Row = styled.div<{ line: Buildings }>`
             position: absolute;
             bottom: 15px;
             left: 15px;
-            width: calc(100% - 50px);
+            width: calc(100% - 100px);
             height: 1px;
             background-color: ${theme.colors.grey_4};
 
@@ -436,70 +476,18 @@ export const Row = styled.div<{ line: Buildings }>`
               `
             )}
           }
-
-          + div {
-            &:before {
-              content: '';
-              position: absolute;
-              bottom: 1rem;
-              left: 0;
-              width: calc(50% - 24px);
-              height: calc(100% + 1.5rem);
-              border-radius: 4px;
-              background-color: ${theme.colors.white};
-              z-index: -1;
-            }
-
-            &:after {
-              content: '';
-              position: absolute;
-              top: 0;
-              right: 0;
-              width: calc(50% + 15px);
-              height: calc(100% + 1.5rem);
-              border-radius: 4px;
-              background-color: ${theme.colors.white};
-              z-index: -1;
-            }
-
-            &:before,
-            &:after {
-              ${theme.breakpoints.custom(
-                'max',
-                1480,
-                css`
-                  background-color: transparent;
-                `
-              )}
-            }
-          }
-
-          .station-list {
-            &__name {
-              span {
-                margin-bottom: 1rem;
-              }
-            }
-          }
         }
 
         &:last-child {
           padding-top: 3rem;
-
-          .station-list {
-            &__name {
-              span {
-                margin-bottom: 4rem;
-              }
-            }
-          }
+          padding-bottom: 6rem;
 
           :before {
             content: '';
             position: absolute;
             top: 15px;
             left: 15px;
-            width: calc(100% - 50px);
+            width: calc(100% - 100px);
             height: 1px;
             background-color: ${theme.colors.grey_4};
 
@@ -513,14 +501,51 @@ export const Row = styled.div<{ line: Buildings }>`
           }
         }
 
-        &:nth-child(2) {
-          padding-bottom: 3rem;
-
+        &:nth-child(1) {
+          &:after {
+            content: '';
+            position: absolute;
+            top: 210px;
+            left: 0;
+            width: calc(100% - 95rem);
+            height: calc(100% + 1rem);
+            border-radius: 0 0 4px 4px;
+            background-color: ${theme.colors.white};
+            z-index: -1;
+            // outline: 1px solid red;
+          }
           ${theme.breakpoints.custom(
             'max',
-            1440,
+            1366,
             css`
-              padding-bottom: 2rem;
+              &:after {
+                background-color: transparent;
+              }
+            `
+          )};
+        }
+
+        &:nth-child(2) {
+          padding-bottom: 3rem;
+          &:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 538px;
+            width: calc(100% - 538px);
+            height: calc(100% + 22rem);
+            border-radius: 0 0 4px 4px;
+            background-color: ${theme.colors.white};
+            z-index: -1;
+            // outline: 1px solid purple;
+          }
+          ${theme.breakpoints.custom(
+            'max',
+            1366,
+            css`
+              &:before {
+                background-color: transparent;
+              }
             `
           )};
 
@@ -531,27 +556,76 @@ export const Row = styled.div<{ line: Buildings }>`
               padding-bottom: 4rem;
             `
           )}
+          .station-list {
+            &__name {
+              span {
+                margin-bottom: 1rem;
+              }
+            }
+          }
         }
 
         &:nth-child(3) {
+          &:before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            width: calc(100% - 968px);
+            height: calc(100% + 2rem);
+            border-radius: 4px 4px 0 0;
+            background-color: ${theme.colors.white};
+            z-index: -1;
+            // outline: 1px solid blue;
+          }
           ${theme.breakpoints.custom(
             'max',
-            1440,
+            1366,
             css`
-              padding-bottom: 8rem;
+              &:before {
+                background-color: transparent;
+              }
             `
           )};
         }
 
         &:nth-child(4) {
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 4px 4px;
+            background-color: ${theme.colors.white};
+            z-index: -1;
+            // outline: 1px solid green;
+          }
+          ${theme.breakpoints.custom(
+            'max',
+            1366,
+            css`
+              &:before {
+                background-color: transparent;
+              }
+            `
+          )};
           ${theme.breakpoints.custom(
             'max',
             1440,
             css`
-              padding-bottom: 0;
               margin-bottom: 0;
+              padding-bottom: 0;
             `
           )};
+          .station-list {
+            &__name {
+              span {
+                margin-bottom: 4rem;
+              }
+            }
+          }
         }
 
         &:first-child,
@@ -573,9 +647,11 @@ export const Row = styled.div<{ line: Buildings }>`
             position: absolute;
             right: 0;
             width: 4rem;
-            height: 100%;
+            height: initial;
             display: flex;
             align-items: center;
+            top: -50%;
+            transform: translateY(120%);
 
             span {
               transform: rotate(180deg);
@@ -622,7 +698,7 @@ export const StationsContainer = styled.section`
 
     return css`
       position: relative;
-      width: 78%;
+      width: 100%;
       padding-right: ${theme.distance.normal}rem;
       ${Transition('width', 0.3)}
 
