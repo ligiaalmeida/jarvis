@@ -8,6 +8,14 @@ const Legends = () => {
           <span>Integração com outras linhas</span>
         </S.LegendItem>
 
+        <S.LegendItem type="charge">
+          <span>Posto de Carga</span>
+        </S.LegendItem>
+
+        <S.LegendItem type="discharge">
+          <span>Posto de Descarga</span>
+        </S.LegendItem>
+
         <S.LegendItem type="operating">
           <span>Posto operando normalmente</span>
         </S.LegendItem>
