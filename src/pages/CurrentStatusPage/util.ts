@@ -169,6 +169,21 @@ export const stationListGroupLineH = ({
           );
         }
       } else {
+        if (Number(next.position_id) >= 0 && Number(next.position_id) <= 0.3) {
+          if (next.position_id === '0') {
+            acc.push(
+              stationItem({
+                stationList,
+                legends: legends as LegendsLabels[],
+                directionType: 2,
+                connections,
+                filterStation: (station) =>
+                  Number(station.position_id) >= 0 &&
+                  Number(station.position_id) <= 0.3,
+              })
+            );
+          }
+        }
         if (Number(next.position_id) >= 21 && Number(next.position_id) <= 27) {
           if (next.position_id === '21') {
             acc.push(
@@ -197,7 +212,39 @@ export const stationListGroupLineH = ({
             );
           }
         } else {
-          if (Number(next.position_id) >= 7 && Number(next.position_id) <= 10) {
+          if (
+            Number(next.position_id) >= 4 &&
+            Number(next.position_id) <= 5.0
+          ) {
+            if (next.position_id >= '4') {
+              if (next.position_id === '4') {
+                acc.push(
+                  stationItem({
+                    stationList,
+                    legends: legends as LegendsLabels[],
+                    directionType: 2,
+                    connections,
+                    filterStation: (station) =>
+                      Number(station.position_id) === 4,
+                  })
+                );
+              }
+              acc.push(
+                stationItem({
+                  stationList,
+                  legends: legends as LegendsLabels[],
+                  directionType: 2,
+                  connections,
+                  filterStation: (station) =>
+                    Number(station.position_id) >= 4.1 &&
+                    Number(station.position_id) <= 4.5,
+                })
+              );
+            }
+          } else if (
+            Number(next.position_id) >= 7 &&
+            Number(next.position_id) <= 10
+          ) {
             if (next.position_id === '7') {
               acc.push(
                 stationItem({
@@ -212,24 +259,26 @@ export const stationListGroupLineH = ({
               );
             }
           } else {
-            acc.push([
-              {
-                ...next,
-                label: next.label.trim(),
-                color: activeFailList(next).color,
-                directionOfStations: 'horizontal',
-                isParallel: false,
-                connections,
-                legends:
-                  (legends as LegendsLabels[])?.filter((legends) =>
-                    legends.stations_legend.includes(next.label)
-                  )[0] || [],
-              },
-            ]);
+            if (Number(next.position_id) !== 0) {
+              acc.push([
+                {
+                  ...next,
+                  label: next.label.trim(),
+                  color: activeFailList(next).color,
+                  directionOfStations: 'horizontal',
+                  isParallel: false,
+                  connections,
+                  legends:
+                    (legends as LegendsLabels[])?.filter((legends) =>
+                      legends.stations_legend.includes(next.label)
+                    )[0] || [],
+                },
+              ]);
+            }
           }
         }
       }
-
+      // console.log('acc', acc);
       return acc;
     }, [] as StationsListRowsUtil)
   );
@@ -255,7 +304,6 @@ export const stationsListRowsLineH = (
 
         count = 0;
       }
-
       return acc;
     }, [] as StationsList[][][])
   );
