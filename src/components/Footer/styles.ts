@@ -14,6 +14,8 @@ export const Footer = styled.footer`
       padding: 1rem;
       border-top: 1px solid ${theme.colors.grey_6};
       background-color: ${theme.colors.white};
+      width: 100%;
+      z-index: 1000;
 
       p {
         font-family: 'DaimlerRegular', sans-serif;
