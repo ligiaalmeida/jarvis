@@ -21,8 +21,9 @@ import texts from '../../Navigation/texts';
 import { StateMapToPropsGlobal, Buildings } from 'types';
 import * as Types from './types';
 
-import * as S from './styles';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import * as S from './styles';
 
 registerLocale('pt-BR', ptBr);
 setDefaultLocale('pt-BR');
@@ -135,7 +136,11 @@ const InputList: React.FC<Types.InputListProps> = ({
         <AnimatePresence>
           {pathname === routes.PERFORMANCE_HISTORY && (
             <motion.div
-              style={{ display: 'flex' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                position: 'relative',
+              }}
               initial={{ x: '150%' }}
               animate={{ x: 0 }}
               exit={{ x: '150%' }}
@@ -153,8 +158,8 @@ const InputList: React.FC<Types.InputListProps> = ({
                     id="calendar"
                     name="date"
                     dateFormat="yyyy/MM/dd"
-                    minDate={subMonths(new Date(), 8)}
                     maxDate={addMonths(new Date(), 0)}
+                    minDate={subMonths(new Date(), 8)}
                     className="input-list__input-item--calendar input-list__input-item--datepicker"
                     selected={
                       !getInputPerformanceHistoryPage.params?.date
@@ -240,15 +245,11 @@ const InputList: React.FC<Types.InputListProps> = ({
                       >
                         {getInputPerformanceHistoryPage.params &&
                         getInputPerformanceHistoryPage.params.date === now
-                          ? hours
-                              .filter(
-                                (hour) => hour <= new Date().getHours() - 2
-                              )
-                              .map((hour) => (
-                                <MuiMenuItem key={hour} value={hour}>
-                                  {hour}
-                                </MuiMenuItem>
-                              ))
+                          ? hours.map((hour) => (
+                              <MuiMenuItem key={hour} value={hour}>
+                                {hour}
+                              </MuiMenuItem>
+                            ))
                           : hours.map((hour) => (
                               <MuiMenuItem key={hour} value={hour}>
                                 {hour}
