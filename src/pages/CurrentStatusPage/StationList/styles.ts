@@ -202,8 +202,8 @@ export const Station = styled.div<{
 
     return css`
       position: relative;
-      width: calc((100vw - ${minWidthSidebar}rem) / 13);
-      height: calc((100vw - ${minWidthSidebar}rem) / 13);
+      width: calc((100vw - ${minWidthSidebar}rem) / 16);
+      height: calc((100vw - ${minWidthSidebar}rem) / 16);
       min-width: 6.5rem;
       min-height: 6.5rem;
       padding: 0.5rem;
@@ -219,18 +219,6 @@ export const Station = styled.div<{
         border-radius: 50%;
         background-color: ${theme.colors.primary_7};
       }
-
-      ${id === '0' &&
-      css`
-        // background-color: ${theme.colors.primary_6};
-        // border-radius: 4px;
-      `}
-
-      ${id === '0.3' &&
-      css`
-        // background-color: ${theme.colors.primary_8};
-        // border-radius: 4px;
-      `}
 
       ${isActive &&
       css`
@@ -505,10 +493,10 @@ export const Row = styled.div<{ line: Buildings }>`
           &:after {
             content: '';
             position: absolute;
-            top: 210px;
+            top: 190px;
             left: 0;
             width: calc(100% - 95rem);
-            height: calc(100% + 1rem);
+            height: 100%;
             border-radius: 0 0 4px 4px;
             background-color: ${theme.colors.white};
             z-index: -1;
@@ -531,9 +519,9 @@ export const Row = styled.div<{ line: Buildings }>`
             content: '';
             position: absolute;
             top: -10px;
-            left: 538px;
-            width: calc(100% - 538px);
-            height: calc(100% + 22rem);
+            left: 456px;
+            width: calc(100% - 456px);
+            height: calc(100% + 19rem);
             border-radius: 0 0 4px 4px;
             background-color: ${theme.colors.white};
             z-index: -1;
@@ -571,7 +559,7 @@ export const Row = styled.div<{ line: Buildings }>`
             position: absolute;
             top: -12px;
             left: 0;
-            width: calc(100% - 968px);
+            width: calc(100% - 1048px);
             height: calc(100% + 2rem);
             border-radius: 4px 4px 0 0;
             background-color: ${theme.colors.white};
