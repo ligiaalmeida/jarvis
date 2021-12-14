@@ -14,7 +14,7 @@ import Logo from 'assets/img/logo-jarvis.png';
 import texts from './texts';
 
 import * as S from './styles';
-import Footer from '../../components/Footer';
+import Footer from 'components/Footer';
 import { Polices } from '../../types';
 
 const INITIAL_INPUT_STATE = { user: '', pwd: '' };
@@ -47,8 +47,8 @@ const SignInPage = () => {
       if (data.status_code === 200) {
         if (typeof data.message !== 'string') {
           clearLoading = setTimeout(() => {
-            dispatch(polices(data.message.auth));
             dispatch(isLogin(true));
+            dispatch(polices(data.message.auth));
             setIsLoading(false);
             history.push(
               `/${(data.message.auth[0] as Polices).menu_item[0].name}`

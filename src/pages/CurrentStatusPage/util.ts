@@ -169,8 +169,26 @@ export const stationListGroupLineH = ({
           );
         }
       } else {
+        if (Number(next.position_id) >= 0 && Number(next.position_id) <= 0.3) {
+          // módulo esteira de longarina
+          if (next.position_id === '0') {
+            acc.push(
+              stationItem({
+                stationList,
+                legends: legends as LegendsLabels[],
+                directionType: 2,
+                connections,
+                filterStation: (station) =>
+                  Number(station.position_id) >= 0 &&
+                  Number(station.position_id) <= 0.3,
+              })
+            );
+          }
+        }
         if (Number(next.position_id) >= 21 && Number(next.position_id) <= 27) {
+          // do 21 ao 26
           if (next.position_id === '21') {
+            // EOM MOTORES
             acc.push(
               stationItem({
                 stationList,
@@ -184,6 +202,7 @@ export const stationListGroupLineH = ({
             );
           }
           if (next.position_id === '25') {
+            // EOM CABINE
             acc.push(
               stationItem({
                 stationList,
@@ -197,7 +216,57 @@ export const stationListGroupLineH = ({
             );
           }
         } else {
-          if (Number(next.position_id) >= 7 && Number(next.position_id) <= 10) {
+          if (
+            Number(next.position_id) >= 4 &&
+            Number(next.position_id) <= 4.5
+          ) {
+            if (next.position_id >= '4') {
+              if (next.position_id === '4') {
+                acc.push(
+                  stationItem({
+                    stationList,
+                    legends: legends as LegendsLabels[],
+                    directionType: 2,
+                    connections,
+                    filterStation: (station) =>
+                      Number(station.position_id) === 4,
+                  })
+                );
+              }
+              acc.push(
+                // PEDAGIO 6
+                stationItem({
+                  stationList,
+                  legends: legends as LegendsLabels[],
+                  directionType: 2,
+                  connections,
+                  filterStation: (station) =>
+                    Number(station.position_id) >= 4.1 &&
+                    Number(station.position_id) <= 4.5,
+                })
+              );
+              // if (
+              //   Number(next.position_id) >= 5.0 &&
+              //   Number(next.position_id) <= 5.4
+              // ) {
+              //   acc.push(
+              //     // PEDAGIO 7
+              //     stationItem({
+              //       stationList,
+              //       legends: legends as LegendsLabels[],
+              //       directionType: 1,
+              //       connections,
+              //       filterStation: (station) =>
+              //         Number(station.position_id) >= 5.0 &&
+              //         Number(station.position_id) <= 4.5,
+              //     })
+              //   );
+              // }
+            }
+          } else if (
+            Number(next.position_id) >= 7 &&
+            Number(next.position_id) <= 10
+          ) {
             if (next.position_id === '7') {
               acc.push(
                 stationItem({
@@ -212,24 +281,26 @@ export const stationListGroupLineH = ({
               );
             }
           } else {
-            acc.push([
-              {
-                ...next,
-                label: next.label.trim(),
-                color: activeFailList(next).color,
-                directionOfStations: 'horizontal',
-                isParallel: false,
-                connections,
-                legends:
-                  (legends as LegendsLabels[])?.filter((legends) =>
-                    legends.stations_legend.includes(next.label)
-                  )[0] || [],
-              },
-            ]);
+            if (Number(next.position_id) !== 0) {
+              acc.push([
+                {
+                  ...next,
+                  label: next.label.trim(),
+                  color: activeFailList(next).color,
+                  directionOfStations: 'horizontal',
+                  isParallel: false,
+                  connections,
+                  legends:
+                    (legends as LegendsLabels[])?.filter((legends) =>
+                      legends.stations_legend.includes(next.label)
+                    )[0] || [],
+                },
+              ]);
+            }
           }
         }
       }
-
+      // console.log('acc', acc);
       return acc;
     }, [] as StationsListRowsUtil)
   );
@@ -255,7 +326,6 @@ export const stationsListRowsLineH = (
 
         count = 0;
       }
-
       return acc;
     }, [] as StationsList[][][])
   );

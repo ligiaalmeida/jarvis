@@ -50,6 +50,26 @@ export const LegendItem = styled.div<LegendItemStyleProps>`
         }
       `};
 
+      ${type === 'charge' &&
+      css`
+        span {
+          &:after {
+            background-color: ${theme.colors.primary_6};
+            border-radius: 50%;
+          }
+        }
+      `};
+
+      ${type === 'discharge' &&
+      css`
+        span {
+          &:after {
+            background-color: ${theme.colors.secondary_1};
+            border-radius: 50%;
+          }
+        }
+      `};
+
       ${type === 'operating' &&
       css`
         span {
@@ -80,6 +100,7 @@ export const LegendItem = styled.div<LegendItemStyleProps>`
       ${type === 'disclaimer' &&
       css`
         margin-top: 1rem;
+        width: auto;
 
         span {
           margin-left: 0;
@@ -98,7 +119,7 @@ export const Legends = styled.div`
     return css`
       position: relative;
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
     `;
   }};
 `;

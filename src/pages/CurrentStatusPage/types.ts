@@ -129,5 +129,12 @@ export type StationGroupStyleProps = {
 
 // Legends Component
 export type LegendItemStyleProps = {
-  type: 'integration' | 'operating' | 'empty' | 'selected' | 'disclaimer';
+  type:
+    | 'integration'
+    | 'charge'
+    | 'discharge'
+    | 'operating'
+    | 'empty'
+    | 'selected'
+    | 'disclaimer';
 };

@@ -42,7 +42,7 @@ const CurrentFaultsPage = () => {
     namespace: `/${settingsGlobal.building}_${namespace.CURRENT_FAULTS}`,
   });
 
-  // const data = payload;
+  // const dataPay = payload;
 
   useEffect(() => {
     if (settingsPage.modeView === 'detailed') {
