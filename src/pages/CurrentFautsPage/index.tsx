@@ -42,7 +42,7 @@ const CurrentFaultsPage = () => {
     namespace: `/${settingsGlobal.building}_${namespace.CURRENT_FAULTS}`,
   });
 
-  const dataPay = payload;
+  // const dataPay = payload;
 
   useEffect(() => {
     if (settingsPage.modeView === 'detailed') {
@@ -88,16 +88,16 @@ const CurrentFaultsPage = () => {
           />
         </InputList>
 
-        {!dataPay && (
+        {!data && (
           <S.Loader>
             <CurrentFaultsLoader />
           </S.Loader>
         )}
-        {dataPay && settingsPage.modeView === 'simplified' && (
-          <SimplifiedView namespace="currentFaultsPage" message={dataPay} />
+        {data && settingsPage.modeView === 'simplified' && (
+          <SimplifiedView namespace="currentFaultsPage" message={data} />
         )}
-        {dataPay && settingsPage.modeView === 'detailed' && (
-          <DetailedView namespace="currentFaultsPage" message={dataPay} />
+        {data && settingsPage.modeView === 'detailed' && (
+          <DetailedView namespace="currentFaultsPage" message={data} />
         )}
       </S.Main>
       <Footer />
