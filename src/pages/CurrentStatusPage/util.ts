@@ -170,6 +170,7 @@ export const stationListGroupLineH = ({
         }
       } else {
         if (Number(next.position_id) >= 0 && Number(next.position_id) <= 0.3) {
+          // módulo esteira de longarina
           if (next.position_id === '0') {
             acc.push(
               stationItem({
@@ -185,7 +186,9 @@ export const stationListGroupLineH = ({
           }
         }
         if (Number(next.position_id) >= 21 && Number(next.position_id) <= 27) {
+          // do 21 ao 26
           if (next.position_id === '21') {
+            // EOM MOTORES
             acc.push(
               stationItem({
                 stationList,
@@ -199,6 +202,7 @@ export const stationListGroupLineH = ({
             );
           }
           if (next.position_id === '25') {
+            // EOM CABINE
             acc.push(
               stationItem({
                 stationList,
@@ -214,7 +218,7 @@ export const stationListGroupLineH = ({
         } else {
           if (
             Number(next.position_id) >= 4 &&
-            Number(next.position_id) <= 5.0
+            Number(next.position_id) <= 4.5
           ) {
             if (next.position_id >= '4') {
               if (next.position_id === '4') {
@@ -230,6 +234,7 @@ export const stationListGroupLineH = ({
                 );
               }
               acc.push(
+                // PEDAGIO 6
                 stationItem({
                   stationList,
                   legends: legends as LegendsLabels[],
@@ -240,6 +245,23 @@ export const stationListGroupLineH = ({
                     Number(station.position_id) <= 4.5,
                 })
               );
+              // if (
+              //   Number(next.position_id) >= 5.0 &&
+              //   Number(next.position_id) <= 5.4
+              // ) {
+              //   acc.push(
+              //     // PEDAGIO 7
+              //     stationItem({
+              //       stationList,
+              //       legends: legends as LegendsLabels[],
+              //       directionType: 1,
+              //       connections,
+              //       filterStation: (station) =>
+              //         Number(station.position_id) >= 5.0 &&
+              //         Number(station.position_id) <= 4.5,
+              //     })
+              //   );
+              // }
             }
           } else if (
             Number(next.position_id) >= 7 &&

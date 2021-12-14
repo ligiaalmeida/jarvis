@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { Buildings, DirectionOfStations } from 'types';
 import { Elevation, CustomScrollBar, Transition } from 'utils/styles/mixins';
 import { makeStyles } from '@material-ui/core/styles';
-import { string } from 'yup/lib/locale';
 
 const minWidthSidebar = 80;
 
@@ -437,13 +436,16 @@ export const Row = styled.div<{ line: Buildings }>`
       ${line === 'line_h' &&
       css`
         &:first-child {
+          height: calc(100% - 78rem);
           margin-bottom: 1rem;
+          padding-bottom: 3rem;
+          // outline: 1px solid;
 
           ${theme.breakpoints.custom(
             'max',
             1440,
             css`
-              margin-bottom: 1rem;
+              margin-bottom: 6rem;
             `
           )};
 
@@ -493,11 +495,11 @@ export const Row = styled.div<{ line: Buildings }>`
           &:after {
             content: '';
             position: absolute;
-            top: 190px;
+            top: 111px;
             left: 0;
-            width: calc(100% - 95rem);
-            height: 100%;
-            border-radius: 0 0 4px 4px;
+            width: 100%;
+            height: calc(100% + 9rem);
+            border-radius: 0 0 4px 0;
             background-color: ${theme.colors.white};
             z-index: -1;
             // outline: 1px solid red;
@@ -518,11 +520,11 @@ export const Row = styled.div<{ line: Buildings }>`
           &:before {
             content: '';
             position: absolute;
-            top: -10px;
+            top: 20rem;
             left: 456px;
             width: calc(100% - 456px);
-            height: calc(100% + 19rem);
-            border-radius: 0 0 4px 4px;
+            height: 100%;
+            border-radius: 4px 4px 0 0;
             background-color: ${theme.colors.white};
             z-index: -1;
             // outline: 1px solid purple;
@@ -557,11 +559,11 @@ export const Row = styled.div<{ line: Buildings }>`
           &:before {
             content: '';
             position: absolute;
-            top: -12px;
+            top: -3rem;
             left: 0;
             width: calc(100% - 1048px);
-            height: calc(100% + 2rem);
-            border-radius: 4px 4px 0 0;
+            height: calc(100% + 1rem);
+            border-radius: 0 0 4px 4px;
             background-color: ${theme.colors.white};
             z-index: -1;
             // outline: 1px solid blue;
@@ -581,11 +583,11 @@ export const Row = styled.div<{ line: Buildings }>`
           &:before {
             content: '';
             position: absolute;
-            top: 0px;
+            top: -1rem;
             left: 0;
             width: 100%;
-            height: 100%;
-            border-radius: 0 4px 4px;
+            height: calc(100% + 1rem);
+            border-radius: 4px 0 0 0;
             background-color: ${theme.colors.white};
             z-index: -1;
             // outline: 1px solid green;
@@ -633,13 +635,13 @@ export const Row = styled.div<{ line: Buildings }>`
         .station-list {
           &__name {
             position: absolute;
-            right: 0;
+            right: 4px;
             width: 4rem;
-            height: initial;
+            height: 100%;
             display: flex;
             align-items: center;
-            top: -50%;
-            transform: translateY(120%);
+            top: 50%;
+            transform: translateY(-8%);
 
             span {
               transform: rotate(180deg);

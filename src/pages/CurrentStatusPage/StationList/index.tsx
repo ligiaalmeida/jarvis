@@ -174,17 +174,17 @@ const StationList = ({ stationList }: Types.StationListProps) => {
     <S.StationList>
       <S.StationsContainer className="station-list">
         {stations &&
-          stations.reverse().map((row, idxRow) => (
+          stations.map((row, idxRow) => (
             <S.Row key={idxRow} line={settingsGlobal.building}>
               {idxRow % 2 === 1
-                ? row.reverse().map((group, idxGroup) => (
+                ? row.map((group, idxGroup) => (
                     <React.Fragment key={idxGroup}>
                       {group[0] && (
                         <S.Group
                           key={idxGroup}
                           directionItems={group[0].directionOfStations}
                         >
-                          {group.reverse().map((station, idxStation) => (
+                          {group.map((station, idxStation) => (
                             <React.Fragment key={idxStation}>
                               <S.Station
                                 id={station.position_id}
@@ -342,16 +342,13 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                       )}
                     </React.Fragment>
                   ))}
-              {(idxRow === 2 || idxRow === row.length - 1) &&
+              {(idxRow === 0 || idxRow === row[row.length - 1].length) &&
                 settingsGlobal.building === 'line_h' && (
                   <div className="station-list__name">
-                    <span>
-                      {idxRow === row[row.length - 1].length
-                        ? 'SGPRO2'
-                        : 'SGPRO1'}
-                    </span>
+                    <span>{idxRow === 0 ? 'SGPRO1' : 'SGPRO2'}</span>
                   </div>
                 )}
+              {console.log('resposta ', row.length - 1)}
             </S.Row>
           ))}
       </S.StationsContainer>
