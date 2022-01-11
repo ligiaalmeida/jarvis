@@ -72,7 +72,6 @@ const StationList = ({ stationList }: Types.StationListProps) => {
 
       const stationMaxFail =
         util.stationsWithTheBiggestFailure(stationListConcat);
-
       if (currentStatusPage.station.label.length === 0) {
         dispatch(
           stationActive({
@@ -174,17 +173,17 @@ const StationList = ({ stationList }: Types.StationListProps) => {
     <S.StationList>
       <S.StationsContainer className="station-list">
         {stations &&
-          stations.map((row, idxRow) => (
+          stations.reverse().map((row, idxRow) => (
             <S.Row key={idxRow} line={settingsGlobal.building}>
               {idxRow % 2 === 1
-                ? row.map((group, idxGroup) => (
+                ? row.reverse().map((group, idxGroup) => (
                     <React.Fragment key={idxGroup}>
                       {group[0] && (
                         <S.Group
                           key={idxGroup}
                           directionItems={group[0].directionOfStations}
                         >
-                          {group.map((station, idxStation) => (
+                          {group.reverse().map((station, idxStation) => (
                             <React.Fragment key={idxStation}>
                               <S.Station
                                 id={station.position_id}
@@ -348,7 +347,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     <span>{idxRow === 0 ? 'SGPRO1' : 'SGPRO2'}</span>
                   </div>
                 )}
-              {console.log('resposta ', row.length - 1)}
+              {/* {console.log('resposta ', row.length - 1)} */}
             </S.Row>
           ))}
       </S.StationsContainer>

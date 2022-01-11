@@ -14,10 +14,8 @@ export const useSetInterval = ({
 }: SetTimeoutProps) => {
   useEffect(() => {
     let clear: NodeJS.Timeout;
-
     (function timeout() {
       callback();
-
       if (condition) {
         clear = setTimeout(timeout, delay);
       }
