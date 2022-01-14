@@ -104,7 +104,7 @@ export const Font = styled(Typography)<{
 
 export const Group = styled(Grid)`
   background-color: #dddddd;
-  border: 1px solid #eff3f8;
+  border: 2px solid #eff3f8;
   border-radius: 4px;
 `;
 

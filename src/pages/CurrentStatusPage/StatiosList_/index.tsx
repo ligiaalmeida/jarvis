@@ -203,89 +203,117 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
               <Grid
                 container
                 direction="row"
-                justifyContent="flex-start"
-                alignItems="stretch"
+                justifyContent="space-between"
+                alignItems="center"
                 spacing={2}
               >
                 <Grid item>
-                  <Grid container direction="column" spacing={2}>
-                    <Grid item>
-                      <S.Legend backgroundColor="#F38383">
-                        <ArrowBack fontSize="large" />
-                      </S.Legend>
-                    </Grid>
-                    {drawEmptyStation(1)}
-                  </Grid>
-                </Grid>
-                <S.Group item>
                   <Grid
                     container
-                    direction="column"
-                    justifyContent="space-between"
-                    alignItems="center"
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="stretch"
                     spacing={2}
                   >
                     <Grid item>
-                      <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        spacing={2}
-                      >
-                        {drawStations('32.0', '38.1', '.1')}
-                      </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        spacing={2}
-                      >
-                        {drawStations('32.0', '38.1', '.0')}
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </S.Group>
-                <Grid item>
-                  <Grid
-                    container
-                    direction="column"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    spacing={2}
-                  >
-                    <Grid item>
-                      <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        spacing={2}
-                      >
-                        {drawEmptyStation(6)}
-                      </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Grid
-                        container
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        spacing={2}
-                      >
-                        {drawStations('28', '31')}
+                      <Grid container direction="column" spacing={2}>
                         <Grid item>
-                          <S.Legend rotate>
-                            <SubdirectoryArrowRight fontSize="large" />
+                          <S.Legend backgroundColor="#F38383">
+                            <ArrowBack fontSize="large" />
                           </S.Legend>
                         </Grid>
                         {drawEmptyStation(1)}
                       </Grid>
                     </Grid>
+                    <S.Group item>
+                      <Grid
+                        container
+                        direction="column"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                      >
+                        <Grid item>
+                          <Grid
+                            container
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            spacing={2}
+                          >
+                            {drawStations('32.0', '38.1', '.1')}
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Grid
+                            container
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            spacing={2}
+                          >
+                            {drawStations('32.0', '38.1', '.0')}
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </S.Group>
+                    <Grid item>
+                      <Grid
+                        container
+                        direction="column"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                      >
+                        <Grid item>
+                          <Grid
+                            container
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            spacing={2}
+                          >
+                            {drawEmptyStation(6)}
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Grid
+                            container
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            spacing={2}
+                          >
+                            {drawStations('28', '31')}
+                            <Grid item>
+                              <S.Legend rotate>
+                                <SubdirectoryArrowRight fontSize="large" />
+                              </S.Legend>
+                            </Grid>
+                            {drawEmptyStation(1)}
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid>
                   </Grid>
+                </Grid>
+                <Grid item>
+                  <h1
+                    style={{
+                      writingMode: 'vertical-lr',
+                      textOrientation: 'mixed',
+                      color: 'darkgray',
+                    }}
+                  >
+                    SGPRO1
+                  </h1>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item style={{ padding: '0' }}>
+              <Grid container direction="row-reverse">
+                <Grid item style={{ width: '55rem', marginRight: '33.1rem' }}>
+                  <Divider style={{ height: '5px' }} />
                 </Grid>
               </Grid>
             </Grid>
@@ -330,7 +358,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundColor={'blue'} />
+                              <S.LegendTooltip backgroundColor={'#006eff'} />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>
@@ -338,6 +366,9 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                     </Grid>
                   </Grid>
                 </S.Group>
+                <Grid item style={{ padding: '0' }}>
+                  <Divider orientation="vertical" style={{ width: '5px' }} />
+                </Grid>
                 <S.Group item>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
@@ -361,7 +392,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundColor={'blue'} />
+                              <S.LegendTooltip backgroundColor={'#006eff'} />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>
@@ -370,13 +401,20 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                   </Grid>
                 </S.Group>
                 <Grid item>
-                  <Grid item container direction="row-reverse" spacing={2}>
-                    {drawStations('19', '20')}
-                  </Grid>
-                  <Grid item container direction="row-reverse" spacing={2}>
-                    {drawEmptyStation(2)}
+                  <Grid container direction="column" spacing={2}>
+                    <Grid item>
+                      <Grid container direction="row-reverse" spacing={2}>
+                        {drawStations('19', '20')}
+                      </Grid>
+                    </Grid>
+                    <Grid item>
+                      <Grid container direction="row-reverse" spacing={2}>
+                        {drawEmptyStation(2)}
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
+
                 <S.Group item>
                   <Grid container direction="row" spacing={2}>
                     <Grid item>
@@ -400,6 +438,9 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                     </Grid>
                   </Grid>
                 </S.Group>
+                <Grid item style={{ padding: '0' }}>
+                  <Divider orientation="vertical" style={{ width: '5px' }} />
+                </Grid>
                 <S.Group item>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
@@ -423,7 +464,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundColor={'blue'} />
+                              <S.LegendTooltip backgroundColor={'#006eff'} />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>
@@ -436,6 +477,19 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                     {drawEmptyStation(2)}
                   </Grid>
                 </Grid>
+                <Grid item style={{ padding: '0' }}>
+                  <Divider orientation="vertical" style={{ width: '5px' }} />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item style={{ padding: '0' }}>
+              <Grid container direction="row">
+                <Grid item style={{ marginLeft: '23.2rem', width: '15.3rem' }}>
+                  <Divider style={{ height: '5px' }} />
+                </Grid>
+                <Grid item style={{ marginLeft: '39.2rem', width: '31.8em' }}>
+                  <Divider style={{ height: '5px' }} />
+                </Grid>
               </Grid>
             </Grid>
             <Grid item>
@@ -448,9 +502,24 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
               >
                 <Grid item>
                   <Grid container direction="column" spacing={2}>
-                    <Grid item container direction="row" spacing={2}>
-                      {drawEmptyStation(1)}
-                      {drawStations('13', '16')}
+                    <Grid item>
+                      <Grid container direction="row" spacing={2}>
+                        {drawEmptyStation(1)}
+                        {drawStations('13', '16')}
+                        <Grid item style={{ padding: '0' }}>
+                          <Divider
+                            orientation="vertical"
+                            style={{ width: '5px' }}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Grid item style={{ padding: '0' }}>
+                      <Grid container direction="row">
+                        <Grid item style={{ width: '38.5rem' }}>
+                          <Divider style={{ height: '5px' }} />
+                        </Grid>
+                      </Grid>
                     </Grid>
                     <Grid item container direction="row" spacing={2}>
                       {drawEmptyStation(5)}
@@ -458,27 +527,59 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <Grid container direction="column" spacing={2}>
+                  <Grid container direction="column-reverse" spacing={2}>
                     {drawStations('12.0', '12.1')}
                   </Grid>
                 </Grid>
                 <Grid item>
                   <Grid container direction="column" spacing={2}>
+                    {drawStations('11', '11')}
+                    {drawEmptyStation(1)}
+                  </Grid>
+                </Grid>
+                <S.Group item>
+                  <Grid container direction="row" spacing={2}>
+                    <Grid item>
+                      <Grid container direction="column" spacing={2}>
+                        <Grid item>
+                          <Grid container direction="row" spacing={2}>
+                            {drawStations('7.0', '10')}
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <S.Legend>
+                            <S.Font>Dress Up EOM Eixo</S.Font>
+                          </S.Legend>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </S.Group>
+                <Grid item>
+                  <Grid container direction="column" spacing={2}>
+                    {/* <Grid item>
+                      <Grid item style={{ padding: '0' }}>
+                        <Grid container direction="row-reverse">
+                          <Grid item style={{ width: '10rem' }}>
+                            <Divider style={{ height: '5px' }} />
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </Grid> */}
                     <Grid item>
                       <Grid container direction="row" spacing={2}>
-                        {drawStations('6.0', '11.0')}
+                        {drawStations('6.0', '6.0')}
                         {drawEmptyStation(2)}
                       </Grid>
                     </Grid>
                     <Grid item>
-                      <Grid container direction="row-reverse" spacing={2}>
-                        {drawEmptyStation(2)}
+                      <Grid container direction="row" spacing={2}>
                         <Grid item>
                           <S.Legend>
                             <ArrowUpward fontSize="large" />
                           </S.Legend>
                         </Grid>
-                        {drawEmptyStation(5)}
+                        {drawEmptyStation(2)}
                       </Grid>
                     </Grid>
                   </Grid>
@@ -489,47 +590,77 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
               <Grid
                 container
                 direction="row"
-                justifyContent="flex-start"
+                justifyContent="center"
                 alignItems="center"
                 spacing={2}
               >
                 <Grid item>
-                  <Grid container direction="column" spacing={2}>
-                    <Grid item container direction="row" spacing={2}>
-                      {drawEmptyStation(7)}
-                    </Grid>
-                    <Grid item container direction="row" spacing={2}>
-                      {drawEmptyStation(7)}
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <S.Group item>
-                  <Grid container direction="row" spacing={2}>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="center"
+                    spacing={2}
+                  >
                     <Grid item>
                       <Grid container direction="column" spacing={2}>
-                        <Grid item>
-                          <Grid container direction="row-reverse" spacing={2}>
-                            {drawStations('5.0', '5.4')}
-                          </Grid>
+                        <Grid item container direction="row" spacing={2}>
+                          {drawEmptyStation(7)}
                         </Grid>
-                        <Grid item>
-                          <Grid container direction="row-reverse" spacing={2}>
-                            {drawStations('4.1', '4.5')}
-                          </Grid>
+                        <Grid item container direction="row" spacing={2}>
+                          {drawEmptyStation(7)}
                         </Grid>
                       </Grid>
                     </Grid>
+                    <S.Group item>
+                      <Grid container direction="row" spacing={2}>
+                        <Grid item>
+                          <Grid container direction="column" spacing={2}>
+                            <Grid item>
+                              <Grid
+                                container
+                                direction="row-reverse"
+                                spacing={2}
+                              >
+                                {drawStations('5.0', '5.4')}
+                              </Grid>
+                            </Grid>
+                            <Grid item>
+                              <Grid
+                                container
+                                direction="row-reverse"
+                                spacing={2}
+                              >
+                                {drawStations('4.1', '4.5')}
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <S.Legend>
+                            <S.Font isVertical>Pedágios</S.Font>
+                          </S.Legend>
+                        </Grid>
+                      </Grid>
+                    </S.Group>
                     <Grid item>
-                      <S.Legend>
-                        <S.Font isVertical>Pedágios</S.Font>
-                      </S.Legend>
+                      <Grid container direction="column" spacing={2}>
+                        {drawEmptyStation(2)}
+                      </Grid>
                     </Grid>
                   </Grid>
-                </S.Group>
+                </Grid>
+
                 <Grid item>
-                  <Grid container direction="column" spacing={2}>
-                    {drawEmptyStation(2)}
-                  </Grid>
+                  <h1
+                    style={{
+                      writingMode: 'vertical-lr',
+                      textOrientation: 'mixed',
+                      color: 'darkgray',
+                    }}
+                  >
+                    SGPRO2
+                  </h1>
                 </Grid>
               </Grid>
             </Grid>
@@ -603,7 +734,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundColor={'blue'} />
+                              <S.LegendTooltip backgroundColor={'#006eff'} />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>

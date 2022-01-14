@@ -94,7 +94,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
         </Grid>
         <Grid item>
           <S.LegendTooltip>
-            <S.Tooltip backgroundColor="lightblue" shape="circle" />
+            <S.Tooltip backgroundColor="#006eff" shape="circle" />
             <S.Font fontColor="gray" fontSize="1.5rem" fontWeight="normal">
               Integração com outras linhas
             </S.Font>
