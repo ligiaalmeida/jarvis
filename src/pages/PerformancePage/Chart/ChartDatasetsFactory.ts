@@ -126,7 +126,7 @@ const ChartDatasetsFactory = (
       };
     case EChartList.FAILURE_FORECASTING:
       expected = data[identification].datasets.map((dataset) =>
-        perHour ? dataset.predicted_h : dataset.predicted
+        perHour ? Number(dataset.predicted_h) : Number(dataset.predicted)
       ) as number[];
       real = data[identification].datasets.map((dataset) =>
         perHour ? dataset.value_h : dataset.value
@@ -145,7 +145,9 @@ const ChartDatasetsFactory = (
           tempExpectedMin && tempRealMin
             ? Math.min(tempExpectedMin, tempRealMin)
             : Math.max(tempExpectedMin, tempRealMin),
-        expected: expected.reduce((a, b) => Math.max(a, b)),
+        expected: expected
+          .filter((item) => item > 0)
+          .reduce((a, b) => Math.max(a, b)),
         real: real.reduce((a, b) => Math.max(a, b)),
       };
     case EChartList.STOPPAGE_FORECASTING:
