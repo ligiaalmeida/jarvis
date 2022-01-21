@@ -381,10 +381,15 @@ const DetailedView = ({
                                       {stationSelected.label}
                                     </p>
                                   </S.Title>
-
-                                  <S.Information>
+                                  <>
+                                    {console.log(
+                                      'stationSelected',
+                                      stationSelected
+                                    )}
+                                  </>
+                                  {/* <S.Information>
                                     <div>
-                                      <p>{stationSelected.rfid_time.label}</p>
+                                      <p>{stationSelected.label}</p>
                                     </div>
                                     <div>
                                       <p>
@@ -399,8 +404,8 @@ const DetailedView = ({
                                         })}
                                       </p>
                                     </div>
-                                  </S.Information>
-                                  <S.Information>
+                                  </S.Information> */}
+                                  {/* <S.Information>
                                     <div>
                                       <p>
                                         {
@@ -423,8 +428,8 @@ const DetailedView = ({
                                         })}
                                       </p>
                                     </div>
-                                  </S.Information>
-                                  <S.Information>
+                                  </S.Information> */}
+                                  {/* <S.Information>
                                     <div className="information__accumulated-stop-time-container">
                                       <p>
                                         {
@@ -456,7 +461,7 @@ const DetailedView = ({
                                         })}
                                       </p>
                                     </div>
-                                  </S.Information>
+                                  </S.Information> */}
                                 </S.DetailsGroup>
                               </S.GeneralStats>
                             </S.DetailsDrawerContent>
