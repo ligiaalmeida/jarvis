@@ -205,6 +205,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
+                alignContent="center"
                 spacing={2}
               >
                 <Grid item>
@@ -298,21 +299,15 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <h1
-                    style={{
-                      writingMode: 'vertical-lr',
-                      textOrientation: 'mixed',
-                      color: 'darkgray',
-                    }}
-                  >
-                    SGPRO1
-                  </h1>
+                  <S.Font fontSize={'2rem'} isVertical={true}>
+                    SGPRO2
+                  </S.Font>
                 </Grid>
               </Grid>
             </Grid>
             <Grid item style={{ padding: '0' }}>
               <Grid container direction="row-reverse">
-                <Grid item style={{ width: '55rem', marginRight: '33.1rem' }}>
+                <Grid item style={{ width: '100%', marginRight: '87.7rem' }}>
                   <Divider style={{ height: '5px' }} />
                 </Grid>
               </Grid>
@@ -438,9 +433,6 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                     </Grid>
                   </Grid>
                 </S.Group>
-                <Grid item style={{ padding: '0' }}>
-                  <Divider orientation="vertical" style={{ width: '5px' }} />
-                </Grid>
                 <S.Group item>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
@@ -477,21 +469,16 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                     {drawEmptyStation(2)}
                   </Grid>
                 </Grid>
-                <Grid item style={{ padding: '0' }}>
-                  <Divider orientation="vertical" style={{ width: '5px' }} />
-                </Grid>
               </Grid>
             </Grid>
             <Grid item style={{ padding: '0' }}>
               <Grid container direction="row">
-                <Grid item style={{ marginLeft: '23.2rem', width: '15.3rem' }}>
-                  <Divider style={{ height: '5px' }} />
-                </Grid>
-                <Grid item style={{ marginLeft: '39.2rem', width: '31.8em' }}>
+                <Grid item style={{ marginLeft: '23.2rem', width: '100%' }}>
                   <Divider style={{ height: '5px' }} />
                 </Grid>
               </Grid>
             </Grid>
+
             <Grid item>
               <Grid
                 container
@@ -506,19 +493,6 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                       <Grid container direction="row" spacing={2}>
                         {drawEmptyStation(1)}
                         {drawStations('13', '16')}
-                        <Grid item style={{ padding: '0' }}>
-                          <Divider
-                            orientation="vertical"
-                            style={{ width: '5px' }}
-                          />
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    <Grid item style={{ padding: '0' }}>
-                      <Grid container direction="row">
-                        <Grid item style={{ width: '38.5rem' }}>
-                          <Divider style={{ height: '5px' }} />
-                        </Grid>
                       </Grid>
                     </Grid>
                     <Grid item container direction="row" spacing={2}>
@@ -557,15 +531,6 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                 </S.Group>
                 <Grid item>
                   <Grid container direction="column" spacing={2}>
-                    {/* <Grid item>
-                      <Grid item style={{ padding: '0' }}>
-                        <Grid container direction="row-reverse">
-                          <Grid item style={{ width: '10rem' }}>
-                            <Divider style={{ height: '5px' }} />
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid> */}
                     <Grid item>
                       <Grid container direction="row" spacing={2}>
                         {drawStations('6.0', '6.0')}
@@ -652,15 +617,9 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                 </Grid>
 
                 <Grid item>
-                  <h1
-                    style={{
-                      writingMode: 'vertical-lr',
-                      textOrientation: 'mixed',
-                      color: 'darkgray',
-                    }}
-                  >
-                    SGPRO2
-                  </h1>
+                  <S.Font fontSize={'2rem'} isVertical={true}>
+                    SGPRO1
+                  </S.Font>
                 </Grid>
               </Grid>
             </Grid>

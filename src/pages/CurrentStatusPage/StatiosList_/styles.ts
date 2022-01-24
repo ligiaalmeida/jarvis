@@ -71,6 +71,7 @@ export const StationEmpty = styled.div`
 export const Font = styled(Typography)<{
   isNumber?: boolean;
   isVertical?: boolean;
+  fontSize?: string;
 }>`
   ${({ isNumber }) =>
     isNumber
@@ -93,6 +94,14 @@ export const Font = styled(Typography)<{
     `
       writing-mode: vertical-lr;
       text-orientation: mixed;
+`}
+
+${({ fontSize }) =>
+    fontSize &&
+    `
+    && {
+      font-size: ${fontSize};
+    }
 `}
 
   margin: auto !important;
