@@ -42,7 +42,7 @@ export const Legend = styled.div<{
   min-height: 60px;
   min-width: 60px;
   border-radius: 4px;
-  background-color: lightgray;
+  background-color: #dddddd;
   h3 {
     margin: auto;
     word=break: break-all;
@@ -118,7 +118,7 @@ ${({ fontSize }) =>
 `;
 
 export const Group = styled(Grid)`
-  background-color: #dddddd;
+  background-color: #f3f3f3;
   border: 2px solid #eff3f8;
   border-radius: 4px;
 `;
