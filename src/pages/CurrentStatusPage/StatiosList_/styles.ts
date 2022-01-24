@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography, Container } from '@material-ui/core';
+
+export const CustomContainer = styled(Container)`
+  && {
+    padding: 0 20px;
+  }
+`;
 
 export const Station = styled.div<{
   backgroundColor?: string;

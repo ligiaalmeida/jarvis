@@ -191,7 +191,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
       alignContent="center"
     >
       <Grid item xs={10}>
-        <Container maxWidth="xl">
+        <S.CustomContainer maxWidth="xl">
           <Grid
             container
             direction="column"
@@ -724,7 +724,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
               </Grid>
             </Grid>
           </Grid>
-        </Container>
+        </S.CustomContainer>
       </Grid>
       <Grid item xs={2}>
         {station && <Station station={station} />}
