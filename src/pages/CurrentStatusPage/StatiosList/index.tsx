@@ -14,7 +14,7 @@ import { theme } from 'styles/theme';
 import { StationItemPosition } from '../types';
 import Station from './Station';
 
-const StationList_ = ({ stationList }: Types.StationListProps) => {
+const StationList = ({ stationList }: Types.StationListProps) => {
   const [station_list, setStationList] = useState<any[]>();
   const [station, setStation] = useState<any>(stationList.station_list[0]);
 
@@ -421,18 +421,18 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                         </Grid>
                         <Grid item>
                           <S.Legend>
-                            <S.Font>EQM Motores</S.Font>
+                            <S.Font>EOM Motores</S.Font>
                           </S.Legend>
                         </Grid>
                       </Grid>
                     </Grid>
-                    <Grid item>
-                      <Grid container direction="column-reverse" spacing={2}>
-                        {drawStations('24.0', '24.1')}
-                      </Grid>
-                    </Grid>
                   </Grid>
                 </S.Group>
+                <Grid item>
+                  <Grid container direction="column-reverse" spacing={2}>
+                    {drawStations('24.0', '24.1')}
+                  </Grid>
+                </Grid>
                 <S.Group item>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
@@ -448,7 +448,7 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
                             alignSelf="center"
                             customheigth="65%"
                           >
-                            <S.Font>EQM Cabine</S.Font>
+                            <S.Font>EOM Cabine</S.Font>
                           </S.GridToolTip>
                           <S.GridToolTip
                             item
@@ -733,4 +733,4 @@ const StationList_ = ({ stationList }: Types.StationListProps) => {
   );
 };
 
-export default StationList_;
+export default StationList;

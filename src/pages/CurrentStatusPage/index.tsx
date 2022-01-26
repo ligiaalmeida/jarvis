@@ -12,8 +12,7 @@ import Footer from 'components/Footer';
 
 import { StateMapToPropsGlobal, Pathname, RouterProps } from 'types';
 
-import StationList from './StationList';
-import StationList_ from './StatiosList_';
+import StationList from './StatiosList';
 
 import * as S from './styles';
 
@@ -62,8 +61,7 @@ const CurrentStatusPage = () => {
             </h3>
           </S.Signals>
         </InputList>
-        {/* {data && <StationList stationList={data.current_status} />} */}
-        {data && <StationList_ stationList={data.current_status} />}
+        {data && <StationList stationList={data.current_status} />}
       </S.Main>
       <Footer />
     </>
