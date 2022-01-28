@@ -15,7 +15,7 @@ export default {
       },
       statistics: {
         title: {
-          pt_br: 'Estatísticas do',
+          pt_br: 'Falhas do',
           en_us: 'Statistics',
           de: 'Statistiken',
         },

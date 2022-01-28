@@ -17,6 +17,11 @@ export const DetailsGroup = styled.div`
   }};
 `;
 
+export const Scroll = styled.div`
+    max-height 140px;
+    overflow: auto;
+`;
+
 export const Information = styled.div.attrs({
   className: 'information',
 })`
