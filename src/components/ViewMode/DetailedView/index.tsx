@@ -62,16 +62,6 @@ const DetailedView = ({
   const stationSelected = useSelector(
     (state: StateMapToPropsGlobal) => state[namespace].stationActive
   );
-
-  const [teste, setTeste] = useState<any[]>();
-  useEffect(() => {
-    setTeste([
-      ...stationSelected.fail_list,
-      ...stationSelected.fail_list,
-      ...stationSelected.fail_list,
-    ]);
-  }, [stationSelected]);
-
   let payload: CurrentFaultsPayload[] | FaultPredictionPayload[] | undefined;
   const data: Array<React.ReactElement>[] = [[]];
   const idChildren: Array<string>[] = [[]];
@@ -391,24 +381,26 @@ const DetailedView = ({
                                     </p>
                                   </S.Title>
                                   <S.Scroll>
-                                    {teste?.map((element, index) => (
-                                      <S.Information key={index}>
-                                        <div>
-                                          <p>{element.label}</p>
-                                        </div>
-                                        <div>
-                                          <p>
-                                            {timeFormat({
-                                              displayFormat: 'HH:MM:SS',
-                                              separatorHour: 'h ',
-                                              separatorMinute: "' ",
-                                              separatorSeconds: '"',
-                                              time: Number(element.duration),
-                                            })}
-                                          </p>
-                                        </div>
-                                      </S.Information>
-                                    ))}
+                                    {stationSelected.fail_list?.map(
+                                      (element, index) => (
+                                        <S.Information key={index}>
+                                          <div>
+                                            <p>{element.label}</p>
+                                          </div>
+                                          <div>
+                                            <p>
+                                              {timeFormat({
+                                                displayFormat: 'HH:MM:SS',
+                                                separatorHour: 'h ',
+                                                separatorMinute: "' ",
+                                                separatorSeconds: '"',
+                                                time: Number(element.duration),
+                                              })}
+                                            </p>
+                                          </div>
+                                        </S.Information>
+                                      )
+                                    )}
                                   </S.Scroll>
                                 </S.DetailsGroup>
                               </S.GeneralStats>
