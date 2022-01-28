@@ -54,7 +54,8 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
           isSelected={currentFaultsPage.stationActive.label === data.label}
           typeView={typeView}
           onClick={() => {
-            dispatch(stationActive(data as Types.CurrentFaultsPayload));
+            if (isOnClick)
+              dispatch(stationActive(data as Types.CurrentFaultsPayload));
           }}
           isNavigation={
             !settingsGlobal.toggleNavigation &&
