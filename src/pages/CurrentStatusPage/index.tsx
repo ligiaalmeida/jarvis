@@ -32,8 +32,6 @@ const CurrentStatusPage = () => {
     namespace: `/${settingsGlobal.building}_${namespace.CURRENT_STATUS}`,
   });
 
-  // const data = payload;
-
   if (process.env.NODE_ENV === 'development') {
     console.groupCollapsed('Current Status');
     console.log(data);

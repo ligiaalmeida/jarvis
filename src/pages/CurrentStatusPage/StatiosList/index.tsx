@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import * as Types from '../types';
-import { Grid, Tooltip, Container, Divider } from '@material-ui/core';
+import { Grid, Tooltip, Divider } from '@material-ui/core';
 import * as S from './styles';
 import {
   ArrowUpward,
