@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Grid, Typography, Divider } from '@material-ui/core';
+import { theme } from 'styles/theme';
 
 export const CustomGrid = styled(Grid)<{
   custompadding?: string;
@@ -99,14 +100,14 @@ export const Legend = styled.div<{
   min-height: 60px;
   min-width: 60px;
   border-radius: 4px;
-  background-color: #cccccc;
+  background-color: ${theme.colors.grey_12};
   h3 {
     margin: auto;
     word=break: break-all;
   }
   svg {
     margin: auto;
-    color: #666666;
+    color: ${theme.colors.grey_13};
     width: 3vh;
     height: 3vh;
   }
@@ -142,7 +143,7 @@ svg {
 `;
 
 export const StationEmpty = styled.div`
-  border: 1px solid #dddddd;
+  border: 1px solid ${theme.colors.grey_14};
   width: calc((100vw - 80rem) / 16);
   height: calc((100vw - 80rem) / 16);
   border-radius: 4px;
@@ -156,13 +157,13 @@ export const Font = styled(Typography)<{
   ${({ isnumber }) =>
     isnumber === true
       ? `
-    color: #fff;
+    color: ${theme.colors.white};
       && {
         font-size: 2.5vh;
       }
     `
       : `
-    color: #666666;
+    color: ${theme.colors.grey_13};
     && {
       font-size: 1.5vh;
       font-weight: 700;
@@ -191,8 +192,8 @@ ${({ fontSize }) =>
 `;
 
 export const Group = styled(Grid)`
-  background-color: #dddddd;
-  border: 2px solid #eff3f8;
+  background-color: ${theme.colors.grey_14};
+  border: 2px solid ${theme.colors.grey_6};
   border-radius: 4px;
 `;
 

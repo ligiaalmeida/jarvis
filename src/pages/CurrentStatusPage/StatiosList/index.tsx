@@ -82,7 +82,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                   >
                     <S.LegendTooltip
                       backgroundcolor={
-                        element.position_id === '0' ? 'purple' : 'orange'
+                        element.position_id === '0'
+                          ? theme.colors.primary_6
+                          : theme.colors.primary_3
                       }
                     />
                   </Tooltip>
@@ -221,7 +223,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     <Grid item>
                       <Grid container direction="column" spacing={2}>
                         <Grid item>
-                          <S.Legend backgroundcolor="#F38383">
+                          <S.Legend backgroundcolor={theme.colors.primary_9}>
                             <ArrowBack />
                           </S.Legend>
                         </Grid>
@@ -359,7 +361,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundcolor={'#006eff'} />
+                              <S.LegendTooltip
+                                backgroundcolor={theme.colors.primary_7}
+                              />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>
@@ -396,7 +400,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundcolor={'#006eff'} />
+                              <S.LegendTooltip
+                                backgroundcolor={theme.colors.primary_7}
+                              />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>
@@ -465,7 +471,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundcolor={'#006eff'} />
+                              <S.LegendTooltip
+                                backgroundcolor={theme.colors.primary_7}
+                              />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>
@@ -664,7 +672,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 <Grid item>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
-                      <S.Legend backgroundcolor="#80CB44">
+                      <S.Legend backgroundcolor={theme.colors.primary_10}>
                         <ArrowForward />
                       </S.Legend>
                     </Grid>
@@ -706,7 +714,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                             customheigth="35%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
-                              <S.LegendTooltip backgroundcolor={'#006eff'} />
+                              <S.LegendTooltip
+                                backgroundcolor={theme.colors.primary_7}
+                              />
                             </Tooltip>
                           </S.GridToolTip>
                         </Grid>
