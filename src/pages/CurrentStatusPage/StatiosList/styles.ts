@@ -1,26 +1,37 @@
 import styled from 'styled-components';
-import { Grid, Typography, Container } from '@material-ui/core';
+import { Grid, Typography, Divider } from '@material-ui/core';
 
-export const CustomContainer = styled(Container)`
+export const CustomContainer = styled.div`
+  padding: 0 10px;
+`;
+
+export const StationDivider = styled(Divider)<{ direction?: string }>`
   && {
-    padding: 0 20px;
+    ${({ direction }) =>
+      direction === 'vertical'
+        ? `
+  width:calc((10vw - 8rem) / 20)
+  `
+        : `
+  height:calc((10vw - 8rem) / 20)
+  `}
   }
 `;
 
 export const Station = styled.div<{
-  backgroundColor?: string;
+  backgroundcolor?: string;
   isActive?: boolean;
 }>`
-  ${({ backgroundColor }) =>
-    backgroundColor &&
+  ${({ backgroundcolor }) =>
+    backgroundcolor &&
     `
-background-color: ${backgroundColor};
+background-color: ${backgroundcolor};
 `}
   display: flex;
   justify-content: center;
   text-align: center;
-  width: 60px;
-  height: 60px;
+  width: calc((100vw - 80rem) / 16);
+  height: calc((100vw - 80rem) / 16);
   border-radius: 4px;
 
   ${({ isActive }) =>
@@ -31,14 +42,16 @@ background-color: ${backgroundColor};
 `;
 
 export const Legend = styled.div<{
-  backgroundColor?: string;
+  backgroundcolor?: string;
   rotate?: boolean;
+  customWidth?: string;
+  customHeight?: string;
 }>`
   display: flex;
   justify-content: center;
   text-align: center;
-  width: 100%;
-  height: 100%;
+  width: calc((100vw - 80rem) / 16);
+  height: calc((100vw - 80rem) / 16);
   min-height: 60px;
   min-width: 60px;
   border-radius: 4px;
@@ -51,16 +64,31 @@ export const Legend = styled.div<{
     margin: auto;
     color: #666666;
   }
+
+  ${({ customHeight }) =>
+    customHeight &&
+    `
+height: ${customHeight};
+}
+`}
+
+  ${({ customWidth }) =>
+    customWidth &&
+    `
+width: ${customWidth};
+}
+`}
+
   ${({ rotate }) =>
     rotate &&
     `
   transform: rotate(180deg);
 }
 `}
-  ${({ backgroundColor }) =>
-    backgroundColor &&
+  ${({ backgroundcolor }) =>
+    backgroundcolor &&
     `
-background-color: ${backgroundColor};
+background-color: ${backgroundcolor};
 svg {
   color: white;
 }
@@ -69,34 +97,33 @@ svg {
 
 export const StationEmpty = styled.div`
   border: 1px solid #dddddd;
-  width: 60px;
-  height: 60px;
+  width: calc((100vw - 80rem) / 16);
+  height: calc((100vw - 80rem) / 16);
   border-radius: 4px;
 `;
 
 export const Font = styled(Typography)<{
-  isNumber?: boolean;
-  isVertical?: boolean;
+  isnumber?: boolean;
+  isvertical?: boolean;
   fontSize?: string;
 }>`
-  ${({ isNumber }) =>
-    isNumber
+  ${({ isnumber }) =>
+    isnumber === true
       ? `
     color: #fff;
-    && {
-      font-size: 1.8rem;
-    }
+      && {
+        font-size: 2.5vh;
+      }
     `
       : `
     color: #666666;
     && {
-      font-size: 1.3rem;
+      font-size: 1.5vh;
       font-weight: 700;
-    }
   `}
 
-  ${({ isVertical }) =>
-    isVertical &&
+  ${({ isvertical }) =>
+    isvertical &&
     `
       writing-mode: vertical-lr;
       text-orientation: mixed;
@@ -123,17 +150,17 @@ export const Group = styled(Grid)`
   border-radius: 4px;
 `;
 
-export const LegendTooltip = styled.div<{ backgroundColor: string }>`
+export const LegendTooltip = styled.div<{ backgroundcolor: string }>`
   width: 10px;
   height: 10px;
   border-radius: 1vw;
-  ${({ backgroundColor }) => `
-  background-color: ${backgroundColor};
+  ${({ backgroundcolor }) => `
+  background-color: ${backgroundcolor};
 `}
 `;
 
 export const GridToolTip = styled(Grid)<{
-  alignSelf: string;
+  alignself: string;
   customheigth: string;
 }>`
   display: flex;
@@ -141,8 +168,8 @@ export const GridToolTip = styled(Grid)<{
   h3 {
     margin: 0;
   }
-  ${({ alignSelf }) => `
-   align-self: ${alignSelf} !important;
+  ${({ alignself }) => `
+   align-self: ${alignself} !important;
 `}
   ${({ customheigth }) => `
 height: ${customheigth} !important;

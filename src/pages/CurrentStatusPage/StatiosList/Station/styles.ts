@@ -1,11 +1,19 @@
 import styled from 'styled-components';
-import { Typography, Card } from '@material-ui/core';
+import { Typography, Card, Grid } from '@material-ui/core';
 
-export const CardStation = styled(Card)<{ backgroundColor?: string }>`
-  ${({ backgroundColor, theme }) =>
-    backgroundColor &&
+export const GridItem = styled(Grid)<{ textalign?: string }>`
+  ${({ textalign }) =>
+    textalign &&
     `
-        background-color: ${backgroundColor} !important;
+text-align: ${textalign};
+`}
+`;
+
+export const CardStation = styled(Card)<{ backgroundcolor?: string }>`
+  ${({ backgroundcolor, theme }) =>
+    backgroundcolor &&
+    `
+        background-color: ${backgroundcolor} !important;
         border-radius: ${theme.unit + 4}px;
     `}
 
@@ -17,16 +25,16 @@ export const CardStation = styled(Card)<{ backgroundColor?: string }>`
 `;
 
 export const Font = styled(Typography)<{
-  fontColor: string;
+  fontcolor: string;
   fontSize: string;
   fontWeight: string;
 }>`
-  ${({ fontColor, fontSize, fontWeight }) =>
-    fontColor &&
+  ${({ fontcolor, fontSize, fontWeight }) =>
+    fontcolor &&
     fontSize &&
     fontWeight &&
     `  && {
-      color: ${fontColor} ;
+      color: ${fontcolor} ;
       font-size: ${fontSize} ;
       font-weight:${fontWeight};
     }
@@ -39,7 +47,7 @@ export const LegendTooltip = styled.div`
 `;
 
 export const Tooltip = styled.div<{
-  backgroundColor?: string;
+  backgroundcolor?: string;
   shape?: string;
   hasBorder?: boolean;
 }>`
@@ -61,7 +69,7 @@ border: 1px solid black;
   width: 1vw;
   height: 1vw;
   margin-right: 5%;
-  ${({ backgroundColor }) => `
-background-color: ${backgroundColor};
+  ${({ backgroundcolor }) => `
+background-color: ${backgroundcolor};
 `}
 `;
