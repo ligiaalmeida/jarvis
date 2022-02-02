@@ -1,6 +1,50 @@
 import styled from 'styled-components';
 import { Grid, Typography, Divider } from '@material-ui/core';
 
+export const CustomGrid = styled(Grid)<{
+  custompadding?: string;
+  marginleft?: string;
+  marginright?: string;
+  customwidth?: string;
+  customheight?: string;
+}>`
+  ${({ custompadding }) =>
+    custompadding &&
+    `
+    && {
+      padding: ${custompadding} !important;
+    }
+`}
+
+  ${({ marginleft }) =>
+    marginleft &&
+    `
+    && {
+      margin-left: ${marginleft};
+    }
+`}
+
+${({ marginright }) =>
+    marginright &&
+    `
+    && {
+      margin-right: ${marginright};
+    }
+`}
+
+${({ customwidth }) =>
+    customwidth &&
+    `
+width: ${customwidth};
+`}
+
+${({ customheight }) =>
+    customheight &&
+    `
+height: ${customheight};
+`}
+`;
+
 export const CustomContainer = styled.div`
   padding: 0 10px;
 `;
@@ -63,6 +107,8 @@ export const Legend = styled.div<{
   svg {
     margin: auto;
     color: #666666;
+    width: 3vh;
+    height: 3vh;
   }
 
   ${({ customHeight }) =>

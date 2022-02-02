@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import * as Types from '../types';
-import { Grid, Tooltip, Divider } from '@material-ui/core';
+import { Grid, Tooltip } from '@material-ui/core';
 import * as S from './styles';
 import {
   ArrowUpward,
@@ -9,14 +9,16 @@ import {
   SubdirectoryArrowLeft,
   SubdirectoryArrowRight,
 } from '@material-ui/icons';
-import { ColorStatusType, Stations } from 'types';
+import { ColorStatusType, Stations, StationsList } from 'types';
 import { theme } from 'styles/theme';
 import { StationItemPosition } from '../types';
 import Station from './Station';
 
 const StationList = ({ stationList }: Types.StationListProps) => {
   const [station_list, setStationList] = useState<any[]>();
-  const [station, setStation] = useState<any>(stationList.station_list[0]);
+  const [station, setStation] = useState<StationsList>(
+    stationList.station_list[0]
+  );
 
   const drawEmptyStation = (numberOfStatios: number) => {
     const draw = [];
@@ -220,9 +222,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                       <Grid container direction="column" spacing={2}>
                         <Grid item>
                           <S.Legend backgroundcolor="#F38383">
-                            <ArrowBack
-                              style={{ width: '3vh', height: '3vh' }}
-                            />
+                            <ArrowBack />
                           </S.Legend>
                         </Grid>
                         {drawEmptyStation(1)}
@@ -290,9 +290,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                             {drawStations('28', '31')}
                             <Grid item>
                               <S.Legend rotate>
-                                <SubdirectoryArrowRight
-                                  style={{ width: '3vh', height: '3vh' }}
-                                />
+                                <SubdirectoryArrowRight />
                               </S.Legend>
                             </Grid>
                             {drawEmptyStation(1)}
@@ -309,20 +307,17 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item style={{ padding: '0' }}>
+            <S.CustomGrid item custompadding="0">
               <Grid container direction="row-reverse">
-                <Grid
+                <S.CustomGrid
                   item
-                  style={{
-                    width:
-                      'calc( 100% - calc(( calc((100vw - 47.7rem) / 16) * 11) - calc((10vw - 8rem) / 20)))',
-                    marginRight: 'auto',
-                  }}
+                  customwidth="calc( 100% - calc(( calc((100vw - 47.7rem) / 16) * 11) - calc((10vw - 8rem) / 20)))"
+                  marginright="auto"
                 >
                   <S.StationDivider direction="horizontal" />
-                </Grid>
+                </S.CustomGrid>
               </Grid>
-            </Grid>
+            </S.CustomGrid>
             <Grid item>
               <Grid
                 container
@@ -338,9 +333,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 </Grid>
                 <Grid item>
                   <S.Legend customHeight="100%" rotate>
-                    <SubdirectoryArrowLeft
-                      style={{ width: '3vh', height: '3vh' }}
-                    />
+                    <SubdirectoryArrowLeft />
                   </S.Legend>
                 </Grid>
                 <S.Group item>
@@ -374,12 +367,12 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     </Grid>
                   </Grid>
                 </S.Group>
-                <Grid item style={{ padding: '0' }}>
+                <S.CustomGrid item custompadding="0">
                   <S.StationDivider
                     direction="vertical"
                     orientation="vertical"
                   />
-                </Grid>
+                </S.CustomGrid>
                 <S.Group item>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
@@ -487,20 +480,17 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item style={{ padding: '0' }}>
+            <S.CustomGrid item custompadding="0">
               <Grid container direction="row">
-                <Grid
+                <S.CustomGrid
                   item
-                  style={{
-                    marginLeft: 'auto',
-                    width:
-                      'calc( 100% - calc( calc((100vw - 52.3rem) / 16) *3))',
-                  }}
+                  marginleft="auto"
+                  customwidth="calc( 100% - calc( calc((100vw - 52.3rem) / 16) *3))"
                 >
                   <S.StationDivider direction="horizontal" />
-                </Grid>
+                </S.CustomGrid>
               </Grid>
-            </Grid>
+            </S.CustomGrid>
 
             <Grid item>
               <Grid
@@ -564,9 +554,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                       <Grid container direction="row" spacing={2}>
                         <Grid item>
                           <S.Legend>
-                            <ArrowUpward
-                              style={{ width: '3vh', height: '3vh' }}
-                            />
+                            <ArrowUpward />
                           </S.Legend>
                         </Grid>
                         {drawEmptyStation(2)}
@@ -659,7 +647,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 {drawEmptyStation(8)}
                 <Grid item>
                   <S.Legend>
-                    <ArrowUpward style={{ width: '3vh', height: '3vh' }} />
+                    <ArrowUpward />
                   </S.Legend>
                 </Grid>
                 {drawEmptyStation(5)}
@@ -677,7 +665,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
                       <S.Legend backgroundcolor="#80CB44">
-                        <ArrowForward style={{ width: '3vh', height: '3vh' }} />
+                        <ArrowForward />
                       </S.Legend>
                     </Grid>
                     {drawEmptyStation(1)}
