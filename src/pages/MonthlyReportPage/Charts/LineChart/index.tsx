@@ -159,81 +159,135 @@ const LineChart = ({
 
   const datasets: ChartData<chartjs.ChartData> = {
     labels: values ? ['', ...values.keys, ''] : [],
-    datasets: [
-      {
-        ...chartConfigDefault,
-        label: labels?.minimum,
-        type: 'line',
-        fill: false,
-        order: 0,
-        pointRadius: 0,
-        backgroundColor: theme.colors.grey_2,
-        borderColor: theme.colors.grey_2,
-        pointBorderWidth: 1,
-        pointBorderColor: lighten(theme.colors.grey_2, 0.65),
-        data: values ? [null, ...values.minimum, null] : [],
-      },
-      {
-        ...chartConfigDefault,
-        label: labels?.medium,
-        type: 'line',
-        fill: false,
-        order: 1,
-        pointRadius: 0,
-        backgroundColor: theme.colors.primary_1,
-        borderColor: theme.colors.primary_1,
-        pointBorderWidth: 1,
-        pointBorderColor: lighten(theme.colors.primary_1, 0.5),
-        data: values ? [null, ...values.medium, null] : [],
-      },
-      {
-        ...chartConfigDefault,
-        label: labels?.maximum,
-        type: 'line',
-        fill: false,
-        order: 2,
-        pointRadius: 0,
-        backgroundColor: theme.colors.secondary_1,
-        borderColor: theme.colors.secondary_1,
-        pointBorderWidth: 1,
-        pointBorderColor: lighten(theme.colors.secondary_1, 0.35),
-        data: values ? [null, ...values.maximum, null] : [],
-      },
-      {
-        ...chartConfigDefault,
-        label: labels?.value,
-        fill: false,
-        order: 4,
-        type: 'bar',
-        backgroundColor: 'rgba(110, 160, 70, 0.6)',
-        borderColor: 'rgba(110, 160, 70, 0.6)',
-        barThickness: 20,
-        borderWidth: 0,
-        hoverBackgroundColor: theme.colors.primary_4,
-        pointBorderWidth: 1,
-        data: values ? [null, ...values.value, null] : [],
-      },
-
+    datasets:
       type === 'daily_production' || type === 'daily_deviation'
-        ? {
-            ...chartConfigDefault,
-            label: labels?.predicted,
-            fill: false,
-            order: 3,
-            type: 'bar',
-            backgroundColor: 'rgba(80, 151, 171, 0.8)',
-            borderColor: 'rgba(80, 151, 171, 0.8)',
-            barThickness: 20,
-            borderWidth: 0,
-            hoverBackgroundColor: theme.colors.primary_2,
-            pointBorderWidth: 1,
-            data:
-              values && values.predicted
-                ? [null, ...values.predicted, null]
-                : [],
-          }
-        : {},
-    ],
+        ? [
+            {
+              ...chartConfigDefault,
+              label: labels?.minimum,
+              type: 'line',
+              fill: false,
+              order: 0,
+              pointRadius: 0,
+              backgroundColor: theme.colors.grey_2,
+              borderColor: theme.colors.grey_2,
+              pointBorderWidth: 1,
+              pointBorderColor: lighten(theme.colors.grey_2, 0.65),
+              data: values ? [null, ...values.minimum, null] : [],
+            },
+            {
+              ...chartConfigDefault,
+              label: labels?.medium,
+              type: 'line',
+              fill: false,
+              order: 1,
+              pointRadius: 0,
+              backgroundColor: theme.colors.primary_1,
+              borderColor: theme.colors.primary_1,
+              pointBorderWidth: 1,
+              pointBorderColor: lighten(theme.colors.primary_1, 0.5),
+              data: values ? [null, ...values.medium, null] : [],
+            },
+            {
+              ...chartConfigDefault,
+              label: labels?.maximum,
+              type: 'line',
+              fill: false,
+              order: 2,
+              pointRadius: 0,
+              backgroundColor: theme.colors.secondary_1,
+              borderColor: theme.colors.secondary_1,
+              pointBorderWidth: 1,
+              pointBorderColor: lighten(theme.colors.secondary_1, 0.35),
+              data: values ? [null, ...values.maximum, null] : [],
+            },
+            {
+              ...chartConfigDefault,
+              label: labels?.value,
+              fill: false,
+              order: 4,
+              type: 'bar',
+              backgroundColor: 'rgba(110, 160, 70, 0.6)',
+              borderColor: 'rgba(110, 160, 70, 0.6)',
+              barThickness: 20,
+              borderWidth: 0,
+              hoverBackgroundColor: theme.colors.primary_4,
+              pointBorderWidth: 1,
+              data: values ? [null, ...values.value, null] : [],
+            },
+            {
+              ...chartConfigDefault,
+              label: labels?.predicted,
+              fill: false,
+              order: 3,
+              type: 'bar',
+              backgroundColor: 'rgba(80, 151, 171, 0.8)',
+              borderColor: 'rgba(80, 151, 171, 0.8)',
+              barThickness: 20,
+              borderWidth: 0,
+              hoverBackgroundColor: theme.colors.primary_2,
+              pointBorderWidth: 1,
+              data:
+                values && values.predicted
+                  ? [null, ...values.predicted, null]
+                  : [],
+            },
+          ]
+        : [
+            {
+              ...chartConfigDefault,
+              label: labels?.minimum,
+              type: 'line',
+              fill: false,
+              order: 0,
+              pointRadius: 0,
+              backgroundColor: theme.colors.grey_2,
+              borderColor: theme.colors.grey_2,
+              pointBorderWidth: 1,
+              pointBorderColor: lighten(theme.colors.grey_2, 0.65),
+              data: values ? [null, ...values.minimum, null] : [],
+            },
+            {
+              ...chartConfigDefault,
+              label: labels?.medium,
+              type: 'line',
+              fill: false,
+              order: 1,
+              pointRadius: 0,
+              backgroundColor: theme.colors.primary_1,
+              borderColor: theme.colors.primary_1,
+              pointBorderWidth: 1,
+              pointBorderColor: lighten(theme.colors.primary_1, 0.5),
+              data: values ? [null, ...values.medium, null] : [],
+            },
+            {
+              ...chartConfigDefault,
+              label: labels?.maximum,
+              type: 'line',
+              fill: false,
+              order: 2,
+              pointRadius: 0,
+              backgroundColor: theme.colors.secondary_1,
+              borderColor: theme.colors.secondary_1,
+              pointBorderWidth: 1,
+              pointBorderColor: lighten(theme.colors.secondary_1, 0.35),
+              data: values ? [null, ...values.maximum, null] : [],
+            },
+            {
+              ...chartConfigDefault,
+              label: labels?.value,
+              fill: false,
+              order: 4,
+              type: 'bar',
+              backgroundColor: 'rgba(110, 160, 70, 0.6)',
+              borderColor: 'rgba(110, 160, 70, 0.6)',
+              barThickness: 20,
+              borderWidth: 0,
+              hoverBackgroundColor: theme.colors.primary_4,
+              pointBorderWidth: 1,
+              data: values ? [null, ...values.value, null] : [],
+            },
+          ],
   };
 
   Chart.Tooltip.positioners.cursor = (_chartElements, coordinates) => {
@@ -289,46 +343,7 @@ const LineChart = ({
               <span>{date}</span>
             </div>
           </div>
-          <S.Labels>
-            <LabelItemChart
-              label={labels?.value}
-              colorTag={theme.colors.primary_4}
-              description={
-                texts.charts.daily_production.tooltips.daily_production.pt_br
-              }
-            />
 
-            {(type === 'daily_production' || type === 'daily_deviation') &&
-              labels.predicted && (
-                <LabelItemChart
-                  label={labels.predicted}
-                  colorTag={theme.colors.primary_2}
-                  description={
-                    type === 'daily_production'
-                      ? texts.charts.daily_production.tooltips
-                          .expected_daily_production.pt_br
-                      : texts.charts.daily_deviation.tooltips
-                          .expected_daily_deviation.pt_br
-                  }
-                />
-              )}
-
-            <LabelItemChart
-              label={labels.minimum}
-              colorTag={theme.colors.grey_2}
-              description={texts.charts[type].tooltips.minimum.pt_br}
-            />
-            <LabelItemChart
-              label={labels.medium}
-              colorTag={theme.colors.primary_1}
-              description={texts.charts[type].tooltips.medium.pt_br}
-            />
-            <LabelItemChart
-              label={labels.maximum}
-              colorTag={theme.colors.secondary_1}
-              description={texts.charts[type].tooltips.maximum.pt_br}
-            />
-          </S.Labels>
           <ChartMonitor
             page="monthlyReport"
             labels={{
@@ -358,9 +373,12 @@ const LineChart = ({
                     }
                   : { ...customTooltip }
               }
-              legend={{ display: false }}
+              legend={{ display: true }}
               plugins={[
                 {
+                  legend: {
+                    position: 'top',
+                  },
                   style: { enable: true },
                 },
               ]}
