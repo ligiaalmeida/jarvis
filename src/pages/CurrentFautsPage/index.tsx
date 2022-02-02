@@ -42,8 +42,6 @@ const CurrentFaultsPage = () => {
     namespace: `/${settingsGlobal.building}_${namespace.CURRENT_FAULTS}`,
   });
 
-  // const dataPay = payload;
-
   useEffect(() => {
     if (settingsPage.modeView === 'detailed') {
       document.body.classList.add('current-faults__bg--primary2');

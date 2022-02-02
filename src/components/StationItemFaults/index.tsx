@@ -146,14 +146,6 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
                 <span>&nbsp;</span>
               </S.Footer>
             )}
-            {/* {innerHeightScreen[0] >= 1280 &&
-              innerHeightScreen[1] <= 900 &&
-              (data as Types.FaultPredictionPayload).stop_fail_list.length > 2 && (
-                <S.Footer>
-                  <span>Total de falhas: {(data as Types.FaultPredictionPayload).stop_fail_list.length}</span>
-                  <span>&nbsp;</span>
-                </S.Footer>
-              )} */}
           </S.Wrapper>
         </S.StationItemFaultsContainer>
       )}

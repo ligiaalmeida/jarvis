@@ -62,7 +62,6 @@ const DetailedView = ({
   const stationSelected = useSelector(
     (state: StateMapToPropsGlobal) => state[namespace].stationActive
   );
-
   let payload: CurrentFaultsPayload[] | FaultPredictionPayload[] | undefined;
   const data: Array<React.ReactElement>[] = [[]];
   const idChildren: Array<string>[] = [[]];
@@ -381,82 +380,28 @@ const DetailedView = ({
                                       {stationSelected.label}
                                     </p>
                                   </S.Title>
-
-                                  <S.Information>
-                                    <div>
-                                      <p>{stationSelected.rfid_time.label}</p>
-                                    </div>
-                                    <div>
-                                      <p>
-                                        {timeFormat({
-                                          displayFormat: 'HH:MM:SS',
-                                          separatorHour: 'h ',
-                                          separatorMinute: "' ",
-                                          separatorSeconds: '"',
-                                          time: Number(
-                                            stationSelected.rfid_time.duration
-                                          ),
-                                        })}
-                                      </p>
-                                    </div>
-                                  </S.Information>
-                                  <S.Information>
-                                    <div>
-                                      <p>
-                                        {
-                                          stationSelected.area_invasion_time
-                                            .label
-                                        }
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <p>
-                                        {timeFormat({
-                                          displayFormat: 'HH:MM:SS',
-                                          separatorHour: 'h ',
-                                          separatorMinute: "' ",
-                                          separatorSeconds: '"',
-                                          time: Number(
-                                            stationSelected.area_invasion_time
-                                              .duration
-                                          ),
-                                        })}
-                                      </p>
-                                    </div>
-                                  </S.Information>
-                                  <S.Information>
-                                    <div className="information__accumulated-stop-time-container">
-                                      <p>
-                                        {
-                                          stationSelected.accumulated_stop_time
-                                            .label
-                                        }
-                                      </p>
-                                      <Tooltip
-                                        classNameContainerTooltip="information__accumulated-stop-time__tooltip"
-                                        description="Tempo acumulado de paradas do tipo Interlock"
-                                        xPosition="-26px"
-                                        yPosition="8px"
-                                      />
-                                    </div>
-                                    <div>
-                                      <span>
-                                        {texts.drawer.general_stats.label.pt_br}
-                                      </span>
-                                      <p>
-                                        {timeFormat({
-                                          displayFormat: 'HH:MM:SS',
-                                          separatorHour: 'h ',
-                                          separatorMinute: "' ",
-                                          separatorSeconds: '"',
-                                          time: Number(
-                                            stationSelected
-                                              .accumulated_stop_time.duration
-                                          ),
-                                        })}
-                                      </p>
-                                    </div>
-                                  </S.Information>
+                                  <S.Scroll>
+                                    {stationSelected.fail_list?.map(
+                                      (element, index) => (
+                                        <S.Information key={index}>
+                                          <div>
+                                            <p>{element.label}</p>
+                                          </div>
+                                          <div>
+                                            <p>
+                                              {timeFormat({
+                                                displayFormat: 'HH:MM:SS',
+                                                separatorHour: 'h ',
+                                                separatorMinute: "' ",
+                                                separatorSeconds: '"',
+                                                time: Number(element.duration),
+                                              })}
+                                            </p>
+                                          </div>
+                                        </S.Information>
+                                      )
+                                    )}
+                                  </S.Scroll>
                                 </S.DetailsGroup>
                               </S.GeneralStats>
                             </S.DetailsDrawerContent>
