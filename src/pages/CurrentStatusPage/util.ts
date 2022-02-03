@@ -56,7 +56,13 @@ export const activeFailList = (station: Stations) => {
       color = (maxFailGravityItem as StationItemPosition).color;
     }
   }
-
+  // console.log(
+  //   'color, status, failure, isError |||',
+  //   color,
+  //   status,
+  //   failure,
+  //   isError
+  // );
   return { color, status, failure, isError };
 };
 
@@ -245,23 +251,6 @@ export const stationListGroupLineH = ({
                     Number(station.position_id) <= 4.5,
                 })
               );
-              // if (
-              //   Number(next.position_id) >= 5.0 &&
-              //   Number(next.position_id) <= 5.4
-              // ) {
-              //   acc.push(
-              //     // PEDAGIO 7
-              //     stationItem({
-              //       stationList,
-              //       legends: legends as LegendsLabels[],
-              //       directionType: 1,
-              //       connections,
-              //       filterStation: (station) =>
-              //         Number(station.position_id) >= 5.0 &&
-              //         Number(station.position_id) <= 4.5,
-              //     })
-              //   );
-              // }
             }
           } else if (
             Number(next.position_id) >= 7 &&

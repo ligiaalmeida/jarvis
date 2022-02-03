@@ -51,6 +51,8 @@ export type Theme = {
     primary_6: string;
     primary_7: string;
     primary_8: string;
+    primary_9: string;
+    primary_10: string;
     secondary_1: string;
     secondary_2: string;
     tertiary_1: string;
@@ -65,6 +67,9 @@ export type Theme = {
     grey_9: string;
     grey_10: string;
     grey_11: string;
+    grey_12: string;
+    grey_13: string;
+    grey_14: string;
     red_1: string;
     red_2: string;
     white: string;

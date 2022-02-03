@@ -12,7 +12,7 @@ import Footer from 'components/Footer';
 
 import { StateMapToPropsGlobal, Pathname, RouterProps } from 'types';
 
-import StationList from './StationList';
+import StationList from './StatiosList';
 
 import * as S from './styles';
 
@@ -31,8 +31,6 @@ const CurrentStatusPage = () => {
     uri: URI_BASE,
     namespace: `/${settingsGlobal.building}_${namespace.CURRENT_STATUS}`,
   });
-
-  // const data = payload;
 
   if (process.env.NODE_ENV === 'development') {
     console.groupCollapsed('Current Status');
