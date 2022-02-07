@@ -146,7 +146,7 @@ const ChartDatasetsFactory = (
             ? Math.min(tempExpectedMin, tempRealMin)
             : Math.max(tempExpectedMin, tempRealMin),
         expected: expected
-          .filter((item) => item > 0)
+          .filter((item) => !isNaN(Number(item)))
           .reduce((a, b) => Math.max(a, b)),
         real: real.reduce((a, b) => Math.max(a, b)),
       };
