@@ -170,10 +170,8 @@ const KPIPerStation = ({
       })
       .map(({ id, label, order }) => {
         if (Number(order) > 0.3 && Number(order) < 4.1) {
-          console.log('TESTE - ', id, label, order);
           list.push({ id, label, order });
         } else if (Number(order) > 4.5) {
-          console.log('TESTE - ', id, label, order);
           list.push({ id, label, order });
         }
       });
