@@ -56,13 +56,6 @@ export const activeFailList = (station: Stations) => {
       color = (maxFailGravityItem as StationItemPosition).color;
     }
   }
-  // console.log(
-  //   'color, status, failure, isError |||',
-  //   color,
-  //   status,
-  //   failure,
-  //   isError
-  // );
   return { color, status, failure, isError };
 };
 
