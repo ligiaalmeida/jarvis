@@ -50,16 +50,30 @@ export const CustomContainer = styled.div`
   padding: 0 10px;
 `;
 
-export const StationDivider = styled(Divider)<{ direction?: string }>`
+export const StationDivider = styled(Divider)<{
+  direction?: string;
+  marginrigth?: string;
+  marginleft?: string;
+}>`
   && {
     ${({ direction }) =>
       direction === 'vertical'
         ? `
-  width:calc((10vw - 8rem) / 20)
+  width:calc((10vw - 8rem) / 20);
   `
         : `
-  height:calc((10vw - 8rem) / 20)
+  height:calc((10vw - 8rem) / 20);
   `}
+    ${({ marginrigth }) =>
+      marginrigth &&
+      `
+margin-right: ${marginrigth};
+`}
+${({ marginleft }) =>
+      marginleft &&
+      `
+margin-left: ${marginleft};
+`}
   }
 `;
 
@@ -77,6 +91,8 @@ background-color: ${backgroundcolor};
   text-align: center;
   width: calc((100vw - 80rem) / 16);
   height: calc((100vw - 80rem) / 16);
+  min-height: 60px;
+  min-width: 60px;
   border-radius: 4px;
 
   ${({ isActive }) =>
@@ -146,6 +162,8 @@ export const StationEmpty = styled.div`
   border: 1px solid ${theme.colors.grey_14};
   width: calc((100vw - 80rem) / 16);
   height: calc((100vw - 80rem) / 16);
+  min-height: 60px;
+  min-width: 60px;
   border-radius: 4px;
 `;
 

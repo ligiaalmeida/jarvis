@@ -310,13 +310,12 @@ const StationList = ({ stationList }: Types.StationListProps) => {
               </Grid>
             </Grid>
             <S.CustomGrid item custompadding="0">
-              <Grid container direction="row-reverse">
-                <S.CustomGrid
-                  item
-                  customwidth="calc( 100% - calc(( calc((100vw - 47.7rem) / 16) * 11) - calc((10vw - 8rem) / 20)))"
-                  marginright="auto"
-                >
-                  <S.StationDivider direction="horizontal" />
+              <Grid container direction="row-reverse" spacing={7}>
+                <S.CustomGrid item xs={3} marginright="auto">
+                  <S.StationDivider
+                    marginrigth="0.2vw"
+                    direction="horizontal"
+                  />
                 </S.CustomGrid>
               </Grid>
             </S.CustomGrid>
@@ -489,13 +488,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
               </Grid>
             </Grid>
             <S.CustomGrid item custompadding="0">
-              <Grid container direction="row">
-                <S.CustomGrid
-                  item
-                  marginleft="auto"
-                  customwidth="calc( 100% - calc( calc((100vw - 52.3rem) / 16) *3))"
-                >
-                  <S.StationDivider direction="horizontal" />
+              <Grid container direction="row" spacing={10}>
+                <S.CustomGrid item marginleft="auto" xs={10}>
+                  <S.StationDivider marginleft="3.8%" direction="horizontal" />
                 </S.CustomGrid>
               </Grid>
             </S.CustomGrid>

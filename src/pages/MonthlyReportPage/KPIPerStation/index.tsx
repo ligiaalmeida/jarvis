@@ -22,6 +22,7 @@ const KPIPerStation = ({
   const [stationSelected, setStationSelected] = useState<StationSelectedState>(
     null!
   );
+  const [KPIStationList, setKPIStationList] = useState<any[]>();
 
   const settings = useSelector(
     (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
@@ -159,6 +160,25 @@ const KPIPerStation = ({
     payload.monthly_report.kpi.per_station.stop_time.datasets,
   ]);
 
+  useEffect(() => {
+    const list: any[] = [];
+    payload.monthly_report.kpi.per_station.station_list.datasets
+      .sort((failA, failB) => {
+        if (Number(failA.order) > Number(failB.order)) return 1;
+        if (Number(failA.order) < Number(failB.order)) return -1;
+        return 0;
+      })
+      .map(({ id, label, order }) => {
+        if (Number(order) > 0.3 && Number(order) < 4.1) {
+          list.push({ id, label, order });
+        } else if (Number(order) > 4.5) {
+          list.push({ id, label, order });
+        }
+      });
+
+    setKPIStationList(list);
+  }, [payload.monthly_report.kpi.per_station.station_list.datasets]);
+
   return (
     <>
       <S.KPISelectStation>
@@ -168,12 +188,12 @@ const KPIPerStation = ({
           defaultValue={
             monthlyReportPage.station_selected
               ? monthlyReportPage.station_selected.toString()
-              : payload.monthly_report.kpi.per_station.station_list.datasets[0].id.toString()
+              : payload.monthly_report.kpi.per_station.station_list.datasets[4].id.toString()
           }
           value={
             monthlyReportPage.station_selected
               ? monthlyReportPage.station_selected.toString()
-              : payload.monthly_report.kpi.per_station.station_list.datasets[0].id.toString()
+              : payload.monthly_report.kpi.per_station.station_list.datasets[4].id.toString()
           }
           onChange={(e) => {
             dispatch(setSelected(Number(e.target.value)));
@@ -205,22 +225,16 @@ const KPIPerStation = ({
             },
           }}
         >
-          {payload &&
-            payload.monthly_report.kpi.per_station.station_list.datasets
-              .sort((failA, failB) => {
-                if (Number(failA.order) > Number(failB.order)) return 1;
-                if (Number(failA.order) < Number(failB.order)) return -1;
-                return 0;
-              })
-              .map((station) => (
-                <MuiMenuItem
-                  key={station.id}
-                  data-key={station.order}
-                  value={station.id}
-                >
-                  {station.label}
-                </MuiMenuItem>
-              ))}
+          {KPIStationList &&
+            KPIStationList.map((station) => (
+              <MuiMenuItem
+                key={station.id}
+                data-key={station.order}
+                value={station.id}
+              >
+                {station.label}
+              </MuiMenuItem>
+            ))}
         </MuiTextField>
       </S.KPISelectStation>
       {stationSelected && payload && (
