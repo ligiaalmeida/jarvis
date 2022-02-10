@@ -52,13 +52,7 @@ const CurrentStatusPage = () => {
         <InputList
           pathname={router.location.pathname as Pathname}
           padding={`${theme.distance.normal}rem 0`}
-        >
-          <S.Signals>
-            <h3>
-              Quantidade total de sinais monitorados na linha: <span>46</span>
-            </h3>
-          </S.Signals>
-        </InputList>
+        />
         {data && <StationList stationList={data.current_status} />}
       </S.Main>
       <Footer />
