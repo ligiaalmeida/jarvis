@@ -68,33 +68,6 @@ export const Loader = styled.div`
   }};
 `;
 
-export const Signals = styled.div<{ modeViewType: string }>`
-  ${(props) => {
-    const { theme, modeViewType } = props;
-
-    return css`
-      position: absolute;
-      left: 0;
-      margin-left: 3rem;
-
-      ${modeViewType === 'simplified'
-        ? css`
-            color: ${theme.colors.grey_1};
-          `
-        : css`
-            color: ${theme.colors.white};
-          `}
-
-      h3 {
-        font-family: 'DaimlerRegular', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 400;
-        line-height: 1.5;
-      }
-    `;
-  }};
-`;
-
 export const Main = styled.main<Types.ContainerProps>`
   ${(props) => {
     const { theme, modeViewType } = props;

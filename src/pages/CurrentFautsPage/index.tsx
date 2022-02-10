@@ -73,12 +73,6 @@ const CurrentFaultsPage = () => {
           padding={`${theme.distance.normal}rem`}
           pathname={router.location.pathname as Pathname}
         >
-          <S.Signals modeViewType={settingsPage.modeView}>
-            <h3>
-              Quantidade de sinais de falhas monitorados na linha:{' '}
-              <span>24</span>
-            </h3>
-          </S.Signals>
           <ViewingModeSetting
             pageName="currentFaultsPage"
             toggleNavigation={settingsGlobal.toggleNavigation}
