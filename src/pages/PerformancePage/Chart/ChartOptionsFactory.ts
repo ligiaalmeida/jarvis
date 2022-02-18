@@ -109,6 +109,17 @@ const ChartOptionsFactory = ({
           ticks: {
             beginAtZero: true,
             padding: 8,
+            callback: (value: number) => {
+              if (
+                EChartList.FAILURE_FORECASTING === identification ||
+                EChartList.STOPPAGE_FORECASTING === identification
+              ) {
+                const hours = Math.floor(value / 3600.0);
+                return hours < 10 ? '0' + hours : hours;
+              } else {
+                return value;
+              }
+            },
           },
         },
       ],
@@ -149,8 +160,16 @@ const ChartOptionsFactory = ({
             beginAtZero: true,
             fontSize: 13,
             padding: 8,
+            callback: (value: number) => {
+              if (EChartList.TAKT_PER_STATION === identification) {
+                const hours = Math.floor(value / 3600.0);
+                return hours < 10 ? '0' + hours : hours;
+              } else {
+                return value;
+              }
+            },
             max:
-              identification === 'takt_per_station' && viewType === 1
+              identification === EChartList.TAKT_PER_STATION && viewType === 1
                 ? expectedTakt
                 : ticksMax,
             stepSize:
@@ -167,7 +186,6 @@ const ChartOptionsFactory = ({
           ticks: {
             autoSkip: true,
             fontSize: 13,
-            maxRotation: 0,
             padding: 8,
           },
         },

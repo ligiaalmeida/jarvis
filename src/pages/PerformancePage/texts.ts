@@ -22,9 +22,9 @@ export default {
     labels: {
       yAxis: {
         time: {
-          pt_br: 'Tempo (min)',
-          en_us: 'Time (min)',
-          de: 'Zeit (min)',
+          pt_br: 'Tempo (horas)',
+          en_us: 'Time (hours)',
+          de: 'Zeit (Std)',
         },
         quantity: {
           pt_br: 'Quantidade (caminhões)',
