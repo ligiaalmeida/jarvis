@@ -161,7 +161,14 @@ const ChartOptionsFactory = ({
             fontSize: 13,
             padding: 8,
             callback: (value: number) => {
-              if (EChartList.TAKT_PER_STATION === identification) {
+              if (viewType === 1) {
+                return value;
+              }
+              if (
+                EChartList.TAKT_PER_STATION === identification ||
+                EChartList.STOPPAGE_PER_STATION === identification ||
+                EChartList.FAILURE_PER_STATION === identification
+              ) {
                 const hours = Math.floor(value / 3600.0);
                 return hours < 10 ? '0' + hours : hours;
               } else {
