@@ -167,7 +167,6 @@ const ChartOptionsFactory = ({
           ticks: {
             autoSkip: true,
             fontSize: 13,
-            maxRotation: 0,
             padding: 8,
           },
         },
