@@ -50,7 +50,7 @@
     "reload"
   ],
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@fortawesome/fontawesome-free": "5.15.4",
     "@hot-loader/react-dom": "^16.14.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.11.2",
