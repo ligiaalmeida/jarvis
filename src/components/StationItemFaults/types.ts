@@ -33,7 +33,7 @@ export type FaultItem = {
 
 export type PredictedFaultItem = {
   fail_name: string;
-  duration: number;
+  duracao: number;
   label: string;
   color: string;
 };

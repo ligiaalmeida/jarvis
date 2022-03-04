@@ -4270,7 +4270,11 @@ export default {
     },
   ],
   fault_prediction: [
-    { label: 'Posto 3', stop_fail_list: [] },
+    {
+      label: 'Posto 3', stop_fail_list: [
+        { fail_name: 'FalhaRFID', duracao: 10, label: 'Falha RFID', color: '#e57827' },
+        { fail_name: 'FalhaTorque', duracao: 144, label: 'Op. Pendente', color: '#1b90ff' }
+    ] },
     { label: 'Posto 4', stop_fail_list: [] },
     { label: 'Posto 5', stop_fail_list: [] },
     { label: 'Posto 6', stop_fail_list: [] },
