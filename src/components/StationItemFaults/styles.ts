@@ -20,9 +20,9 @@ export const Footer = styled.div`
       grid-row-start: 3;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       background-color: ${theme.colors.white};
-
+      width: 100%;
       span {
         font-family: 'DaimlerBold', sans-serif;
         font-size: 12px;
@@ -39,8 +39,23 @@ export const FailItem = styled.span<Types.FailItemProps>`
     return css`
       position: relative;
       background-color: ${color};
+      clear: both;
     `;
   }};
+`;
+
+export const FailLabel = styled.span`
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 !important;
+  position: relative;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  & > span {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 `;
 
 export const FailList = styled.div`
