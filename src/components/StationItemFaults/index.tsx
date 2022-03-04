@@ -10,6 +10,7 @@ import { StateMapToRouterProps, StateMapToPropsGlobal } from 'types';
 import * as Types from './types';
 
 import * as S from './styles';
+import { timeFormat } from 'utils/js';
 
 const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
   data,
@@ -17,6 +18,7 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
   typeView,
   namespace,
 }) => {
+  let totalTime = 0;
   const history = useSelector(
     (state: StateMapToRouterProps<History>) => state.router
   );
@@ -45,6 +47,16 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
       window.removeEventListener('resize', handleResize);
     };
   });
+
+  const setTime = (time: number) => {
+    return timeFormat({
+      time: time,
+      displayFormat: 'HH:MM:SS',
+      separatorHour: 'h ',
+      separatorMinute: "' ",
+      separatorSeconds: '"',
+    });
+  };
 
   return (
     <>
@@ -125,24 +137,32 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
             <S.FailList>
               {data &&
                 (data as Types.FaultPredictionPayload).stop_fail_list.map(
-                  (fail, idx) => (
-                    <S.FailItem
-                      key={`${fail.fail_name}_${idx}`}
-                      color={fail.color}
-                    >
-                      {fail.label}
-                    </S.FailItem>
-                  )
+                  (fail, idx) => {
+                    const duration = setTime(fail.duracao);
+                    return (
+                      <S.FailItem
+                        key={`${fail.fail_name}_${idx}`}
+                        color={fail.color}
+                      >
+                        <S.FailLabel>
+                          <span>{fail.label}</span>
+                          <span>{duration}</span>
+                        </S.FailLabel>
+                      </S.FailItem>
+                    );
+                  }
                 )}
             </S.FailList>
             {(data as Types.FaultPredictionPayload).stop_fail_list.length >
               0 && (
               <S.Footer>
-                <span>
-                  Total de falhas:{' '}
-                  {(data as Types.FaultPredictionPayload).stop_fail_list.length}
-                </span>
-                <span>&nbsp;</span>
+                {(
+                  data && (data as Types.FaultPredictionPayload)
+                ).stop_fail_list.map((fail) => {
+                  totalTime = totalTime + fail.duracao;
+                })}
+                <span>Tempo total de falhas:</span>
+                <span>{setTime(totalTime)}</span>
               </S.Footer>
             )}
           </S.Wrapper>
