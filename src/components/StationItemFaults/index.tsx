@@ -124,17 +124,16 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
             </S.Header>
             <S.FailList>
               {data &&
-                (data as Types.FaultPredictionPayload).stop_fail_list
-                  .sort((failA, failB) => {
-                    if (failA.gravity < failB.gravity) return 1;
-                    if (failA.gravity > failB.gravity) return -1;
-                    return 0;
-                  })
-                  .map((fail, idx) => (
-                    <S.FailItem key={`${fail.name}_${idx}`} color={fail.color}>
-                      {fail.name}
+                (data as Types.FaultPredictionPayload).stop_fail_list.map(
+                  (fail, idx) => (
+                    <S.FailItem
+                      key={`${fail.fail_name}_${idx}`}
+                      color={fail.color}
+                    >
+                      {fail.label}
                     </S.FailItem>
-                  ))}
+                  )
+                )}
             </S.FailList>
             {(data as Types.FaultPredictionPayload).stop_fail_list.length >
               0 && (

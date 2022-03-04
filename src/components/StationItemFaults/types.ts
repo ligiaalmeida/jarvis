@@ -31,6 +31,13 @@ export type FaultItem = {
   }[];
 };
 
+export type PredictedFaultItem = {
+  fail_name: string;
+  duration: number;
+  label: string;
+  color: string;
+};
+
 export type CurrentFaultsPayload = {
   label: string;
   fail_list: FaultItem[];
@@ -42,7 +49,7 @@ export type CurrentFaultsPayload = {
 
 export type FaultPredictionPayload = {
   label: string;
-  stop_fail_list: FaultItem[];
+  stop_fail_list: PredictedFaultItem[];
 };
 
 type PayloadDataTimeDefault = {
