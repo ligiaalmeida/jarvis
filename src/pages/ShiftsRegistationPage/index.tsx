@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import { DropResult } from 'react-beautiful-dnd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Pathname, RouterProps, StateMapToPropsGlobal } from 'types';
 import { reorder } from 'utils/js';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,7 +14,8 @@ import DraggableList from './DraggableList';
 import Instructions from './Instructions';
 import { theme } from 'styles/theme';
 import * as S from './styles';
-import { Typography } from '@material-ui/core';
+import { IconButton, Typography } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Form from './Form';
 
 const ShiftsRegistrationPage: React.FC = () => {
@@ -156,12 +155,9 @@ const ShiftsRegistrationPage: React.FC = () => {
                   <S.Card>
                     <Form />
                   </S.Card>
-                  <S.TrashButton
-                    onClick={handleCancel}
-                    style={{ marginLeft: 48 }}
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </S.TrashButton>
+                  <IconButton onClick={handleCancel} style={{ marginLeft: 48 }}>
+                    <DeleteIcon fontSize="large" />
+                  </IconButton>
                 </S.Shift>
               </S.Shifts>
             )}

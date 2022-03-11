@@ -1,15 +1,15 @@
 import { Typography } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import PriorityHighRoundedIcon from '@material-ui/icons/PriorityHighRounded';
 import * as S from './styles';
+import { theme } from 'styles/theme';
 
 const Instructions = () => {
   return (
     <S.Instructions boxShadow={1}>
       <S.Alert>
-        <span>
-          <FontAwesomeIcon icon={faExclamationCircle} />
-        </span>
+        <div>
+          <PriorityHighRoundedIcon />
+        </div>
         <Typography variant="h4">Atenção</Typography>
       </S.Alert>
       <ul>

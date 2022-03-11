@@ -102,14 +102,21 @@ export const Alert = styled.div`
       align-items: center;
       justify-content: center;
 
-      span {
-        color: ${theme.colors.alert};
-        font-size: ${theme.unit * 5}px;
-        padding-right: ${theme.unit}px;
+      div {
+        align-items: center;
+        background-color: ${theme.colors.alert};
+        border-radius: 50%;
+        display: flex;
         height: ${theme.unit * 5}px;
+        justify-content: center;
+        margin-right: ${theme.unit}px;
+        padding-left: 2px;
+        width: ${theme.unit * 5}px;
 
         svg {
-          vertical-align: top;
+          vertical-align: super;
+          color: ${theme.colors.white};
+          font-size: ${theme.unit * 4}px;
         }
       }
     `;
@@ -178,15 +185,20 @@ export const AddButton = styled(Button)`
   }}
 `;
 
+export const DivActions = styled.div`
+  display: flex;
+  flex-directions: row;
+  align-items: baseline;
+  justify-content: center;
+`;
+
 export const DragButton = styled(IconButton)`
   && {
-    border-radius: 3px;
-    padding: 6px;
-    margin: 12px;
-    margin-top: 23px;
-    svg {
-      font-size: 1.2em;
-    }
+    // margin: 12px;
+    // // margin-top: 23px;
+    // svg {
+    //   font-size: 1.2em;
+    // }
   }
 `;
 

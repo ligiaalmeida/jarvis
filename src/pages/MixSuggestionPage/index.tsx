@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { CSVLink } from 'react-csv';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import { timeConverter, timeFormat } from 'utils/js';
 import { Pathname, RouterProps, StateMapToPropsGlobal } from 'types';
@@ -20,6 +18,7 @@ import Error from 'components/Icons/Error';
 import TableList from './TableList';
 import texts from './texts';
 import * as S from './styles';
+import Download from 'components/Icons/Download';
 
 interface NPInterface {
   np: number;
@@ -199,7 +198,12 @@ const MixSuggestionPage = () => {
                   headers={tableHeaders}
                 >
                   <span>
-                    Agendados <FontAwesomeIcon icon={faDownload} />
+                    Agendados{' '}
+                    <Download
+                      width="22px"
+                      height="22px"
+                      fill={theme.colors.grey_1}
+                    />
                   </span>
                 </CSVLink>
                 <CSVLink
@@ -210,7 +214,12 @@ const MixSuggestionPage = () => {
                   headers={tableHeaders}
                 >
                   <span>
-                    Sugeridos <FontAwesomeIcon icon={faDownload} />
+                    Sugeridos{' '}
+                    <Download
+                      width="22px"
+                      height="22px"
+                      fill={theme.colors.grey_1}
+                    />
                   </span>
                 </CSVLink>
               </>

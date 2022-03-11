@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Formik, FormikValues } from 'formik';
 import { FormControl, IconButton } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave, faPen } from '@fortawesome/free-solid-svg-icons';
+import SaveIcon from '@material-ui/icons/Save';
+import CreateIcon from '@material-ui/icons/Create';
 import { useDispatch, useSelector } from 'react-redux';
 import { object, string } from 'yup';
 import { v4 as uuidv4 } from 'uuid';
@@ -172,13 +172,13 @@ const Form: React.FC<FormProps> = ({ register }) => {
             <S.FormActions>
               {edit && !save && (
                 <IconButton onClick={() => handleEdit()}>
-                  <FontAwesomeIcon icon={faPen} />
+                  <CreateIcon fontSize="large" />
                 </IconButton>
               )}
               {save && (
                 <>
                   <IconButton type="submit">
-                    <FontAwesomeIcon icon={faSave} />
+                    <SaveIcon fontSize="large" />
                   </IconButton>
                 </>
               )}

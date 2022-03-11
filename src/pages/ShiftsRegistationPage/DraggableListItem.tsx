@@ -1,7 +1,8 @@
 import { Draggable } from 'react-beautiful-dnd';
 import { Tooltip } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faGripVertical } from '@fortawesome/free-solid-svg-icons';
+
+import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Form from './Form';
 
 import { ShiftRegistration } from 'types';
@@ -33,18 +34,20 @@ const DraggableListItem = ({
                 <Form register={register} />
               </S.CardActions>
             </S.Card>
-            <Tooltip
-              arrow
-              title="Arraste para mover"
-              aria-label="Arraste para mover"
-            >
-              <S.DragButton>
-                <FontAwesomeIcon icon={faGripVertical} />
-              </S.DragButton>
-            </Tooltip>
-            <S.TrashButton onClick={onClickRemove}>
-              <FontAwesomeIcon icon={faTrash} />
-            </S.TrashButton>
+            <S.DivActions>
+              <Tooltip
+                arrow
+                title="Arraste para mover"
+                aria-label="Arraste para mover"
+              >
+                <S.DragButton>
+                  <DragIndicatorIcon fontSize="large" />
+                </S.DragButton>
+              </Tooltip>
+              <S.TrashButton onClick={onClickRemove}>
+                <DeleteIcon fontSize="large" />
+              </S.TrashButton>
+            </S.DivActions>
           </S.Shift>
         </div>
       )}
