@@ -70,11 +70,14 @@ export type Theme = {
     grey_12: string;
     grey_13: string;
     grey_14: string;
+    grey_15: string;
+    grey_16: string;
     red_1: string;
     red_2: string;
     white: string;
     black: string;
     blue_1: string;
+    yellow_1: string;
     success: string;
     error: string;
     alert: string;

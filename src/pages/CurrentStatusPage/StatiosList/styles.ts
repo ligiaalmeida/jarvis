@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Grid, Typography, Divider } from '@material-ui/core';
 import { theme } from 'styles/theme';
 
+export const Line = styled(Grid)`
+  border-right: 1px solid ${theme.colors.grey_14};
+`;
+
 export const CustomGrid = styled(Grid)<{
   custompadding?: string;
   marginleft?: string;
@@ -47,22 +51,22 @@ height: ${customheight};
 `;
 
 export const CustomContainer = styled.div`
-  padding: 0 10px;
+  padding: 24px 10px;
 `;
 
 export const StationDivider = styled(Divider)<{
-  direction?: string;
+  orientation?: string;
   marginrigth?: string;
   marginleft?: string;
 }>`
   && {
-    ${({ direction }) =>
-      direction === 'vertical'
+    ${({ orientation }) =>
+      orientation === 'vertical'
         ? `
-  width:calc((10vw - 8rem) / 20);
+  width:2px;
   `
         : `
-  height:calc((10vw - 8rem) / 20);
+  height:2px;
   `}
     ${({ marginrigth }) =>
       marginrigth &&
@@ -75,6 +79,7 @@ ${({ marginleft }) =>
 margin-left: ${marginleft};
 `}
   }
+  color: ${theme.colors.grey_13};
 `;
 
 export const Station = styled.div<{
@@ -98,7 +103,7 @@ background-color: ${backgroundcolor};
   ${({ isActive }) =>
     isActive &&
     `
-  border: 1px solid black !important;
+  border: 3px solid black !important;
 `}
 `;
 
@@ -107,6 +112,7 @@ export const Legend = styled.div<{
   rotate?: boolean;
   customWidth?: string;
   customHeight?: string;
+  iconcolor?: string;
 }>`
   display: flex;
   justify-content: center;
@@ -123,7 +129,11 @@ export const Legend = styled.div<{
   }
   svg {
     margin: auto;
-    color: ${theme.colors.grey_13};
+    ${({ iconcolor }) =>
+      iconcolor &&
+      ` 
+    color: ${iconcolor};
+    `}
     width: 3vh;
     height: 3vh;
   }
@@ -152,9 +162,6 @@ width: ${customWidth};
     backgroundcolor &&
     `
 background-color: ${backgroundcolor};
-svg {
-  color: white;
-}
 `}
 `;
 
@@ -192,6 +199,7 @@ export const Font = styled(Typography)<{
     `
       writing-mode: vertical-lr;
       text-orientation: mixed;
+      transform: rotate(180deg);
 `}
 
 ${({ fontSize }) =>
