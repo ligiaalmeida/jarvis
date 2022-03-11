@@ -41,17 +41,21 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
   });
 
   return (
-    <Container maxWidth="lg">
-      <Grid container direction="column" spacing={2}>
-        <Grid item>
-          <S.CardStation backgroundcolor={station.color}>
+    <S.CustomContainer>
+      <Grid container direction="column" spacing={3}>
+        <S.CardStation>
+          <Grid item>
             <Grid
               container
               direction="row"
               justifyContent="center"
               alignItems="stretch"
             >
-              <S.GridItem item textalign="center">
+              <S.GridItem
+                item
+                textalign="center"
+                backgroundcolor={station.color}
+              >
                 <S.Font
                   fontcolor={theme.colors.white}
                   fontSize="6rem"
@@ -67,7 +71,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
                 </S.Font>
                 <S.Font
                   fontcolor={theme.colors.white}
-                  fontSize="2rem"
+                  fontSize="1.8rem"
                   fontWeight="700"
                 >
                   {station.active_fail_list[0]?.label ||
@@ -75,56 +79,57 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
                 </S.Font>
               </S.GridItem>
             </Grid>
-          </S.CardStation>
-        </Grid>
-        <Grid item>
-          <S.Font
-            fontcolor={theme.colors.grey_2}
-            fontSize="1.8rem"
-            fontWeight="normal"
-          >
-            N Produto
-          </S.Font>
-          <S.Font
-            fontcolor={theme.colors.grey_2}
-            fontSize=" 1.8rem"
-            fontWeight="700"
-          >
-            {station.num_prod || '---'}
-          </S.Font>
-        </Grid>
-        <Grid item>
-          <S.Font
-            fontcolor={theme.colors.grey_2}
-            fontSize="1.8rem"
-            fontWeight="normal"
-          >
-            Baumuster
-          </S.Font>
-          <S.Font
-            fontcolor={theme.colors.grey_2}
-            fontSize="1.8rem"
-            fontWeight="700"
-          >
-            {station.baumuster || '---'}
-          </S.Font>
-        </Grid>
-        <Grid item>
-          <S.Font
-            fontcolor={theme.colors.grey_2}
-            fontSize="1.8rem"
-            fontWeight="normal"
-          >
-            Time
-          </S.Font>
-          <S.Font
-            fontcolor={theme.colors.grey_2}
-            fontSize=" 1.8rem"
-            fontWeight="700"
-          >
-            {time || '---'}
-          </S.Font>
-        </Grid>
+          </Grid>
+          <Grid item>
+            <S.Font
+              fontcolor={theme.colors.grey_16}
+              fontSize="1.8rem"
+              fontWeight="normal"
+            >
+              N Produto
+            </S.Font>
+            <S.Font
+              fontcolor={theme.colors.grey_16}
+              fontSize="1.8rem"
+              fontWeight="700"
+            >
+              {station.num_prod || '---'}
+            </S.Font>
+          </Grid>
+          <Grid item>
+            <S.Font
+              fontcolor={theme.colors.grey_16}
+              fontSize="1.8rem"
+              fontWeight="normal"
+            >
+              Baumuster
+            </S.Font>
+            <S.Font
+              fontcolor={theme.colors.grey_16}
+              fontSize="1.8rem"
+              fontWeight="700"
+            >
+              {station.baumuster || '---'}
+            </S.Font>
+          </Grid>
+          <Grid item>
+            <S.Font
+              fontcolor={theme.colors.grey_16}
+              fontSize="1.8rem"
+              fontWeight="normal"
+            >
+              Time
+            </S.Font>
+            <S.Font
+              fontcolor={theme.colors.grey_16}
+              fontSize=" 1.8rem"
+              fontWeight="700"
+            >
+              {time || '---'}
+            </S.Font>
+          </Grid>
+        </S.CardStation>
+
         <Grid item>
           <S.LegendTooltip>
             <S.Tooltip
@@ -132,7 +137,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
               shape="circle"
             />
             <S.Font
-              fontcolor={theme.colors.grey_2}
+              fontcolor={theme.colors.grey_16}
               fontSize="1.5rem"
               fontWeight="normal"
             >
@@ -145,7 +150,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
               shape="circle"
             />
             <S.Font
-              fontcolor={theme.colors.grey_2}
+              fontcolor={theme.colors.grey_16}
               fontSize="1.5rem"
               fontWeight="normal"
             >
@@ -158,7 +163,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
               shape="circle"
             />
             <S.Font
-              fontcolor={theme.colors.grey_2}
+              fontcolor={theme.colors.grey_16}
               fontSize="1.5rem"
               fontWeight="normal"
             >
@@ -168,7 +173,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
           <S.LegendTooltip>
             <S.Tooltip backgroundcolor={theme.colors.primary_4} />
             <S.Font
-              fontcolor={theme.colors.grey_2}
+              fontcolor={theme.colors.grey_16}
               fontSize="1.5rem"
               fontWeight="normal"
             >
@@ -178,7 +183,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
           <S.LegendTooltip>
             <S.Tooltip hasBorder />
             <S.Font
-              fontcolor={theme.colors.grey_2}
+              fontcolor={theme.colors.grey_16}
               fontSize="1.5rem"
               fontWeight="normal"
             >
@@ -188,7 +193,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
         </Grid>
         <Grid item>
           <S.Font
-            fontcolor={theme.colors.grey_2}
+            fontcolor={theme.colors.grey_16}
             fontSize="1.5rem"
             fontWeight="normal"
           >
@@ -196,7 +201,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
           </S.Font>
         </Grid>
       </Grid>
-    </Container>
+    </S.CustomContainer>
   );
 };
 

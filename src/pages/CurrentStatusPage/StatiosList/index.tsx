@@ -13,12 +13,15 @@ import { ColorStatusType, Stations, StationsList } from 'types';
 import { theme } from 'styles/theme';
 import { StationItemPosition } from '../types';
 import Station from './Station';
+import { useWindowWidth } from 'hooks';
 
 const StationList = ({ stationList }: Types.StationListProps) => {
   const [station_list, setStationList] = useState<any[]>();
   const [station, setStation] = useState<StationsList>(
     stationList.station_list[0]
   );
+
+  const width = useWindowWidth();
 
   const drawEmptyStation = (numberOfStatios: number) => {
     const draw = [];
@@ -62,7 +65,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
             isActive={station.position_id === element.position_id}
           >
             {element.position_id === '0' || element.position_id === '0.3' ? (
-              <Grid container direction="column">
+              <Grid container direction="column" justifyContent="flex-end">
                 <S.GridToolTip item alignself="center" customheigth="65%">
                   <S.Font isnumber={true}>
                     {(element.position_id === '0' &&
@@ -72,7 +75,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                       element.label.split(' ')[1]}
                   </S.Font>
                 </S.GridToolTip>
-                <S.GridToolTip item alignself="flex-end" customheigth="35%">
+                <S.GridToolTip item alignself="flex-end" customheigth="16%">
                   <Tooltip
                     title={
                       element.position_id === '0'
@@ -194,7 +197,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
       alignItems="flex-start"
       alignContent="center"
     >
-      <Grid item xs={10}>
+      <S.Line item xs={10}>
         <S.CustomContainer>
           <Grid
             container
@@ -223,7 +226,10 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     <Grid item>
                       <Grid container direction="column" spacing={2}>
                         <Grid item>
-                          <S.Legend backgroundcolor={theme.colors.primary_9}>
+                          <S.Legend
+                            backgroundcolor={theme.colors.primary_9}
+                            iconcolor={theme.colors.white}
+                          >
                             <ArrowBack />
                           </S.Legend>
                         </Grid>
@@ -291,7 +297,11 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                           >
                             {drawStations('28', '31')}
                             <Grid item>
-                              <S.Legend rotate>
+                              <S.Legend
+                                backgroundcolor={theme.colors.yellow_1}
+                                iconcolor={theme.colors.grey_13}
+                                rotate
+                              >
                                 <SubdirectoryArrowRight />
                               </S.Legend>
                             </Grid>
@@ -310,12 +320,23 @@ const StationList = ({ stationList }: Types.StationListProps) => {
               </Grid>
             </Grid>
             <S.CustomGrid item custompadding="0">
-              <Grid container direction="row-reverse" spacing={7}>
-                <S.CustomGrid item xs={3} marginright="auto">
-                  <S.StationDivider
-                    marginrigth="0.2vw"
-                    direction="horizontal"
-                  />
+              <Grid container direction="row" spacing={7}>
+                <S.CustomGrid item xs={3}>
+                  {width > 1366 ? (
+                    <S.StationDivider
+                      orientation="horizontal"
+                      variant="fullWidth"
+                      flexItem
+                      marginrigth="8px"
+                    />
+                  ) : (
+                    <S.StationDivider
+                      orientation="horizontal"
+                      variant="fullWidth"
+                      flexItem
+                      marginrigth="3px"
+                    />
+                  )}
                 </S.CustomGrid>
               </Grid>
             </S.CustomGrid>
@@ -333,7 +354,12 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <S.Legend customHeight="100%" rotate>
+                  <S.Legend
+                    customHeight="100%"
+                    backgroundcolor={theme.colors.yellow_1}
+                    iconcolor={theme.colors.grey_13}
+                    rotate
+                  >
                     <SubdirectoryArrowLeft />
                   </S.Legend>
                 </Grid>
@@ -346,7 +372,11 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     </Grid>
                     <Grid item>
                       <S.Legend>
-                        <Grid container direction="column">
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="flex-end"
+                        >
                           <S.GridToolTip
                             item
                             alignself="center"
@@ -357,7 +387,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                           <S.GridToolTip
                             item
                             alignself="flex-end"
-                            customheigth="35%"
+                            customheigth="16%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
                               <S.LegendTooltip
@@ -371,10 +401,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                   </Grid>
                 </S.Group>
                 <S.CustomGrid item custompadding="0">
-                  <S.StationDivider
-                    direction="vertical"
-                    orientation="vertical"
-                  />
+                  <S.StationDivider orientation="vertical" />
                 </S.CustomGrid>
                 <S.Group item>
                   <Grid container direction="column" spacing={2}>
@@ -385,7 +412,11 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     </Grid>
                     <Grid item>
                       <S.Legend>
-                        <Grid container direction="column">
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="flex-end"
+                        >
                           <S.GridToolTip
                             item
                             alignself="center"
@@ -396,7 +427,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                           <S.GridToolTip
                             item
                             alignself="flex-end"
-                            customheigth="35%"
+                            customheigth="16%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
                               <S.LegendTooltip
@@ -456,7 +487,11 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     </Grid>
                     <Grid item>
                       <S.Legend customWidth="100%">
-                        <Grid container direction="column">
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="flex-end"
+                        >
                           <S.GridToolTip
                             item
                             alignself="center"
@@ -467,7 +502,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                           <S.GridToolTip
                             item
                             alignself="flex-end"
-                            customheigth="35%"
+                            customheigth="16%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
                               <S.LegendTooltip
@@ -490,7 +525,21 @@ const StationList = ({ stationList }: Types.StationListProps) => {
             <S.CustomGrid item custompadding="0">
               <Grid container direction="row" spacing={10}>
                 <S.CustomGrid item marginleft="auto" xs={10}>
-                  <S.StationDivider marginleft="3.8%" direction="horizontal" />
+                  {width > 1366 ? (
+                    <S.StationDivider
+                      orientation="horizontal"
+                      variant="fullWidth"
+                      flexItem
+                      marginleft="39px"
+                    />
+                  ) : (
+                    <S.StationDivider
+                      orientation="horizontal"
+                      variant="fullWidth"
+                      flexItem
+                      marginleft="34px"
+                    />
+                  )}
                 </S.CustomGrid>
               </Grid>
             </S.CustomGrid>
@@ -556,7 +605,10 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     <Grid item>
                       <Grid container direction="row" spacing={2}>
                         <Grid item>
-                          <S.Legend>
+                          <S.Legend
+                            backgroundcolor={theme.colors.yellow_1}
+                            iconcolor={theme.colors.grey_13}
+                          >
                             <ArrowUpward />
                           </S.Legend>
                         </Grid>
@@ -644,16 +696,29 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 container
                 direction="row"
                 justifyContent="flex-start"
-                alignItems="center"
+                alignItems="stretch"
                 spacing={2}
               >
-                {drawEmptyStation(8)}
                 <Grid item>
-                  <S.Legend>
-                    <ArrowUpward />
-                  </S.Legend>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={2}
+                  >
+                    {drawEmptyStation(8)}
+                    <Grid item>
+                      <S.Legend
+                        backgroundcolor={theme.colors.yellow_1}
+                        iconcolor={theme.colors.grey_13}
+                      >
+                        <ArrowUpward />
+                      </S.Legend>
+                    </Grid>
+                    {drawEmptyStation(5)}
+                  </Grid>
                 </Grid>
-                {drawEmptyStation(5)}
               </Grid>
             </Grid>
             <Grid item>
@@ -667,7 +732,10 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 <Grid item>
                   <Grid container direction="column" spacing={2}>
                     <Grid item>
-                      <S.Legend backgroundcolor={theme.colors.primary_10}>
+                      <S.Legend
+                        backgroundcolor={theme.colors.primary_10}
+                        iconcolor={theme.colors.white}
+                      >
                         <ArrowForward />
                       </S.Legend>
                     </Grid>
@@ -691,7 +759,11 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     {drawStations('1', '1')}
                     <Grid item>
                       <S.Legend>
-                        <Grid container direction="column">
+                        <Grid
+                          container
+                          direction="column"
+                          justifyContent="flex-end"
+                        >
                           <S.GridToolTip
                             item
                             alignself="center"
@@ -706,7 +778,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                           <S.GridToolTip
                             item
                             alignself="flex-end"
-                            customheigth="35%"
+                            customheigth="16%"
                           >
                             <Tooltip title="Conexão com a Linha TRIM">
                               <S.LegendTooltip
@@ -743,7 +815,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
             </Grid>
           </Grid>
         </S.CustomContainer>
-      </Grid>
+      </S.Line>
       <Grid item xs={2}>
         {station && <Station station={station} />}
       </Grid>

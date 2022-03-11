@@ -38,14 +38,6 @@ const CurrentStatusPage = () => {
     console.groupEnd();
   }
 
-  useEffect(() => {
-    document.body.style.backgroundColor = theme.colors.grey_6;
-
-    return () => {
-      document.body.removeAttribute('style');
-    };
-  });
-
   return (
     <>
       <S.Main>
