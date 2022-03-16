@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
-import { Container, Row } from 'components/Layout';
-import Ring from 'components/Icons/Loaders/Ring';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Container } from 'components/Layout';
 
 import { SignInActions } from 'store/ducks/auth';
 import api from 'services/api';
 
-import Logo from 'assets/img/logo-jarvis.png';
-
-import texts from './texts';
+import Logo from 'assets/img/login_logo.png';
 
 import * as S from './styles';
-import Footer from 'components/Footer';
 import { Polices } from '../../types';
-
-const INITIAL_INPUT_STATE = { user: '', pwd: '' };
+import Card from '../../components/Card';
+import { Grid } from '@material-ui/core';
+import { Formik, Form, FormikValues } from 'formik';
+import * as yup from 'yup';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import { theme } from 'styles/theme';
 
 const SignInPage = () => {
+  const formRef = useRef(null);
   const [messageError, setMessageError] = useState('');
-  const [eachEntry, setEachEntry] = useState(INITIAL_INPUT_STATE);
   const [isLoading, setIsLoading] = useState(false);
 
   const history = useHistory();
@@ -29,21 +29,18 @@ const SignInPage = () => {
   const { polices, isLogin } = SignInActions;
   const dispatch = useDispatch();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEachEntry({ ...eachEntry, [e.target.name]: e.target.value });
-  };
-
   let clearLoading: NodeJS.Timeout = 0 as unknown as NodeJS.Timeout;
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSubmit = async (formData: FormikValues) => {
     const time = 800;
+    const payload = {
+      user: formData.user,
+      pwd: formData.pwd,
+    };
 
     try {
       setIsLoading(true);
-      const { data } = await api('/').post('jarvis/api/auth', eachEntry);
-
+      const { data } = await api('/').post('jarvis/api/auth', payload);
       if (data.status_code === 200) {
         if (typeof data.message !== 'string') {
           clearLoading = setTimeout(() => {
@@ -73,111 +70,111 @@ const SignInPage = () => {
     }
   };
 
+  const validationSchema = yup.object().shape({
+    user: yup.string().required('Preenchimento obrigatório'),
+    pwd: yup.string().required('Preenchimento obrigatório'),
+  });
+
   return (
-    <S.ContainerWrapper>
-      <Row className="sign-in__row-container">
-        <Container xs={9} lg={10} className="sign-in__img-hero" />
-
-        <Container xs={7} lg={6} className="sign-in__form">
-          <Row flexDirection="column" className="sign-in__row-content">
-            <Container
-              padding={{ xs: [0, 0, 0, 0, 'px'] }}
-              className="sign-in__content"
-            >
-              <img
-                src={Logo}
-                alt="Texto com a marca MB-Jarvis"
-                onDragStart={(e) => e.preventDefault()}
-              />
-              <S.BlueBox />
+    <S.LoginBackground>
+      <S.Logo
+        src={Logo}
+        alt="Texto com a marca MB-Jarvis"
+        onDragStart={(e) => e.preventDefault()}
+      />
+      <Card
+        title="Área Restrita"
+        subtitle="Preencha as informações abaixo para acessar."
+        cardmargin="20px 35%"
+      >
+        <Formik
+          initialValues={{
+            user: '',
+            pwd: '',
+          }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ handleChange, touched, errors }) => (
+            <Form ref={formRef}>
+              <Grid
+                container
+                direction="column"
+                justifyContent="space-between"
+                alignItems="stretch"
+                spacing={2}
+              >
+                <Grid item>
+                  <S.Font variant="h5">Usuário</S.Font>
+                  <Input
+                    id="user"
+                    name="user"
+                    type="text"
+                    onChange={handleChange}
+                    placeholder="Insira aqui seu usuário"
+                    variant="outlined"
+                    fullWidth
+                  />
+                  {errors.user && touched.user && (
+                    <S.Font variant="h6" fontcolor={theme.colors.red_2}>
+                      {errors.user}
+                    </S.Font>
+                  )}
+                </Grid>
+                <Grid item>
+                  <S.Font variant="h5">Senha</S.Font>
+                  <Input
+                    id="pwd"
+                    name="pwd"
+                    type="password"
+                    onChange={handleChange}
+                    placeholder="Insira aqui sua senha"
+                    variant="outlined"
+                    fullWidth
+                  />
+                  {errors.pwd && touched.pwd && (
+                    <S.Font variant="h6" fontcolor={theme.colors.red_2}>
+                      {errors.pwd}
+                    </S.Font>
+                  )}
+                </Grid>
+              </Grid>
               <S.FormContent>
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                >
-                  <Container xs={13} lg={10} className="sign-in__form-content">
-                    <h1>{texts.title.pt_br}</h1>
-                    <p>{texts.description.pt_br}</p>
-
-                    <form onSubmit={handleSubmit}>
+                <AnimatePresence>
+                  {messageError && !isLoading && (
+                    <motion.div
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 10, opacity: 0 }}
+                      transition={{ damping: 300, duration: 0.4 }}
+                    >
                       <Container
+                        flexDirection="column"
+                        className="sign-in__form-group sign-in__form-group--message"
+                        xs={16}
                         padding={{ xs: [0, 0, 0, 0, 'px'] }}
-                        flexDirection="column"
-                        className="sign-in__form-group"
-                        xs={16}
                       >
-                        <label htmlFor="user">
-                          {texts.form.user.label.pt_br}
-                        </label>
-                        <input
-                          id="user"
-                          type="text"
-                          name="user"
-                          value={eachEntry.user}
-                          placeholder={texts.form.user.placeholder.pt_br}
-                          onChange={(e) => {
-                            if (messageError) setMessageError('');
-                            handleInputChange(e);
-                          }}
-                        />
+                        <span>{messageError}</span>
                       </Container>
-
-                      <Container
-                        flexDirection="column"
-                        className="sign-in__form-group"
-                        xs={16}
-                      >
-                        <label htmlFor="password">
-                          {texts.form.password.name.pt_br}
-                        </label>
-                        <input
-                          type="password"
-                          id="password"
-                          name="pwd"
-                          value={eachEntry.pwd}
-                          placeholder={texts.form.password.placeholder.pt_br}
-                          onChange={(e) => {
-                            if (messageError) setMessageError('');
-                            handleInputChange(e);
-                          }}
-                        />
-                      </Container>
-
-                      <AnimatePresence>
-                        {messageError && (
-                          <motion.div
-                            initial={{ y: 10, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: 10, opacity: 0 }}
-                            transition={{ damping: 300, duration: 0.4 }}
-                          >
-                            <Container
-                              flexDirection="column"
-                              className="sign-in__form-group sign-in__form-group--message"
-                              xs={16}
-                              padding={{ xs: [0, 0, 0, 0, 'px'] }}
-                            >
-                              <span>{messageError}</span>
-                            </Container>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      <button type="submit">
-                        {!isLoading && texts.form.button.pt_br}
-                        {isLoading && <Ring width={32} borderWidth={3} />}
-                      </button>
-                    </form>
-                  </Container>
-                </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </S.FormContent>
-            </Container>
-          </Row>
-          <Footer />
-        </Container>
-      </Row>
-    </S.ContainerWrapper>
+              <Button
+                variant="contained"
+                size="large"
+                label="ENTRAR"
+                type="submit"
+                margintop="30px"
+                disabled={isLoading}
+                isLoading={isLoading}
+                fullWidth
+              />
+            </Form>
+          )}
+        </Formik>
+      </Card>
+    </S.LoginBackground>
   );
 };
 

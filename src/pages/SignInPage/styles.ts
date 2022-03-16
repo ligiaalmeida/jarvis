@@ -1,8 +1,42 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
-
+import { Typography } from '@material-ui/core';
 import { Elevation, Transition } from 'utils/styles/mixins';
-import HeroImg from 'assets/img/login__hero--2.jpg';
+import Background from 'assets/img/login_background.png';
+import { theme } from 'styles/theme';
+
+export const Logo = styled.img`
+  height: auto;
+  width: 10%;
+`;
+
+export const Font = styled(Typography)<{ fontcolor?: string }>`
+  && {
+    ${({ fontcolor }) =>
+      fontcolor
+        ? `
+    color: ${fontcolor};
+  
+`
+        : `
+  font-size: 0.8vw;
+  color: ${theme.colors.grey_16};
+
+`}
+  }
+`;
+
+export const LoginBackground = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url(${Background});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
 
 export const ContainerWrapper = styled.div`
   ${(props) => {
@@ -23,7 +57,7 @@ export const ContainerWrapper = styled.div`
         position: relative;
         overflow: hidden;
         background-size: cover;
-        background-image: url(${HeroImg});
+        background-image: url(${Background});
         background-position: 30% 10%;
 
         ${theme.breakpoints.default('min').xs(css`
@@ -98,8 +132,6 @@ export const FormContent = styled.div`
     const { theme } = props;
 
     return css`
-      position: relative;
-      top: -16rem;
       width: 100%;
 
       .sign-in__form-content {
