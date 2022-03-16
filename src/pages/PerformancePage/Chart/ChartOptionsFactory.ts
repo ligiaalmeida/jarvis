@@ -114,8 +114,8 @@ const ChartOptionsFactory = ({
                 EChartList.FAILURE_FORECASTING === identification ||
                 EChartList.STOPPAGE_FORECASTING === identification
               ) {
-                const hours = Math.floor(value / 3600.0);
-                return hours < 10 ? '0' + hours : hours;
+                const min = Math.floor(value / 60);
+                return min;
               } else {
                 return value;
               }
@@ -169,8 +169,8 @@ const ChartOptionsFactory = ({
                 EChartList.STOPPAGE_PER_STATION === identification ||
                 EChartList.FAILURE_PER_STATION === identification
               ) {
-                const hours = Math.floor(value / 3600.0);
-                return hours < 10 ? '0' + hours : hours;
+                const min = Math.floor(value / 60);
+                return min;
               } else {
                 return value;
               }
