@@ -109,6 +109,17 @@ const ChartOptionsFactory = ({
           ticks: {
             beginAtZero: true,
             padding: 8,
+            callback: (value: number) => {
+              if (
+                EChartList.FAILURE_FORECASTING === identification ||
+                EChartList.STOPPAGE_FORECASTING === identification
+              ) {
+                const min = Math.floor(value / 60);
+                return min;
+              } else {
+                return value;
+              }
+            },
           },
         },
       ],
@@ -149,8 +160,23 @@ const ChartOptionsFactory = ({
             beginAtZero: true,
             fontSize: 13,
             padding: 8,
+            callback: (value: number) => {
+              if (viewType === 1) {
+                return value;
+              }
+              if (
+                EChartList.TAKT_PER_STATION === identification ||
+                EChartList.STOPPAGE_PER_STATION === identification ||
+                EChartList.FAILURE_PER_STATION === identification
+              ) {
+                const min = Math.floor(value / 60);
+                return min;
+              } else {
+                return value;
+              }
+            },
             max:
-              identification === 'takt_per_station' && viewType === 1
+              identification === EChartList.TAKT_PER_STATION && viewType === 1
                 ? expectedTakt
                 : ticksMax,
             stepSize:
