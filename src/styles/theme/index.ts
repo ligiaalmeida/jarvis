@@ -78,6 +78,7 @@ export const theme: Theme = {
     white: '#FFF',
     black: '#000',
     blue_1: '#003340',
+    blue_2: '#0F3370',
     yellow_1: '#F4EFD0',
     success: '#32B88B',
     error: '#D0021B',

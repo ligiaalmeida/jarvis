@@ -77,6 +77,7 @@ export type Theme = {
     white: string;
     black: string;
     blue_1: string;
+    blue_2: string;
     yellow_1: string;
     success: string;
     error: string;
