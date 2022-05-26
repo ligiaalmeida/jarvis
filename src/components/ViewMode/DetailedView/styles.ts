@@ -501,6 +501,7 @@ export const RowStations = styled.div`
 
       & > div {
         min-height: 26rem;
+        width: 100%;
       }
     `;
   }};
@@ -527,7 +528,7 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       margin-top: 1rem;
-      padding: 0 ${theme.distance.normal}rem ${theme.distance.normal}rem;
+      padding: 0 0 ${theme.distance.normal}rem 0;
     `;
   }};
 `;
