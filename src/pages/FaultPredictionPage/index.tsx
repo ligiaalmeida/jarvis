@@ -19,6 +19,7 @@ import { StateMapToPropsGlobal, ModeView, Pathname, RouterProps } from 'types';
 
 import CurrentFaultsLoader from './CurrentFaultsLoader';
 import * as S from './styles';
+import FaultPredictionInDetail from './FaultPredictionInDetail';
 
 const FaultPredictionPage = () => {
   const [heightNavigation, setHeightNavigation] = useState(0);
@@ -47,7 +48,7 @@ const FaultPredictionPage = () => {
     namespace: `/${settingsGlobal.building}_${namespace.FAULT_PREDICTION}`,
   });
 
-  // const dataMock = payload;
+  const dataMock = payload;
 
   if (process.env.NODE_ENV === 'development') {
     console.groupCollapsed('Fault Prediction');
@@ -93,10 +94,18 @@ const FaultPredictionPage = () => {
           </S.Loader>
         )}
         {data && settingsPage.modeView === 'simplified' && (
-          <SimplifiedView namespace="faultPredictionPage" message={data} />
+          <SimplifiedView
+            namespace="faultPredictionPage"
+            message={dataMock.fault_prediction}
+          />
         )}
-        {data && settingsPage.modeView === 'detailed' && (
-          <DetailedView namespace="faultPredictionPage" message={data} />
+        {dataMock && settingsPage.modeView === 'detailed' && (
+          <DetailedView>
+            <FaultPredictionInDetail
+              namespace="faultPredictionPage"
+              message={dataMock.fault_prediction}
+            />
+          </DetailedView>
         )}
       </S.Main>
       <Footer />
