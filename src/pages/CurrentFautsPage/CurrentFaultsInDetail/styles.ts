@@ -7,81 +7,11 @@ import {
   CustomScrollBar,
 } from 'utils/styles/mixins';
 
-import { FailItemProps } from '../../StationItemFaults/types';
-
-export const DetailsGroup = styled.div`
-  ${() => {
-    return css`
-      position: relative;
-    `;
-  }};
-`;
+import { FailItemProps } from 'components/StationItemFaults/types';
 
 export const Scroll = styled.div`
     max-height 140px;
     overflow: auto;
-`;
-
-export const Information = styled.div.attrs({
-  className: 'information',
-})`
-  ${() => {
-    return css`
-      position: relative;
-      padding: 0 1rem;
-      display: flex;
-      justify-content: space-between;
-
-      + div {
-        padding-top: 0;
-      }
-
-      .information {
-        &__accumulated-stop-time-container {
-          position: relative;
-          width: 50%;
-          display: flex;
-
-          + div {
-            width: 50%;
-          }
-
-          .information__accumulated-stop-time__tooltip {
-            width: 24rem;
-          }
-        }
-      }
-
-      > div:nth-child(2) {
-        width: 50%;
-        margin-bottom: 2rem;
-      }
-
-      p {
-        font-size: 1.4rem;
-        line-height: 1.2;
-
-        span {
-          display: block;
-        }
-      }
-
-      > div:nth-child(2) {
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-
-        p {
-          font-size: 2rem;
-          margin-left: 1rem;
-        }
-
-        span {
-          font-size: 1.2rem;
-        }
-      }
-    `;
-  }};
 `;
 
 export const Title = styled.div`
@@ -92,16 +22,16 @@ export const Title = styled.div`
       position: relative;
       width: 100%;
       display: flex;
-      background-color: #d6d6d8;
+      align-items: center;
       margin-bottom: 2rem;
 
-      p {
+      h1 {
         width: 100%;
-        font-family: 'DaimlerBold', sans-serif;
-        font-size: 1.4rem;
+        font-size: ${theme.typography.size.title_3};
         text-transform: uppercase;
         text-align: center;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 1rem 0.5rem 40px;
+        margin-bottom: 0;
       }
 
       span {
@@ -111,6 +41,7 @@ export const Title = styled.div`
         padding: ${theme.unit}px;
         cursor: pointer;
         transform: scale(1);
+        margin-right: -8px;
         ${Transition('transform', 0.3)};
 
         :hover {
@@ -262,34 +193,6 @@ export const FailEvents = styled.div`
   }};
 `;
 
-export const GeneralStats = styled.div`
-  ${(props) => {
-    const { theme } = props;
-
-    return css`
-      position: relative;
-      width: 30%;
-      background-color: #e6e6e6;
-      border-radius: ${theme.unit}px;
-      //overflow: hidden;
-
-      ${theme.breakpoints.custom(
-        'max',
-        1140,
-        css`
-          width: 50%;
-          ${Transition('width', 0.25)}
-        `
-      )}
-
-      div:nth-child(1) {
-        border-top-right-radius: ${theme.unit}px;
-        border-top-left-radius: ${theme.unit}px;
-      }
-    `;
-  }};
-`;
-
 export const FailName = styled.div<FailItemProps>`
   ${(props) => {
     const { color } = props;
@@ -299,7 +202,7 @@ export const FailName = styled.div<FailItemProps>`
       min-width: 55%;
       background-color: ${color};
       font-family: 'DaimlerBold', sans-serif;
-      font-size: 11px;
+      font-size: 16px;
       color: #fff;
       border-radius: 16px;
       padding: 0 2rem;
@@ -417,47 +320,20 @@ export const FailItem = styled.div.attrs({
 `;
 
 export const FaultListRow = styled.div`
-  ${() => {
-    // const { theme } = props;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 
-    return css`
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-
-      margin-bottom: 1rem;
-
-      :last-child {
-        margin-bottom: 0;
-      }
-    `;
-  }};
+  :last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const DetailsStation = styled.div`
-  ${(props) => {
-    const { theme } = props;
-
-    return css`
-      position: relative;
-      width: 70%;
-      padding: 1rem;
-
-      ${theme.breakpoints.custom(
-        'max',
-        1140,
-        css`
-          width: 50%;
-          ${Transition('width', 0.25)}
-        `
-      )}
-
-      h1 {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-    `;
-  }};
+  position: relative;
+  width: 100%;
+  padding: 1rem;
 `;
 
 export const DetailsDrawerContent = styled.div`
@@ -488,35 +364,22 @@ export const DetailsDrawer = styled.div`
 `;
 
 export const RowStations = styled.div`
-  ${() => {
-    // const { theme } = props;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
 
-    return css`
-      position: relative;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: stretch;
-
-      & > div {
-        min-height: 26rem;
-        width: 100%;
-      }
-    `;
-  }};
+  & > div {
+    min-height: 26rem;
+  }
 `;
 
 export const StationsContent = styled.div`
-  ${() => {
-    // const { theme } = props;
-
-    return css`
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    `;
-  }};
+  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Container = styled.div`
@@ -528,7 +391,7 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       margin-top: 1rem;
-      padding: 0 0 ${theme.distance.normal}rem 0;
+      padding: 0 ${theme.distance.normal}rem ${theme.distance.normal}rem;
     `;
   }};
 `;
