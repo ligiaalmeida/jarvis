@@ -48,8 +48,6 @@ const FaultPredictionPage = () => {
     namespace: `/${settingsGlobal.building}_${namespace.FAULT_PREDICTION}`,
   });
 
-  const dataMock = payload;
-
   if (process.env.NODE_ENV === 'development') {
     console.groupCollapsed('Fault Prediction');
     console.log(data);
@@ -96,14 +94,14 @@ const FaultPredictionPage = () => {
         {data && settingsPage.modeView === 'simplified' && (
           <SimplifiedView
             namespace="faultPredictionPage"
-            message={dataMock.fault_prediction}
+            message={data.fault_prediction}
           />
         )}
-        {dataMock && settingsPage.modeView === 'detailed' && (
+        {data && settingsPage.modeView === 'detailed' && (
           <DetailedView>
             <FaultPredictionInDetail
               namespace="faultPredictionPage"
-              message={dataMock.fault_prediction}
+              message={data.fault_prediction}
             />
           </DetailedView>
         )}

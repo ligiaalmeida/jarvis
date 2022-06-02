@@ -159,7 +159,7 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
 
     return css`
       position: relative;
-      width: ${width ? `${width}rem` : 'calc(100% / 8)'};
+      width: ${width ? `${width}rem` : 'calc(100% / 7)'};
       min-width: 18rem;
       max-height: 30rem;
       margin: ${theme.unit}px;
@@ -203,11 +203,12 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
       ${typeView === 'simplified' &&
       css`
         @media (min-height: 0) {
-          height: calc(((100vh - ${minHeightContent / 10}rem) / 4));
+          // height: calc(((100vh - ${minHeightContent / 12}rem) / 3.1));
         }
 
         @media (min-height: 900px) {
-          height: calc(((100vh - ${minHeightContent / 10}rem) / ${countRows}));
+          // height: calc(((100vh - ${minHeightContent /
+          10}rem) / ${countRows}));
         }
       `}
 
@@ -243,7 +244,9 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
         'min',
         1280,
         css`
-          width: calc(100% / 6);
+          width: ${typeView === 'simplified'
+            ? 'calc(100% / 7)'
+            : 'calc(100% / 5)'};
         `
       )}
 
@@ -259,7 +262,7 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
         'min',
         1670,
         css`
-          width: calc(100% / 8);
+          width: calc(100% / 7);
         `
       )}
 
