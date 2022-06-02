@@ -214,6 +214,7 @@ export const Main = styled.div<Types.MainProps>`
       `)}
 
       #chart-id-0 {
+        justify-content: space-between;
         position: relative;
         width: 100%;
       }
@@ -229,6 +230,7 @@ export const Main = styled.div<Types.MainProps>`
       #chart-id-4,
       #chart-id-5,
       #chart-id-6 {
+        justify-content: space-between;
         position: relative;
         width: 100%;
         height: auto;

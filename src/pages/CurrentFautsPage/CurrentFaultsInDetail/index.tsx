@@ -69,10 +69,6 @@ const DetailedView = ({
       )
     : [];
 
-  console.log('message', message); // json com array de postos
-  console.log('namespace', namespace); // nome da tela
-  console.log('isDrawerDetails', isDrawerDetails); // boolean true
-
   const screen = useWindowWidth();
   const refEventList = useRef<HTMLDivElement>(null!);
 
