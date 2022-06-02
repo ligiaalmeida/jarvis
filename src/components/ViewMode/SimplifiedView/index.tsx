@@ -10,6 +10,7 @@ import Error from 'components/Icons/Error';
 import MessageError from 'components/Messages/Error';
 
 import {
+  CurrentFaultItem,
   CurrentFaultsPayload,
   FaultPredictionPayload,
   StationItemCurrentFaultsProps,
@@ -24,10 +25,14 @@ const SimplifiedView = ({
 }: Types.SimplifiedViewProps) => {
   const data: Types.TabsData<React.ReactElement>[] = [];
 
-  console.log('message ', message);
-
   if (namespace === 'currentFaultsPage') {
-    (message as CurrentFaultsPayload[])?.map((station, idx) => {
+    const stationList: CurrentFaultsPayload[] = message
+      ? (message as CurrentFaultsPayload[])?.filter(
+          (station: { fail_list: CurrentFaultItem[] }) =>
+            station.fail_list.length > 0
+        )
+      : [];
+    stationList.map((station, idx) => {
       if (idx % 24 === 0) {
         data.push({
           label: { id: idx, title: station.label },
@@ -46,31 +51,31 @@ const SimplifiedView = ({
         />
       );
       data.map((row, idxRow) => (row.label.id = idxRow));
-
       return data;
     });
   }
 
   if (namespace === 'faultPredictionPage') {
     (message as FaultPredictionPayload[])?.map((station, idx) => {
-      if (idx % 24 === 0) {
-        data.push({
-          label: { id: idx, title: station.label },
-          componentChildren: [],
-        });
+      if (station.stop_fail_list.length > 0) {
+        if (idx % 24 === 0) {
+          data.push({
+            label: { id: idx, title: station.label },
+            componentChildren: [],
+          });
+        }
+
+        data[data.length - 1].componentChildren.push(
+          <FaultPredictionStation
+            data={station}
+            key={station.label}
+            id={station.label}
+            isOnClick={isDrawerDetails}
+            typeView="simplified"
+          />
+        );
+        data.map((row, idxRow) => (row.label.id = idxRow));
       }
-
-      data[data.length - 1].componentChildren.push(
-        <FaultPredictionStation
-          data={station}
-          key={station.label}
-          id={station.label}
-          isOnClick={isDrawerDetails}
-          typeView="simplified"
-        />
-      );
-      data.map((row, idxRow) => (row.label.id = idxRow));
-
       return data;
     });
   }
