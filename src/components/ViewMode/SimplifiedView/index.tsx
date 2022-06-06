@@ -13,6 +13,7 @@ import {
   CurrentFaultItem,
   CurrentFaultsPayload,
   FaultPredictionPayload,
+  PredictedFaultItem,
   StationItemCurrentFaultsProps,
 } from 'components/StationItemFaults/types';
 import { KeysOfPagesContainingStations } from 'types';
@@ -56,26 +57,30 @@ const SimplifiedView = ({
   }
 
   if (namespace === 'faultPredictionPage') {
-    (message as FaultPredictionPayload[])?.map((station, idx) => {
-      if (station.stop_fail_list.length > 0) {
-        if (idx % 24 === 0) {
-          data.push({
-            label: { id: idx, title: station.label },
-            componentChildren: [],
-          });
-        }
-
-        data[data.length - 1].componentChildren.push(
-          <FaultPredictionStation
-            data={station}
-            key={station.label}
-            id={station.label}
-            isOnClick={isDrawerDetails}
-            typeView="simplified"
-          />
-        );
-        data.map((row, idxRow) => (row.label.id = idxRow));
+    const stationList: FaultPredictionPayload[] = message
+      ? (message as FaultPredictionPayload[])?.filter(
+          (station: { stop_fail_list: PredictedFaultItem[] }) =>
+            station.stop_fail_list.length > 0
+        )
+      : [];
+    stationList.map((station, idx) => {
+      if (idx % 24 === 0) {
+        data.push({
+          label: { id: idx, title: station.label },
+          componentChildren: [],
+        });
       }
+
+      data[data.length - 1].componentChildren.push(
+        <FaultPredictionStation
+          data={station}
+          key={station.label}
+          id={station.label}
+          isOnClick={isDrawerDetails}
+          typeView="simplified"
+        />
+      );
+      data.map((row, idxRow) => (row.label.id = idxRow));
       return data;
     });
   }
