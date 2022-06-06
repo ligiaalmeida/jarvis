@@ -66,7 +66,7 @@ const chartItems = {
 const tabs = [
   {
     id: 0,
-    title: 'Takt atual por estação - Saúde da Estação',
+    title: 'Takt Realizado por estação - Saúde da Estação',
   },
   {
     id: 1,
