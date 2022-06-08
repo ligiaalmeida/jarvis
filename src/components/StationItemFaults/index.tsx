@@ -94,7 +94,7 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
                     </S.FailItem>
                   ))}
             </S.FailList>
-            {(data as Types.CurrentFaultsPayload).fail_list.length > 6 && (
+            {(data as Types.CurrentFaultsPayload).fail_list.length > 1 && (
               <S.Footer>
                 <span>
                   Total de falhas:{' '}
@@ -103,17 +103,6 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
                 <span>&nbsp;</span>
               </S.Footer>
             )}
-            {innerHeightScreen[0] >= 1280 &&
-              innerHeightScreen[1] <= 900 &&
-              (data as Types.CurrentFaultsPayload).fail_list.length > 2 && (
-                <S.Footer>
-                  <span>
-                    Total de falhas:{' '}
-                    {(data as Types.CurrentFaultsPayload).fail_list.length}
-                  </span>
-                  <span>&nbsp;</span>
-                </S.Footer>
-              )}
           </S.Wrapper>
         </S.StationItemFaultsContainer>
       )}
@@ -161,7 +150,7 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
                 ).stop_fail_list.map((fail) => {
                   totalTime = totalTime + fail.duracao;
                 })}
-                <span>Tempo total de falhas:</span>
+                <span>Tempo total:</span>
                 <span>{setTime(totalTime)}</span>
               </S.Footer>
             )}

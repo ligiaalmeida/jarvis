@@ -174,7 +174,7 @@ const DetailedView = ({
     if (screen > 1670) setCountChildrenRow(8);
     if (screen > 1920) setCountChildrenRow(10);
 
-    if (screen <= 1669) setCountChildrenFail(2);
+    if (screen <= 1669) setCountChildrenFail(3);
     if (screen <= 1140) setCountChildrenFail(1);
     if (screen > 1670) setCountChildrenFail(3);
   }, [screen]);
@@ -323,87 +323,6 @@ const DetailedView = ({
                                   </S.FaultListRow>
                                 ))}
                               </S.DetailsStation>
-                              <S.GeneralStats>
-                                <S.DetailsGroup>
-                                  <S.Title>
-                                    <p>
-                                      {
-                                        texts.drawer.general_stats
-                                          .general_line_statistics.title.pt_br
-                                      }{' '}
-                                      {getDisplayBuilding(
-                                        settingsGlobal.building
-                                      )}
-                                    </p>
-                                    <span
-                                      onClick={() => dispatch(closeDrawer())}
-                                    >
-                                      &nbsp;
-                                    </span>
-                                  </S.Title>
-
-                                  <S.Information>
-                                    <div>
-                                      <p>
-                                        {
-                                          stationSelected.line_stoppage_time
-                                            .label
-                                        }
-                                      </p>
-                                    </div>
-                                    <div>
-                                      <span>
-                                        {texts.drawer.general_stats.label.pt_br}
-                                      </span>
-                                      <p>
-                                        {timeFormat({
-                                          displayFormat: 'HH:MM:SS',
-                                          separatorHour: 'h ',
-                                          separatorMinute: "' ",
-                                          separatorSeconds: '"',
-                                          time: Number(
-                                            stationSelected.line_stoppage_time
-                                              .duration
-                                          ),
-                                        })}
-                                      </p>
-                                    </div>
-                                  </S.Information>
-                                </S.DetailsGroup>
-                                <S.DetailsGroup>
-                                  <S.Title>
-                                    <p>
-                                      {
-                                        texts.drawer.general_stats.statistics
-                                          .title.pt_br
-                                      }{' '}
-                                      {stationSelected.label}
-                                    </p>
-                                  </S.Title>
-                                  <S.Scroll>
-                                    {stationSelected.fail_list?.map(
-                                      (element, index) => (
-                                        <S.Information key={index}>
-                                          <div>
-                                            <p>{element.label}</p>
-                                          </div>
-                                          <div>
-                                            <p>
-                                              {timeFormat({
-                                                displayFormat: 'HH:MM:SS',
-                                                separatorHour: 'h ',
-                                                separatorMinute: "' ",
-                                                separatorSeconds: '"',
-                                                time: Number(element.duration),
-                                              })}
-                                            </p>
-                                          </div>
-                                        </S.Information>
-                                      )
-                                    )}
-                                  </S.Scroll>
-                                </S.DetailsGroup>
-                              </S.GeneralStats>
                             </S.DetailsDrawerContent>
                           </S.DetailsDrawer>
                         )}
