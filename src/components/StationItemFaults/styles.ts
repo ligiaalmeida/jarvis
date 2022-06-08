@@ -50,7 +50,7 @@ export const FailLabel = styled.span`
   width: 100%;
   padding: 0 !important;
   position: relative;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: baseline;
   & > span {
     padding: 0 !important;
@@ -86,7 +86,7 @@ export const FailList = styled.div`
         font-size: 12px;
         color: ${theme.colors.white};
         border-radius: 16px;
-        padding: 2px ${theme.unit * 2}px;
+        padding: 2px ${theme.unit}px;
         margin-bottom: 5px;
 
         &:last-child {
