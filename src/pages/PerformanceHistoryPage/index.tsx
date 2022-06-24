@@ -64,7 +64,7 @@ const chartItemsHistory = {
 const tabs = [
   {
     id: 0,
-    title: 'Takt atual por estação - Saúde da Estação',
+    title: 'Takt realizado por estação - Saúde da Estação',
   },
   {
     id: 1,
