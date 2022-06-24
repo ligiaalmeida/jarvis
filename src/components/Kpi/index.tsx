@@ -34,44 +34,18 @@ const Kpi = ({ data }: Types.KpiProps) => {
         {data && (
           <S.Container>
             {kpiData &&
-              kpiData.map((kpi) => {
-                return (
-                  <React.Fragment key={kpi.id}>
-                    {kpiData[kpiData.length - 1] === kpi ? (
-                      <S.HtmlTooltip
-                        title={
-                          <React.Fragment>
-                            <Typography color="inherit" variant="h5">
-                              Diferença entre o Tempo Acumulado de Linha{' '}
-                              <strong>Parada</strong> subtraído o Tempo de Linha{' '}
-                              <strong>Inoperante</strong>.
-                            </Typography>
-                          </React.Fragment>
-                        }
-                        placement="top"
-                      >
-                        <S.KpiItem
-                          key={kpi.id}
-                          countItems={kpiData.length}
-                          countCharacters={kpi.title.length}
-                        >
-                          <span>{kpi.title}</span>
-                          <span>{kpi.value}</span>
-                        </S.KpiItem>
-                      </S.HtmlTooltip>
-                    ) : (
-                      <S.KpiItem
-                        key={kpi.id}
-                        countItems={kpiData.length}
-                        countCharacters={kpi.title.length}
-                      >
-                        <span>{kpi.title}</span>
-                        <span>{kpi.value}</span>
-                      </S.KpiItem>
-                    )}
-                  </React.Fragment>
-                );
-              })}
+              kpiData.map((kpi) => (
+                <React.Fragment key={kpi.id}>
+                  <S.KpiItem
+                    key={kpi.id}
+                    countItems={kpiData.length}
+                    countCharacters={kpi.title.length}
+                  >
+                    <span>{kpi.title}</span>
+                    <span>{kpi.value}</span>
+                  </S.KpiItem>
+                </React.Fragment>
+              ))}
           </S.Container>
         )}
       </Container>
