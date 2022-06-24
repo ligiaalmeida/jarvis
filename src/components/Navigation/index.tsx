@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,12 +14,9 @@ import Logout from 'components/Icons/Logout';
 import Switch from 'components/FormElements/Switch';
 import { SettingsGear as SettingsIcon } from 'components/Icons';
 
-import { ESettingsStorage } from 'enums/globalSettingsLocalStorage';
-import { sessionStorage } from 'constants/globalStorageSettings';
 import routes from 'constants/routes';
 
 import { useStorage, useWindowWidth, useClickOutside } from 'hooks';
-import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
@@ -28,7 +25,7 @@ import { ModeView, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
 import * as Types from 'types';
 
 import * as S from './styles';
-import { GlobalSessionStorage } from 'types';
+import { couldStartTrivia } from 'typescript';
 
 const Navigation = () => {
   const [isHoveredSettingsSecondary, setIsHoveredSettingsSecondary] =
@@ -38,8 +35,10 @@ const Navigation = () => {
   const [modeView, setModeView] = useState<ModeView | string>('');
   const [isNavMobile, setIsNavMobile] = useState(false);
   const [toggleNav, setToggleNav] = useState(false);
+  const [toggleFullScreen, setToggleFullScreen] = useState(false);
 
   const refDrawer = useRef<HTMLDivElement>(null!);
+  const elem = document.documentElement;
 
   const settings = useSelector(
     (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
@@ -82,7 +81,6 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const date = new Date();
   const width = useWindowWidth();
-  const screen = useFullScreenHandle();
 
   const setHeight = () => {
     if (settings.toggleNavigation && !settings.toggleHeader) {
@@ -95,12 +93,6 @@ const Navigation = () => {
       }
     }
   };
-
-  const [itemSessionStorage, setItemSessionStorage] = useStorage({
-    key: ESettingsStorage.GLOBAL,
-    storageType: 'session',
-    state: JSON.stringify(sessionStorage),
-  });
 
   useClickOutside(refDrawer, () => {
     if (toggleNav) setToggleNav((prevState) => !prevState);
@@ -145,10 +137,6 @@ const Navigation = () => {
     }
   });
 
-  // useEffect(() => {
-  //   setFullScreen(JSON.parse(itemSessionStorage).settings.isActiveFullScreen);
-  // }, [itemSessionStorage]);
-
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 1199px)');
 
@@ -159,6 +147,51 @@ const Navigation = () => {
     if (toggleNav) document.body.style.overflowY = 'hidden';
     else document.body.style.overflowY = 'initial';
   }, [toggleNav]);
+
+  // useCallback(() => {
+  //   const elem = document.documentElement;
+  //   console.log('toggleFullScreen', toggleFullScreen);
+
+  //   if (!document.fullscreenElement) {
+  //     elem
+  //       .requestFullscreen({ navigationUI: 'show' })
+  //       .then(() => {
+  //         setToggleFullScreen(true);
+  //       })
+  //       .catch((err) => {
+  //         console.log(`Deu um ruim: ${err.message} (${err.name})`);
+  //       });
+  //   } else {
+  //     document.exitFullscreen();
+  //     setToggleFullScreen(false);
+  //   }
+  // }, [toggleFullScreen]);
+
+  const handleToggleFullscreen = (isFullScreen: boolean) => {
+    const elem = document.documentElement;
+    console.log('isFullScreen', isFullScreen);
+
+    if (isFullScreen) {
+      if (!document.fullscreenElement) {
+        elem
+          .requestFullscreen({ navigationUI: 'show' })
+          .then(() => {
+            setToggleFullScreen(isFullScreen);
+          })
+          .catch((err) => {
+            console.log(`Deu um ruim: ${err.message} (${err.name})`);
+          });
+      }
+    } else {
+      document.exitFullscreen();
+      setToggleFullScreen(false);
+    }
+  };
+
+  const fullscreenchanged = (_event: any) => {
+    return setToggleFullScreen(false);
+  };
+  document.onfullscreenchange = fullscreenchanged;
 
   return (
     <S.ContainerHeader
@@ -203,11 +236,6 @@ const Navigation = () => {
                   transition={{ damping: 300 }}
                 >
                   <S.Settings>
-                    <FullScreen handle={screen}>
-                      <button onClick={screen.enter}>set fullscreen</button>
-                      <button onClick={screen.exit}>Exit</button>
-                    </FullScreen>
-
                     <Switch
                       labelDirection="right"
                       label="Ocultar navegação"
@@ -356,26 +384,9 @@ const Navigation = () => {
                               fontSize="14px"
                               padding="0"
                               scaleSwitch={0.8}
-                              enabled={
-                                (
-                                  JSON.parse(
-                                    itemSessionStorage
-                                  ) as GlobalSessionStorage
-                                ).settings.isActiveFullScreen
-                              }
+                              enabled={toggleFullScreen}
                               onChange={(isFullScreen) => {
-                                setItemSessionStorage(
-                                  JSON.stringify({
-                                    settings: {
-                                      ...(
-                                        JSON.parse(
-                                          itemSessionStorage
-                                        ) as GlobalSessionStorage
-                                      ).settings,
-                                      isActiveFullScreen: isFullScreen,
-                                    },
-                                  })
-                                );
+                                handleToggleFullscreen(isFullScreen);
                               }}
                             />
                             <Switch
