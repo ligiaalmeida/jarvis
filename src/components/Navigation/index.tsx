@@ -148,45 +148,51 @@ const Navigation = () => {
     else document.body.style.overflowY = 'initial';
   }, [toggleNav]);
 
-  // useCallback(() => {
-  //   const elem = document.documentElement;
-  //   console.log('toggleFullScreen', toggleFullScreen);
+  const handleToggleFullscreen = useCallback(
+    (isFullscreen: boolean) => {
+      const elem = document.documentElement;
+      // console.log('toggleFullScreen', toggleFullScreen);
+      console.log('isFullscreen', isFullscreen);
 
-  //   if (!document.fullscreenElement) {
-  //     elem
-  //       .requestFullscreen({ navigationUI: 'show' })
-  //       .then(() => {
-  //         setToggleFullScreen(true);
-  //       })
-  //       .catch((err) => {
-  //         console.log(`Deu um ruim: ${err.message} (${err.name})`);
-  //       });
+      if (isFullscreen) {
+        if (!document.fullscreenElement) {
+          elem
+            .requestFullscreen({ navigationUI: 'show' })
+            .then(() => {
+              setToggleFullScreen(true);
+            })
+            .catch((err) => {
+              console.log(`Deu um ruim: ${err.message} (${err.name})`);
+            });
+        }
+      } else {
+        document.exitFullscreen();
+        setToggleFullScreen(false);
+      }
+    },
+    [setToggleFullScreen]
+  );
+
+  // const handleToggleFullscreen = (isFullScreen: boolean) => {
+  //   const elem = document.documentElement;
+  //   console.log('isFullScreen', isFullScreen);
+
+  //   if (isFullScreen) {
+  //     if (!document.fullscreenElement) {
+  //       elem
+  //         .requestFullscreen({ navigationUI: 'show' })
+  //         .then(() => {
+  //           setToggleFullScreen(isFullScreen);
+  //         })
+  //         .catch((err) => {
+  //           console.log(`Deu um ruim: ${err.message} (${err.name})`);
+  //         });
+  //     }
   //   } else {
   //     document.exitFullscreen();
   //     setToggleFullScreen(false);
   //   }
-  // }, [toggleFullScreen]);
-
-  const handleToggleFullscreen = (isFullScreen: boolean) => {
-    const elem = document.documentElement;
-    console.log('isFullScreen', isFullScreen);
-
-    if (isFullScreen) {
-      if (!document.fullscreenElement) {
-        elem
-          .requestFullscreen({ navigationUI: 'show' })
-          .then(() => {
-            setToggleFullScreen(isFullScreen);
-          })
-          .catch((err) => {
-            console.log(`Deu um ruim: ${err.message} (${err.name})`);
-          });
-      }
-    } else {
-      document.exitFullscreen();
-      setToggleFullScreen(false);
-    }
-  };
+  // };
 
   const fullscreenchanged = (_event: any) => {
     return setToggleFullScreen(false);
