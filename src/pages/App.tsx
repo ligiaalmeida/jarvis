@@ -4,7 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
 import { History } from 'history';
 import { ThemeProvider } from 'styled-components';
-import { ThemeProvider as ThemeProviderMui } from '@material-ui/styles';
+import { ThemeProvider as ThemeProviderMui } from '@material-ui/core/styles';
 
 import { Persistor } from 'redux-persist/es/types';
 
