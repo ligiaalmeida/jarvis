@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,7 +25,6 @@ import { ModeView, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
 import * as Types from 'types';
 
 import * as S from './styles';
-import { couldStartTrivia } from 'typescript';
 
 const Navigation = () => {
   const [isHoveredSettingsSecondary, setIsHoveredSettingsSecondary] =
@@ -35,7 +34,7 @@ const Navigation = () => {
   const [modeView, setModeView] = useState<ModeView | string>('');
   const [isNavMobile, setIsNavMobile] = useState(false);
   const [toggleNav, setToggleNav] = useState(false);
-  const [toggleFullScreen, setToggleFullScreen] = useState(false);
+  const [toggleFullscreen, setToggleFullscreen] = useState(false);
 
   const refDrawer = useRef<HTMLDivElement>(null!);
   const elem = document.documentElement;
@@ -147,55 +146,29 @@ const Navigation = () => {
     if (toggleNav) document.body.style.overflowY = 'hidden';
     else document.body.style.overflowY = 'initial';
   }, [toggleNav]);
+  
 
-  const handleToggleFullscreen = useCallback(
-    (isFullscreen: boolean) => {
-      const elem = document.documentElement;
-      // console.log('toggleFullScreen', toggleFullScreen);
-      console.log('isFullscreen', isFullscreen);
+  const handleToggleFullscreen = (isFullscreen: boolean) => {
+    const elem = document.documentElement;
 
-      if (isFullscreen) {
-        if (!document.fullscreenElement) {
-          elem
-            .requestFullscreen({ navigationUI: 'show' })
-            .then(() => {
-              setToggleFullScreen(true);
-            })
-            .catch((err) => {
-              console.log(`Deu um ruim: ${err.message} (${err.name})`);
-            });
-        }
+      if (!document.fullscreenElement) {
+        elem
+          .requestFullscreen({ navigationUI: 'show' })
+          .then(() => {
+            console.log('toggleFullscreen 1 ', toggleFullscreen);
+          })
+          .catch((err) => {
+            console.log(`Deu um ruim: ${err.message} (${err.name})`);
+          });
       } else {
         document.exitFullscreen();
-        setToggleFullScreen(false);
+        setToggleFullscreen(!toggleFullscreen);
       }
-    },
-    [setToggleFullScreen]
-  );
-
-  // const handleToggleFullscreen = (isFullScreen: boolean) => {
-  //   const elem = document.documentElement;
-  //   console.log('isFullScreen', isFullScreen);
-
-  //   if (isFullScreen) {
-  //     if (!document.fullscreenElement) {
-  //       elem
-  //         .requestFullscreen({ navigationUI: 'show' })
-  //         .then(() => {
-  //           setToggleFullScreen(isFullScreen);
-  //         })
-  //         .catch((err) => {
-  //           console.log(`Deu um ruim: ${err.message} (${err.name})`);
-  //         });
-  //     }
-  //   } else {
-  //     document.exitFullscreen();
-  //     setToggleFullScreen(false);
-  //   }
-  // };
+    }
+  };
 
   const fullscreenchanged = (_event: any) => {
-    return setToggleFullScreen(false);
+    return setToggleFullscreen(false);
   };
   document.onfullscreenchange = fullscreenchanged;
 
@@ -390,10 +363,8 @@ const Navigation = () => {
                               fontSize="14px"
                               padding="0"
                               scaleSwitch={0.8}
-                              enabled={toggleFullScreen}
-                              onChange={(isFullScreen) => {
-                                handleToggleFullscreen(isFullScreen);
-                              }}
+                              enabled={toggleFullscreen}
+                              onChange={(isFullscreen) => handleToggleFullscreen(isFullscreen)}
                             />
                             <Switch
                               className="dropdown"
@@ -471,5 +442,3 @@ const Navigation = () => {
     </S.ContainerHeader>
   );
 };
-
-export default Navigation;
