@@ -154,38 +154,40 @@ const InputList: React.FC<Types.InputListProps> = ({
                   >
                     Data
                   </label>
-                  <DatePicker
-                    id="calendar"
-                    name="date"
-                    dateFormat="yyyy/MM/dd"
-                    maxDate={addMonths(new Date(), 0)}
-                    minDate={subMonths(new Date(), 8)}
-                    className="input-list__input-item--calendar input-list__input-item--datepicker"
-                    selected={
-                      !getInputPerformanceHistoryPage.params?.date
-                        ? new Date()
-                        : new Date(
-                            +getInputPerformanceHistoryPage.params.date.split(
-                              '-'
-                            )[0],
-                            +getInputPerformanceHistoryPage.params.date.split(
-                              '-'
-                            )[1] - 1,
-                            +getInputPerformanceHistoryPage.params.date.split(
-                              '-'
-                            )[2]
+                  <React.Fragment>
+                    <DatePicker
+                      id="calendar"
+                      name="date"
+                      dateFormat="yyyy/MM/dd"
+                      maxDate={addMonths(new Date(), 0)}
+                      minDate={subMonths(new Date(), 8)}
+                      className="input-list__input-item--calendar input-list__input-item--datepicker"
+                      selected={
+                        !getInputPerformanceHistoryPage.params?.date
+                          ? new Date()
+                          : new Date(
+                              +getInputPerformanceHistoryPage.params.date.split(
+                                '-'
+                              )[0],
+                              +getInputPerformanceHistoryPage.params.date.split(
+                                '-'
+                              )[1] - 1,
+                              +getInputPerformanceHistoryPage.params.date.split(
+                                '-'
+                              )[2]
+                            )
+                      }
+                      onChange={(date: Date) => {
+                        dispatch(
+                          PerformanceHistoryActions.setDate(
+                            `${date.getFullYear()}-${
+                              date.getMonth() + 1
+                            }-${date.getDate()}`
                           )
-                    }
-                    onChange={(date: Date) => {
-                      dispatch(
-                        PerformanceHistoryActions.setDate(
-                          `${date.getFullYear()}-${
-                            date.getMonth() + 1
-                          }-${date.getDate()}`
-                        )
-                      );
-                    }}
-                  />
+                        );
+                      }}
+                    />
+                  </React.Fragment>
                 </S.Calendar>
                 <S.Hour>
                   <MuiFormControlLabel
