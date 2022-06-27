@@ -19,9 +19,6 @@ export type PagesSettingsStorage = {
   current_faults: {
     timer: PagesSettingsTimer;
   };
-  // prediction_faults: {
-  //   timer: PagesSettingsTimer;
-  // };
 };
 
 export type PerformancePageStorage = {

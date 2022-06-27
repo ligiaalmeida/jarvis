@@ -10,23 +10,15 @@ export type StationItemFaultsContainer = {
   typeView?: ModeView;
 };
 
-export type StationItemCurrentFaultsProps = {
+export type StationItemFaultsProps = {
   id: string;
   typeView?: ModeView;
-  data: CurrentFaultsPayload;
+  data: CurrentFaultsPayload | FaultPredictionPayload;
   namespace?: KeysOfPagesContainingStations;
   isOnClick?: boolean;
 };
 
-export type StationItemFaultPredictionProps = {
-  id: string;
-  typeView?: ModeView;
-  data: FaultPredictionPayload;
-  namespace?: KeysOfPagesContainingStations;
-  isOnClick?: boolean;
-};
-
-export type CurrentFaultItem = {
+export type FaultItem = {
   name: string;
   label: string;
   quantity: number;
@@ -39,29 +31,24 @@ export type CurrentFaultItem = {
   }[];
 };
 
+export type PredictedFaultItem = {
+  fail_name: string;
+  duracao: number;
+  label: string;
+  color: string;
+};
+
 export type CurrentFaultsPayload = {
   label: string;
-  fail_list: CurrentFaultItem[];
+  fail_list: FaultItem[];
   rfid_time: PayloadDataTimeDefault;
   area_invasion_time: PayloadDataTimeDefault;
   line_stoppage_time: PayloadDataTimeDefault;
   accumulated_stop_time: PayloadDataTimeDefault;
 };
 
-export type PredictedFaultItem = {
-  fail_name: string;
-  equipment: number;
-  analog_signals: {
-    name: string;
-    standard_value: number;
-    changed_value: number;
-    percentage_changed: number;
-  }[];
-};
-
 export type FaultPredictionPayload = {
   label: string;
-  circuit: string;
   stop_fail_list: PredictedFaultItem[];
 };
 
@@ -75,10 +62,6 @@ type PayloadDataTimeDefault = {
 export type FailItemProps = {
   gravity?: number;
   color: string;
-};
-
-export type FailListProps = {
-  from?: string;
 };
 
 export type FaultListRowProps = {

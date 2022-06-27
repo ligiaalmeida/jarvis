@@ -6,7 +6,10 @@ import { KeysOfPagesContainingStations } from 'types';
 
 /*=-=-=-=-=-= COMPONENT =-=-=-=-=-=*/
 export type SimplifiedViewProps = {
-  message: CurrentFaultsPayload[] | FaultPredictionPayload[];
+  message: {
+    current_faults?: CurrentFaultsPayload[];
+    fault_prediction?: FaultPredictionPayload[];
+  };
   namespace: KeysOfPagesContainingStations;
   isDrawerDetails?: boolean;
 };

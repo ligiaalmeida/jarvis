@@ -210,7 +210,7 @@ export const Main = styled.div<Types.MainProps>`
           `};
 
       ${theme.breakpoints.default('max').md(css`
-        height: ${isHeightFull ? 'auto' : '100%'};
+        //height: ${isHeightFull ? 'auto' : '100%'};
       `)}
 
       #chart-id-0 {
