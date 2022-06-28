@@ -77,6 +77,7 @@ export type ContainerProps = {
    * Ex: **_margin={{ xs: [0, 0, 0, 0, 'px'] }}_**
    */
   margin?: Spaces;
+  children?: React.ReactNode;
 } & HTMLAttr;
 
 export type ContentProps = {

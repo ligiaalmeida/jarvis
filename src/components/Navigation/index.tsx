@@ -19,7 +19,6 @@ import { sessionStorage } from 'constants/globalStorageSettings';
 import routes from 'constants/routes';
 
 import { useStorage, useWindowWidth, useClickOutside } from 'hooks';
-import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
@@ -82,7 +81,6 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const date = new Date();
   const width = useWindowWidth();
-  const screen = useFullScreenHandle();
 
   const setHeight = () => {
     if (settings.toggleNavigation && !settings.toggleHeader) {
@@ -203,11 +201,6 @@ const Navigation = () => {
                   transition={{ damping: 300 }}
                 >
                   <S.Settings>
-                    <FullScreen handle={screen}>
-                      <button onClick={screen.enter}>set fullscreen</button>
-                      <button onClick={screen.exit}>Exit</button>
-                    </FullScreen>
-
                     <Switch
                       labelDirection="right"
                       label="Ocultar navegação"
