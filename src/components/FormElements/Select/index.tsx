@@ -52,6 +52,7 @@ export const StyledSelect = styled.div<Types.StyledSelectProps>`
 
 interface Props {
   className?: string;
+  children?: React.ReactNode;
   display?: string;
   name: string;
   id: string;

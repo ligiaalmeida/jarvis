@@ -13,6 +13,7 @@ export type NavTabsChartProps<T> = {
   isSettings: boolean;
   padding?: string;
   minHeight?: number;
+  children?: React.ReactNode;
 };
 
 /*= -=-=-=-=-= STYLES =-=-=-=-=-= */
