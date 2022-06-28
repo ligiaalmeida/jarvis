@@ -6,6 +6,7 @@ import * as S from './styles';
 
 type ChartContentProps = {
   className?: string;
+  children?: React.ReactNode;
   page?: Pages;
   labels: {
     yAxis: string;
