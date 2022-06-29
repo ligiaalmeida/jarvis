@@ -242,7 +242,25 @@ export const FormikForm = styled(Form)`
   align-items: baseline;
 `;
 
-export const InputText = styled(TextField)`
+interface TextFieldProps {
+  error: boolean;
+  id: string;
+  label: string;
+  defaultValue: string;
+  helperText: Node;
+  onChange: () => void;
+  onBlur: () => void;
+  required: boolean;
+  name: string;
+  disabled: boolean;
+  variant: string;
+  type: string;
+  InputLabelProps: any;
+}
+
+export const InputText = styled(TextField).attrs((props: TextFieldProps) => ({
+  helperText: props.helperText,
+}))`
   .MuiInputBase-input {
     font-size: 2rem;
     line-height: 2rem;
