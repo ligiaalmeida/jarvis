@@ -145,13 +145,15 @@ const StationItemFaults: React.FC<Types.StationItemFaultsProps> = ({
             {(data as Types.FaultPredictionPayload).stop_fail_list.length >
               0 && (
               <S.Footer>
-                {(
-                  data && (data as Types.FaultPredictionPayload)
-                ).stop_fail_list.map((fail) => {
-                  totalTime = totalTime + fail.duracao;
-                })}
-                <span>Tempo total:</span>
-                <span>{setTime(totalTime)}</span>
+                <>
+                  {(
+                    data && (data as Types.FaultPredictionPayload)
+                  ).stop_fail_list.map((fail) => {
+                    totalTime = totalTime + fail.duracao;
+                  })}
+                  <span>Tempo total:</span>
+                  <span>{setTime(totalTime)}</span>
+                </>
               </S.Footer>
             )}
           </S.Wrapper>
