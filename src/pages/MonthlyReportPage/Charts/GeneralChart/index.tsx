@@ -275,7 +275,6 @@ const GeneralChart = ({ data, title, labels }: Types.GeneralChartProps) => {
               xAxis: texts.charts.labels.xAxis.days.pt_br,
             }}
           >
-            {console.log('customTooltip >> ', customTooltip)}
             <Line
               redraw
               data={datasets}
