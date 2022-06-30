@@ -9,8 +9,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # Instalando dependências da aplicação e armazenando em cache.
 COPY package.json /app/package.json
-RUN npm install
-RUN npm install -g react-scripts@3.3.1
+RUN npm install --legacy-peer-deps
+RUN npm install -g react-scripts@5.0.1
+RUN npm run preinstall
 
 # start app
 CMD ["npm", "start"]

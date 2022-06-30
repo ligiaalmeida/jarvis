@@ -37,7 +37,7 @@ export default {
           de: 'Takt AVG',
         },
         real: {
-          pt_br: 'Takt Atual',
+          pt_br: 'Takt Realizado',
           en_us: 'Current Takt',
           de: 'Aktueller Takt',
         },

@@ -223,7 +223,7 @@ const ChartDatasetsFactory = (
             {
               ...chartConfigDefault,
               type: chartType,
-              label: 'Takt Atual',
+              label: 'Takt Realizado',
               categoryPercentage: 0.7,
               fill: type !== 'line',
               backgroundColor: theme.colors.secondary_2,

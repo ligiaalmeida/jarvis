@@ -26,4 +26,5 @@ export type RowProps = {
    * Ex: **_margin={[0, 0, 0, 0, 'px']}_**
    */
   margin?: SpacesCSS;
+  children?: React.ReactNode;
 } & Pick<HTMLAttributes<HTMLDivElement>, 'className' | 'onClick' | 'id'>;

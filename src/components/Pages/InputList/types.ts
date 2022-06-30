@@ -3,6 +3,7 @@ import { SimpleInterpolation } from 'styled-components';
 
 export type InputListProps = {
   pathname: Pathname;
+  children?: React.ReactNode;
 } & StyleHeaderProps;
 
 export type StyleHeaderProps = {
