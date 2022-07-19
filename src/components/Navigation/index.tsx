@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -16,14 +16,18 @@ import { SettingsGear as SettingsIcon } from 'components/Icons';
 
 import routes from 'constants/routes';
 
-import { useStorage, useWindowWidth, useClickOutside } from 'hooks';
+import {
+  useStorage,
+  useWindowWidth,
+  useClickOutside,
+  useEventListener,
+} from 'hooks';
 import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
 
 import { ModeView, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
 import * as Types from 'types';
-
 import * as S from './styles';
 
 const Navigation = () => {
@@ -146,31 +150,40 @@ const Navigation = () => {
     if (toggleNav) document.body.style.overflowY = 'hidden';
     else document.body.style.overflowY = 'initial';
   }, [toggleNav]);
-  
 
-  const handleToggleFullscreen = (isFullscreen: boolean) => {
-    const elem = document.documentElement;
-
-      if (!document.fullscreenElement) {
-        elem
-          .requestFullscreen({ navigationUI: 'show' })
-          .then(() => {
-            console.log('toggleFullscreen 1 ', toggleFullscreen);
-          })
-          .catch((err) => {
-            console.log(`Deu um ruim: ${err.message} (${err.name})`);
-          });
-      } else {
-        document.exitFullscreen();
-        setToggleFullscreen(!toggleFullscreen);
+  const handleFullscreen = (isFullscreen: boolean) => {
+    if (isFullscreen) {
+      document.documentElement
+        .requestFullscreen()
+        .then(() => setToggleFullscreen(true))
+        .catch((err) => console.log(`Deu ruim: ${err.message} (${err.name})`));
+    }
+    if (!isFullscreen) {
+      if (document.fullscreenElement !== null) {
+        document
+          .exitFullscreen()
+          .then(() => setToggleFullscreen(false))
+          .catch((err) => console.error(`${err.name} ${err.message}`));
       }
     }
   };
 
-  const fullscreenchanged = (_event: any) => {
-    return setToggleFullscreen(false);
+  const eventHandler = (event: KeyboardEvent) => {
+    console.log('fora do if');
+    if (event.key === 'Escape') {
+      console.log('dentro do if');
+      setToggleFullscreen(!toggleFullscreen);
+      event.preventDefault();
+    }
   };
-  document.onfullscreenchange = fullscreenchanged;
+
+  // const container = window.focus();
+  window.addEventListener(
+    'keydown',
+    (event: KeyboardEvent) => eventHandler(event),
+    true
+  );
+  console.log('toggleFullscreen', toggleFullscreen);
 
   return (
     <S.ContainerHeader
@@ -364,7 +377,9 @@ const Navigation = () => {
                               padding="0"
                               scaleSwitch={0.8}
                               enabled={toggleFullscreen}
-                              onChange={(isFullscreen) => handleToggleFullscreen(isFullscreen)}
+                              onChange={(isFullscreen) => {
+                                handleFullscreen(isFullscreen);
+                              }}
                             />
                             <Switch
                               className="dropdown"
@@ -442,3 +457,5 @@ const Navigation = () => {
     </S.ContainerHeader>
   );
 };
+
+export default Navigation;
