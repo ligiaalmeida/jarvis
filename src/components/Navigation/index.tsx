@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -16,12 +16,7 @@ import { SettingsGear as SettingsIcon } from 'components/Icons';
 
 import routes from 'constants/routes';
 
-import {
-  useStorage,
-  useWindowWidth,
-  useClickOutside,
-  useEventListener,
-} from 'hooks';
+import { useWindowWidth, useClickOutside } from 'hooks';
 import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
@@ -38,10 +33,9 @@ const Navigation = () => {
   const [modeView, setModeView] = useState<ModeView | string>('');
   const [isNavMobile, setIsNavMobile] = useState(false);
   const [toggleNav, setToggleNav] = useState(false);
-  const [toggleFullscreen, setToggleFullscreen] = useState(false);
+  const [toggleFullscreen, setToggleFullscreen] = useState<boolean>(false);
 
   const refDrawer = useRef<HTMLDivElement>(null!);
-  const elem = document.documentElement;
 
   const settings = useSelector(
     (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
@@ -168,22 +162,11 @@ const Navigation = () => {
     }
   };
 
-  const eventHandler = (event: KeyboardEvent) => {
-    console.log('fora do if');
-    if (event.key === 'Escape') {
-      console.log('dentro do if');
-      setToggleFullscreen(!toggleFullscreen);
-      event.preventDefault();
-    }
-  };
-
-  // const container = window.focus();
-  window.addEventListener(
-    'keydown',
-    (event: KeyboardEvent) => eventHandler(event),
-    true
-  );
-  console.log('toggleFullscreen', toggleFullscreen);
+  useEffect(() => {
+    window.addEventListener('fullscreenchange', () => {
+      setToggleFullscreen(document.fullscreenElement ? true : false);
+    });
+  }, []);
 
   return (
     <S.ContainerHeader
