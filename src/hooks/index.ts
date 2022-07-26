@@ -9,4 +9,3 @@ export * from './useSetTimeout';
 export * from './useSocket';
 export * from './useStorage';
 export * from './useWindowWidth';
-export * from './useEventListener';
