@@ -67,7 +67,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
             {element.position_id === '0' || element.position_id === '0.3' ? (
               <Grid container direction="column" justifyContent="flex-end">
                 <S.GridToolTip item alignself="center" customheigth="65%">
-                  <S.Font isnumber={true}>
+                  <S.Font isnumber="true">
                     {(element.position_id === '0' &&
                       element.label.split(' ')[2]) ||
                       (element.position_id === '0.3' &&
@@ -94,7 +94,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 </S.GridToolTip>
               </Grid>
             ) : (
-              <S.Font isnumber={true}>
+              <S.Font isnumber="true">
                 {(element.position_id === '0' && element.label.split(' ')[2]) ||
                   (element.position_id === '0.3' &&
                     element.label.split(' ')[2].substring(0, 4)) ||
@@ -300,7 +300,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                               <S.Legend
                                 backgroundcolor={theme.colors.yellow_1}
                                 iconcolor={theme.colors.grey_13}
-                                rotate
+                                isrotate
                               >
                                 <SubdirectoryArrowRight />
                               </S.Legend>
@@ -313,9 +313,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <S.Font fontSize={'2rem'} isvertical={true}>
-                    SGPRO2
-                  </S.Font>
+                  <S.Font isvertical="true">SGPRO2</S.Font>
                 </Grid>
               </Grid>
             </Grid>
@@ -358,7 +356,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                     customHeight="100%"
                     backgroundcolor={theme.colors.yellow_1}
                     iconcolor={theme.colors.grey_13}
-                    rotate
+                    isrotate
                   >
                     <SubdirectoryArrowLeft />
                   </S.Legend>
@@ -671,7 +669,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                         </Grid>
                         <Grid item>
                           <S.Legend customHeight="100%">
-                            <S.Font isvertical>Pedágios</S.Font>
+                            <S.Font isvertical="true">Pedágios</S.Font>
                           </S.Legend>
                         </Grid>
                       </Grid>
@@ -685,9 +683,7 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 </Grid>
 
                 <Grid item>
-                  <S.Font fontSize={'2rem'} isvertical={true}>
-                    SGPRO1
-                  </S.Font>
+                  <S.Font isvertical="true">SGPRO1</S.Font>
                 </Grid>
               </Grid>
             </Grid>

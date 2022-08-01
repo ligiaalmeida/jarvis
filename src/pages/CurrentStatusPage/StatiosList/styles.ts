@@ -109,7 +109,7 @@ background-color: ${backgroundcolor};
 
 export const Legend = styled.div<{
   backgroundcolor?: string;
-  rotate?: boolean;
+  isrotate?: boolean;
   customWidth?: string;
   customHeight?: string;
   iconcolor?: string;
@@ -152,8 +152,8 @@ width: ${customWidth};
 }
 `}
 
-  ${({ rotate }) =>
-    rotate &&
+  ${({ isrotate }) =>
+    isrotate &&
     `
   transform: rotate(180deg);
 }
@@ -175,46 +175,36 @@ export const StationEmpty = styled.div`
 `;
 
 export const Font = styled(Typography)<{
-  isnumber?: boolean;
-  isvertical?: boolean;
-  fontSize?: string;
+  isnumber?: string;
+  isvertical?: string;
 }>`
-  ${({ isnumber }) =>
-    isnumber === true
-      ? `
-    color: ${theme.colors.white};
-      && {
-        font-size: 2.5vh;
-      }
-    `
-      : `
-    color: ${theme.colors.grey_13};
-    && {
-      font-size: 1.5vh;
-      font-weight: 700;
-  `}
-
+  margin: auto;
+  && {
+    font-family: 'DaimlerBold', sans-serif;
+    font-weight: 700;
+    font-size: 1.5vh;
+  }
   ${({ isvertical }) =>
-    isvertical &&
+    isvertical === 'true' &&
     `
+      font-size: 2rem !important;
       writing-mode: vertical-lr;
       text-orientation: mixed;
       transform: rotate(180deg);
-`}
-
-${({ fontSize }) =>
-    fontSize &&
-    `
-    && {
-      font-size: ${fontSize};
-    }
-`}
-
-  margin: auto !important;
-  && {
-    font-family: 'DaimlerBold', sans-serif;
-    font-weigh: 700;
-  }
+  `}
+  ${({ isnumber }) =>
+    isnumber === 'true'
+      ? `
+      && {
+        color: ${theme.colors.white};
+        font-size: 2.5vh;
+      }
+      `
+      : `
+      && {
+        color: ${theme.colors.grey_3};
+      }
+      `}
 `;
 
 export const Group = styled(Grid)`
