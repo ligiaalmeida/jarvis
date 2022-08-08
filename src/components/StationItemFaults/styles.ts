@@ -124,14 +124,16 @@ export const Wrapper = styled.div`
 
     return css`
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
       display: grid;
       grid-template-rows: 0.2fr 1fr 0.23fr;
-      padding: 6px 6px 0;
+      margin: auto;
+      padding: 6px;
       border-radius: ${theme.unit}px;
       background-color: ${theme.colors.white};
       ${Elevation(3)};
+      ${Centralized()};
     `;
   }};
 `;
@@ -167,8 +169,8 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
       :before {
         content: '';
         position: absolute;
-        width: calc(100% - 2px);
-        height: calc(100% - 2px);
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
         border-radius: 10px;
         background-color: rgba(86, 229, 1, 0);
         ${Centralized()}
@@ -203,12 +205,11 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
       ${typeView === 'simplified' &&
       css`
         @media (min-height: 0) {
-          // height: calc(((100vh - ${minHeightContent / 12}rem) / 3.1));
+          height: calc(((100vh - ${minHeightContent / 12}rem) / 3.1));
         }
 
         @media (min-height: 900px) {
-          // height: calc(((100vh - ${minHeightContent /
-          10}rem) / ${countRows}));
+          height: calc(((100vh - ${minHeightContent / 10}rem) / ${countRows}));
         }
       `}
 
