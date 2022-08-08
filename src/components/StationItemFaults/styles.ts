@@ -1,4 +1,3 @@
-import routes from 'constants/routes';
 import styled, { css } from 'styled-components';
 
 import {
@@ -26,7 +25,7 @@ export const Footer = styled.div`
       width: 100%;
       span {
         font-family: 'DaimlerBold', sans-serif;
-        font-size: 14px;
+        font-size: 12px;
         color: ${theme.colors.grey_2};
       }
     `;
@@ -51,7 +50,7 @@ export const FailLabel = styled.span`
   width: 100%;
   padding: 0 !important;
   position: relative;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: baseline;
   & > span {
     padding: 0 !important;
@@ -59,9 +58,9 @@ export const FailLabel = styled.span`
   }
 `;
 
-export const FailList = styled.div<Types.FailListProps>`
+export const FailList = styled.div`
   ${(props) => {
-    const { theme, from } = props;
+    const { theme } = props;
 
     return css`
       position: relative;
@@ -84,13 +83,11 @@ export const FailList = styled.div<Types.FailListProps>`
 
       span {
         font-family: 'DaimlerBold', sans-serif;
-        font-size: 14px;
+        font-size: 12px;
+        color: ${theme.colors.white};
         border-radius: 16px;
-        padding: 2px ${theme.unit * 2}px;
+        padding: 2px ${theme.unit}px;
         margin-bottom: 5px;
-        color: ${from === routes.FAULT_PREDICTION
-          ? theme.colors.black
-          : theme.colors.white};
 
         &:last-child {
           margin-bottom: 0;
@@ -164,7 +161,7 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
       width: ${width ? `${width}rem` : 'calc(100% / 7)'};
       min-width: 18rem;
       max-height: 30rem;
-      margin: ${theme.unit}px;
+      padding: ${theme.unit}px;
 
       :before {
         content: '';

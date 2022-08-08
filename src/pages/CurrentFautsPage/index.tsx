@@ -18,7 +18,6 @@ import { Pathname, RouterProps, StateMapToPropsGlobal } from 'types';
 
 import CurrentFaultsLoader from './CurrentFaultsLoader';
 import * as S from './styles';
-import CurrentFaultsInDetail from './CurrentFaultsInDetail';
 
 const CurrentFaultsPage = () => {
   const settingsPage = useSelector(
@@ -87,18 +86,10 @@ const CurrentFaultsPage = () => {
           </S.Loader>
         )}
         {data && settingsPage.modeView === 'simplified' && (
-          <SimplifiedView
-            namespace="currentFaultsPage"
-            message={data.current_faults}
-          />
+          <SimplifiedView namespace="currentFaultsPage" message={data} />
         )}
         {data && settingsPage.modeView === 'detailed' && (
-          <DetailedView>
-            <CurrentFaultsInDetail
-              namespace="currentFaultsPage"
-              message={data.current_faults}
-            />
-          </DetailedView>
+          <DetailedView namespace="currentFaultsPage" message={data} />
         )}
       </S.Main>
       <Footer />

@@ -3,6 +3,7 @@ export type GroupProps<T> = {
   flexDirection?: T;
   unitOfMeasurement?: string;
   margin?: [number, number, number, number] | [number, number];
+  children?: React.ReactNode;
 };
 
 /*= -=-=-=-=-= STYLES =-=-=-=-=-= */
