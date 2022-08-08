@@ -5,6 +5,7 @@ interface ICard {
   title?: string;
   subtitle?: string;
   cardmargin?: string;
+  children?: React.ReactNode | React.ReactNode[];
 }
 
 const Card: React.FC<ICard> = ({ title, subtitle, cardmargin, children }) => {

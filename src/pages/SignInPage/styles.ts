@@ -4,13 +4,21 @@ import { Typography } from '@material-ui/core';
 import { Elevation, Transition } from 'utils/styles/mixins';
 import Background from 'assets/img/login_background.png';
 import { theme } from 'styles/theme';
+import { FormikErrors } from 'formik';
+import React from 'react';
+
+interface ErrorsProps
+  extends FormikErrors<{ children: React.ReactNode | string | string[] }> {
+  fontcolor?: string;
+  children: any;
+}
 
 export const Logo = styled.img`
   height: auto;
   width: 10%;
 `;
 
-export const Font = styled(Typography)<{ fontcolor?: string }>`
+export const Font = styled(Typography)<ErrorsProps>`
   && {
     ${({ fontcolor }) =>
       fontcolor
