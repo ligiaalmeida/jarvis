@@ -15,6 +15,8 @@ import { StationItemPosition } from '../types';
 import Station from './Station';
 import { useWindowWidth } from 'hooks';
 
+const hiddenStations = ['14B'];
+
 const StationList = ({ stationList }: Types.StationListProps) => {
   const [station_list, setStationList] = useState<any[]>();
   const [station, setStation] = useState<StationsList>(
@@ -313,7 +315,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <S.Font isvertical="true">SGPRO2</S.Font>
+                  <S.Font isvertical="true" fontSize="2">
+                    SGPRO2
+                  </S.Font>
                 </Grid>
               </Grid>
             </Grid>
@@ -683,7 +687,9 @@ const StationList = ({ stationList }: Types.StationListProps) => {
                 </Grid>
 
                 <Grid item>
-                  <S.Font isvertical="true">SGPRO1</S.Font>
+                  <S.Font isvertical="true" fontSize="2">
+                    SGPRO1
+                  </S.Font>
                 </Grid>
               </Grid>
             </Grid>

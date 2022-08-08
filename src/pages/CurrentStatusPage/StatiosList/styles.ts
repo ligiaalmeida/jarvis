@@ -177,17 +177,12 @@ export const StationEmpty = styled.div`
 export const Font = styled(Typography)<{
   isnumber?: string;
   isvertical?: string;
+  fontSize?: string;
 }>`
-  margin: auto;
-  && {
-    font-family: 'DaimlerBold', sans-serif;
-    font-weight: 700;
-    font-size: 1.5vh;
-  }
   ${({ isvertical }) =>
     isvertical === 'true' &&
     `
-      font-size: 2rem !important;
+      font-size: 2rem;
       writing-mode: vertical-lr;
       text-orientation: mixed;
       transform: rotate(180deg);
@@ -197,14 +192,24 @@ export const Font = styled(Typography)<{
       ? `
       && {
         color: ${theme.colors.white};
-        font-size: 2.5vh;
+        font-size: 2.2rem;
       }
       `
       : `
+      color: ${theme.colors.grey_13};
       && {
-        color: ${theme.colors.grey_3};
+        font-size: 1.6rem;
+        font-weight: 700;
       }
       `}
+      ${({ fontSize }) => `
+        font-size: ${fontSize}rem !important;
+      `}
+    && {
+    margin: auto;
+    font-family: 'DaimlerBold', sans-serif;
+    font-weight: 700;
+  }
 `;
 
 export const Group = styled(Grid)`
