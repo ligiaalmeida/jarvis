@@ -1,5 +1,3 @@
-import { Dispatch } from 'redux';
-
 export type CurrentFaults<T> = T;
 
 export type ActiveFailList = {

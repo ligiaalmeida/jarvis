@@ -3,7 +3,7 @@ import { theme } from 'styles/theme';
 
 import { MinHeightContainer, Transition } from 'utils/styles/mixins';
 
-import { LabelTypeProps } from '../CurrentFautsPage/types';
+import { LabelTypeProps, ContainerProps } from '../CurrentFautsPage/types';
 import { ContainerHeaderProps } from 'components/Navigation/types';
 
 export const Label = styled.div<LabelTypeProps>`
@@ -109,9 +109,22 @@ export const Loader = styled.div`
   }};
 `;
 
-export const Main = styled.main`
-  position: relative;
-  ${MinHeightContainer()};
-  background-color: ${theme.colors.white};
-  ${Transition('background-color', 0.4)}
+export const Main = styled.main<ContainerProps>`
+  ${(props) => {
+    const { modeViewType } = props;
+
+    return css`
+      position: relative;
+      ${MinHeightContainer()};
+
+      ${modeViewType === 'detailed'
+        ? css`
+            background-color: ${theme.colors.primary_2};
+          `
+        : css`
+            background-color: ${theme.colors.white};
+          `};
+      ${Transition('background-color', 0.4)}
+    `;
+  }};
 `;

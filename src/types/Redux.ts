@@ -3,9 +3,11 @@ import {
   ModeView,
   PagesSettingsTimer,
   PerformancePageStorage,
-  ShiftRegistrationFields,
 } from 'types';
-import { CurrentFaultsPayload } from 'components/StationItemFaults/types';
+import {
+  CurrentFaultsPayload,
+  FaultPredictionPayload,
+} from 'components/StationItemFaults/types';
 
 export type InitialStateGlobal = {
   toggleHeader: boolean;
@@ -15,6 +17,7 @@ export type InitialStateGlobal = {
 };
 
 export interface StateMapToPropsGlobal {
+  [x: string]: any;
   polices: SignInPage;
   global: InitialStateGlobal;
   shiftRegistrationPage: {
@@ -40,7 +43,7 @@ export interface StateMapToPropsGlobal {
       date: string;
       hour: number;
     };
-  } & Omit<PagesContainingTimerAndModeView, 'stationActive'>;
+  } & PagesContainingTimerAndModeView;
   monthlyReportPage: {
     params: {
       date: string;
@@ -127,12 +130,16 @@ export type CreatorRedux = {
 export interface PagesContainingTimerAndModeView {
   timer: PagesSettingsTimer;
   modeView: ModeView;
-  stationActive: CurrentFaultsPayload;
+  stationActive: CurrentFaultsPayload | FaultPredictionPayload;
 }
 
-export type CurrentFaultsPageStorage = PagesContainingTimerAndModeView;
+export type CurrentFaultsPageStorage = {
+  stationActive: CurrentFaultsPayload;
+} & Omit<PagesContainingTimerAndModeView, 'stationActive'>;
 
-export type FaultsPredictionPageStorage = PagesContainingTimerAndModeView;
+export type FaultsPredictionPageStorage = {
+  stationActive: FaultPredictionPayload;
+} & Omit<PagesContainingTimerAndModeView, 'stationActive'>;
 
 export type MonthlyReportPage = {
   params: {
