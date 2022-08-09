@@ -67,7 +67,6 @@ export const Instructions = styled(Box)`
         align-items: flex-start;
         display: flex;
         flex-direction: column;
-        // list-style: none;
         margin: 1rem;
       }
 
@@ -192,15 +191,7 @@ export const DivActions = styled.div`
   justify-content: center;
 `;
 
-export const DragButton = styled(IconButton)`
-  && {
-    // margin: 12px;
-    // // margin-top: 23px;
-    // svg {
-    //   font-size: 1.2em;
-    // }
-  }
-`;
+export const DragButton = styled(IconButton)``;
 
 export const TrashButton = styled(IconButton)`
   && {
