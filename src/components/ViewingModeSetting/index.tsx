@@ -17,7 +17,7 @@ import { History } from 'history';
 
 const ViewingModeSetting: React.FC<
   Types.ViewingModeSettingProps<React.ChangeEvent<HTMLInputElement>>
-> = ({ pageName = 'currentFaultsPage', toggleNavigation, handleChange }) => {
+> = ({ pageName, toggleNavigation, handleChange }) => {
   const settingsPage = useSelector(
     (state: StateMapToPropsGlobal) => state[pageName]
   );

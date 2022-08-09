@@ -2,17 +2,19 @@ import {
   CurrentFaultsPayload,
   FaultPredictionPayload,
 } from 'components/StationItemFaults/types';
+import React from 'react';
 import { KeysOfPagesContainingStations } from 'types';
 
 /*=-=-=-=-=-= COMPONENT =-=-=-=-=-=*/
 export type SimplifiedViewProps = {
-  message: {
-    current_faults?: CurrentFaultsPayload[];
-    fault_prediction?: FaultPredictionPayload[];
-  };
+  message: CurrentFaultsPayload[] | FaultPredictionPayload[];
   namespace: KeysOfPagesContainingStations;
   isDrawerDetails?: boolean;
 };
+
+export type DetailedViewProps = {
+  children: React.ReactNode | React.ReactNode[];
+}
 
 export type TabsData<T> = {
   label: {

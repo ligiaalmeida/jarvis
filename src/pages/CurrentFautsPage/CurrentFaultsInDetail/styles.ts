@@ -1,11 +1,83 @@
 import styled, { css } from 'styled-components';
 
-import { Elevation, Transition, CustomScrollBar } from 'utils/styles/mixins';
+import {
+  Elevation,
+  Transition,
+  Centralized,
+  CustomScrollBar,
+} from 'utils/styles/mixins';
 
-import { FailItemProps } from '../../StationItemFaults/types';
+import { FailItemProps } from 'components/StationItemFaults/types';
+
+export const Scroll = styled.div`
+    max-height 140px;
+    overflow: auto;
+`;
+
+export const Title = styled.div`
+  ${(props) => {
+    const { theme } = props;
+
+    return css`
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      h1 {
+        width: 100%;
+        font-size: ${theme.typography.size.title_3};
+        text-transform: uppercase;
+        text-align: center;
+        padding: 0.5rem 1rem 0.5rem 40px;
+        margin-bottom: 0;
+      }
+
+      span {
+        position: relative;
+        width: ${theme.unit * 5}px;
+        height: ${theme.unit * 5}px;
+        padding: ${theme.unit}px;
+        cursor: pointer;
+        transform: scale(1);
+        margin-right: -8px;
+        ${Transition('transform', 0.3)};
+
+        :hover {
+          transform: scale(1.2) rotate(180deg);
+        }
+
+        :before {
+          content: '';
+          position: absolute;
+          width: calc(100% - 16px);
+          height: 2px;
+          border-radius: 2px;
+          background-color: ${theme.colors.primary_2};
+          ${Centralized(css`
+            rotate(-45deg)
+          `)}
+        }
+
+        :after {
+          content: '';
+          position: absolute;
+          width: calc(100% - 16px);
+          height: 2px;
+          border-radius: 2px;
+          background-color: ${theme.colors.primary_2};
+          ${Centralized(css`
+            rotate(45deg)
+          `)}
+        }
+      }
+    `;
+  }};
+`;
 
 export const EventItem = styled.div`
-  ${(props: { theme: any }) => {
+  ${(props) => {
     const { theme } = props;
 
     return css`
@@ -51,7 +123,7 @@ export const EventItem = styled.div`
 `;
 
 export const EventList = styled.div`
-  ${(props: { theme: any }) => {
+  ${(props) => {
     const { theme } = props;
 
     return css`
@@ -66,7 +138,7 @@ export const EventList = styled.div`
 `;
 
 export const FailEvents = styled.div`
-  ${(props: { theme: any }) => {
+  ${(props) => {
     const { theme } = props;
 
     return css`
@@ -122,7 +194,7 @@ export const FailEvents = styled.div`
 `;
 
 export const FailName = styled.div<FailItemProps>`
-  ${(props: { color: any }) => {
+  ${(props) => {
     const { color } = props;
 
     return css`
@@ -161,7 +233,7 @@ export const FailName = styled.div<FailItemProps>`
 export const FailItem = styled.div.attrs({
   className: 'fail-item',
 })`
-  ${(props: { theme: any }) => {
+  ${(props) => {
     const { theme } = props;
 
     return css`
@@ -170,6 +242,15 @@ export const FailItem = styled.div.attrs({
       align-items: center;
       width: ${100 / 3}%;
       padding-right: 1rem;
+
+      ${theme.breakpoints.custom(
+        'max',
+        1670,
+        css`
+          width: ${100 / 2}%;
+          ${Transition('width', 0.25)}
+        `
+      )}
 
       ${theme.breakpoints.custom(
         'max',
@@ -239,43 +320,24 @@ export const FailItem = styled.div.attrs({
 `;
 
 export const FaultListRow = styled.div`
-  ${() => {
-    // const { theme } = props;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
 
-    return css`
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-
-      margin-bottom: 1rem;
-
-      :last-child {
-        margin-bottom: 0;
-      }
-    `;
-  }};
+  :last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const DetailsStation = styled.div`
-  ${(props: { theme: any }) => {
-    const { theme } = props;
-
-    return css`
-      position: relative;
-      width: 100%;
-      padding: 1rem;
-
-      h1 {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-    `;
-  }};
+  position: relative;
+  width: 100%;
+  padding: 1rem;
 `;
 
 export const DetailsDrawerContent = styled.div`
-  ${(props: { theme: any }) => {
+  ${(props) => {
     const { theme } = props;
 
     return css`
@@ -290,7 +352,7 @@ export const DetailsDrawerContent = styled.div`
 `;
 
 export const DetailsDrawer = styled.div`
-  ${(props: { theme: any }) => {
+  ${(props) => {
     const { theme } = props;
 
     return css`
@@ -311,8 +373,13 @@ export const RowStations = styled.div`
 
   & > div {
     min-height: 26rem;
-    width: 100%;
   }
+`;
+
+export const StationsContent = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Container = styled.div`
@@ -324,7 +391,7 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       margin-top: 1rem;
-      padding: 0 0 ${theme.distance.normal}rem 0;
+      padding: 0 ${theme.distance.normal}rem ${theme.distance.normal}rem;
     `;
   }};
 `;

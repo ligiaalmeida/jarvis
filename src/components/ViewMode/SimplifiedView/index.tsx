@@ -3,15 +3,17 @@ import React from 'react';
 import { CurrentFaultsActions } from 'store/ducks/currentFaults';
 import { FaultPredictionActions } from 'store/ducks/faultPrediction';
 
-import StationItemFaults from 'components/StationItemFaults';
+import CurrentFaultStation from 'components/StationItemFaults/CurrentFaultStation';
+import FaultPredictionStation from 'components/StationItemFaults/FaultPredictionStation';
 import NavTabs from 'components/NavTabs';
 import Error from 'components/Icons/Error';
 import MessageError from 'components/Messages/Error';
 
 import {
+  CurrentFaultItem,
   CurrentFaultsPayload,
   FaultPredictionPayload,
-  StationItemFaultsProps,
+  StationItemCurrentFaultsProps,
 } from 'components/StationItemFaults/types';
 import { KeysOfPagesContainingStations } from 'types';
 import * as Types from '../types';
@@ -21,28 +23,16 @@ const SimplifiedView = ({
   isDrawerDetails = false,
   namespace,
 }: Types.SimplifiedViewProps) => {
-  let payload: CurrentFaultsPayload[] | FaultPredictionPayload[] | undefined;
   const data: Types.TabsData<React.ReactElement>[] = [];
 
-  switch (namespace) {
-    case 'faultPredictionPage':
-      payload = message
-        ? message.fault_prediction?.filter(
-            (station) => station.stop_fail_list.length > 0
-          )
-        : [];
-      break;
-    default:
-      payload = message
-        ? message?.current_faults?.filter(
-            (station) => station.fail_list.length > 0
-          )
-        : [];
-      break;
-  }
-
   if (namespace === 'currentFaultsPage') {
-    (payload as CurrentFaultsPayload[])?.map((station, idx) => {
+    const stationList: CurrentFaultsPayload[] = message
+      ? (message as CurrentFaultsPayload[])?.filter(
+          (station: { fail_list: CurrentFaultItem[] }) =>
+            station.fail_list.length > 0
+        )
+      : [];
+    stationList.map((station, idx) => {
       if (idx % 24 === 0) {
         data.push({
           label: { id: idx, title: station.label },
@@ -51,7 +41,7 @@ const SimplifiedView = ({
       }
 
       data[data.length - 1].componentChildren.push(
-        <StationItemFaults
+        <CurrentFaultStation
           data={station}
           key={station.label}
           id={station.label}
@@ -61,32 +51,38 @@ const SimplifiedView = ({
         />
       );
       data.map((row, idxRow) => (row.label.id = idxRow));
-
       return data;
     });
   }
 
   if (namespace === 'faultPredictionPage') {
-    (payload as FaultPredictionPayload[])?.map((station, idx) => {
-      if (idx % 24 === 0) {
-        data.push({
-          label: { id: idx, title: station.label },
-          componentChildren: [],
-        });
+    let sta: Types.TabsData<React.ReactElement> = {
+      label: {
+        id: 0,
+        title: '',
+      },
+      componentChildren: [],
+    };
+    (message as FaultPredictionPayload[])?.map((station, idx) => {
+      if (station.stop_fail_list.length > 0) {
+        if (idx % 24 === 0) {
+          sta = {
+            label: { id: idx, title: station.label },
+            componentChildren: [
+              ...sta.componentChildren,
+              <FaultPredictionStation
+                data={station}
+                key={station.label}
+                id={station.label}
+                isOnClick={isDrawerDetails}
+                typeView="simplified"
+              />,
+            ],
+          };
+          data.push(sta);
+        }
+        data.map((row, idxRow) => (row.label.id = idxRow));
       }
-
-      data[data.length - 1].componentChildren.push(
-        <StationItemFaults
-          data={station}
-          key={station.label}
-          id={station.label}
-          namespace={namespace}
-          isOnClick={isDrawerDetails}
-          typeView="simplified"
-        />
-      );
-      data.map((row, idxRow) => (row.label.id = idxRow));
-
       return data;
     });
   }
@@ -95,7 +91,7 @@ const SimplifiedView = ({
     item.label.title += ` ao ${
       (
         item.componentChildren[item.componentChildren.length - 1]
-          .props as StationItemFaultsProps
+          .props as StationItemCurrentFaultsProps
       ).data.label
     }`;
   });
@@ -130,7 +126,7 @@ const SimplifiedView = ({
       ) : (
         <MessageError
           isVisible
-          title="Error ao tentar buscar os dados"
+          title="Erro ao tentar buscar os dados"
           description="Linha sem registro de falhas"
           icon={<Error />}
         />

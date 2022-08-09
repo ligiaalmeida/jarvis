@@ -6,8 +6,7 @@
   "description": "Just A Rather Very Intelligent System (J.A.R.V.I.S.)",
   "homepage": "http://jarvis.corpintra.net",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions@0.0.3",
-    "start": "react-scripts start",
+    "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -80,7 +79,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-persist-transform-filter": "^0.0.20",
@@ -197,6 +196,7 @@
     }
   },
   "resolutions": {
-    "@types/react": "17.0.30"
+    "@types/react": "17.0.30",
+    "babel-eslint": "9.0.0"
   }
 }

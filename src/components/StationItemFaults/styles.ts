@@ -1,3 +1,4 @@
+import routes from 'constants/routes';
 import styled, { css } from 'styled-components';
 
 import {
@@ -25,7 +26,7 @@ export const Footer = styled.div`
       width: 100%;
       span {
         font-family: 'DaimlerBold', sans-serif;
-        font-size: 12px;
+        font-size: 14px;
         color: ${theme.colors.grey_2};
       }
     `;
@@ -58,9 +59,9 @@ export const FailLabel = styled.span`
   }
 `;
 
-export const FailList = styled.div`
+export const FailList = styled.div<Types.FailListProps>`
   ${(props) => {
-    const { theme } = props;
+    const { theme, from } = props;
 
     return css`
       position: relative;
@@ -83,11 +84,13 @@ export const FailList = styled.div`
 
       span {
         font-family: 'DaimlerBold', sans-serif;
-        font-size: 12px;
-        color: ${theme.colors.white};
+        font-size: 14px;
         border-radius: 16px;
         padding: 2px ${theme.unit}px;
         margin-bottom: 5px;
+        color: ${from === routes.FAULT_PREDICTION
+          ? theme.colors.black
+          : theme.colors.white};
 
         &:last-child {
           margin-bottom: 0;
@@ -121,14 +124,16 @@ export const Wrapper = styled.div`
 
     return css`
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
       display: grid;
       grid-template-rows: 0.2fr 1fr 0.23fr;
-      padding: 6px 6px 0;
+      margin: auto;
+      padding: 6px;
       border-radius: ${theme.unit}px;
       background-color: ${theme.colors.white};
       ${Elevation(3)};
+      ${Centralized()};
     `;
   }};
 `;
@@ -159,13 +164,13 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
       width: ${width ? `${width}rem` : 'calc(100% / 7)'};
       min-width: 18rem;
       max-height: 30rem;
-      padding: ${theme.unit}px;
+      margin: ${theme.unit}px;
 
       :before {
         content: '';
         position: absolute;
-        width: calc(100% - 2px);
-        height: calc(100% - 2px);
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
         border-radius: 10px;
         background-color: rgba(86, 229, 1, 0);
         ${Centralized()}
@@ -200,12 +205,11 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
       ${typeView === 'simplified' &&
       css`
         @media (min-height: 0) {
-          // height: calc(((100vh - ${minHeightContent / 12}rem) / 3.1));
+          height: calc(((100vh - ${minHeightContent / 12}rem) / 3.1));
         }
 
         @media (min-height: 900px) {
-          // height: calc(((100vh - ${minHeightContent /
-          10}rem) / ${countRows}));
+          height: calc(((100vh - ${minHeightContent / 10}rem) / ${countRows}));
         }
       `}
 
