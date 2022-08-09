@@ -333,7 +333,7 @@ const DetailedView = ({
               ) : (
                 <MessageError
                   isVisible
-                  title="Error ao tentar buscar os dados"
+                  title="Erro ao tentar buscar os dados"
                   description="Linha sem registro de falhas"
                   icon={<Error />}
                 />
@@ -354,7 +354,7 @@ const DetailedView = ({
               ) : (
                 <MessageError
                   isVisible
-                  title="Error ao tentar buscar os dados"
+                  title="Erro ao tentar buscar os dados"
                   description="Linha sem registro de falhas"
                   icon={<Error />}
                 />
