@@ -1,5 +1,5 @@
-import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import * as Types from '../types';
 
 import * as S from './styles';
 
@@ -28,7 +28,7 @@ const variant = {
   },
 };
 
-const DetailedView: React.FC = ({ children }) => {
+const DetailedView = ({ children }: Types.DetailedViewProps) => {
   return (
     <AnimatePresence>
       <motion.div

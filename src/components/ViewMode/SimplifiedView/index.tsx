@@ -56,24 +56,41 @@ const SimplifiedView = ({
   }
 
   if (namespace === 'faultPredictionPage') {
+    let sta: Types.TabsData<React.ReactElement> = {
+      label: {
+        id: 0,
+        title: '',
+      },
+      componentChildren: [],
+    };
     (message as FaultPredictionPayload[])?.map((station, idx) => {
       if (station.stop_fail_list.length > 0) {
         if (idx % 24 === 0) {
-          data.push({
+          sta = {
             label: { id: idx, title: station.label },
-            componentChildren: [],
-          });
+            componentChildren: [
+              ...sta.componentChildren,
+              <FaultPredictionStation
+                data={station}
+                key={station.label}
+                id={station.label}
+                isOnClick={isDrawerDetails}
+                typeView="simplified"
+              />,
+            ],
+          };
+          data.push(sta);
         }
 
-        data[data.length - 1].componentChildren.push(
-          <FaultPredictionStation
-            data={station}
-            key={station.label}
-            id={station.label}
-            isOnClick={isDrawerDetails}
-            typeView="simplified"
-          />
-        );
+        // data[data.length - 1].componentChildren.push(
+        //   <FaultPredictionStation
+        //     data={station}
+        //     key={station.label}
+        //     id={station.label}
+        //     isOnClick={isDrawerDetails}
+        //     typeView="simplified"
+        //   />
+        // );
         data.map((row, idxRow) => (row.label.id = idxRow));
       }
       return data;
