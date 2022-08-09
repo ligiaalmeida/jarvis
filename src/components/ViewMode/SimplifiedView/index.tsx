@@ -81,16 +81,6 @@ const SimplifiedView = ({
           };
           data.push(sta);
         }
-
-        // data[data.length - 1].componentChildren.push(
-        //   <FaultPredictionStation
-        //     data={station}
-        //     key={station.label}
-        //     id={station.label}
-        //     isOnClick={isDrawerDetails}
-        //     typeView="simplified"
-        //   />
-        // );
         data.map((row, idxRow) => (row.label.id = idxRow));
       }
       return data;

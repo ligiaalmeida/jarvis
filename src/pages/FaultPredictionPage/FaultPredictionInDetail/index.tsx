@@ -119,7 +119,7 @@ const DetailedView = ({
 
   return (
     <S.Container>
-      {message && data[0].length > 0 ? (
+      {payload.length > 0 && data.length > 0 ? (
         data.map((row, rowIdx) => (
           <S.StationsContent key={`${rowIdx}`}>
             <S.RowStations>{row.map((station) => station)}</S.RowStations>
@@ -186,7 +186,7 @@ const DetailedView = ({
       ) : (
         <MessageError
           isVisible
-          title="Error ao tentar buscar os dados"
+          title="Erro ao tentar buscar os dados"
           description="Linha sem registro de falhas"
           icon={<Error />}
         />
