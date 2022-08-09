@@ -1,50 +1,8 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
-import { Typography } from '@material-ui/core';
+
 import { Elevation, Transition } from 'utils/styles/mixins';
-import Background from 'assets/img/login_background.png';
-import { theme } from 'styles/theme';
-import { FormikErrors } from 'formik';
-import React from 'react';
-
-interface ErrorsProps
-  extends FormikErrors<{ children: React.ReactNode | string | string[] }> {
-  fontcolor?: string;
-  children: any;
-}
-
-export const Logo = styled.img`
-  height: auto;
-  width: 10%;
-`;
-
-export const Font = styled(Typography)<ErrorsProps>`
-  && {
-    ${({ fontcolor }) =>
-      fontcolor
-        ? `
-    color: ${fontcolor};
-  
-`
-        : `
-  font-size: 0.8vw;
-  color: ${theme.colors.grey_16};
-
-`}
-  }
-`;
-
-export const LoginBackground = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-image: url(${Background});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-`;
+import HeroImg from 'assets/img/login__hero--2.jpg';
 
 export const ContainerWrapper = styled.div`
   ${(props) => {
@@ -65,7 +23,7 @@ export const ContainerWrapper = styled.div`
         position: relative;
         overflow: hidden;
         background-size: cover;
-        background-image: url(${Background});
+        background-image: url(${HeroImg});
         background-position: 30% 10%;
 
         ${theme.breakpoints.default('min').xs(css`
@@ -140,6 +98,8 @@ export const FormContent = styled.div`
     const { theme } = props;
 
     return css`
+      position: relative;
+      top: -16rem;
       width: 100%;
 
       .sign-in__form-content {
