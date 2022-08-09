@@ -54,6 +54,8 @@ const FaultPredictionPage = () => {
     console.groupEnd();
   }
 
+  // const dataMock = payload;
+
   useEffect(() => {
     if (settingsPage.modeView === 'detailed') {
       document.body.classList.add('fault-prediction__bg--primary2');
