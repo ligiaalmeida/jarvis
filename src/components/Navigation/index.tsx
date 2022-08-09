@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,20 +14,16 @@ import Logout from 'components/Icons/Logout';
 import Switch from 'components/FormElements/Switch';
 import { SettingsGear as SettingsIcon } from 'components/Icons';
 
-import { ESettingsStorage } from 'enums/globalSettingsLocalStorage';
-import { sessionStorage } from 'constants/globalStorageSettings';
 import routes from 'constants/routes';
 
-import { useStorage, useWindowWidth, useClickOutside } from 'hooks';
+import { useWindowWidth, useClickOutside } from 'hooks';
 import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
 
 import { ModeView, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
 import * as Types from 'types';
-
 import * as S from './styles';
-import { GlobalSessionStorage } from 'types';
 
 const Navigation = () => {
   const [isHoveredSettingsSecondary, setIsHoveredSettingsSecondary] =
@@ -37,6 +33,7 @@ const Navigation = () => {
   const [modeView, setModeView] = useState<ModeView | string>('');
   const [isNavMobile, setIsNavMobile] = useState(false);
   const [toggleNav, setToggleNav] = useState(false);
+  const [toggleFullscreen, setToggleFullscreen] = useState<boolean>(false);
 
   const refDrawer = useRef<HTMLDivElement>(null!);
 
@@ -94,12 +91,6 @@ const Navigation = () => {
     }
   };
 
-  const [itemSessionStorage, setItemSessionStorage] = useStorage({
-    key: ESettingsStorage.GLOBAL,
-    storageType: 'session',
-    state: JSON.stringify(sessionStorage),
-  });
-
   useClickOutside(refDrawer, () => {
     if (toggleNav) setToggleNav((prevState) => !prevState);
   });
@@ -143,10 +134,6 @@ const Navigation = () => {
     }
   });
 
-  // useEffect(() => {
-  //   setFullScreen(JSON.parse(itemSessionStorage).settings.isActiveFullScreen);
-  // }, [itemSessionStorage]);
-
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 1199px)');
 
@@ -157,6 +144,29 @@ const Navigation = () => {
     if (toggleNav) document.body.style.overflowY = 'hidden';
     else document.body.style.overflowY = 'initial';
   }, [toggleNav]);
+
+  const handleFullscreen = (isFullscreen: boolean) => {
+    if (isFullscreen) {
+      document.documentElement
+        .requestFullscreen()
+        .then(() => setToggleFullscreen(true))
+        .catch((err) => console.log(`Deu ruim: ${err.message} (${err.name})`));
+    }
+    if (!isFullscreen) {
+      if (document.fullscreenElement !== null) {
+        document
+          .exitFullscreen()
+          .then(() => setToggleFullscreen(false))
+          .catch((err) => console.error(`${err.name} ${err.message}`));
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('fullscreenchange', () => {
+      setToggleFullscreen(document.fullscreenElement ? true : false);
+    });
+  }, []);
 
   return (
     <S.ContainerHeader
@@ -349,26 +359,9 @@ const Navigation = () => {
                               fontSize="14px"
                               padding="0"
                               scaleSwitch={0.8}
-                              enabled={
-                                (
-                                  JSON.parse(
-                                    itemSessionStorage
-                                  ) as GlobalSessionStorage
-                                ).settings.isActiveFullScreen
-                              }
-                              onChange={(isFullScreen) => {
-                                setItemSessionStorage(
-                                  JSON.stringify({
-                                    settings: {
-                                      ...(
-                                        JSON.parse(
-                                          itemSessionStorage
-                                        ) as GlobalSessionStorage
-                                      ).settings,
-                                      isActiveFullScreen: isFullScreen,
-                                    },
-                                  })
-                                );
+                              enabled={toggleFullscreen}
+                              onChange={(isFullscreen) => {
+                                handleFullscreen(isFullscreen);
                               }}
                             />
                             <Switch
