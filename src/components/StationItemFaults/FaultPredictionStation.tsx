@@ -46,7 +46,7 @@ const FaultPredictionStation: React.FC<
   return (
     <S.StationItemFaultsContainer
       countRows={3}
-      isSelected={faultPredictionPage.stationActive.label === data.label}
+      isSelected={faultPredictionPage.stationActive === data}
       typeView={typeView}
       onClick={() => {
         if (isOnClick)
