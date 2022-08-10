@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { CurrentFaultsActions } from 'store/ducks/currentFaults';
 import { FaultPredictionActions } from 'store/ducks/faultPrediction';
@@ -13,16 +13,25 @@ import {
   CurrentFaultItem,
   CurrentFaultsPayload,
   FaultPredictionPayload,
+  PredictedFaultItem,
   StationItemCurrentFaultsProps,
 } from 'components/StationItemFaults/types';
 import { KeysOfPagesContainingStations } from 'types';
 import * as Types from '../types';
+import ta from 'date-fns/esm/locale/ta/index.js';
 
 const SimplifiedView = ({
   message,
   isDrawerDetails = false,
   namespace,
 }: Types.SimplifiedViewProps) => {
+  const [sta, setSta] = useState<Types.TabsData<React.ReactElement>>({
+    label: {
+      id: 0,
+      title: '',
+    },
+    componentChildren: [],
+  });
   const data: Types.TabsData<React.ReactElement>[] = [];
 
   if (namespace === 'currentFaultsPage') {
@@ -56,35 +65,48 @@ const SimplifiedView = ({
   }
 
   if (namespace === 'faultPredictionPage') {
-    let sta: Types.TabsData<React.ReactElement> = {
-      label: {
-        id: 0,
-        title: '',
-      },
-      componentChildren: [],
-    };
-    (message as FaultPredictionPayload[])?.map((station, idx) => {
-      if (station.stop_fail_list.length > 0) {
-        if (idx % 24 === 0) {
-          sta = {
-            label: { id: idx, title: station.label },
-            componentChildren: [
-              ...sta.componentChildren,
-              <FaultPredictionStation
-                data={station}
-                key={station.label}
-                id={station.label}
-                isOnClick={isDrawerDetails}
-                typeView="simplified"
-              />,
-            ],
-          };
-          data.push(sta);
-        }
-        data.map((row, idxRow) => (row.label.id = idxRow));
+    const stationList: FaultPredictionPayload[] = message
+      ? (message as FaultPredictionPayload[])?.filter(
+          (station: { stop_fail_list: PredictedFaultItem[] }) =>
+            station.stop_fail_list.length > 0
+        )
+      : [];
+    stationList.map((station, idx) => {
+      if (idx % 24 === 0) {
+        data.push({
+          label: { id: idx, title: station.label },
+          componentChildren: [],
+        });
       }
+
+      data[data.length - 1].componentChildren.push(
+        <FaultPredictionStation
+          data={station}
+          key={station.label}
+          id={station.label}
+          isOnClick={isDrawerDetails}
+          typeView="simplified"
+        />
+      );
+      data.map((row, idxRow) => (row.label.id = idxRow));
       return data;
     });
+    // (message as FaultPredictionPayload[])?.map((station, idx) => {
+    //   if (station.stop_fail_list.length > 0) {
+    //     if (idx % 24 === 0) {
+    //       setSta({
+    //         label: { id: idx, title: station.label },
+    //         componentChildren: [
+    //           ...sta.componentChildren,
+
+    //         ],
+    //       });
+    //       data.push(sta);
+    //     }
+    //     data.map((row, idxRow) => (row.label.id = idxRow));
+    //   }
+    //   return data;
+    // });
   }
 
   data.map((item) => {
