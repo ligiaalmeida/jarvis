@@ -164,7 +164,6 @@ export const StationItemFaultsContainer = styled.div<Types.StationItemFaultsCont
       width: ${width ? `${width}rem` : 'calc(100% / 7)'};
       min-width: 18rem;
       max-height: 30rem;
-      margin: ${theme.unit}px;
 
       :before {
         content: '';
