@@ -11,7 +11,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/package.json
 RUN npm install --legacy-peer-deps
 RUN npm install -g react-scripts@5.0.1
-RUN npm run preinstall
 
 # start app
 CMD ["npm", "start"]
