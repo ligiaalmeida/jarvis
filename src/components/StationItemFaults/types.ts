@@ -61,7 +61,7 @@ export type PredictedFaultItem = {
 
 export type FaultPredictionPayload = {
   label: string;
-  circuit: string;
+  circuit?: string;
   stop_fail_list: PredictedFaultItem[];
 };
 
