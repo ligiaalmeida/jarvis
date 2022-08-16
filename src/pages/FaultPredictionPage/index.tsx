@@ -11,6 +11,8 @@ import payload from 'constants/payload';
 import SimplifiedView from 'components/ViewMode/SimplifiedView';
 import DetailedView from 'components/ViewMode/DetailedView';
 import ViewingModeSetting from 'components/ViewingModeSetting';
+import MessageError from 'components/Messages/Error';
+import Error from 'components/Icons/Error';
 
 import InputList from 'components/Pages/InputList';
 import Footer from 'components/Footer';
@@ -22,20 +24,19 @@ import * as S from './styles';
 import FaultPredictionInDetail from './FaultPredictionInDetail';
 
 const FaultPredictionPage = () => {
-  const [heightNavigation, setHeightNavigation] = useState(0);
-
   const settingsPage = useSelector(
     (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) =>
       state.faultPredictionPage
   );
-
   const settingsGlobal = useSelector(
     (state: Pick<StateMapToPropsGlobal, 'global'>) => state.global
   );
   const router = useSelector((state: RouterProps) => state.router);
 
-  const { toggleModeView } = FaultPredictionActions;
+  const { toggleModeView, closeDrawer } = FaultPredictionActions;
   const dispatch = useDispatch();
+
+  const [heightNavigation, setHeightNavigation] = useState(0);
   const width = useWindowWidth();
 
   const URI_BASE =
@@ -54,8 +55,6 @@ const FaultPredictionPage = () => {
     console.groupEnd();
   }
 
-  // const dataMock = payload;
-
   useEffect(() => {
     if (settingsPage.modeView === 'detailed') {
       document.body.classList.add('fault-prediction__bg--primary2');
@@ -66,14 +65,18 @@ const FaultPredictionPage = () => {
     };
   });
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(toggleModeView(event.target.value as ModeView));
+
+    if (settingsPage.stationActive.label) {
+      dispatch(closeDrawer());
+    }
+  };
+
   useEffect(() => {
     const height = document.querySelector('#root > #navigation');
     setHeightNavigation(Math.floor(height?.clientHeight as number));
   }, [width, heightNavigation]);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(toggleModeView(event.target.value as ModeView));
-  };
 
   return (
     <>

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { CurrentFaultsActions } from 'store/ducks/currentFaults';
 import { theme } from 'styles/theme';
-import { useSocket } from 'hooks';
+import { useWindowWidth, useSocket } from 'hooks';
 import env from 'constants/env';
 import namespace from 'constants/namespace';
 import payload from 'constants/payload';
@@ -14,7 +14,7 @@ import ViewingModeSetting from 'components/ViewingModeSetting';
 import InputList from 'components/Pages/InputList';
 import Footer from 'components/Footer';
 
-import { Pathname, RouterProps, StateMapToPropsGlobal } from 'types';
+import { ModeView, Pathname, RouterProps, StateMapToPropsGlobal } from 'types';
 
 import CurrentFaultsLoader from './CurrentFaultsLoader';
 import * as S from './styles';
@@ -33,6 +33,9 @@ const CurrentFaultsPage = () => {
   const { toggleModeView, closeDrawer } = CurrentFaultsActions;
   const dispatch = useDispatch();
 
+  const [heightNavigation, setHeightNavigation] = useState(0);
+  const width = useWindowWidth();
+
   const URI_BASE =
     process.env.NODE_ENV === 'development'
       ? env.development.APP_WS_URL_BASE
@@ -42,6 +45,12 @@ const CurrentFaultsPage = () => {
     uri: URI_BASE,
     namespace: `/${settingsGlobal.building}_${namespace.CURRENT_FAULTS}`,
   });
+
+  if (process.env.NODE_ENV === 'development') {
+    console.groupCollapsed('Current Faults');
+    console.log(data);
+    console.groupEnd();
+  }
 
   useEffect(() => {
     if (settingsPage.modeView === 'detailed') {
@@ -53,19 +62,18 @@ const CurrentFaultsPage = () => {
     };
   });
 
-  if (process.env.NODE_ENV === 'development') {
-    console.groupCollapsed('Current Faults');
-    console.log(data);
-    console.groupEnd();
-  }
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(toggleModeView(event.target.value));
+    dispatch(toggleModeView(event.target.value as ModeView));
 
     if (settingsPage.stationActive.label) {
       dispatch(closeDrawer());
     }
   };
+
+  useEffect(() => {
+    const height = document.querySelector('#root > #navigation');
+    setHeightNavigation(Math.floor(height?.clientHeight as number));
+  }, [width, heightNavigation]);
 
   return (
     <>

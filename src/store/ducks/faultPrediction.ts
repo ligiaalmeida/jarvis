@@ -20,8 +20,8 @@ export const INITIAL_STATE = {
     circuit: '',
     stop_fail_list: [
       {
-        fail_name: '',
-        equipment: 0,
+        label: '',
+        id_equipamento: 0,
         analog_signals: [
           {
             name: '',

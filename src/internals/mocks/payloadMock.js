@@ -65,7 +65,7 @@ export default {
           { key: "03h00'", value: 26, predicted: 24 },
           { key: "04h00'", value: 26, predicted: 24 },
           { key: "05h00'", value: 26, predicted: 24 },
-          { key: "05h35'", value: 26, predicted: 24 }
+          { key: "05h35'", value: 26, predicted: 24 },
         ],
       },
       failure_forecasting: {
@@ -4274,8 +4274,9 @@ export default {
       label: 'Posto 3',
       circuit: 'Dress Up',
       stop_fail_list: [
-        { fail_name: 'FalhaRFID',
-          equipment: 10,
+        {
+          label: 'FalhaRFID',
+          id_equipamento: 10,
           analog_signals: [
             {
               name: 'ELEV.DRIVE.Rotation_RPM',
@@ -4300,11 +4301,12 @@ export default {
               standard_value: 144,
               changed_value: 44,
               percentage_changed: -10,
-            }
+            },
           ],
         },
-        { fail_name: 'FalhaRFID',
-          equipment: 10,
+        {
+          label: 'FalhaRFID',
+          id_equipamento: 10,
           analog_signals: [
             {
               name: 'ELEV.DRIVE.Rotation_RPM',
@@ -4329,11 +4331,12 @@ export default {
               standard_value: 144,
               changed_value: 44,
               percentage_changed: -10,
-            }
+            },
           ],
         },
-        { fail_name: 'FalhaRFID',
-          equipment: 10,
+        {
+          label: 'FalhaRFID',
+          id_equipamento: 10,
           analog_signals: [
             {
               name: 'ELEV.DRIVE.Rotation_RPM',
@@ -4358,11 +4361,12 @@ export default {
               standard_value: 144,
               changed_value: 44,
               percentage_changed: -10,
-            }
+            },
           ],
         },
-        { fail_name: 'FalhaRFID',
-          equipment: 10,
+        {
+          label: 'FalhaRFID',
+          id_equipamento: 10,
           analog_signals: [
             {
               name: 'ELEV.DRIVE.Rotation_RPM',
@@ -4387,10 +4391,10 @@ export default {
               standard_value: 144,
               changed_value: 44,
               percentage_changed: -10,
-            }
+            },
           ],
         },
-      ]
+      ],
     },
     { label: 'Posto 4', circuit: 'Dress Up', stop_fail_list: [] },
     { label: 'Posto 5', circuit: 'Dress Up', stop_fail_list: [] },

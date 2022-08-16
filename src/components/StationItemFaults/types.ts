@@ -49,8 +49,8 @@ export type CurrentFaultsPayload = {
 };
 
 export type PredictedFaultItem = {
-  fail_name: string;
-  equipment: number;
+  label: string;
+  id_equipamento: number;
   analog_signals: {
     name: string;
     standard_value: number;
