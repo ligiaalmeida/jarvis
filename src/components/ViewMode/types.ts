@@ -14,7 +14,7 @@ export type SimplifiedViewProps = {
 
 export type DetailedViewProps = {
   children: React.ReactNode | React.ReactNode[];
-}
+};
 
 export type TabsData<T> = {
   label: {

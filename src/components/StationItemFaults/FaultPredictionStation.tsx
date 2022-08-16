@@ -46,7 +46,7 @@ const FaultPredictionStation: React.FC<
   return (
     <S.StationItemFaultsContainer
       countRows={3}
-      isSelected={faultPredictionPage.stationActive === data}
+      isSelected={faultPredictionPage.stationActive.label === data.label}
       typeView={typeView}
       onClick={() => {
         if (isOnClick)
@@ -68,8 +68,8 @@ const FaultPredictionStation: React.FC<
             (data as Types.FaultPredictionPayload).stop_fail_list.map(
               (fail, idx) => {
                 return (
-                  <S.FailLabel key={`${fail.fail_name}_${idx}`}>
-                    <span>{fail.fail_name}</span>
+                  <S.FailLabel key={`${fail.label}_${idx}`}>
+                    <span>{fail.label}</span>
                   </S.FailLabel>
                 );
               }

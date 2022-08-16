@@ -42,7 +42,7 @@ const DetailedView = ({
   const failList: Array<typeof stationSelected.stop_fail_list> = [[]];
   const payload: FaultPredictionPayload[] = message
     ? message?.filter(
-        (station: { stop_fail_list: PredictedFaultItem[] }) =>
+        (station: { stop_fail_list: PredictedFaultItem[] | any[] }) =>
           station.stop_fail_list.length > 0
       )
     : [];
@@ -67,6 +67,7 @@ const DetailedView = ({
       <FaultPredictionStation
         key={station.label}
         id={`${station.label}`}
+        namespace={namespace}
         data={station}
         isOnClick={isDrawerDetails}
       />
@@ -119,7 +120,7 @@ const DetailedView = ({
 
   return (
     <S.Container>
-      {payload.length > 0 && data.length > 0 ? (
+      {message && data[0].length > 0 ? (
         data.map((row, rowIdx) => (
           <S.StationsContent key={`${rowIdx}`}>
             <S.RowStations>{row.map((station) => station)}</S.RowStations>
@@ -152,16 +153,15 @@ const DetailedView = ({
                                   (fail: PredictedFaultItem, idx: number) => {
                                     return (
                                       <S.DetailsFaults
-                                        key={`${fail.fail_name}_${idx}`}
+                                        key={`${fail.label}_${idx}`}
                                       >
                                         <S.DetailsFaultListRow>
                                           <h3>
-                                            Evento:{' '}
-                                            <span>{fail.fail_name}</span>
+                                            Evento: <span>{fail.label}</span>
                                           </h3>
                                           <h3>
                                             Equipamento:{' '}
-                                            <span>{fail.equipment}</span>
+                                            <span>{fail.id_equipamento}</span>
                                           </h3>
                                         </S.DetailsFaultListRow>
                                         <AnalogSignalsTable

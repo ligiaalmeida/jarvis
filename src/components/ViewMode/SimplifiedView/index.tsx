@@ -6,8 +6,6 @@ import { FaultPredictionActions } from 'store/ducks/faultPrediction';
 import CurrentFaultStation from 'components/StationItemFaults/CurrentFaultStation';
 import FaultPredictionStation from 'components/StationItemFaults/FaultPredictionStation';
 import NavTabs from 'components/NavTabs';
-import Error from 'components/Icons/Error';
-import MessageError from 'components/Messages/Error';
 
 import {
   CurrentFaultItem,
@@ -18,20 +16,12 @@ import {
 } from 'components/StationItemFaults/types';
 import { KeysOfPagesContainingStations } from 'types';
 import * as Types from '../types';
-import ta from 'date-fns/esm/locale/ta/index.js';
 
 const SimplifiedView = ({
   message,
   isDrawerDetails = false,
   namespace,
 }: Types.SimplifiedViewProps) => {
-  const [sta, setSta] = useState<Types.TabsData<React.ReactElement>>({
-    label: {
-      id: 0,
-      title: '',
-    },
-    componentChildren: [],
-  });
   const data: Types.TabsData<React.ReactElement>[] = [];
 
   if (namespace === 'currentFaultsPage') {
@@ -84,6 +74,7 @@ const SimplifiedView = ({
           data={station}
           key={station.label}
           id={station.label}
+          namespace={namespace}
           isOnClick={isDrawerDetails}
           typeView="simplified"
         />
@@ -91,22 +82,6 @@ const SimplifiedView = ({
       data.map((row, idxRow) => (row.label.id = idxRow));
       return data;
     });
-    // (message as FaultPredictionPayload[])?.map((station, idx) => {
-    //   if (station.stop_fail_list.length > 0) {
-    //     if (idx % 24 === 0) {
-    //       setSta({
-    //         label: { id: idx, title: station.label },
-    //         componentChildren: [
-    //           ...sta.componentChildren,
-
-    //         ],
-    //       });
-    //       data.push(sta);
-    //     }
-    //     data.map((row, idxRow) => (row.label.id = idxRow));
-    //   }
-    //   return data;
-    // });
   }
 
   data.map((item) => {
@@ -120,40 +95,29 @@ const SimplifiedView = ({
 
   const getActions = (namespace: KeysOfPagesContainingStations) => {
     switch (namespace) {
-      case 'faultPredictionPage':
-        return {
-          actionAutomaticMode: FaultPredictionActions.toggleAutomaticMode,
-          actionTimer: FaultPredictionActions.timer,
-        };
-      default:
+      case 'currentFaultsPage':
         return {
           actionAutomaticMode: CurrentFaultsActions.toggleAutomaticMode,
           actionTimer: CurrentFaultsActions.timer,
+        };
+      default:
+        return {
+          actionAutomaticMode: FaultPredictionActions.toggleAutomaticMode,
+          actionTimer: FaultPredictionActions.timer,
         };
     }
   };
 
   return (
-    <>
-      {message && data.length > 0 ? (
-        <NavTabs
-          {...getActions(namespace)}
-          namespace={namespace}
-          isSettings
-          isHeightFull
-          minHeight={8}
-          padding="2rem 2.5rem"
-          data={data}
-        />
-      ) : (
-        <MessageError
-          isVisible
-          title="Erro ao tentar buscar os dados"
-          description="Linha sem registro de falhas"
-          icon={<Error />}
-        />
-      )}
-    </>
+    <NavTabs
+      {...getActions(namespace)}
+      namespace={namespace}
+      isSettings
+      isHeightFull
+      minHeight={8}
+      padding="2rem 2.5rem"
+      data={data}
+    />
   );
 };
 
