@@ -6,6 +6,8 @@ import { FaultPredictionActions } from 'store/ducks/faultPrediction';
 import CurrentFaultStation from 'components/StationItemFaults/CurrentFaultStation';
 import FaultPredictionStation from 'components/StationItemFaults/FaultPredictionStation';
 import NavTabs from 'components/NavTabs';
+import Error from 'components/Icons/Error';
+import MessageError from 'components/Messages/Error';
 
 import {
   CurrentFaultItem,
@@ -109,15 +111,26 @@ const SimplifiedView = ({
   };
 
   return (
-    <NavTabs
-      {...getActions(namespace)}
-      namespace={namespace}
-      isSettings
-      isHeightFull
-      minHeight={8}
-      padding="2rem 2.5rem"
-      data={data}
-    />
+    <>
+      {message && data.length > 0 ? (
+        <NavTabs
+          {...getActions(namespace)}
+          namespace={namespace}
+          isSettings
+          isHeightFull
+          minHeight={8}
+          padding="2rem 2.5rem"
+          data={data}
+        />
+      ) : (
+        <MessageError
+          isVisible
+          title="Erro ao tentar buscar os dados"
+          description="Linha sem registro de falhas"
+          icon={<Error />}
+        />
+      )}
+    </>
   );
 };
 
