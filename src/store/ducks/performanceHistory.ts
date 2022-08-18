@@ -1,4 +1,4 @@
-import { CreatorRedux, RangeAutomaticTimer } from 'types';
+import { CreatorRedux, RangeAutomaticTimer, RangeHours } from 'types';
 
 export const Types = {
   TIMER: '@@performanceHistory/TIMER',
@@ -15,9 +15,9 @@ const INITIAL_STATE = {
     timer: 30,
   },
   params: {
-    date: `${date.getFullYear()}-${
-      date.getUTCMonth() + 1
-    }-${date.getUTCDate()}`,
+    date: `${date.getFullYear()}-${date.getUTCMonth() + 1}-${
+      date.getUTCDate() - 1
+    }`,
     hour: date.getUTCHours(),
   },
 };
@@ -41,7 +41,7 @@ const PerformanceHistoryActions = {
       date,
     },
   }),
-  setHour: (hour: number) => ({
+  setHour: (hour: RangeHours) => ({
     type: Types.HOUR,
     payload: {
       hour,

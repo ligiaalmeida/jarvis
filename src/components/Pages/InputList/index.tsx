@@ -18,7 +18,7 @@ import { range } from 'utils/js';
 
 import texts from '../../Navigation/texts';
 
-import { StateMapToPropsGlobal, Buildings } from 'types';
+import { StateMapToPropsGlobal, Buildings, RangeHours } from 'types';
 import * as Types from './types';
 
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -125,7 +125,7 @@ const InputList: React.FC<Types.InputListProps> = ({
               >
                 {polices.config.polices.map((item) => (
                   <MuiMenuItem key={item.nome} value={item.nome}>
-                    {item.label.substr(5)}
+                    {item.label.substring(5)}
                   </MuiMenuItem>
                 ))}
               </MuiSelect>
@@ -158,7 +158,7 @@ const InputList: React.FC<Types.InputListProps> = ({
                     <DatePicker
                       id="calendar"
                       name="date"
-                      dateFormat="yyyy/MM/dd"
+                      dateFormat="dd/MM/yyyy"
                       maxDate={addMonths(new Date(), 0)}
                       minDate={subMonths(new Date(), 8)}
                       className="input-list__input-item--calendar input-list__input-item--datepicker"
@@ -207,14 +207,13 @@ const InputList: React.FC<Types.InputListProps> = ({
                         value={
                           getInputPerformanceHistoryPage.params?.hour
                             ? getInputPerformanceHistoryPage?.params?.hour
-                            : ''
+                            : 0
                         }
                         onChange={(e) => {
+                          const newValue = Number(e.target.value) as RangeHours;
                           if (getInputPerformanceHistoryPage.params.date) {
                             dispatch(
-                              PerformanceHistoryActions.setHour(
-                                Number(e.target.value)
-                              )
+                              PerformanceHistoryActions.setHour(newValue)
                             );
                           }
                         }}
