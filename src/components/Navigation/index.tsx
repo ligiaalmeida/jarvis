@@ -21,7 +21,12 @@ import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
 
-import { ModeView, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
+import {
+  ModeView,
+  RangeHours,
+  StateMapToPropsGlobal,
+  StateMapToRouterProps,
+} from 'types';
 import * as Types from 'types';
 import * as S from './styles';
 
@@ -106,30 +111,6 @@ const Navigation = () => {
     getSettingsCurrentFaultsPage.modeView,
     getSettingsFaultPredictionPage.modeView,
   ]);
-
-  useEffect(() => {
-    if (history.location.pathname === routes.PERFORMANCE_HISTORY) {
-      if (!getInputPerformanceHistoryPage.params?.date)
-        dispatch(
-          PerformanceHistoryActions.setDate(
-            `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() - 1}`
-          )
-        );
-    }
-
-    if (!getInputPerformanceHistoryPage.params?.hour) {
-      dispatch(PerformanceHistoryActions.setHour(0));
-    }
-
-    if (history.location.pathname === routes.MONTHLY_REPORT) {
-      if (!getInputMonthlyReportPage.params?.date)
-        dispatch(
-          MonthlyReportActions.setDate(
-            `${date.getFullYear()}-${date.getMonth()}-1`
-          )
-        );
-    }
-  });
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 1199px)');

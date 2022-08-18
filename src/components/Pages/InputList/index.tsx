@@ -205,7 +205,7 @@ const InputList: React.FC<Types.InputListProps> = ({
                         className="input-list__hour"
                         defaultValue={String(new Date().getHours() - 2)}
                         value={
-                          getInputPerformanceHistoryPage.params?.hour
+                          getInputPerformanceHistoryPage?.params?.hour
                             ? getInputPerformanceHistoryPage?.params?.hour
                             : 0
                         }
