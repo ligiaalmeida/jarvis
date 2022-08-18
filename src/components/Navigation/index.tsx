@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -112,16 +112,13 @@ const Navigation = () => {
       if (!getInputPerformanceHistoryPage.params?.date)
         dispatch(
           PerformanceHistoryActions.setDate(
-            `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+            `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() - 1}`
           )
         );
+    }
 
-      if (!getInputPerformanceHistoryPage.params?.hour)
-        dispatch(
-          PerformanceHistoryActions.setHour(
-            date.getHours() >= 21 ? date.getHours() : date.getHours() - 2
-          )
-        );
+    if (!getInputPerformanceHistoryPage.params?.hour) {
+      dispatch(PerformanceHistoryActions.setHour(0));
     }
 
     if (history.location.pathname === routes.MONTHLY_REPORT) {
@@ -150,7 +147,7 @@ const Navigation = () => {
       document.documentElement
         .requestFullscreen()
         .then(() => setToggleFullscreen(true))
-        .catch((err) => console.log(`Deu ruim: ${err.message} (${err.name})`));
+        .catch((err) => console.log(`${err.message} (${err.name})`));
     }
     if (!isFullscreen) {
       if (document.fullscreenElement !== null) {

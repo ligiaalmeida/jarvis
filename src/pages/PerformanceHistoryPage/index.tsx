@@ -95,7 +95,6 @@ const PerformanceHistoryPage = () => {
     (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) =>
       state.performanceHistoryPage
   );
-
   const { toggleAutomaticMode, timer } = PerformanceHistoryActions;
 
   useEffect(() => {
