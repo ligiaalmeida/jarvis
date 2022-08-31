@@ -58,7 +58,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
               >
                 <S.Font
                   fontcolor={theme.colors.white}
-                  fontSize="6rem"
+                  fontSize="clamp(1rem, -4.7143rem + 8.9286vw, 6rem)"
                   fontWeight="700"
                 >
                   <strong>
@@ -71,8 +71,8 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
                 </S.Font>
                 <S.Font
                   fontcolor={theme.colors.white}
-                  fontSize="1.8rem"
-                  fontWeight="700"
+                  fontSize="clamp(1rem, 0.0857rem + 1.4286vw, 1.8rem)"
+                  fontWeight="600"
                 >
                   {station.active_fail_list[0]?.label ||
                     'Sem falhas até o momento'}
@@ -83,15 +83,15 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
           <Grid item>
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.8rem"
+              fontSize="clamp(1rem, 0.0857rem + 1.4286vw, 1.8rem)"
               fontWeight="normal"
             >
               N Produto
             </S.Font>
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.8rem"
-              fontWeight="700"
+              fontSize="clamp(1rem, 0.0857rem + 1.4286vw, 1.8rem)"
+              fontWeight="500"
             >
               {station.num_prod || '---'}
             </S.Font>
@@ -99,15 +99,15 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
           <Grid item>
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.8rem"
+              fontSize="clamp(1rem, 0.0857rem + 1.4286vw, 1.8rem)"
               fontWeight="normal"
             >
               Baumuster
             </S.Font>
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.8rem"
-              fontWeight="700"
+              fontSize="clamp(1rem, 0.0857rem + 1.4286vw, 1.8rem)"
+              fontWeight="500"
             >
               {station.baumuster || '---'}
             </S.Font>
@@ -115,15 +115,15 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
           <Grid item>
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.8rem"
+              fontSize="clamp(1rem, 0.0857rem + 1.4286vw, 1.8rem)"
               fontWeight="normal"
             >
-              Time
+              Tempo
             </S.Font>
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize=" 1.8rem"
-              fontWeight="700"
+              fontSize=" clamp(1rem, 0.0857rem + 1.4286vw, 1.8rem)"
+              fontWeight="500"
             >
               {time || '---'}
             </S.Font>
@@ -138,7 +138,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
             />
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.5rem"
+              fontSize="clamp(1rem, 0.4286rem + 0.8929vw, 1.5rem)"
               fontWeight="normal"
             >
               Integração com outras linhas
@@ -151,7 +151,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
             />
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.5rem"
+              fontSize="clamp(1rem, 0.4286rem + 0.8929vw, 1.5rem)"
               fontWeight="normal"
             >
               Posto de carga
@@ -164,7 +164,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
             />
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.5rem"
+              fontSize="clamp(1rem, 0.4286rem + 0.8929vw, 1.5rem)"
               fontWeight="normal"
             >
               Posto de descarga
@@ -174,7 +174,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
             <S.Tooltip backgroundcolor={theme.colors.primary_4} />
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.5rem"
+              fontSize="clamp(1rem, 0.4286rem + 0.8929vw, 1.5rem)"
               fontWeight="normal"
             >
               Posto operando normalmente
@@ -184,7 +184,7 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
             <S.Tooltip hasBorder />
             <S.Font
               fontcolor={theme.colors.grey_16}
-              fontSize="1.5rem"
+              fontSize="clamp(1rem, 0.4286rem + 0.8929vw, 1.5rem)"
               fontWeight="normal"
             >
               Posto selecionado
@@ -194,10 +194,10 @@ const Station: React.FC<{ station: StationsList }> = ({ station }) => {
         <Grid item>
           <S.Font
             fontcolor={theme.colors.grey_16}
-            fontSize="1.5rem"
+            fontSize="clamp(1rem, 0.4286rem + 0.8929vw, 1.5rem)"
             fontWeight="normal"
           >
-            *Postos com cores diferentes apresentam falhas
+            *Postos com diferentes cores apresentam falhas
           </S.Font>
         </Grid>
       </Grid>
