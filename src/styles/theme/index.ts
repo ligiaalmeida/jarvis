@@ -79,7 +79,7 @@ export const theme: Theme = {
     black: '#000',
     blue_1: '#003340',
     blue_2: '#0F3370',
-    yellow_1: '#F4EFD0',
+    yellow_1: '#FFF197',
     success: '#32B88B',
     error: '#D0021B',
     alert: '#FC9D0A',

@@ -3,6 +3,10 @@ import { Grid, Typography, Divider } from '@material-ui/core';
 import { theme } from 'styles/theme';
 
 export const Line = styled(Grid)`
+  && {
+    max-width: 80%;
+    flex-basis: 80%;
+  }
   border-right: 1px solid ${theme.colors.grey_14};
 `;
 
@@ -54,32 +58,12 @@ export const CustomContainer = styled.div`
   padding: 24px 10px;
 `;
 
-export const StationDivider = styled(Divider)<{
-  orientation?: string;
-  marginrigth?: string;
-  marginleft?: string;
-}>`
+export const StationDivider = styled(Divider)`
   && {
-    ${({ orientation }) =>
-      orientation === 'vertical'
-        ? `
-  width:2px;
-  `
-        : `
-  height:2px;
-  `}
-    ${({ marginrigth }) =>
-      marginrigth &&
-      `
-margin-right: ${marginrigth};
-`}
-${({ marginleft }) =>
-      marginleft &&
-      `
-margin-left: ${marginleft};
-`}
+    background-color: ${theme.colors.grey_3};
+    min-width: 800px;
+    width: 80%;
   }
-  color: ${theme.colors.grey_13};
 `;
 
 export const Station = styled.div<{
@@ -94,10 +78,8 @@ background-color: ${backgroundcolor};
   display: flex;
   justify-content: center;
   text-align: center;
-  width: calc((100vw - 80rem) / 16);
-  height: calc((100vw - 80rem) / 16);
-  min-height: 60px;
-  min-width: 60px;
+  width: clamp(50px, ((100vw - 80rem) / 16), 80px);
+  height: clamp(50px, ((100vw - 80rem) / 16), 80px);
   border-radius: 4px;
 
   ${({ isActive }) =>
@@ -117,10 +99,8 @@ export const Legend = styled.div<{
   display: flex;
   justify-content: center;
   text-align: center;
-  width: calc((100vw - 80rem) / 16);
-  height: calc((100vw - 80rem) / 16);
-  min-height: 60px;
-  min-width: 60px;
+  width: clamp(50px, ((100vw - 80rem) / 16), 80px);
+  height: clamp(50px, ((100vw - 80rem) / 16), 80px);
   border-radius: 4px;
   background-color: ${theme.colors.grey_12};
   h3 {
@@ -136,6 +116,7 @@ export const Legend = styled.div<{
     `}
     width: 3vh;
     height: 3vh;
+    font-size: clamp(1rem, -0.1429rem + 1.7857vw, 2rem);
   }
 
   ${({ customHeight }) =>
@@ -167,10 +148,8 @@ background-color: ${backgroundcolor};
 
 export const StationEmpty = styled.div`
   border: 1px solid ${theme.colors.grey_14};
-  width: calc((100vw - 80rem) / 16);
-  height: calc((100vw - 80rem) / 16);
-  min-height: 60px;
-  min-width: 60px;
+  width: clamp(50px, ((100vw - 80rem) / 16), 80px);
+  height: clamp(50px, ((100vw - 80rem) / 16), 80px);
   border-radius: 4px;
 `;
 
@@ -182,7 +161,7 @@ export const Font = styled(Typography)<{
   ${({ isvertical }) =>
     isvertical === 'true' &&
     `
-      font-size: 2rem;
+    font-size: clamp(1rem, -0.1429rem + 1.7857vw, 2rem);
       writing-mode: vertical-lr;
       text-orientation: mixed;
       transform: rotate(180deg);
@@ -192,18 +171,18 @@ export const Font = styled(Typography)<{
       ? `
       && {
         color: ${theme.colors.white};
-        font-size: 2.2rem;
+        font-size: clamp(1rem, -0.3714rem + 2.1429vw, 2.2rem);
       }
       `
       : `
       color: ${theme.colors.grey_13};
       && {
-        font-size: 1.6rem;
+        font-size: clamp(1rem, 0.3143rem + 1.0714vw, 1.6rem);
         font-weight: 700;
       }
       `}
       ${({ fontSize }) => `
-        font-size: ${fontSize}rem !important;
+        font-size: ${fontSize};
       `}
     && {
     margin: auto;
@@ -214,7 +193,6 @@ export const Font = styled(Typography)<{
 
 export const Group = styled(Grid)`
   background-color: ${theme.colors.grey_14};
-  border: 2px solid ${theme.colors.grey_6};
   border-radius: 4px;
 `;
 
@@ -232,10 +210,6 @@ export const GridToolTip = styled(Grid)<{
   customheigth: string;
 }>`
   display: flex;
-  align-items: flex-end;
-  h3 {
-    margin: 0;
-  }
   ${({ alignself }) => `
    align-self: ${alignself} !important;
 `}
