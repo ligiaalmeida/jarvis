@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  MenuItem as MuiMenuItem,
-  TextField as MuiTextField,
-} from '@material-ui/core';
+import { MenuItem, TextField } from '@material-ui/core';
 
 import { KPIPerStationProps, StationSelectedState } from '../types';
 
@@ -182,8 +179,9 @@ const KPIPerStation = ({
   return (
     <>
       <S.KPISelectStation>
-        <MuiTextField
+        <TextField
           select
+          id="station-select"
           className="nav__Mui-select-station"
           defaultValue={
             monthlyReportPage.station_selected
@@ -195,7 +193,7 @@ const KPIPerStation = ({
               ? monthlyReportPage.station_selected.toString()
               : payload.monthly_report.kpi.per_station.station_list.datasets[4].id.toString()
           }
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             dispatch(setSelected(Number(e.target.value)));
           }}
           InputProps={{
@@ -225,17 +223,20 @@ const KPIPerStation = ({
             },
           }}
         >
-          {KPIStationList &&
+          {KPIStationList ? (
             KPIStationList.map((station) => (
-              <MuiMenuItem
+              <MenuItem
                 key={station.id}
                 data-key={station.order}
                 value={station.id}
               >
                 {station.label}
-              </MuiMenuItem>
-            ))}
-        </MuiTextField>
+              </MenuItem>
+            ))
+          ) : (
+            <div></div>
+          )}
+        </TextField>
       </S.KPISelectStation>
       {stationSelected && payload && (
         <S.KPIPerStationContainer>
