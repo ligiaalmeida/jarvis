@@ -21,8 +21,6 @@ const SmallScreens: React.FC<any> = ({
     stationList.station_list[0]
   );
 
-  console.log('SmallScreens');
-
   const drawEmptyStation = (numberOfStatios: number) => {
     const draw = [];
 

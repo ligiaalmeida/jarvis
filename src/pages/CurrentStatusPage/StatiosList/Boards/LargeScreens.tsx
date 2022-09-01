@@ -21,8 +21,6 @@ const LargeScreens: React.FC<any> = ({
     stationList.station_list[0]
   );
 
-  console.log('LargeScreens');
-
   const drawEmptyStation = (numberOfStatios: number) => {
     const draw = [];
 
