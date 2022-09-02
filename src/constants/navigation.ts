@@ -40,15 +40,6 @@ export default [
   },
   {
     id: 4,
-    link: routes.MIX_SUGGESTION,
-    name: {
-      pt_br: 'Sugestão de MIX',
-      en_us: 'Mix Suggestion',
-      de: 'Vorschlag Mischen',
-    },
-  },
-  {
-    id: 5,
     link: routes.PERFORMANCE_HISTORY,
     name: {
       pt_br: 'Histórico de Performance',
@@ -57,7 +48,7 @@ export default [
     },
   },
   {
-    id: 6,
+    id: 5,
     link: routes.MONTHLY_REPORT,
     name: {
       pt_br: 'Relatório Mensal',
@@ -66,7 +57,7 @@ export default [
     },
   },
   {
-    id: 7,
+    id: 6,
     link: routes.SHIFTS_REGISTRATION,
     name: {
       pt_br: 'Cadastro de Turnos',

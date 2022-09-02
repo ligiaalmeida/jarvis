@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { History } from 'history';
 
 import { GlobalActions } from 'store/ducks/global';
-import { PerformanceHistoryActions } from 'store/ducks/performanceHistory';
-import { MonthlyReportActions } from 'store/ducks/monthlyReport';
 import { SignInActions } from 'store/ducks/auth';
 
 import Brand from 'components/Brand';
@@ -21,12 +19,7 @@ import { theme } from 'styles/theme';
 
 import navItems from 'constants/navigation';
 
-import {
-  ModeView,
-  RangeHours,
-  StateMapToPropsGlobal,
-  StateMapToRouterProps,
-} from 'types';
+import { ModeView, StateMapToPropsGlobal, StateMapToRouterProps } from 'types';
 import * as Types from 'types';
 import * as S from './styles';
 
@@ -56,14 +49,6 @@ const Navigation = () => {
     (state: Pick<StateMapToPropsGlobal, 'faultPredictionPage'>) =>
       state.faultPredictionPage
   );
-  const getInputPerformanceHistoryPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'performanceHistoryPage'>) =>
-      state.performanceHistoryPage
-  );
-  const getInputMonthlyReportPage = useSelector(
-    (state: Pick<StateMapToPropsGlobal, 'monthlyReportPage'>) =>
-      state.monthlyReportPage
-  );
 
   const signInPage = useSelector(
     (state: Pick<StateMapToPropsGlobal, 'polices'>) => state.polices
@@ -81,7 +66,6 @@ const Navigation = () => {
   const { toggleNavigation, toggleHeader, setHeightNavigation } = GlobalActions;
   const { polices, isLogin } = SignInActions;
   const dispatch = useDispatch();
-  const date = new Date();
   const width = useWindowWidth();
 
   const setHeight = () => {

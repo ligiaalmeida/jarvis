@@ -31,12 +31,7 @@ const persistConfig = {
   key: 'root',
   version: 0,
   storage: storageSession,
-  blacklist: [
-    'currentStatusPage',
-    'mixSuggestionPage',
-    'router',
-    'monthlyReportPage',
-  ],
+  blacklist: ['currentStatusPage', 'router', 'monthlyReportPage'],
   transforms: [filterPerformanceHistory],
 };
 
