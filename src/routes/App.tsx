@@ -13,7 +13,6 @@ import PerformancePage from 'pages/PerformancePage';
 import CurrentFaultsPage from 'pages/CurrentFautsPage';
 import FaultPredictionPage from 'pages/FaultPredictionPage';
 import CurrentStatusPage from 'pages/CurrentStatusPage';
-import MixSuggestionPage from 'pages/MixSuggestionPage';
 import PerformanceHistoryPage from 'pages/PerformanceHistoryPage';
 import MonthlyReportPage from 'pages/MonthlyReportPage';
 import ShiftsRegistrationPage from 'pages/ShiftsRegistationPage';
@@ -57,14 +56,6 @@ const authRoutes = [
   },
   {
     id: 5,
-    name: 'mix_suggestion',
-    route: {
-      path: routes.MIX_SUGGESTION,
-      component: MixSuggestionPage,
-    },
-  },
-  {
-    id: 6,
     name: 'performance_history',
     route: {
       path: routes.PERFORMANCE_HISTORY,
@@ -72,7 +63,7 @@ const authRoutes = [
     },
   },
   {
-    id: 7,
+    id: 6,
     name: 'monthly_report',
     route: {
       path: routes.MONTHLY_REPORT,
@@ -80,7 +71,7 @@ const authRoutes = [
     },
   },
   {
-    id: 8,
+    id: 7,
     name: 'shifts_registration',
     route: {
       path: routes.SHIFTS_REGISTRATION,

@@ -51,12 +51,6 @@ export interface StateMapToPropsGlobal {
     station_selected: number;
     loading: boolean;
   };
-  mixSuggestionPage: {
-    tableSelected: {
-      id: number;
-      type: MixSuggestionTableType | null;
-    };
-  };
 }
 
 export type ShiftRegistrationType = {
@@ -69,8 +63,6 @@ export type ShiftRegistrationType = {
 export type CancelAddShift = boolean;
 
 export type ShiftRegistrationList = ShiftRegistrationType[];
-
-export type MixSuggestionTableType = 'scheduled' | 'suggested';
 
 export type SignInPage = {
   isConnected: boolean;

@@ -29,7 +29,6 @@ export type Pathname =
   | '/fault_prediction'
   | '/current_faults'
   | '/current_status'
-  | '/mix_suggestion'
   | '/performance_history'
   | '/monthly_report'
   | '/shifts_registration';
@@ -40,7 +39,6 @@ export type Pages =
   | 'currentFaults'
   | 'faultPrediction'
   | 'currentStatus'
-  | 'mixSuggestion'
   | 'performanceHistory'
   | 'shiftRegistration';
 
