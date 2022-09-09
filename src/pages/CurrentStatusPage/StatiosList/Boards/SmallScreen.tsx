@@ -361,7 +361,9 @@ const SmallScreens: React.FC<any> = ({
                             alignself="center"
                             customheigth="65%"
                           >
-                            <S.Font>Virador</S.Font>
+                            <S.Font fontSize="clamp(1rem, 0.7714rem + 0.3571vw, 1.2rem)">
+                              Virador
+                            </S.Font>
                           </S.GridToolTip>
                           <S.GridToolTip
                             item
@@ -502,7 +504,9 @@ const SmallScreens: React.FC<any> = ({
                             alignself="center"
                             customheigth="65%"
                           >
-                            <S.Font>Virador</S.Font>
+                            <S.Font fontSize="clamp(1rem, 0.7714rem + 0.3571vw, 1.2rem)">
+                              Virador
+                            </S.Font>
                           </S.GridToolTip>
                           <S.GridToolTip
                             item
@@ -729,7 +733,7 @@ const SmallScreens: React.FC<any> = ({
                         <Grid
                           container
                           direction="column"
-                          justifyContent="flex-end"
+                          justifyContent="space-evenly"
                         >
                           <S.GridToolTip
                             item
@@ -739,7 +743,7 @@ const SmallScreens: React.FC<any> = ({
                             <S.Font
                               style={{
                                 fontSize:
-                                  'clamp(1rem, 0.5429rem + 0.7143vw, 1.4rem)',
+                                  'clamp(1rem, 0.7714rem + 0.3571vw, 1.2rem)',
                               }}
                             >
                               EOM Quadros

@@ -1,6 +1,6 @@
 {
   "name": "jarvis-web",
-  "version": "0.1.0",
+  "version": "22.9.1",
   "private": true,
   "productName": "Jarvis",
   "description": "Just A Rather Very Intelligent System (J.A.R.V.I.S.)",
@@ -36,8 +36,8 @@
   },
   "author": {
     "name": "Semantix S/A",
-    "email": "ligia.almeida@semantix.com.br",
-    "url": "https://semantix.com.br/"
+    "email": "ligia.almeida@semantix.ai",
+    "url": "https://semantix.ai"
   },
   "license": "MIT",
   "keywords": [
