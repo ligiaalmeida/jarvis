@@ -11,43 +11,31 @@ export const ContainerWrapper = styled.div`
     return css`
       position: relative;
       background: ${theme.colors.white};
-
-      .sign-in__row-container {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        top: 0;
-      }
+      display: grid;
+      grid-template: 100% / auto 475px;
 
       .sign-in__img-hero {
-        position: relative;
-        overflow: hidden;
+        height: 100vh;
+        overflow: hidden !important;
         background-size: cover;
         background-image: url(${HeroImg});
-        background-position: 30% 10%;
-
-        ${theme.breakpoints.default('min').xs(css`
-          display: none;
-        `)};
-
-        ${theme.breakpoints.default('min').md(css`
-          display: block;
-        `)};
-      }
-
-      .sign-in__row-content {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
       }
 
       .sign-in__content {
+        display: grid;
+        grid-template-rows: [row1-start] 15% [row1-end] 50% [third-line] 50% [last-line];
+        justify-content: stretch;
+        align-items: flex-start;
+      }
+
+      .sign-in__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
         img {
           width: 30rem;
-          margin: 2rem auto;
+          margin: 2rem;
         }
       }
 
@@ -61,51 +49,40 @@ export const ContainerWrapper = styled.div`
   }}
 `;
 
-export const Hero = styled.img`
+export const BlueBox = styled.div`
+  position: relative;
+
   ${(props) => {
     const { theme } = props;
 
     return css`
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      ${theme.breakpoints.default('min').xs(css`
-        width: auto;
-        height: 100%;
-        display: none;
-      `)};
-
-      ${theme.breakpoints.default('min').sm(css`
-        display: block;
-      `)};
-
-      ${theme.breakpoints.default('min').md(css`
-        width: auto;
-        height: 100%;
-      `)};
-
-      ${theme.breakpoints.default('min').lg(css`
-        width: auto;
-      `)};
+      padding: ${theme.unit * 2}px 0;
+      color: ${theme.colors.white};
+      background: ${theme.colors.primary_1};
+      height: 90%;
     `;
-  }};
+  }}
 `;
 
 export const FormContent = styled.div`
   ${(props) => {
     const { theme } = props;
-
     return css`
-      position: relative;
-      top: -16rem;
-      width: 100%;
+      float: inline-start;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
       .sign-in__form-content {
         position: relative;
         margin: 0 auto;
-        padding: 2rem 4rem;
+        padding: ${theme.unit * 2}px;
         border-radius: ${theme.unit}px;
         background: ${theme.colors.white};
         ${Elevation(2)};
@@ -118,18 +95,18 @@ export const FormContent = styled.div`
         p {
           font-size: 1.8rem;
           color: ${theme.colors.grey_1};
-          margin-bottom: 4rem;
+          margin-bottom: ${theme.unit}px;
         }
       }
 
       .sign-in__form-group {
         width: 100%;
-        margin-bottom: 1.5rem;
+        margin-bottom: ${theme.unit}px;
 
         &--message {
           margin-top: ${theme.unit * 3}px;
           margin-bottom: 0;
-          padding: 1.5rem 1rem;
+          padding: 1rem;
           border-radius: 4px;
           border: 1px solid ${theme.colors.grey_4};
           background-color: ${theme.colors.grey_8};
@@ -168,7 +145,7 @@ export const FormContent = styled.div`
       button {
         border: 0;
         border-radius: 4px;
-        margin-top: 2rem;
+        margin-top: ${theme.unit * 2}px;
         font-family: 'DaimlerLight', sans-serif;
         color: ${theme.colors.white};
         font-size: ${theme.typography.size.normal};
@@ -192,20 +169,6 @@ export const FormContent = styled.div`
           padding: 1rem 5rem;
         `)};
       }
-    `;
-  }}
-`;
-
-export const BlueBox = styled.div`
-  position: relative;
-
-  ${(props) => {
-    const { theme } = props;
-
-    return css`
-      padding: 10rem 0;
-      color: ${theme.colors.white};
-      background: ${theme.colors.primary_1};
     `;
   }}
 `;

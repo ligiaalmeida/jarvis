@@ -75,108 +75,99 @@ const SignInPage = () => {
 
   return (
     <S.ContainerWrapper>
-      <Row className="sign-in__row-container">
-        <Container xs={9} lg={10} className="sign-in__img-hero" />
+      <div className="sign-in__img-hero" />
 
-        <Container xs={7} lg={6} className="sign-in__form">
-          <Row flexDirection="column" className="sign-in__row-content">
-            <Container
-              padding={{ xs: [0, 0, 0, 0, 'px'] }}
-              className="sign-in__content"
-            >
-              <img
-                src={Logo}
-                alt="Texto com a marca MB-Jarvis"
-                onDragStart={(e) => e.preventDefault()}
-              />
-              <S.BlueBox />
-              <S.FormContent>
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
+      <div className="sign-in__content">
+        <div className="sign-in__logo">
+          <img
+            src={Logo}
+            alt="Texto com a marca MB-Jarvis"
+            onDragStart={(e) => e.preventDefault()}
+          />
+        </div>
+        <S.BlueBox />
+        <S.FormContent>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <Container xs={13} lg={10} className="sign-in__form-content">
+              <h1>{texts.title.pt_br}</h1>
+              <p>{texts.description.pt_br}</p>
+
+              <form onSubmit={handleSubmit}>
+                <Container
+                  padding={{ xs: [0, 0, 0, 0, 'px'] }}
+                  flexDirection="column"
+                  className="sign-in__form-group"
+                  xs={16}
                 >
-                  <Container xs={13} lg={10} className="sign-in__form-content">
-                    <h1>{texts.title.pt_br}</h1>
-                    <p>{texts.description.pt_br}</p>
+                  <label htmlFor="user">{texts.form.user.label.pt_br}</label>
+                  <input
+                    id="user"
+                    type="text"
+                    name="user"
+                    value={eachEntry.user}
+                    placeholder={texts.form.user.placeholder.pt_br}
+                    onChange={(e) => {
+                      if (messageError) setMessageError('');
+                      handleInputChange(e);
+                    }}
+                  />
+                </Container>
 
-                    <form onSubmit={handleSubmit}>
+                <Container
+                  flexDirection="column"
+                  className="sign-in__form-group"
+                  xs={16}
+                >
+                  <label htmlFor="password">
+                    {texts.form.password.name.pt_br}
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="pwd"
+                    value={eachEntry.pwd}
+                    placeholder={texts.form.password.placeholder.pt_br}
+                    onChange={(e) => {
+                      if (messageError) setMessageError('');
+                      handleInputChange(e);
+                    }}
+                  />
+                </Container>
+
+                <AnimatePresence>
+                  {messageError && (
+                    <motion.div
+                      initial={{ y: 10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: 10, opacity: 0 }}
+                      transition={{ damping: 300, duration: 0.4 }}
+                    >
                       <Container
+                        flexDirection="column"
+                        className="sign-in__form-group sign-in__form-group--message"
+                        xs={16}
                         padding={{ xs: [0, 0, 0, 0, 'px'] }}
-                        flexDirection="column"
-                        className="sign-in__form-group"
-                        xs={16}
                       >
-                        <label htmlFor="user">
-                          {texts.form.user.label.pt_br}
-                        </label>
-                        <input
-                          id="user"
-                          type="text"
-                          name="user"
-                          value={eachEntry.user}
-                          placeholder={texts.form.user.placeholder.pt_br}
-                          onChange={(e) => {
-                            if (messageError) setMessageError('');
-                            handleInputChange(e);
-                          }}
-                        />
+                        <span>{messageError}</span>
                       </Container>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                      <Container
-                        flexDirection="column"
-                        className="sign-in__form-group"
-                        xs={16}
-                      >
-                        <label htmlFor="password">
-                          {texts.form.password.name.pt_br}
-                        </label>
-                        <input
-                          type="password"
-                          id="password"
-                          name="pwd"
-                          value={eachEntry.pwd}
-                          placeholder={texts.form.password.placeholder.pt_br}
-                          onChange={(e) => {
-                            if (messageError) setMessageError('');
-                            handleInputChange(e);
-                          }}
-                        />
-                      </Container>
-
-                      <AnimatePresence>
-                        {messageError && (
-                          <motion.div
-                            initial={{ y: 10, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: 10, opacity: 0 }}
-                            transition={{ damping: 300, duration: 0.4 }}
-                          >
-                            <Container
-                              flexDirection="column"
-                              className="sign-in__form-group sign-in__form-group--message"
-                              xs={16}
-                              padding={{ xs: [0, 0, 0, 0, 'px'] }}
-                            >
-                              <span>{messageError}</span>
-                            </Container>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      <button type="submit">
-                        {!isLoading && texts.form.button.pt_br}
-                        {isLoading && <Ring width={32} borderWidth={3} />}
-                      </button>
-                    </form>
-                  </Container>
-                </motion.div>
-              </S.FormContent>
+                <button type="submit">
+                  {!isLoading && texts.form.button.pt_br}
+                  {isLoading && <Ring width={32} borderWidth={3} />}
+                </button>
+              </form>
             </Container>
-          </Row>
-          <Footer />
-        </Container>
-      </Row>
+          </motion.div>
+        </S.FormContent>
+      </div>
+      <Footer />
     </S.ContainerWrapper>
   );
 };
