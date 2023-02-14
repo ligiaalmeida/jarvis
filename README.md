@@ -1,60 +1,89 @@
-# Getting Started with Create React App
+# J.A.R.V.I.S. Just A Rather Very Intelligent System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O Jarvis é um avançado dashboard que possibilita reunir e analisar dados entre máquinas, permitindo processos mais rápidos, mais flexíveis e mais eficientes para produção de alta qualidade a custos reduzidos. Além de promover o aumento de produtividade, nossa solução é capaz de prever possíveis falhas e paradas de máquinas, identificar padrões, e até mesmo mudar o comportamento da linha de produção para que os processos sejam mais produtivos e assertivos.
+Este projeto foi inicializado com [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Comandos disponíveis
 
-In the project directory, you can run:
+No diretório do projeto, você pode executar:
 
-### `yarn start`
+### Instalar as dependencias do projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm run install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Iniciar o projeto em desenvolvimento
 
-### `yarn test`
+```bash
+npm run start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Executa o aplicativo no modo de desenvolvimento.\
+Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navegador.
 
-### `yarn build`
+A página será recarregada se você fizer edições.\
+Você também verá quaisquer erros de lint no console.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Executando testes no projeto
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm run test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Inicia o executor de teste no modo de observação interativo.\
+Consulte a seção sobre [running tests](https://facebook.github.io/create-react-app/docs/running-tests) para obter mais informações.
 
-### `yarn eject`
+### Gerando o build da aplicação
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+npm run build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Cria o aplicativo para produção na pasta `build`.\
+Ele empacota corretamente o React no modo de produção e otimiza a compilação para obter o melhor desempenho.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+A compilação é minificada e os nomes dos arquivos incluem os hashes.\
+Seu aplicativo está pronto para ser implantado!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Consulte a seção sobre [deployment](https://facebook.github.io/create-react-app/docs/deployment) para obter mais informações.
 
-### `deploy with docker`
+### Ejetar o projeto
+
+```bash
+npm run eject
+```
+
+**Nota: esta é uma operação unidirecional. Depois de 'ejetar', você não pode voltar!**
+
+Se você não estiver satisfeito com a ferramenta de construção e opções de configuração, você pode `ejetar` a qualquer momento. Este comando removerá a dependência de compilação única do seu projeto.
+
+Em vez disso, ele copiará todos os arquivos de configuração e as dependências transitivas (webpack, Babel, ESLint, etc) diretamente para o seu projeto, para que você tenha controle total sobre eles. Todos os comandos, exceto `eject`, ainda funcionarão, mas apontarão para os scripts copiados para que você possa ajustá-los. Neste ponto, você está por conta própria.
+
+Você nunca precisará usar `eject`. O conjunto de recursos selecionados é adequado para implantações pequenas e médias, e você não deve se sentir obrigado a usar esse recurso. No entanto, entendemos que esta ferramenta não seria útil se você não pudesse personalizá-la quando estivesse pronto para ela.
+
+### Deploy com docker
 
 Para levantar containers preparados para desenvolvimento utilize:
 
-`./run-app-deploy.sh --dev`
+```bash
+./run-app-deploy.sh --dev
+```
 
 Para levantar containers preparados para produção utilize:
 
-`./run-app-deploy.sh --prod`
+```bash
+./run-app-deploy.sh --prod
+```
 
 p.s: se você tiver problemas para executar o arquivo `run-app-deploy.sh` execute o seguinte comando:
 
-`chmod +x run-app-deploy.sh`
+```bash
+chmod +x run-app-deploy.sh
+```
 
-## Learn More
+## Saiba mais
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Você pode aprender mais na [documentação do Create React App](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Para aprender React, confira a [React documentação](https://reactjs.org/).

@@ -13,7 +13,10 @@
     "lint": "cross-env NODE_ENV=development eslint . --cache --ext .js,.jsx,.ts,.tsx",
     "lint-fix": "--silent lint --fix; exit 0",
     "lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
-    "lint-styles-fix": "--silent lint-styles --fix; exit 0"
+    "lint-styles-fix": "--silent lint-styles --fix; exit 0",
+    "storybook": "start-storybook -p 6006 -s public",
+    "storybook-docs": "start-storybook --docs --no-manager-cache",
+    "build-storybook": "build-storybook -s public"
   },
   "lint-staged": {
     ".src/*.{tsx,ts,js}": [
@@ -104,6 +107,16 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/node-logger": "^6.5.12",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
     "@types/axios": "^0.14.0",
     "@types/chart.js": "^2.9.24",
     "@types/date-fns": "^2.6.0",
@@ -132,6 +145,7 @@
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "cross-env": "^7.0.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^9.0.0",
@@ -149,6 +163,7 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
+    "prop-types": "^15.8.1",
     "react-hot-loader": "^4.13.0",
     "redux-logger": "^3.0.6",
     "stylelint": "^13.6.1",
@@ -156,7 +171,8 @@
     "stylelint-config-standard": "^20.0.0",
     "testcafe": "^1.8.8",
     "testcafe-react-selectors": "^4.0.0",
-    "typescript": "^4.1.2"
+    "typescript": "^4.1.2",
+    "webpack": "^5.74.0"
   },
   "devEngines": {
     "node": ">=7.x",
@@ -198,5 +214,17 @@
   "resolutions": {
     "@types/react": "17.0.30",
     "babel-eslint": "9.0.0"
+  },
+  "eslintConfig": {
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   }
 }
